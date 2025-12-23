@@ -196,7 +196,7 @@
                     <div class="offcanvas__content">
                         <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
                             <div class="offcanvas__logo">
-                                <a href="index.html">
+                                <a href="{% url 'home' %}">
                                         <img style="width: 90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
                                     </a>
                             </div>
@@ -226,10 +226,10 @@
                 <div class="mega-menu-wrapper">
                     <div class="header-main">
                         <div class="logo">
-                                <a href="index.html" class="header-logo">
+                                <a href="{% url 'home' %}" class="header-logo">
                                     <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
                                 </a>
-                                 <a href="index.html" class="header-logo2">
+                                 <a href="{% url 'home' %}" class="header-logo2">
                                     <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
                                 </a>
                         </div>
