@@ -1,0 +1,1117 @@
+{% load static %}
+{% load humanize %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- ========== Basic Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== SEO & Page Identity ========== -->
+    <title>The Winlos Academy | Nigeria’s Premier Christian Film School</title>
+    <meta name="description" content="The Winlos Academy is Nigeria’s premier Christian film school, commissioning cultural influencers who create powerful, faith-driven stories with technical mastery and spiritual integrity. Discover the story you were born to tell.">
+    <meta name="author" content="The Winlos Academy">
+    <meta name="keywords" content="christian film school nigeria, winlos academy, faith-based filmmaking, christian cinematography training, bible-based film school, nigerian christian film academy, filmmaking with purpose, spiritual storytelling, rev otis ojukwu film school">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== Open Graph / Facebook ========== -->
+    <meta property="og:title" content="The Winlos Academy | Nigeria’s Premier Christian Film School">
+    <meta property="og:description" content="We don’t just train filmmakers — we commission cultural influencers. Join Nigeria’s leading Christian film school and create stories that illuminate, inspire, and transform culture for Christ.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.thewinlosacademy.com">
+    <meta property="og:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg' %}">
+    <meta property="og:image:alt" content="The Winlos Academy - Christian Film School in Nigeria">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="The Winlos Academy">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Winlos Academy | Christian Film School Nigeria">
+    <meta name="twitter:description" content="At TWA, we help you discover the story you were born to tell. Join Nigeria’s premier Christian film school.">
+    <meta name="twitter:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg' %}">
+    <meta name="twitter:site" content="@winlosacademy">
+    <meta name="twitter:creator" content="@winlosacademy">
+
+    <!-- ========== Favicon & Touch Icons ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://www.thewinlosacademy.com">
+
+    <!-- ========== Preconnect for Speed ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{% static 'student_d_assets/images/logo/favicon.png' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/bootstrap.min.css' %}">
+    <!-- select2 -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/select2.min.css' %}">
+    <!-- Slick -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/slick.css' %}">
+    <!-- Slick -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/magnific-popup.css' %}">
+    <!-- jquery-ui -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/jquery-ui.css' %}">
+    <!-- plyr Css -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/plyr.css' %}">
+    <!-- Editor js Toolbar Start -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/editor-quill.css' %}">
+    <!-- animate -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/animate.css' %}">
+    <!-- dataTables.dataTables -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/dataTables.dataTables.min.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/aos.css' %}">
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/main.css' %}">
+      <link rel="stylesheet" href="{% static 'student_d_assets/css/custom.css' %}">
+
+
+
+
+    <style>
+        
+           .link_active{
+             background-color: var(--main-600) !important;
+             color: white !important
+        }
+
+                textarea:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+                .student-dashbord-scrollbar {
+    scrollbar-width: none; /* Firefox */
+}
+
+
+
+
+    /* Make course cards smaller & more balanced */
+.course-item {
+    padding: 10px !important;
+    border-radius: 14px;
+    transition: 0.2s ease;
+}
+
+.course-item__thumb {
+    height: 160px !important;
+}
+
+.course-item__thumb img {
+    object-fit: cover !important;
+}
+
+/* Reduce internal spacing */
+.course-item__content {
+    padding: 6px 2px !important;
+}
+
+.course-item__content h4 {
+    margin-bottom: 14px !important;
+}
+
+.course-item__content span,
+.course-item__content h4 a {
+    font-size: 14px !important;
+}
+
+/* Category pill */
+.course-item__content > div > span {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Lessons + Students Row */
+.flex-between {
+    margin-bottom: 12px !important;
+}
+
+.flex-align span.text-2xl {
+    font-size: 18px !important;
+}
+
+/* Reduce “Complete” text */
+.course-item__content .text-20 {
+    font-size: 15px !important;
+}
+
+/* Progress bar spacing */
+.mb-40 {
+    margin-bottom: 20px !important;
+}
+
+/* Floating percentage label */
+.floating-label {
+    font-size: 12px !important;
+    height: 28px !important;
+}
+
+/* Stars + Author */
+.flex-between.mt-28 {
+    margin-top: 14px !important;
+}
+
+.text-14 {
+    font-size: 12px !important;
+}
+
+.w-28.h-28 {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* Hover improvement */
+.course-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+
+
+/* 01.3 Buttons */
+.theme-btn {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  vertical-align: middle;
+  display: inline-block;
+  border: none;
+  text-transform: capitalize;
+  text-align: center;
+  border-radius: 30px;
+  background: black;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 14px 14px;
+  letter-spacing: -0.18px;
+}
+
+.theme-btn::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  background-color: rgb(218, 170, 15);
+  z-index: -1;
+  transition: all 0.4s ease-out;
+  border-radius: inherit;
+}
+.theme-btn:hover {
+  color: var(--header);
+  box-shadow: none;
+}
+.theme-btn:hover::before {
+  width: 100%;
+}
+.theme-btn:hover i {
+  background-color: var(--theme);
+  color: var(--white);
+}
+@media (max-width: 575px) {
+  .theme-btn {
+    font-size: 14px;
+  }
+}
+
+
+
+.exam-action-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 18px !important;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 8px;
+    border: none;
+    color: #fff !important;
+    transition: all 0.25s ease-in-out;
+}
+
+.exam-action-btn i {
+    font-size: 18px;
+}
+
+.exam-action-btn.btn-success {
+    background: #00c48c;
+}
+.exam-action-btn.btn-success:hover {
+    background: #00a876;
+    transform: translateY(-2px);
+}
+
+.exam-action-btn.btn-primary {
+    background: #0057ff;
+}
+.exam-action-btn.btn-primary:hover {
+    background: #0046d6;
+    transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+@media (max-width: 576px) {
+    .exam-action-btn {
+        width: 100%;
+        justify-content: center;
+        padding: 12px !important;
+        font-size: 14px;
+    }
+}
+
+
+
+.empty-lessons-card {
+    border: 2px dashed #d0d5dd;
+    background: #fafafa;
+    transition: all 0.3s ease;
+}
+
+.empty-lessons-card:hover {
+    background: #f5f7fa;
+    border-color: #b2b7c2;
+}
+
+.empty-lessons-card .empty-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.empty-lessons-card .empty-icon i {
+    font-size: 28px;
+    color: #667085;
+}
+
+
+    </style>
+
+
+</head> 
+<body>
+    
+
+      <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="txt-loading">
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="W" class="letters-loading">
+                        W
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                 
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<!--==================== Overlay Start ====================-->
+<div class="overlay"></div>
+<!--==================== Overlay End ====================-->
+
+<!--==================== Sidebar Overlay End ====================-->
+<div class="side-overlay"></div>
+<!--==================== Sidebar Overlay End ====================-->
+
+<!-- ==================== Scroll to Top End Here ==================== -->
+<div class="progress-wrap">
+  <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+      <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+  </svg>
+</div>
+<!-- ==================== Scroll to Top End Here ==================== -->
+
+<!-- ==================== Mobile Menu Start Here ==================== -->
+<div class="mobile-menu scroll-sm d-lg-none d-block">
+    <button type="button" class="close-button"><i class="ph ph-x"></i> </button>
+    <div class="mobile-menu__inner">
+        <a href="{% url 'home' %}" class="mobile-menu__logo">
+            <img style="max-width:90px;" src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Logo">
+        </a>
+        <div class="mobile-menu__menu">
+            
+<ul class="nav-menu flex-align nav-menu--mobile">
+    <li class="nav-menu__item  activePage">
+        <a href="{% url 'home' %}" class="nav-menu__link text-dark">Home</a> 
+    </li>
+    <li class="nav-menu__item ">
+        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">About Us</a>
+    </li>
+    <li class="nav-menu__item ">
+        <a href="{% url 'program' %}" class="nav-menu__link text-dark">Programs</a>
+    </li>
+    <li class="nav-menu__item ">
+        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">Admission</a>
+    </li> 
+</ul>
+
+            
+        </div>
+    </div>
+</div>
+<!-- ==================== Mobile Menu End Here ==================== -->
+
+
+<!-- ==================== Header Start Here ==================== -->
+<header style="background-color:black;" class="header text-white">
+    <div class="container container--xl">
+        <nav class="header-inner flex-between gap-12">
+
+            <!-- Logo -->
+            <div class="header-logo-wrapper flex-align">
+                <a href="{% url 'home' %}" class="link">
+                    <img style="max-width:90px;" src="{% static 'assets/images/logo/winlos_logo_white.png' %}" alt="Logo">
+                </a>
+            </div>
+
+            <!-- Menu (centered) -->
+            <div class="header-menu d-lg-block d-none flex-grow-1">
+                <ul class="nav-menu flex-align justify-content-center">
+                    <li class="nav-menu__item activePage">
+                        <a href="{% url 'home' %}" class="nav-menu__link text-white">Home</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">About Us</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'program' %}" class="nav-menu__link text-white">Programs</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'admission' %}" class="nav-menu__link text-white">Admission</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Header Right -->
+            <div class="header-right flex-align">
+                <div class="dropdown">
+                    <button class="dropdown-toggle w-48 h-48" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if request.user.profile_pic and request.user.profile_pic.name %}
+                        <img src="{{ request.user.profile_pic.url }}" alt="Profile" class="w-54 h-54 rounded-circle">
+                        {% else %}
+                        <img src="{% static 'student_d_assets/images/profile_pic.png' %}" alt="">
+                        {% endif %}
+                    </button>
+                    <ul class="dropdown-menu rounded-12">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'student_profile' %}">
+                                <span><i class="ph ph-user-circle"></i></span>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'logout' %}">
+                                <span><i class="ph ph-power"></i></span>
+                                <span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button type="button" class="toggle-mobileMenu d-lg-none text-white flex-center">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+
+        </nav>
+    </div>
+</header>
+<!-- ==================== Header End Here ==================== -->
+
+
+<!-- ============== student dashbord banner section start =============== -->
+<section class="breadcrumb pt-80 pb-187 bg-neutral-900 position-relative z-1 overflow-hidden mb-0 z-n1">
+
+    
+    <div class="container container--lg">
+        <div class="d-flex align-items-center gap-16 justify-content-between flex-wrap">
+            <div class="breadcrumb__wrapper">
+              <h1 class="breadcrumb__title display-4 fw-semibold text-white mb-20">
+                Learning Portal
+            </h1>
+
+                <ul class="breadcrumb__list d-flex align-items-center gap-4 flex-wrap">
+                    <li class="breadcrumb__item">
+                        <a href="{% url 'home' %}" class="breadcrumb__link text-white hover-text-warning-800 fw-medium">Home</a>
+                    </li>
+               
+                    <li class="breadcrumb__item @@arrowTwoShowHide">
+                        <i class="text-white d-flex ph-bold ph-caret-right"></i>
+                    </li>
+                    <li class="breadcrumb__item"> 
+                        <span class="text-main-two-600">Dashboard</span> 
+                    </li>
+                </ul>
+            </div>
+         
+        </div>
+    </div>
+</section>
+<!-- ============== student dashbord banner section end =============== -->
+
+<!-- =========== student dashbord section start ============== -->
+
+<section class="bg-main-25 pb-80 w-100 h-100">
+    <div class="container container--lg">
+        <div class="d-flex gap-24 mt--120 z-2 position-relative">
+            <div class="student-overlay-sidebar"></div>
+   <!-- ========Dashboard Sidebar start======== -->
+<div class="student-dashboard-sidebar shadow px-20 py-24 max-w-288-px bg-white rounded-10 w-100 position-relative">
+
+    <div class="text-center">
+
+        {% if request.user.profile_pic and request.user.profile_pic.name %}
+            <img src="{{ request.user.profile_pic.url }}"
+                 alt="Profile"
+                 class="rounded-circle d-block mx-auto mt-2"
+                 style="width:85px; height:85px; object-fit:cover;">
+        {% else %}
+            <img src="{% static 'student_d_assets/images/profile_pic.png' %}"
+                 alt="Profile"
+                 class="rounded-circle d-block mx-auto mt-2"
+                 style="width:85px; height:85px; object-fit:cover;">
+        {% endif %}
+
+        <h5 style="margin-top:40px;"  class="mb-2 text-neutral-200 mt-3">
+            Welcome, {{ request.user.username }}
+        </h5>
+
+        <span class="text-neutral-500 text-14 fw-normal">
+            {{ request.user.email }}
+        </span>
+    </div>
+
+    <span class="w-100 bg-neutral-40 mb-24 mt-24 h-1 d-block"></span>
+
+    <div class="overflow-x-auto">
+        <div class="student-dashbord-scrollbar min-w-max"> 
+            <ul>
+
+                <!-- Dashboard -->
+                <li class="mb-8">
+                    <a href="{% url 'dashboard' %}"
+                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
+                              hover-bg-main-600  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                        <span class="text-16 text-main-600 item-hover__text transition-03">
+                            <i  class="ph-bold ph-house"></i>
+                        </span>
+                        Dashboard
+                    </a>
+                </li>
+
+                <!-- Profile -->
+                <li class="mb-8">
+                    <a href="{% url 'student_profile' %}"
+                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
+                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                        <span class="text-16 text-main-600 item-hover__text transition-03">
+                            <i class="ph-bold ph-user-circle"></i>
+                        </span>
+                        My Profile
+                    </a>
+                </li>
+
+                <!-- Enrolled Courses -->
+                <li class="mb-8">
+                    <a href="{% url 'courses' %}"
+                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
+                              hover-bg-main-600 link_active px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                        <span class="text-16 text-main-600 item-hover__text transition-03">
+                            <i style="color:white;" class="ph-bold ph-graduation-cap"></i>
+                        </span>
+                        Courses
+                    </a>
+                </li>
+
+                <!-- Certificate Request -->
+                <li class="mb-8">
+                    <a href="{% url 'certification' %}"
+                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
+                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                        <span class="text-16 text-main-600 item-hover__text transition-03">
+                            <i class="ph-bold ph-certificate"></i>
+                        </span>
+                        Certificates
+                    </a>
+                </li>
+
+                <!-- Logout -->
+                <li class="mb-8">
+                    <a href="{% url 'logout' %}"
+                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
+                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                        <span class="text-16 text-main-600 item-hover__text transition-03">
+                            <i class="ph ph-sign-out"></i>
+                        </span>
+                        Logout
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+    <div class="position-absolute inset-block-end-0 inset-inline-start-0 pb-16 px-16 w-100">
+        <a href="#" class="text-14 fw-medium text-neutral-500 d-flex align-items-center gap-8  
+                          hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap bg-white">
+
+            <span class="text-16 text-main-600 item-hover__text transition-03">
+                <img src="{% static 'student_d_assets/images/certificate.png' %}"
+                     alt="Certificate"
+                     class="d-block mx-auto"
+                     style=" object-fit:contain;">
+            </span>
+
+        </a>
+    </div>
+
+</div>
+<!-- ========Dashboard Sidebar end======== -->
+<!-- ================================== Explore Course Two Section Start =========================== -->
+<section class="explore-course position-relative z-1 w-100">
+    <div class="container">
+
+        <!-- TOP BAR -->
+        <div class="d-flex align-items-center gap-8 justify-content-between flex-wrap">
+            <div class="d-flex align-items-center gap-16 flex-wrap">
+                <button type="button" class="toggle-student-dashbord-button text-white text-24 d-xl-none d-block">
+                    <i class="ph-bold ph-list"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- MAIN SECTION -->
+        <div style="margin-top:25px;" class="w-100">
+
+            
+            <!-- LESSON TITLE -->
+            <div class="px-40 py-32 bg-white rounded-10 shadow mb-24 d-flex justify-content-between align-items-center flex-wrap">
+                <div>
+                    <h3 class="text-20 fw-semibold text-neutral-800 mb-4">{{ course.name_of_course }}</h3>
+                    <p class="text-neutral-600 text-14">{{ lesson.title|title }}</p>
+                </div>
+                <a href="{% url 'dashboard' %}" class="theme-btn">← Back to Dashboard</a>
+            </div>
+
+            {% if all_lessons %}
+                <!-- LESSON TITLE -->
+                <div class="px-40 py-32 bg-white rounded-10 shadow mb-24 d-flex justify-content-between align-items-center flex-wrap">
+                    <div>
+                        <h3 class="text-20 fw-semibold text-neutral-800 mb-4">{{ course.name_of_course }}</h3>
+                        <p class="text-neutral-600 text-14">{{ lesson.title|title }}</p>
+                    </div>
+                    <a href="{% url 'dashboard' %}" class="theme-btn">← Back to Dashboard</a>
+                </div>
+
+                <!-- TWO COLUMN LAYOUT -->
+                <div class="row g-4">
+
+                    <!-- LEFT COLUMN: VIDEO -->
+                    <div class="col-12 col-md-12 col-lg-8">
+
+                        <div class="text-dark rounded-5 p-24 bg-white shadow">
+                            <!-- VIDEO PLAYER -->
+                            <video id="lesson-video" class="w-100"
+                                   controls
+                                   controlsList="nodownload"
+                                   preload="metadata"
+                                   data-lesson-id="{{ lesson.id }}"
+                                   data-next-url="{% if next_lesson_url %}{{ next_lesson_url }}{% endif %}"
+                                   data-lesson-completed="{% if lesson_completed %}true{% else %}false{% endif %}">
+                                <source src="{{ lesson.video.url }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </div>
+
+                        <div class="rounded-5 p-24 mt-5 bg-white shadow">
+                            <h5><i class="ph ph-info text-primary"></i> Course Description</h5>
+                            <p style="margin-top:20px;" class="text-dark fw-bold text-13 lead mb-4">
+                                {{ lesson.description|linebreaksbr }}
+                            </p>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT COLUMN: MODULES -->
+                    <div class="col-12 col-md-12 col-lg-4">
+
+                        <div class="bg-white rounded-10 shadow p-24">
+
+                            <h5 class="text-18 fw-semibold text-neutral-800 mb-20">Module Progress</h5>
+
+                            <!-- Progress Bar -->
+                            <div class="mb-24">
+                                <div class="d-flex justify-content-between mb-6">
+                                    <span class="text-neutral-600 text-14">{{ completed_lessons }} / {{ total_lessons }} completed</span>
+                                    <span class="fw-bold">{{ progress }}%</span>
+                                </div>
+                                <div class="progress rounded-pill" style="height: 10px;">
+                                    <div class="progress-bar bg-warning" style="width: {{ progress }}%;"></div>
+                                </div>
+                            </div>
+
+                            <hr>
+
+                            <h6 class="text-16 fw-semibold text-neutral-800 mt-24 mb-16">Modules</h6>
+
+                            <div class="lesson-list" style="max-height: 480px; overflow-y: auto;">
+                                {% for l in all_lessons %}
+                                    <a href="{% url 'course_live' course.id %}?lesson={{ l.id }}"
+                                       class="d-flex align-items-start gap-12 p-12 rounded-10 border mb-12
+                                       {% if l.id == lesson.id %} bg-main-50 border-main-600 {% else %} bg-neutral-50 {% endif %}">
+                                        <div class="w-36 h-36 rounded-8 flex-center
+                                            {% if l.id == lesson.id %} bg-main-600 text-white {% else %} bg-neutral-300 {% endif %}">
+                                            {{ forloop.counter }}
+                                        </div>
+                                        <div>
+                                            <p class="fw-semibold text-14 text-neutral-800 mb-4">{{ l.title }}</p>
+                                            <span class="text-12 text-neutral-500">{{ l.duration_minutes }} mins</span>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <!-- END TWO COLUMN LAYOUT -->
+
+            {% else %}
+                <!-- EMPTY STATE FOR VIDEO, DESCRIPTION AND MODULES -->
+                <div class="col-12 d-flex flex-column align-items-center justify-content-center py-80">
+                    <div class="empty-lessons-card text-center p-32 rounded-12 mt-20 w-100">
+                        <div class="empty-icon mb-16">
+                            <i class="ph ph-video-camera-slash" style="font-size:48px;"></i>
+                        </div>
+                        <h6 class="text-16 fw-semibold text-neutral-800 mb-8">
+                            No Tutorials Available
+                        </h6>
+                        <p class="text-14 text-neutral-500 mb-0">
+                            Lessons for this course will appear here once they are added.
+                        </p>
+                    </div>
+                </div>
+            {% endif %}
+
+        </div>
+
+    </div>
+</section>
+<!-- ================================== Explore Course Two Section End =========================== -->
+
+
+
+        </div>            
+    </div>
+</section>
+
+
+{% if completed_lessons == total_lessons %}
+<div id="course-options-footer"
+     class="position-fixed bottom-0 start-0 w-100 bg-dark text-white 
+            d-flex justify-content-center align-items-center py-2 shadow-lg"
+     style="z-index:1050;">
+   <div class="d-flex justify-content-center align-items-center flex-wrap gap-3 mt-3">
+
+    <!-- Exam button handling -->
+    {% if exam %}
+        {% if exam_action == 'results' %}
+            {% url 'view_exam_results' course.id exam.id as exam_url %}
+        {% else %}
+            {% url 'take_exam' course.id exam.id as exam_url %}
+        {% endif %}
+
+        <a id="take-exam-btn" href="{{ exam_url }}" class="exam-action-btn btn-success">
+            <i class="ph-bold ph-notepad"></i>
+            <span>
+                {% if exam_action == 'continue' %}Continue Exam
+                {% elif exam_action == 'review' %}View Review
+                {% elif exam_action == 'results' %}Results
+                {% else %}Take Exam{% endif %}
+            </span>
+        </a>
+    {% else %}
+        <a id="take-exam-btn" href="#" class="exam-action-btn btn-success">
+            <i class="ph-bold ph-notepad"></i><span>Take Exam</span>
+        </a>
+    {% endif %}
+
+    <!-- ALWAYS show "View Certificate" button -->
+    <a id="view-certificate" 
+       href="{% url 'view_certificate' course.id %}"
+       class="exam-action-btn btn-primary">
+        <i class="ph-bold ph-certificate"></i>
+        <span>View Certificate</span>
+    </a>
+
+   </div>
+</div>
+{% endif %}
+
+
+
+
+<!-- =========== student dashbord section end ============== -->
+
+
+
+
+
+
+
+<!-- ==================== student Footer Start Here ==================== -->
+<footer style="background-color:black;" class="footer position-relative z-1">
+    <img src="assets/images/shapes/shape2.png" alt="" class="shape five animation-scalation">
+    <img src="assets/images/shapes/shape6.png" alt="" class="shape one animation-scalation">
+    <div class="container-fluid text-end">
+        <!-- bottom Footer -->
+        <div class="bottom-footer border-top border-dashed border-neutral-600 border-0 py-32">
+            <div class="">
+                <div class="bottom-footer__inner flex-wrap">
+                    <p class="text-white text-16 fw-normal"> © 2025  
+                            <span class="text-white">The Winlows Academy.</span>
+                        All rights reserved.
+                    </p>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- ==================== student Footer End Here ==================== -->
+
+
+
+    <!-- Jquery js -->
+    <!-- <script src="{% static 'student_d_assets/js/jquery-3.7.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="{% static 'student_d_assets/js/boostrap.bundle.min.js' %}"></script>
+    <!-- select2 Js -->
+    <script src="{% static 'student_d_assets/js/select2.min.js' %}"></script>
+    <!-- Phosphor Icon Js -->
+    <script src="{% static 'student_d_assets/js/phosphor-icon.js' %}"></script>
+    <!-- Slick js -->
+    <script src="{% static 'student_d_assets/js/slick.min.js' %}"></script>
+    <!-- Slick js -->
+    <script src="{% static 'student_d_assets/js/counter.min.js' %}"></script>
+    <!-- magnific popup -->
+    <script src="{% static 'student_d_assets/js/magnific-popup.min.js' %}"></script>
+    <!-- Jquery Ui js -->
+    <script src="{% static 'student_d_assets/js/jquery-ui.js' %}"></script>
+    <!-- marquee js -->
+    <script src="{% static 'student_d_assets/js/marquee.min.js' %}"></script>
+    <!-- react charts-->
+     <script src="{% static 'student_d_assets/js/apexcharts.js' %}"></script>
+    <!-- plyr Js -->
+    <script src="{% static 'student_d_assets/js/plyr.js' %}"></script>
+    <!-- vanilla Tilt -->
+    <!-- Editor js Toolbar Start -->
+    <script src="{% static 'student_d_assets/js/editor-quill.js' %}"></script>
+    <!-- dataTables -->
+    <script src="{% static 'student_d_assets/js/dataTables.min.js' %}"></script>
+    <!-- Tilt -->
+    <script src="{% static 'student_d_assets/js/vanilla-tilt.min.js' %}"></script>
+    <!-- wow -->
+    <script src="{% static 'student_d_assets/js/wow.min.js' %}"></script>
+
+    <script src="{% static 'student_d_assets/js/aos.js' %}"></script>
+    
+    <!-- main js -->
+    <script src="{% static 'student_d_assets/js/main.js' %}"></script>
+
+
+    <!-- SweetAlert2 & Confetti -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+
+<script>
+(function () {
+    console.log("[LessonScript] Initialization starting...");
+
+    const video = document.getElementById('lesson-video');
+    if (!video) return;
+
+    const lessonId = video.dataset.lessonId;
+    const nextUrl = video.dataset.nextUrl || null;
+
+    // CSRF helper
+    function getCookie(name) {
+        let cookieValue = null;
+        if (document.cookie) {
+            const cookies = document.cookie.split(';');
+            for (let c of cookies) {
+                c = c.trim();
+                if (c.startsWith(name + '=')) {
+                    cookieValue = decodeURIComponent(c.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    const csrftoken = getCookie('csrftoken');
+
+    let completionSent = false;
+    let courseCompletedShown = false;
+
+    // CUSTOM LOADER
+    function showLoader() {
+        Swal.fire({
+            title: '',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            background: 'transparent',
+            backdrop: 'rgba(0,0,0,0.25)',
+            didOpen: () => {
+                const container = Swal.getHtmlContainer();
+                if (container) container.innerHTML = `<div class="custom-loader"></div>`;
+            }
+        });
+    }
+
+    function hideLoader() {
+        Swal.close();
+    }
+
+    // CUSTOM ERROR
+    function showError(message) {
+        Swal.fire({
+            title: 'Error',
+            text: message,
+            icon: 'error',
+            customClass: {
+                popup: 'my-swal-popup',
+                title: 'my-swal-title',
+                confirmButton: 'my-swal-btn'
+            }
+        });
+    }
+
+    // CONFETTI + COMPLETION ALERT
+    function showConfetti(afterCloseCallback) {
+        if (typeof confetti === "function") {
+            confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
+        }
+
+        Swal.fire({
+            title: "🎉 Congratulations! 🎉",
+            text: "You have completed the course!",
+            icon: "success",
+            confirmButtonText: "Great!",
+            customClass: {
+                popup: 'my-swal-popup',
+                title: 'my-swal-title',
+                confirmButton: 'my-swal-btn'
+            }
+        }).then(() => {
+            if (typeof afterCloseCallback === "function") afterCloseCallback();
+        });
+    }
+
+    // ASK TO PLAY NEXT LESSON
+    function askToPlayNext(url) {
+        Swal.fire({
+            title: "Lesson Completed!",
+            text: "Do you want to play the next lesson?",
+            icon: "success",
+            showCancelButton: true,
+            confirmButtonText: "Next Lesson",
+            cancelButtonText: "Replay",
+            customClass: {
+                popup: 'my-swal-popup',
+                title: 'my-swal-title',
+                confirmButton: 'my-swal-btn',
+                cancelButton: 'my-swal-cancel-btn'
+            }
+        }).then((r) => {
+            if (r.isConfirmed) window.location.href = url;
+            else window.location.reload();
+        });
+    }
+
+    // MARK LESSON COMPLETE
+    async function markCompleted(watchedSeconds = null) {
+        if (completionSent) return;
+        completionSent = true;
+
+        const payload = { lesson_id: lessonId };
+        if (Number.isInteger(watchedSeconds)) payload.watched_seconds = watchedSeconds;
+
+        try {
+            const resp = await fetch("{% url 'mark_lesson_complete' %}", {
+                method: "POST",
+                credentials: "same-origin",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRFToken": csrftoken
+                },
+                body: JSON.stringify(payload)
+            });
+
+            const data = await resp.json();
+            console.log("[LessonScript] markCompleted response:", data);
+
+            if (!data.success) return;
+
+            // Update progress bar
+            const bar = document.getElementById('course-progress-bar');
+            if (bar) bar.style.width = data.progress_percent + "%";
+
+            // FULL COURSE COMPLETED
+            if (data.course_completed && !courseCompletedShown) {
+                courseCompletedShown = true;
+                showConfetti(() => {
+                    window.location.reload();
+                });
+            }
+
+            // Next lesson
+            else if (!data.course_completed && data.next_lesson_url) {
+                askToPlayNext(data.next_lesson_url);
+            }
+
+        } catch (err) {
+            console.error("[LessonScript] markCompleted error:", err);
+            showError("Something went wrong. Please try again.");
+        }
+    }
+
+    // MARK ONLY WHEN VIDEO ENDS
+    video.addEventListener("ended", () => {
+        markCompleted(Math.floor(video.duration));
+    });
+
+})();
+</script>
+
+<style>
+/* Popup container */
+.my-swal-popup {
+    border-radius: 16px !important;
+    padding: 2rem !important;
+    background: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+/* Title */
+.my-swal-title {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #222 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Buttons */
+.my-swal-btn {
+    background-color: #000 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+}
+.my-swal-cancel-btn {
+    background-color: #ccc !important;
+    color: #333 !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+}
+
+/* Input fields */
+.my-swal-input, .my-swal-input-field {
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-bottom: 10px !important;
+}
+
+/* Eye icon for password */
+.my-eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #555;
+    font-size: 16px;
+}
+
+/* Loader spinner */
+.custom-loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #000;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 40px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Validation message */
+.swal2-validation-message {
+    font-size: 13px !important;
+    color: #ff3b30 !important;
+    margin-top: 4px !important;
+    text-align: center !important;
+}
+</style>
+
+
+
+{% comment %} {% url 'exam_page' lesson.id %} {% endcomment %}
+
+</body>
+</html>

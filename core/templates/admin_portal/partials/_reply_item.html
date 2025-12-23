@@ -1,0 +1,15 @@
+{# templates/admin_dashboard/partials/_reply_item.html #}
+<li class="d-flex gap-8">
+  <div class="flex-shrink-0">
+    <div class="avatar avatar-sm bg-gray-200 rounded-circle d-flex align-items-center justify-content-center text-gray-600">
+      {{ reply.user.get_full_name|slice:":1"|upper|default:reply.user.username|slice:":1"|upper }}
+    </div>
+  </div>
+  <div class="flex-grow-1">
+    <div class="d-flex align-items-center gap-2 mb-1">
+      <strong class="text-heading">{{ reply.user.get_full_name|default:reply.user.username }}</strong>
+      <span class="text-gray-400 small">{{ reply.created_at|naturaltime }}</span>
+    </div>
+    <p class="mb-0 text-gray-600">{{ reply.answer_text }}</p>
+  </div>
+</li>

@@ -1,0 +1,324 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>{{ academy_name }} - Certificate</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@900&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+
+<!-- Bootstrap 5 -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- html2pdf.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+<style>
+  /* ---------- Certificate Styles ---------- */
+  @page { size: A4 landscape; margin: 0; }
+  body, html { margin:0; padding:0; width:100%; height:100%; font-family: 'Montserrat', sans-serif; background:#f0f2f5; }
+
+  .certificate-wrapper { max-width: 1100px; margin: 40px auto; padding: 20px; }
+  .certificate { 
+    background: #fff; 
+    border: 1px solid #999; 
+    padding: 40px; 
+    position: relative; 
+    aspect-ratio: 400/210; 
+    display: flex; 
+    flex-direction: row; 
+    overflow: hidden; 
+  }
+  
+  /* Decorative corner borders */
+  .certificate::before,
+  .certificate::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #999;
+  }
+  
+  .certificate::before {
+    top: 15px;
+    left: 15px;
+    border-right: none;
+    border-bottom: none;
+  }
+  
+  .certificate::after {
+    top: 15px;
+    right: 15px;
+    border-left: none;
+    border-bottom: none;
+  }
+  
+  .certificate-inner-corners::before,
+  .certificate-inner-corners::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    border: 1px solid #999;
+  }
+  
+  .certificate-inner-corners::before {
+    bottom: 15px;
+    left: 15px;
+    border-right: none;
+    border-top: none;
+  }
+  
+  .certificate-inner-corners::after {
+    bottom: 15px;
+    right: 15px;
+    border-left: none;
+    border-top: none;
+  }
+  
+  /* Left content */
+  .left-area { flex: 2; padding-right: 40px; z-index: 1; }
+  .uni-title { font-family:'Cinzel', serif; font-size: 3rem; font-weight: 900; color: #003366; }
+  .uni-title span:first-child { color: #A48A01; }
+  .uni-title span:nth-child(2) { color: black; }
+  .date { margin-top: 30px; margin-bottom: -30px; font-size: 0.9rem; color: #000; }
+  .recipient { margin-top: 50px; font-size: 2rem; font-family: 'Times New Roman', Times, serif; font-weight: 600; color: #000; }
+  .statement { margin-top: 15px; font-size: 1rem; }
+  .course-title { margin-top: 15px; font-size: 1.25rem; font-weight: bold; }
+  .signature-block { margin-top: 40px; }
+  .sign-line { width: 200px; border-bottom: 2px dashed #333; margin-bottom: 5px; }
+  .signer { font-size: 0.85rem; color: #333; }
+
+  /* Right ribbon */
+  .ribbon-area {
+    flex: 0 0 220px;
+    max-width: 220px;
+    background: #e8ebf1ff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 10px;
+    padding-top: -20px;
+    margin-top: -80px;
+    border-left: 1px solid #A48A01;
+    position: relative;
+    box-sizing: border-box;
+    z-index: 1;
+  }
+  .ribbon-title { font-size: 1.1rem; font-weight: bolder; color: #000000ff; text-align: center; line-height: 1.2; margin-top: 70px; }
+  
+  /* Seal styling - Coursera style */
+  .seal { 
+    margin-top: 50px; 
+    width: 150px; 
+    height: 150px; 
+    border-radius: 50%; 
+    background: #fff; 
+    border: 5px double #A48A01; 
+    display: flex; 
+    flex-direction: column; 
+    justify-content: center; 
+    align-items: center; 
+    text-align: center; 
+    position: relative; 
+    padding: 20px;
+    box-sizing: border-box;
+  }
+  .seal::before { 
+    content: ''; 
+    position: absolute; 
+    inset: 12px; 
+    border: 2px dotted #A48A01; 
+    border-radius: 50%; 
+  }
+  .seal-text-top { 
+    font-size: 0.7rem; 
+    letter-spacing: 2px; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+    color: #333; 
+    z-index: 1;
+    line-height: 1.2;
+  }
+  .seal-text-mid { 
+    z-index: 1; 
+    margin: 10px 0;
+  }
+  .seal-text-mid img { 
+    width: 50px;
+    height: auto;
+  }
+  .seal-text-bottom { 
+    font-size: 0.7rem; 
+    color: #333; 
+    text-transform: uppercase; 
+    letter-spacing: 2px; 
+    font-weight: bold; 
+    z-index: 1;
+    line-height: 1.2;
+  }
+  
+  .ribbon-bottom { position: absolute; bottom: 0; width: 100%; height: 10px; background: linear-gradient(#d4d7de, #c2a40eff); clip-path: polygon(0 0, 100% 0, 100% 70%, 50% 100%, 0 70%); }
+  
+  .border-dashed { border-style: dashed !important; }
+
+  /* ---------- Responsive Mobile Card ---------- */
+  #mobile-card { display: none; }
+  #mobile-card .card { border: 2px dashed #A48A01; border-radius: 10px; padding: 20px; margin: 20px; text-align: center; background: #fff; }
+
+  /* Floating buttons for large screens */
+  #float-buttons { position: fixed; bottom: 30px; right: 30px; z-index: 1000; display: flex; gap: 10px; }
+  
+  /* Responsive display */
+  @media (max-width: 991.98px) {
+    .certificate-wrapper { display: none; }
+    #mobile-card { display: block; margin-top: 200px; margin-bottom: -200px; }
+    #float-buttons { display: none; }
+  }
+
+  /* PDF viewer mobile optimization */
+  @media print {
+    body { margin: 0; padding: 0; }
+    .certificate-wrapper { margin: 0; padding: 0; max-width: 100%; }
+  }
+
+  
+</style>
+</head>
+<body>
+
+<!-- ---------- Large Screen Full Certificate ---------- -->
+<div class="certificate-wrapper" id="certificate">
+  <div class="certificate">
+    <div class="certificate-inner-corners"></div>
+    
+    <!-- LEFT AREA -->
+    <div class="left-area d-flex flex-column justify-content-between">
+      <div>
+        <div class="uni-title"><span>THE</span> <span>WINLOS</span> ACADEMY</div>
+        <div class="date">Issued date: {{ issued_at }}</div>
+        <div class="recipient fw-bolder">{{ full_name }}</div>
+        <div class="statement">has successfully completed</div>
+        <div class="course-title">{{ course_name }}</div>
+        <p style="margin-top:20px; font-size: 12px;">An Online Non-Credit Course Authorised By <br> The Winlos Academy</p>
+      </div>
+      <div class="signature-block">
+        <img src="{{ signature_url }}" style="width:100px;" class="mb-2" />
+        <div class="sign-line"></div>
+        <div class="signer"><strong>{{ signer_name }}</strong><br>{{ signer_title }}</div>
+      </div>
+    </div>
+
+    <!-- RIGHT AREA -->
+    <div class="ribbon-area">
+      <div class="ribbon-title fw-bolder">COURSE<br>CERTIFICATE</div>
+      <div style="padding:5px; margin-top:200px;" class="seal shadow">
+        <div class="seal-text-top">THE WINLOS</div>
+        <div class="seal-text-mid"><img src="{{ logo_url }}" class="um-logo" alt="Logo" /></div>
+        <div class="seal-text-bottom">ACADEMY</div>
+      </div>
+      <div class="ribbon-bottom"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ---------- Mobile Card ---------- -->
+<div id="mobile-card">
+  <div class="card">
+    <h5 class="fw-bold">The Winlos Academy Certificate</h5>
+    <p>{{ full_name }}<br><small>has completed {{ course_name }}</small></p>
+    <button class="btn btn-primary my-1" onclick="downloadPDF()">Download PDF</button>
+      <a href="{% url 'dashboard' %}" class="btn btn-secondary">Go Back</a>
+  </div>
+</div>
+
+<!-- ---------- Floating Buttons Large Screens ---------- -->
+<div id="float-buttons">
+  <button class="btn btn-success" onclick="downloadPDF()">Download Certificate</button>
+  <a href="{% url 'dashboard' %}" class="btn btn-secondary">Go Back</a>
+</div>
+
+<script>
+  // Generate PDF using html2pdf with proper landscape A4 settings
+  function downloadPDF() {
+    const element = document.getElementById('certificate');
+    
+    const opt = {
+      margin: 0,
+      filename: 'certificate.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { 
+        scale: 3,
+        useCORS: true,
+        letterRendering: true,
+        logging: false
+      },
+      jsPDF: { 
+        unit: 'mm', 
+        format: 'a4', 
+        orientation: 'landscape',
+        compress: true
+      },
+      pagebreak: { mode: 'avoid-all' }
+    };
+    
+    html2pdf().set(opt).from(element).save();
+  }
+
+  function viewPDF() {
+    const element = document.getElementById('certificate');
+    
+    const opt = {
+      margin: 0,
+      filename: 'certificate.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { 
+        scale: 3,
+        useCORS: true,
+        letterRendering: true,
+        logging: false
+      },
+      jsPDF: { 
+        unit: 'mm', 
+        format: 'a4', 
+        orientation: 'landscape',
+        compress: true
+      },
+      pagebreak: { mode: 'avoid-all' }
+    };
+    
+    html2pdf().set(opt).from(element).output('blob').then(function(pdfBlob) {
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      // Check if mobile device
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        // For mobile, open in a new tab that will be centered
+        const newWindow = window.open('', '_blank');
+        newWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+            <style>
+              body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f0f0f0; }
+              iframe { border: none; width: 100%; height: 100vh; }
+            </style>
+          </head>
+          <body>
+            <iframe src="${pdfUrl}" type="application/pdf"></iframe>
+          </body>
+          </html>
+        `);
+      } else {
+        window.open(pdfUrl);
+      }
+    });
+  }
+</script>
+
+</body>
+</html>

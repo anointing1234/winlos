@@ -1,0 +1,372 @@
+{% extends "../admin_sections/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+<style>
+.edit-panel { display: none; }
+</style>
+
+<div class="dashboard-body">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb mb-4">
+        <ul class="flex-align gap-2">
+            <li><a href="{% url 'Admin_dashboard' %}" class="text-muted">Home</a></li>
+            <li><i class="ph ph-caret-right text-muted"></i></li>
+            <li class="fw-semibold">Exam Questions</li>
+        </ul>
+    </div>
+
+    <!-- ================= EXAM CARDS ================= -->
+    <div class="row g-4 mt-5 pt-5" id="examCards">
+        {% for exam in exams %}
+        <div class="col-lg-6 col-12">
+            <div class="card shadow-sm h-100">
+                <div class="card-body d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="mb-1">{{ exam.title }}</h6>
+                        <small class="text-muted">
+                            {{ exam.questions.count }} Questions
+                        </small>
+                    </div>
+                    <button class="btn btn-sm btn-dark"
+                            onclick="openEdit('{{ exam.id }}')">
+                        <i class="ph ph-pencil-simple me-1"></i>Edit
+                    </button>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <div class="col-12 text-center">
+            <img class="img-fluid" style="max-width:300px"
+                 src="{% static 'dash_assets/images/dash_images/admin_courses_unavailable.png' %}">
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- ================= EDIT PANELS ================= -->
+    {% for exam in exams %}
+    <div class="edit-panel" id="editPanel-{{ exam.id }}">
+        <div class="card shadow-sm">
+            <div class="card-header d-flex justify-content-between align-items-center">
+                <strong>Edit Exam</strong>
+                <button class="btn btn-sm btn-dark" onclick="closeEdit()">
+                    <i class="ph ph-x"></i>
+                </button>
+            </div>
+
+            <div class="card-body">
+
+                <!-- Exam Title -->
+                <div class="mb-4">
+                    <label class="form-label">Exam Title</label>
+                    <input type="text"
+                           class="form-control exam-title-input"
+                           data-exam-id="{{ exam.id }}"
+                           value="{{ exam.title }}">
+                </div>
+
+                <!-- Questions -->
+                {% for question in exam.questions.all %}
+                <div class="card mb-3">
+                    <div class="card-body">
+
+                        <label class="form-label">Question</label>
+                        <input type="text"
+                               class="form-control question-text-input mb-5"
+                               data-question-id="{{ question.id }}"
+                               value="{{ question.question_text }}">
+
+                     
+                        {% for option in question.options.all %}
+                        <div class="row align-items-center mb-2 mt-5">
+                            <div class="col-md-7 mt-5">
+                              
+                                <input type="text"
+                                       class="form-control option-text-input"
+                                       data-option-id="{{ option.id }}"
+                                       value="{{ option.option_text }}">
+                            </div>
+                            <div class="col-md-3 mt-5">
+                                <div class="form-check">
+                                    <input class="form-check-input is-correct-checkbox"
+                                           type="checkbox"
+                                           data-option-id="{{ option.id }}"
+                                           {% if option.is_correct %}checked{% endif %}>
+                                    <label class="form-check-label">Correct</label>
+                                </div>
+                            </div>
+                            <div class="col-md-2 text-end">
+                                <button class="btn btn-sm btn-outline-danger delete-option-btn"
+                                        data-option-id="{{ option.id }}">
+                                    <i class="ph ph-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                        {% endfor %}
+
+                        <div class="text-end mt-3">
+                            <button class="btn btn-sm btn-danger delete-question-btn"
+                                    data-question-id="{{ question.id }}">
+                                <i class="ph ph-trash me-1"></i>Delete Question
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
+                {% endfor %}
+
+                <!-- Actions -->
+                <div class="d-flex gap-2">
+                    <button class="btn btn-success save-exam-btn"
+                            data-exam-id="{{ exam.id }}">
+                        <i class="ph ph-check me-1"></i>Save Changes
+                    </button>
+                    <button class="btn btn-danger delete-exam-btn"
+                            data-exam-id="{{ exam.id }}">
+                        <i class="ph ph-trash me-1"></i>Delete Exam
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+
+</div>
+
+<style>
+/* SweetAlert custom styles */
+.my-swal-popup {
+    border-radius: 16px !important;
+    padding: 2rem !important;
+    background: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+.my-swal-title {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #222 !important;
+    margin-bottom: 1rem !important;
+}
+.my-swal-btn {
+    background-color: #000 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+}
+.my-swal-cancel-btn {
+    background-color: #ccc !important;
+    color: #333 !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+}
+.my-swal-input, .my-swal-input-field {
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-bottom: 10px !important;
+}
+.my-eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #555;
+    font-size: 16px;
+}
+.custom-loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #000;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 40px auto;
+}
+@keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.swal2-validation-message {
+    font-size: 13px !important;
+    color: #ff3b30 !important;
+    margin-top: 4px !important;
+    text-align: center !important;
+}
+</style>
+
+<!-- ================= SPINNER ================= -->
+<div class="modal fade" id="spinnerModal" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content bg-transparent border-0">
+      <div class="d-flex justify-content-center p-5">
+        <div class="spinner-border text-primary" style="width:3rem;height:3rem"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Toastify -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+const spinnerModal = new bootstrap.Modal(document.getElementById('spinnerModal'), { backdrop: 'static' });
+const csrfToken = "{{ csrf_token }}";
+
+const urls = {
+    updateExam: examId => "{% url 'update_exam' '00000000-0000-0000-0000-000000000000' %}".replace('00000000-0000-0000-0000-000000000000', examId),
+    deleteExam: examId => "{% url 'delete_exam' '00000000-0000-0000-0000-000000000000' %}".replace('00000000-0000-0000-0000-000000000000', examId),
+    updateQuestion: questionId => "{% url 'update_question' '00000000-0000-0000-0000-000000000000' %}".replace('00000000-0000-0000-0000-000000000000', questionId),
+    deleteQuestion: questionId => "{% url 'delete_question' '00000000-0000-0000-0000-000000000000' %}".replace('00000000-0000-0000-0000-000000000000', questionId),
+    updateOption: optionId => "{% url 'update_option' '00000000-0000-0000-0000-000000000000' %}".replace('00000000-0000-0000-0000-000000000000', optionId),
+    deleteOption: optionId => "{% url 'delete_option' '00000000-0000-0000-0000-000000000000' %}".replace('00000000-0000-0000-0000-000000000000', optionId)
+};
+
+// ======================== HELPER FUNCTIONS ========================
+function showSpinner() { spinnerModal.show(); }
+function hideSpinner() { spinnerModal.hide(); }
+
+function toast(msg, color = "#16a34a") {
+    Toastify({ text: msg, duration: 3000, gravity: "top", position: "right", backgroundColor: color }).showToast();
+}
+
+function openEdit(id) {
+    document.getElementById('examCards').style.display = 'none';
+    document.querySelectorAll('.edit-panel').forEach(p => p.style.display = 'none');
+    document.getElementById('editPanel-' + id).style.display = 'block';
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function closeEdit() {
+    document.getElementById('examCards').style.display = 'flex';
+    document.querySelectorAll('.edit-panel').forEach(p => p.style.display = 'none');
+}
+
+// ======================== SAVE / UPDATE EXAM ========================
+document.querySelectorAll(".save-exam-btn").forEach(btn => {
+    btn.onclick = async () => {
+        const examId = btn.dataset.examId;
+        const panel = document.getElementById('editPanel-' + examId);
+
+        const titleInput = panel.querySelector(`.exam-title-input[data-exam-id='${examId}']`);
+        const title = titleInput.value.trim();
+        if (!title) {
+            await Swal.fire({ title: 'Validation Error', text: "Exam title cannot be empty", icon: 'error', customClass: { popup: 'my-swal-popup', title: 'my-swal-title', confirmButton: 'my-swal-btn' } });
+            return;
+        }
+
+        const questionsData = [];
+        let hasEmpty = false;
+
+        panel.querySelectorAll('.card.mb-3').forEach(questionCard => {
+            const questionInput = questionCard.querySelector('.question-text-input');
+            const questionId = questionInput.dataset.questionId;
+            const questionText = questionInput.value.trim();
+
+            if (!questionText) { hasEmpty = true; toast("Question text cannot be empty", "#dc2626"); return; }
+
+            const options = [];
+            questionCard.querySelectorAll('.option-text-input').forEach(optionInput => {
+                const optionId = optionInput.dataset.optionId;
+                const optionText = optionInput.value.trim();
+                const isCorrect = questionCard.querySelector(`.is-correct-checkbox[data-option-id='${optionId}']`).checked;
+                if (!optionText) { hasEmpty = true; toast("Option text cannot be empty", "#dc2626"); return; }
+                options.push({ id: optionId, option_text: optionText, is_correct: isCorrect });
+            });
+
+            if (options.length > 0) questionsData.push({ id: questionId, question_text: questionText, options });
+            else { hasEmpty = true; toast("Each question must have at least one option", "#dc2626"); }
+        });
+
+        if (hasEmpty || questionsData.length === 0) return;
+
+        showSpinner();
+
+        const promises = [];
+        promises.push(fetch(urls.updateExam(examId), {
+            method: "POST",
+            headers: { "X-CSRFToken": csrfToken, "Content-Type": "application/json", "X-Requested-With": "XMLHttpRequest" },
+            body: JSON.stringify({ title })
+        }).then(r => r.ok ? r.json() : Promise.reject("Exam update failed")));
+
+        questionsData.forEach(q => {
+            promises.push(fetch(urls.updateQuestion(q.id), {
+                method: "POST",
+                headers: { "X-CSRFToken": csrfToken, "Content-Type": "application/json", "X-Requested-With": "XMLHttpRequest" },
+                body: JSON.stringify({ question_text: q.question_text })
+            }).then(r => r.ok ? r.json() : Promise.reject("Question update failed")));
+
+            q.options.forEach(opt => {
+                promises.push(fetch(urls.updateOption(opt.id), {
+                    method: "POST",
+                    headers: { "X-CSRFToken": csrfToken, "Content-Type": "application/json", "X-Requested-With": "XMLHttpRequest" },
+                    body: JSON.stringify({ option_text: opt.option_text, is_correct: opt.is_correct })
+                }).then(r => r.ok ? r.json() : Promise.reject("Option update failed")));
+            });
+        });
+
+        Promise.allSettled(promises)
+            .then(async results => {
+                hideSpinner();
+                const failures = results.filter(r => r.status === "rejected" || (r.status === "fulfilled" && !r.value.success));
+                if (failures.length === 0) {
+                    await Swal.fire({ title: 'Success', text: "Exam updated successfully!", icon: 'success', customClass: { popup: 'my-swal-popup', title: 'my-swal-title', confirmButton: 'my-swal-btn' } });
+                    location.reload();
+                } else {
+                    await Swal.fire({ title: 'Error', text: `Some changes failed (${failures.length}/${results.length})`, icon: 'error', customClass: { popup: 'my-swal-popup', title: 'my-swal-title', confirmButton: 'my-swal-btn' } });
+                }
+            })
+            .catch(async () => { hideSpinner(); await Swal.fire({ title: 'Error', text: "An unexpected error occurred", icon: 'error', customClass: { popup: 'my-swal-popup', title: 'my-swal-title', confirmButton: 'my-swal-btn' } }); });
+    };
+});
+
+// ======================== DELETE HANDLERS ========================
+document.addEventListener('click', e => {
+    const btn = e.target.closest('.delete-exam-btn, .delete-question-btn, .delete-option-btn');
+    if (!btn) return;
+
+    const handleDelete = async (url, successMsg, elementToRemove = null, reload = true) => {
+        try {
+            showSpinner();
+            const res = await fetch(url, { method: "POST", headers: { "X-CSRFToken": csrfToken, "X-Requested-With": "XMLHttpRequest" } });
+            const data = await res.json();
+            hideSpinner();
+            if (data.status === "success") {
+                await Swal.fire({ title: 'Deleted', text: successMsg, icon: 'success', customClass: { popup: 'my-swal-popup', title: 'my-swal-title', confirmButton: 'my-swal-btn' } });
+                if (elementToRemove) elementToRemove.remove();
+                if (reload) location.reload();
+            } else {
+                await Swal.fire({ title: 'Failed', text: "Operation failed", icon: 'error', customClass: { popup: 'my-swal-popup', title: 'my-swal-title', confirmButton: 'my-swal-btn' } });
+            }
+        } catch (err) {
+            hideSpinner();
+            await Swal.fire({ title: 'Error', text: "Network error", icon: 'error', customClass: { popup: 'my-swal-popup', title: 'my-swal-title', confirmButton: 'my-swal-btn' } });
+        }
+    };
+
+    if (btn.classList.contains('delete-exam-btn')) {
+        Swal.fire({ title: 'Are you sure?', text: "You are about to delete this entire exam!", icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes, delete it!', cancelButtonText: 'Cancel', customClass: { popup: 'my-swal-popup', title: 'my-swal-title', confirmButton: 'my-swal-btn', cancelButton: 'my-swal-cancel-btn' } }).then(result => { if(result.isConfirmed) handleDelete(urls.deleteExam(btn.dataset.examId), "Exam deleted successfully!"); });
+    } else if (btn.classList.contains('delete-question-btn')) {
+        Swal.fire({ title: 'Delete this question?', icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes, delete it!', cancelButtonText: 'Cancel', customClass: { popup: 'my-swal-popup', title: 'my-swal-title', confirmButton: 'my-swal-btn', cancelButton: 'my-swal-cancel-btn' } }).then(result => { if(result.isConfirmed) handleDelete(urls.deleteQuestion(btn.dataset.questionId), "Question deleted successfully!", btn.closest('.card.mb-3'), false); });
+    } else if (btn.classList.contains('delete-option-btn')) {
+        Swal.fire({ title: 'Delete this option?', icon: 'warning', showCancelButton: true, confirmButtonText: 'Yes, delete it!', cancelButtonText: 'Cancel', customClass: { popup: 'my-swal-popup', title: 'my-swal-title', confirmButton: 'my-swal-btn', cancelButton: 'my-swal-cancel-btn' } }).then(result => { if(result.isConfirmed) handleDelete(urls.deleteOption(btn.dataset.optionId), "Option deleted successfully!", btn.closest('.row'), false); });
+    }
+});
+</script>
+
+
+
+{% endblock contents %}

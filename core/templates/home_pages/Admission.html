@@ -1,0 +1,902 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========== Basic Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== SEO & Page Identity ========== -->
+    <title>The Winlos Academy | Nigeria’s Premier Christian Film School</title>
+    <meta name="description" content="The Winlos Academy is Nigeria’s premier Christian film school, commissioning cultural influencers who create powerful, faith-driven stories with technical mastery and spiritual integrity. Discover the story you were born to tell.">
+    <meta name="author" content="The Winlos Academy">
+    <meta name="keywords" content="christian film school nigeria, winlos academy, faith-based filmmaking, christian cinematography training, bible-based film school, nigerian christian film academy, filmmaking with purpose, spiritual storytelling, rev otis ojukwu film school">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== Open Graph / Facebook ========== -->
+    <meta property="og:title" content="The Winlos Academy | Nigeria’s Premier Christian Film School">
+    <meta property="og:description" content="We don’t just train filmmakers — we commission cultural influencers. Join Nigeria’s leading Christian film school and create stories that illuminate, inspire, and transform culture for Christ.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.thewinlosacademy.com">
+    <meta property="og:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg">
+    <meta property="og:image:alt" content="The Winlos Academy - Christian Film School in Nigeria">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="The Winlos Academy">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Winlos Academy | Christian Film School Nigeria">
+    <meta name="twitter:description" content="At TWA, we help you discover the story you were born to tell. Join Nigeria’s premier Christian film school.">
+    <meta name="twitter:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg">
+    <meta name="twitter:site" content="@winlosacademy">
+    <meta name="twitter:creator" content="@winlosacademy">
+
+    <!-- ========== Favicon & Touch Icons ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://www.thewinlosacademy.com">
+
+    <!-- ========== Preconnect for Speed ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- ========== Stylesheets (Keep Your Existing Ones) ========== -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- ========== Structured Data - Organization + EducationalOrganization ========== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["EducationalOrganization", "Organization"],
+      "name": "The Winlos Academy",
+      "alternateName": ["TWA", "Winlos Academy", "The Winlos Christian Film School"],
+      "url": "https://www.thewinlosacademy.com",
+      "logo": "https://www.thewinlosacademy.com/assets/img/logo/winlos_logo.png",
+      "image": "https://www.thewinlosacademy.com/assets/img/og-image.jpg",
+      "description": "The Winlos Academy is Nigeria’s premier Christian film school, established to empower a new generation of filmmakers. We believe that the most powerful stories are those told with both technical mastery and spiritual integrity. We are not just training filmmakers; we are commissioning cultural influencers.",
+      "slogan": "Discover the story you were born to tell.",
+      "founder": {
+        "@type": "Person",
+        "name": "Rev. Otis Ojukwu"
+      },
+      "foundingDate": "2015",
+      "foundingLocation": "Lagos, Nigeria",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Winlos Studio, Miller Road",
+        "addressLocality": "Lagos",
+        "addressRegion": "Lagos State",
+        "postalCode": "",
+        "addressCountry": "NG"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+234-XXX-XXX-XXXX",
+        "contactType": "Admissions & General Inquiry",
+        "email": "info@thewinlosacademy.com",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://facebook.com/thewinlosacademy",
+        "https://instagram.com/thewinlosacademy",
+        "https://youtube.com/@thewinlosacademy",
+        "https://twitter.com/winlosacademy"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Film & Creative Programs",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Professional Filmmaking Diploma"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Screenwriting & Story Development"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+
+      <style>
+            @media (min-width:790px) {
+        .header-1 .header-right-items {
+          gap: 300px;
+        }
+
+
+      }
+
+
+
+      /* Main Hero Wrapper */
+.admission-hero {
+    position: relative;
+    width: 100%;
+    height: 85vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+}
+
+/* LEFT TEXT */
+.admission-text {
+    padding-top: 80px;
+}
+
+.admission-title {
+    font-size: 48px;
+    font-weight: 800;
+    color: #0b1c3f;
+    margin-bottom: 20px;
+}
+
+.admission-desc {
+    max-width: 480px;
+    font-size: 16px;
+    color: #333;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+/* BUTTONS */
+.admission-btns .ad-btn-1,
+.admission-btns .ad-btn-2 {
+    padding: 10px 26px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: 600;
+    margin-right: 15px;
+    display: inline-block;
+}
+
+
+.ad-btn-1 {
+    background: #000;
+    color: #fff;
+    padding: 10px 28px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.ad-btn-1:hover {
+    background:#A7A80F;
+    color: #000;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+
+
+/* Outline Button */
+.ad-btn-2 {
+    border: 2px solid #000;
+    color: #000;
+    background: transparent;
+    padding: 10px 28px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+}
+
+.ad-btn-2:hover {
+    background:#A7A80F;
+    color: #fff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* RIGHT BACKGROUND W IMAGE */
+.admission-hero-bg {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('{% static 'assets/img/w_destop.png' %}');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center right;
+    z-index: 0;     /* FIXED */
+    pointer-events: none; /* IMPORTANT */
+}
+
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .admission-hero-bg {
+        width: 100%;
+        height: 40vh;
+        opacity: 0.15;
+        background-position: center;
+    }
+    .admission-hero {
+        height: auto;
+        padding: 80px 0;
+    }
+}
+
+
+
+/* MAIN SECTION */
+.twa-section {
+    background: #000;
+    padding: 120px 0;
+    color: #fff;
+}
+
+/* LEFT HEADING */
+.twa-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+/* RIGHT PARAGRAPH */
+.twa-desc {
+    max-width: 550px;
+    font-size: 16px;
+    line-height: 1.8;
+    opacity: 0.9;
+}
+
+
+/* RESPONSIVE */
+@media (max-width: 992px) {
+    .twa-title {
+        font-size: 38px;
+        margin-bottom: 20px;
+        text-align: left;
+    }
+
+    .twa-desc {
+        font-size: 15px;
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 576px) {
+    .twa-title {
+        font-size: 32px;
+        text-align: center;
+    }
+
+    .twa-desc {
+        text-align: center;
+        margin-top: 10px;
+    }
+}
+
+.contact-info-section h3 {
+  font-size: 28px;
+}
+
+.contact-info-section h5 {
+  font-size: 18px;
+}
+
+.contact-info-section p {
+  font-size: 15px;
+}
+
+
+
+    </style>
+
+
+    <!-- WOW.js Animation Init -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</head>
+
+
+    <body>
+
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="txt-loading">
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="W" class="letters-loading">
+                        W
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                 
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- GT Back To Top Start -->
+        <button id="back-top" class="back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+        <!-- GT MouseCursor Start -->
+        <div class="mouseCursor cursor-outer"></div>
+        <div class="mouseCursor cursor-inner"></div>
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="index.html">
+                                        <img style="width: 90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                                    </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                    <i class="fas fa-times"></i>
+                                    </button>
+                            </div>
+                        </div>
+                 
+                        <div class="mobile-menu fix mt-3"></div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+
+        
+
+        <!-- Header Section Start -->
+        <header id="header-sticky" class="header-1">
+         
+            <div  class="container-fluid">
+                <div class="mega-menu-wrapper">
+                    <div class="header-main">
+                        <div class="logo">
+                                <a href="index.html" class="header-logo">
+                                    <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                                </a>
+                                 <a href="index.html" class="header-logo2">
+                                    <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                                </a>
+                        </div>
+                        <div class="header-right-items">
+                             <div class="mean__menu-wrapper">
+                            <div class="main-menu">
+                                <nav id="mobile-menu">
+                                     <ul>
+                                        <li > 
+                                            <a  href="{% url 'home' %}" class="border-none">
+                                            HOME
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'about_us' %}">
+                                                ABOUT US
+                                             
+                                            </a>
+                                        </li>
+                                         <li>
+                                            <a href="{% url 'program' %}">PROGRAMS</a>
+                                        </li>
+                                        <li>
+                                            <a style="color:#F5E812;" href="{% url 'admission' %}">
+                                                ADMISSION
+                                                
+                                            </a>
+                                           
+                                        </li>
+                                       
+                                       
+                                       
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="header-right d-flex justify-content-end align-items-center">
+                      
+                                 
+                        
+                     {% if user.is_authenticated %}
+                               <a href="{% url 'dashboard' %}" class="theme-btn">
+                              CONTINUE LEARNING
+                          </a>
+                      {% else %}
+                            <a href="{% url 'apply' %}" class="theme-btn">
+                              APPLY NOW
+                          </a>
+                      {% endif %}
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </header>
+       
+      <!-- Hero Section Start -->
+<section class="admission-hero">
+
+    <!-- LEFT TEXT AREA -->
+    <div class="container h-100">
+        <div class="row align-items-center h-100">
+            <div class="col-lg-6 col-md-7">
+                <div class="admission-text">
+
+                    <h1 class="admission-title wow fadeInDown" data-wow-delay="0.2s">
+                        Admissions
+                    </h1>
+
+                    <p class="admission-desc wow fadeInUp" data-wow-delay="0.4s">
+                        Enjoy a simple, stress-free admission process and unlock endless
+                        opportunities for learning, creativity, and personal growth.
+                        Join a vibrant network of passionate learners, supportive mentors,
+                        and like-minded creators committed to helping you become the best
+                        version of yourself.
+                    </p>
+
+                    <div class="admission-btns wow fadeInUp" data-wow-delay="0.6s">
+                        <a href="index-2.html" class="ad-btn-1">Learn More</a>
+                        <a href="#" class="ad-btn-2">Apply Now</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- RIGHT W IMAGE BACKGROUND -->
+    <div class="admission-hero-bg wow fadeInRight" data-wow-delay="0.3s"></div>
+
+</section>
+<!-- Hero Section End -->
+
+
+<section class="twa-section">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+
+            <!-- LEFT TEXT -->
+            <div class="col-lg-5 col-md-6 wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.2s">
+                <h2 class="twa-title text-white">Become a TWA <br> Student</h2>
+            </div>
+
+            <!-- RIGHT TEXT -->
+            <div class="col-lg-7 col-md-6 wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.4s">
+                <p class="twa-desc">
+                    At The Winlos Academy, we believe that every creative gift is a calling—  
+                    and every calling deserves the right environment to grow, flourish, and  
+                    impact the world. Our admission process is designed to be simple,  
+                    welcoming, and supportive, ensuring that nothing stands between you  
+                    and the future God has prepared for you.
+                </p>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="course-pricing-section section-padding">
+    <div class="container">
+
+        <!-- TITLE -->
+        <div class="text-center mb-5 wow fadeInUp" data-wow-delay=".2s">
+            <h5 class="cp-sub">Affordable</h5>
+            <h2 class="cp-title mt-2">Course Pricing</h2>
+            <p class="cp-desc mt-2">Explore our flexible payment options and financial aid.</p>
+        </div>
+
+        <!-- SEGMENTED TABS -->
+        <div class="cp-seg-wrap wow fadeInUp" data-wow-delay=".3s">
+            <div class="cp-segment">
+                <input type="radio" name="cp-seg" id="seg-month" class="cp-seg-input" data-target="monthly" checked>
+                <label for="seg-month" class="cp-seg-label">Monthly</label>
+
+                <input type="radio" name="cp-seg" id="seg-year" class="cp-seg-input" data-target="yearly">
+                <label for="seg-year" class="cp-seg-label">Yearly </label>
+            </div>
+        </div>
+
+        <!-- CARDS -->
+        <div class="row g-4 mt-4">
+
+            <!-- CARD 1 -->
+            <div class="col-lg-4 col-md-6 cp-item monthly yearly wow fadeInUp" data-wow-delay=".2s"
+                 data-monthly-price="₦25,000 / Month"
+                 data-yearly-price="₦240,000 / Year">
+                <div class="cp-card">
+                    <h4>Cinematography</h4>
+                    <h3 class="cp-price">₦25,000 / Month</h3>
+                    <ul>
+                        <li>✔ 2–3 Months Duration</li>
+                        <li>✔ Hands-on training</li>
+                        <li>✔ Industry tools included</li>
+                    </ul>
+                    <a href="#" class="cp-btn">Get Started</a>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="col-lg-4 col-md-6 cp-item monthly yearly wow fadeInUp" data-wow-delay=".3s"
+                 data-monthly-price="₦20,000 / Month"
+                 data-yearly-price="₦192,000 / Year">
+                <div class="cp-card">
+                    <h4>Scriptwriting</h4>
+                    <h3 class="cp-price">₦20,000 / Month</h3>
+                    <ul>
+                        <li>✔ Story structure</li>
+                        <li>✔ Dialogue creation</li>
+                        <li>✔ Weekly assignments</li>
+                    </ul>
+                    <a href="#" class="cp-btn">Get Started</a>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="col-lg-4 col-md-6 cp-item monthly yearly wow fadeInUp" data-wow-delay=".4s"
+                 data-monthly-price="₦30,000 / Month"
+                 data-yearly-price="₦288,000 / Year">
+                <div class="cp-card">
+                    <h4>Video Editing</h4>
+                    <h3 class="cp-price">₦30,000 / Month</h3>
+                    <ul>
+                        <li>✔ Adobe Premiere Pro</li>
+                        <li>✔ Color grading basics</li>
+                        <li>✔ Export & delivery</li>
+                    </ul>
+                    <a href="#" class="cp-btn">Get Started</a>
+                </div>
+            </div>
+
+            <!-- CARD 4 -->
+            <div class="col-lg-6 col-md-6 cp-item monthly yearly wow fadeInUp" data-wow-delay=".5s"
+                 data-monthly-price="₦45,000 / Month"
+                 data-yearly-price="₦432,000 / Year">
+                <div class="cp-card">
+                    <h4>Sound Engineering</h4>
+                    <h3 class="cp-price">₦45,000 / Month</h3>
+                    <ul>
+                        <li>✔ Recording & mastering</li>
+                        <li>✔ Live sound</li>
+                        <li>✔ Studio mixing</li>
+                    </ul>
+                    <a href="#" class="cp-btn">Get Started</a>
+                </div>
+            </div>
+
+            <!-- CARD 5 -->
+            <div class="col-lg-6 col-md-6 cp-item monthly yearly wow fadeInUp" data-wow-delay=".6s"
+                 data-monthly-price="₦80,000 / Month"
+                 data-yearly-price="₦768,000 / Year">
+                <div class="cp-card">
+                    <h4>Filmmaking</h4>
+                    <h3 class="cp-price">₦80,000 / Month</h3>
+                    <ul>
+                        <li>✔ Directing & editing</li>
+                        <li>✔ Full film project</li>
+                        <li>✔ Camera & lighting basics</li>
+                    </ul>
+                    <a href="#" class="cp-btn">Get Started</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<div class="container">
+<h2 class="text-center">Need help?</h2>
+
+<p class="text-center mt-2">Our team is here to help you every step of the way. If you have questions, feel free to reach out; we’re <br> happy to assist. For instant clarity, browse through our FAQ section. Ready to begin your journey with <br> us? Visit our Programs page. Want to know more about program costs? scroll up</p>
+        
+
+</div>
+
+
+<section style="margin-top: 100px;" class="contact-info-section py-5 mt-5 ">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+
+        <h3 class="mb-3 fw-bold">Still have questions?</h3>
+        <p class="text-muted mb-5">
+          Talk to our team for personalized assistance. We're here to support 
+          you every step of the way.
+        </p>
+
+        <!-- Call -->
+        <div class="mb-4">
+          <h5 class="fw-bold mb-1">Call Us at:</h5>
+          <p class="text-muted">We're available week days from 10am – 5pm</p>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-4">
+          <h5 class="fw-bold mb-1">Email Us:</h5>
+          <p class="text-muted">We reply within 24hrs</p>
+        </div>
+
+        <!-- Visit -->
+        <div class="mb-4">
+          <h5 class="fw-bold mb-1">Pay Us a Visit:</h5>
+          <p class="text-muted">For a more personalized experience visit us</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+        
+       
+ 
+  <footer class="winlows-footer">
+
+    <!-- Huge Background Text -->
+    <div class="winlows-text">Winlows</div>
+
+    <div class="container position-relative">
+      <div class="row">
+
+        <!-- Left: Logo + Address + Contact -->
+        <div class="col-lg-4 mb-5">
+          <div class="footer-logo mb-4">
+            <img src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Winlows Academy">
+          </div>
+          <div class="footer-address mb-3">
+            <strong>Address:</strong><br>
+            The Winlows Studio, Miller Road
+          </div>
+          <div class="footer-contact">
+            <strong>Contact:</strong><br>
+            +234 xxx xxxx xxx<br>
+            info@thewinlowsacademy.com
+          </div>
+          <div class="social-icons mt-4">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Middle: Links Column 1 -->
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h5>About Us</h5>
+          <ul>
+            <li><a href="#">Our Programs</a></li>
+            <li><a href="#">Student Portal</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+
+         
+        </div>
+
+        <!-- Right: Links Column 2 -->
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h5>Blog Posts</h5>
+          <ul>
+            <li><a href="#">Events Calendar</a></li>
+            <li><a href="#">Success Stories</a></li>
+            <li><a href="#">Industry News</a></li>
+            <li><a href="#">Student Spotlight</a></li>
+          </ul>
+        </div>
+
+      </div>
+         <div class="footer-name wow img-custom-anim-left mb-0 mt-5">
+                <img class="img-fluid" src="{% static 'assets/img/Winlows_footer.png' %}" alt="">
+            </div>
+    </div>
+
+
+
+    <!-- Bottom Copyright Bar -->
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 text-center text-lg-start">
+            <p class="mb-0" style="color:#ffffff;">
+              © 2025 The Winlows Academy. All rights reserved.
+            </p>
+          </div>
+          <div class="col-lg-6 text-center text-white text-lg-end">
+            <a class="text-white" href="#">Privacy Policy</a>
+            <a class="text-white" href="#">Terms of Service</a>
+            <a class="text-white" href="#">Cookies Settings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+
+  <!--<< All JS Plugins >>-->
+<script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+<!--<< Viewport Js >>-->
+<script src="{% static 'assets/js/viewport.jquery.js' %}"></script>
+<!--<< Bootstrap Js >>-->
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+<!--<< Waypoints Js >>-->
+<script src="{% static 'assets/js/jquery.waypoints.js' %}"></script>
+<!--<< Counterup Js >>-->
+<script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+<!--<< Swiper Slider Js >>-->
+<script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+<!--<< MeanMenu Js >>-->
+<script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+<!--<< Parallaxie Js >>-->
+<script src="{% static 'assets/js/parallaxie.js' %}"></script>
+<!--<< Magnific Popup Js >>-->
+<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+<!--<< Wow Animation Js >>-->
+<script src="{% static 'assets/js/wow.min.js' %}"></script>
+<!--<< Circle Progress Js >>-->
+<script src="{% static 'assets/js/circle-progress.js' %}"></script>
+<!--<< Main.js >>-->
+<script src="{% static 'assets/js/main.js' %}"></script>
+     
+
+        
+<style>
+    /* Your existing styles remain the same */
+    .cp-seg-wrap { text-align:center; margin-bottom:22px; }
+    .cp-segment {
+        display: inline-flex;
+        background: transparent;
+        border-radius: 999px;
+        padding: 4px;
+        gap: 6px;
+        border: 2px solid #e6e6e6;
+        box-shadow: inset 0 0 0 1px rgba(0,0,0,0.02);
+    }
+    .cp-seg-input { position:absolute; opacity:0; pointer-events:none; }
+    .cp-seg-label {
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding: 8px 24px;
+        border-radius:999px;
+        cursor:pointer;
+        font-weight:600;
+        font-size:15px;
+        transition:.2s;
+    }
+    .cp-seg-label:hover { transform:translateY(-2px); }
+    .cp-seg-input:checked + .cp-seg-label {
+        background:#000;
+        color:#fff;
+        box-shadow:0 6px 25px rgba(0,0,0,0.15);
+    }
+
+    .cp-card {
+        background:#fff;
+        border:2px solid #eee;
+        border-radius:18px;
+        padding:40px;
+        transition:.3s;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+    .cp-card:hover { border-color:#000; transform:translateY(-5px); }
+    .cp-price { font-size:28px; font-weight:800; margin: 20px 0; min-height: 50px; }
+    .cp-btn {
+        display:block;
+        width:100%;
+        padding:6px;
+        border-radius:8px;
+        background:#000;
+        color:#fff;
+        font-weight:600;
+        text-align:center;
+        text-decoration:none;
+        margin-top: 20px;
+    
+    }
+    @media(max-width:576px){
+        .cp-seg-label { padding:6px 12px; font-size:13px; }
+    }
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const segInputs = document.querySelectorAll('.cp-seg-input');
+    const items = document.querySelectorAll('.cp-item');
+
+    function updatePricing() {
+        const isYearly = document.getElementById('seg-year').checked;
+        const target = isYearly ? 'yearly' : 'monthly';
+        const priceAttr = isYearly ? 'data-yearly-price' : 'data-monthly-price';
+
+        items.forEach(item => {
+            const priceEl = item.querySelector('.cp-price');
+            const newPrice = item.getAttribute(priceAttr);
+            if (priceEl && newPrice) {
+                priceEl.textContent = newPrice;
+            }
+            // All cards have both classes → always visible
+            item.style.display = '';
+        });
+    }
+
+    // Initial load
+    updatePricing();
+
+    // On tab change
+    segInputs.forEach(radio => {
+        radio.addEventListener('change', updatePricing);
+    });
+});
+</script>
+
+
+    </body>
+</html>

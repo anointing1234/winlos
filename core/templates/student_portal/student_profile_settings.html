@@ -1,0 +1,882 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- ========== Basic Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== SEO & Page Identity ========== -->
+    <title>The Winlos Academy | Nigeria’s Premier Christian Film School</title>
+    <meta name="description" content="The Winlos Academy is Nigeria’s premier Christian film school, commissioning cultural influencers who create powerful, faith-driven stories with technical mastery and spiritual integrity. Discover the story you were born to tell.">
+    <meta name="author" content="The Winlos Academy">
+    <meta name="keywords" content="christian film school nigeria, winlos academy, faith-based filmmaking, christian cinematography training, bible-based film school, nigerian christian film academy, filmmaking with purpose, spiritual storytelling, rev otis ojukwu film school">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== Open Graph / Facebook ========== -->
+    <meta property="og:title" content="The Winlos Academy | Nigeria’s Premier Christian Film School">
+    <meta property="og:description" content="We don’t just train filmmakers — we commission cultural influencers. Join Nigeria’s leading Christian film school and create stories that illuminate, inspire, and transform culture for Christ.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.thewinlosacademy.com">
+    <meta property="og:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg' %}">
+    <meta property="og:image:alt" content="The Winlos Academy - Christian Film School in Nigeria">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="The Winlos Academy">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Winlos Academy | Christian Film School Nigeria">
+    <meta name="twitter:description" content="At TWA, we help you discover the story you were born to tell. Join Nigeria’s premier Christian film school.">
+    <meta name="twitter:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg' %}">
+    <meta name="twitter:site" content="@winlosacademy">
+    <meta name="twitter:creator" content="@winlosacademy">
+
+    <!-- ========== Favicon & Touch Icons ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://www.thewinlosacademy.com">
+
+    <!-- ========== Preconnect for Speed ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{% static 'student_d_assets/images/logo/favicon.png' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/bootstrap.min.css' %}">
+    <!-- select2 -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/select2.min.css' %}">
+    <!-- Slick -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/slick.css' %}">
+    <!-- Slick -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/magnific-popup.css' %}">
+    <!-- jquery-ui -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/jquery-ui.css' %}">
+    <!-- plyr Css -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/plyr.css' %}">
+    <!-- Editor js Toolbar Start -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/editor-quill.css' %}">
+    <!-- animate -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/animate.css' %}">
+    <!-- dataTables.dataTables -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/dataTables.dataTables.min.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/aos.css' %}">
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/main.css' %}">
+
+     <link rel="stylesheet" href="{% static 'student_d_assets/css/custom.css' %}">
+
+
+
+        <!-- Phosphor Icons CDN -->
+<link rel="stylesheet" href="https://unpkg.com/phosphor-icons@1.4.1/src/css/phosphor.css">
+
+
+    <style>
+                .student-dashbord-scrollbar {
+    scrollbar-width: none; /* Firefox */
+}
+        
+        input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+
+    input:focus, textarea:focus {
+        outline: none !important;
+        box-shadow: none !important;
+        border: 1px solid #999 !important;
+    }
+
+    .form-error {
+        font-size: 13px;
+        color: red;
+        margin-top: 4px;
+    }
+
+
+    
+
+/* ---------- BASE MESSAGE (your original) ---------- */
+.msg {
+    background: #fefefe;
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 12px 18px;
+    border-top: solid 3px #ccc;
+    border-radius: 6px;
+    box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* COLOR TYPES */
+.msg-info { border-color: #b8dbf2; color: #39b3d7; }
+.msg-success { border-color: #cef2b8; color: #80d651; }
+.msg-warning { border-color: rgba(255,165,0,.5); color: #db9e34; }
+.msg-danger { border-color: #ec8282; color: #c9302c; }
+.msg-primary { border-color: #9ca6f1; color: rgba(47,106,215,.9); }
+.msg-magick { border-color: #e0b8f2; color: #bb39d7; }
+
+/* ---------- TOAST WRAPPER ---------- */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    z-index: 99999;
+}
+
+/* ---------- ANIMATION ---------- */
+.toast-slide-in {
+    animation: toastSlideIn 0.4s ease forwards;
+}
+
+.toast-slide-out {
+    animation: toastSlideOut 0.4s ease forwards;
+}
+
+@keyframes toastSlideIn {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastSlideOut {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(100%); }
+}
+
+    </style>
+
+
+</head> 
+<body>
+    
+
+      <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="txt-loading">
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="W" class="letters-loading">
+                        W
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                 
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<!--==================== Overlay Start ====================-->
+<div class="overlay"></div>
+<!--==================== Overlay End ====================-->
+
+<!--==================== Sidebar Overlay End ====================-->
+<div class="side-overlay"></div>
+<!--==================== Sidebar Overlay End ====================-->
+
+<!-- ==================== Scroll to Top End Here ==================== -->
+<div class="progress-wrap">
+  <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+      <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+  </svg>
+</div>
+<!-- ==================== Scroll to Top End Here ==================== -->
+
+<!-- ==================== Mobile Menu Start Here ==================== -->
+<div class="mobile-menu scroll-sm d-lg-none d-block">
+    <button type="button" class="close-button"><i class="ph ph-x"></i> </button>
+    <div class="mobile-menu__inner">
+        <a href="{% url 'home' %}" class="mobile-menu__logo">
+            <img style="max-width:90px;" src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Logo">
+        </a>
+        <div class="mobile-menu__menu">
+            
+<ul class="nav-menu flex-align nav-menu--mobile">
+    <li class="nav-menu__item  activePage">
+        <a href="{% url 'home' %}" class="nav-menu__link text-dark">Home</a> 
+    </li>
+    <li class="nav-menu__item ">
+        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">About Us</a>
+    </li>
+    <li class="nav-menu__item ">
+        <a href="{% url 'program' %}" class="nav-menu__link text-dark">Programs</a>
+    </li>
+    <li class="nav-menu__item ">
+        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">Admission</a>
+    </li> 
+</ul>
+
+            
+        </div>
+    </div>
+</div>
+<!-- ==================== Mobile Menu End Here ==================== -->
+
+
+<!-- ==================== Header Start Here ==================== -->
+<header style="background-color:black;" class="header text-white">
+    <div class="container container--xl">
+        <nav class="header-inner flex-between gap-12">
+
+            <!-- Logo -->
+            <div class="header-logo-wrapper flex-align">
+                <a href="{% url 'home' %}" class="link">
+                    <img style="max-width:90px;" src="{% static 'assets/images/logo/winlos_logo_white.png' %}" alt="Logo">
+                </a>
+            </div>
+
+            <!-- Menu (centered) -->
+            <div class="header-menu d-lg-block d-none flex-grow-1">
+                <ul class="nav-menu flex-align justify-content-center">
+                    <li class="nav-menu__item activePage">
+                        <a href="{% url 'home' %}" class="nav-menu__link text-white">Home</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">About Us</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'program' %}" class="nav-menu__link text-white">Programs</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'admission' %}" class="nav-menu__link text-white">Admission</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Header Right -->
+            <div class="header-right flex-align">
+                <div class="dropdown">
+                    <button class="dropdown-toggle w-48 h-48" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if request.user.profile_pic and request.user.profile_pic.name %}
+                        <img src="{{ request.user.profile_pic.url }}" alt="Profile" class="w-54 h-54 rounded-circle">
+                        {% else %}
+                        <img src="{% static 'student_d_assets/images/profile_pic.png' %}" alt="">
+                        {% endif %}
+                    </button>
+                    <ul class="dropdown-menu rounded-12">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'student_profile' %}">
+                                <span><i class="ph ph-user-circle"></i></span>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'logout' %}">
+                                <span><i class="ph ph-power"></i></span>
+                                <span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button type="button" class="toggle-mobileMenu d-lg-none text-white flex-center">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+
+        </nav>
+    </div>
+</header>
+<!-- ==================== Header End Here ==================== -->
+
+
+<div id="toast-container"></div>
+
+<!-- ============== student dashboard banner section start =============== -->
+<section class="breadcrumb pt-80 pb-160 bg-neutral-900 position-relative z-1 overflow-hidden mb-0">
+
+    <div class="container container--lg">
+        <div class="d-flex align-items-center justify-content-between flex-wrap">
+
+            <div class="breadcrumb__wrapper">
+
+                <h1 class="breadcrumb__title display-5 fw-semibold text-white mb-20">
+                    Learning Portal
+                </h1>
+
+                <ul class="breadcrumb__list d-flex align-items-center gap-4 flex-wrap">
+                    <li class="breadcrumb__item">
+                        <a href="{% url 'dashboard' %}" class="breadcrumb__link text-white hover-text-warning-800 fw-medium">Home</a>
+                    </li>
+                    <li class="breadcrumb__item">
+                        <i class="text-white d-flex ph-bold ph-caret-right"></i>
+                    </li>
+                    <li class="breadcrumb__item">
+                        <span class="text-main-two-600">Dashboard</span>
+                    </li>
+                </ul>
+
+            </div>
+
+        </div>
+    </div>
+
+</section>
+<!-- ============== student dashboard banner section end =============== -->
+
+<!-- =========== student dashboard section start ============== -->
+<section class="bg-main-25 pb-80 w-100 h-100">
+    <div class="container container--lg">
+        <div class="d-flex gap-24 mt--120 z-2 position-relative">
+            <div class="student-overlay-sidebar"></div>
+
+            <!-- ========Dashboard Sidebar start======== -->
+            <div class="student-dashboard-sidebar px-20 py-24 max-w-288-px bg-white rounded-10 w-100 position-relative">
+
+                <div class="text-center">
+                    {% if request.user.profile_pic and request.user.profile_pic.name %}
+                        <img src="{{ request.user.profile_pic.url }}" alt="Profile" class="rounded-circle d-block mx-auto mt-2" style="width:85px; height:85px; object-fit:cover;">
+                    {% else %}
+                        <img src="{% static 'student_d_assets/images/profile_pic.png' %}" alt="Profile" class="rounded-circle d-block mx-auto mt-2" style="width:85px; height:85px; object-fit:cover;">
+                    {% endif %}
+
+                    <h5 class="mb-2 text-neutral-200 mt-3">Welcome, {{ request.user.username }}</h5>
+                    <span class="text-neutral-500 text-14 fw-normal">{{ request.user.email }}</span>
+                </div>
+
+                <span class="w-100 bg-neutral-40 mb-24 mt-24 h-1 d-block"></span>
+
+                <div class="overflow-x-auto">
+                    <div class="student-dashbord-scrollbar min-w-max">
+                        <ul>
+                            <li class="mb-8">
+                                <a href="{% url 'dashboard' %}" class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-main-600 item-hover__text transition-03"><i class="ph-bold ph-house"></i></span>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="mb-8">
+                                <a href="{% url 'student_profile' %}" class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-main-600 item-hover__text transition-03"><i class="ph-bold ph-user-circle"></i></span>
+                                    My Profile
+                                </a>
+                            </li>
+                            <li class="mb-8">
+                                <a href="{% url 'courses' %}" class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-main-600 item-hover__text transition-03"><i class="ph-bold ph-graduation-cap"></i></span>
+                                    Courses
+                                </a>
+                            </li>
+                            <li class="mb-8">
+                                <a href="{% url 'certification' %}" class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-main-600 item-hover__text transition-03"><i class="ph-bold ph-certificate"></i></span>
+                                    Certificates
+                                </a>
+                            </li>
+                            <li class="mb-8">
+                                <a href="{% url 'logout' %}" class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-main-600 item-hover__text transition-03"><i class="ph ph-sign-out"></i></span>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="position-absolute inset-block-end-0 inset-inline-start-0 pb-16 px-16 w-100">
+                    <a href="#" class="text-14 fw-medium text-neutral-500 d-flex align-items-center gap-8 hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap bg-white">
+                        <span class="text-16 text-main-600 item-hover__text transition-03">
+                            <img src="{% static 'student_d_assets/images/certificate.png' %}" alt="Certificate" class="d-block mx-auto" style="object-fit:contain;">
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+            <!-- ========Dashboard Sidebar end======== -->
+
+            <!-- ============ Student dashboard Feedbacks start============ -->
+            <div class="w-100 overflow-y-auto">
+
+                <div class="px-40 py-40 bg-white rounded-10 mb-24">
+
+                    <div class="d-flex align-items-center gap-16 justify-content-between flex-wrap border-bottom-dashed-main pb-24">
+                        <h4 class="text-16 fw-medium text-neutral-700 mb-0">Account Settings</h4>
+                        <button type="button" class="toggle-student-dashbord-button text-neutral-900 text-32 d-xl-none d-block">
+                            <i class="ph-bold ph-list"></i>
+                        </button>
+                    </div>
+
+                    <!-- Profile Photo -->
+                    <div class="mt-24">
+                        <h4 class="text-18 fw-normal text-neutral-700 mb-16">Profile Photo</h4>
+
+                        <form id="profilePicForm" class="border-bottom-dashed-main pb-24">
+                            {% csrf_token %}
+                            <div class="avatar-upload position-relative d-inline-block">
+
+                                <div id="imagenextPreview" class="avatar-preview rounded-circle" 
+                                    style="background-image: url(
+                                        {% if request.user.profile_pic %}
+                                            {{ request.user.profile_pic.url }}
+                                        {% else %}
+                                            {% static 'student_d_assets/images/profile_pic.png' %}
+                                        {% endif %}
+                                    ); width:120px; height:120px; background-size: cover; background-position: center;">
+                                    
+                                    <label for="imageUpload" class="position-absolute top-0 end-0 translate-middle p-2 bg-main-600 text-white rounded-circle cursor-pointer d-flex align-items-center justify-content-center" style="width:32px; height:32px;">
+                                        <i class="ph ph-upload-simple" style="font-size:16px;"></i>
+                                    </label>
+                                </div>
+
+                                <input type="file" name="imageUpload" id="imageUpload" accept=".png,.jpg,.jpeg" class="d-none">
+                            </div>
+                        </form>
+
+                        <!-- Profile Form -->
+                        <form id="profileForm" method="POST">
+                            {% csrf_token %}
+
+                            <div class="mt-24 row gy-4 mb-24">
+                                <div class="col-lg-6">
+                                    <h4 class="text-18 fw-medium text-neutral-700 mb-8">Fullname</h4>
+                                    <input type="text" name="fullname" required value="{{ request.user.fullname|title }}" class="px-16 py-10 fw-normal text-14 w-100 bg-neutral-20 border border-neutral-30 rounded-14">
+                                    <div class="form-error" id="fullnameError"></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h4 class="text-18 fw-medium text-neutral-700 mb-8">Username</h4>
+                                    <input type="text" name="username" required value="{{ request.user.username }}" class="px-16 py-10 fw-normal text-14 w-100 bg-neutral-20 border border-neutral-30 rounded-14">
+                                    <div class="form-error" id="usernameError"></div>
+                                </div>
+                            </div>
+
+                            <div class="mt-24 row gy-4 mb-24">
+                                <div class="col-lg-6">
+                                    <h4 class="text-18 fw-medium text-neutral-700 mb-8">Email</h4>
+                                    <input type="email" name="email" required value="{{ request.user.email }}" class="px-16 py-10 fw-normal text-14 w-100 bg-neutral-20 border border-neutral-30 rounded-14">
+                                    <div class="form-error" id="emailError"></div>
+                                </div>
+                                <div class="col-lg-6">
+                                    <h4 class="text-18 fw-medium text-neutral-700 mb-8">Phone</h4>
+                                    <input type="text" name="phone_number" required value="{{ request.user.phone_number }}" placeholder="+234 801 234 5678" class="px-16 py-10 fw-normal text-14 w-100 bg-neutral-20 border border-neutral-30 rounded-14" id="phoneField">
+                                    <div class="form-error" id="phoneError"></div>
+                                </div>
+                            </div>
+
+                            <div class="mt-24 row gy-4 mb-24">
+                                <div class="col-lg-6">
+                                    <h4 class="text-18 fw-medium text-neutral-700 mb-8">Country</h4>
+                                    <input type="text" required name="country" value="{{ request.user.country }}" class="px-16 py-10 text-14 w-100 bg-neutral-20 border border-neutral-30 rounded-14">
+                                </div>
+                                <div class="col-lg-6">
+                                    <h4 class="text-18 fw-medium text-neutral-700 mb-8">City</h4>
+                                    <input type="text" required name="city" value="{{ request.user.city }}" class="px-16 py-10 text-14 w-100 bg-neutral-20 border border-neutral-30 rounded-14">
+                                </div>
+                            </div>
+
+                            <div class="mb-24">
+                                <h4 class="text-18 fw-medium text-neutral-700 mb-16">Bio:</h4>
+                                <textarea name="bio" required class="w-100 h-166-px text-14 px-16 py-12 bg-neutral-20 border border-neutral-30 rounded-14" style="resize:none;">{{ request.user.bio }}</textarea>
+                            </div>
+
+                            <button type="submit" class="bg-main-600 px-24 py-12 rounded-12 fw-semibold text-white hover-bg-main-700">Save Change</button>
+                        </form>
+
+                    </div>
+                </div>
+
+                <!-- CHANGE PASSWORD SECTION -->
+                <div class="ps-40 pe-60 py-40 bg-white rounded-10 mb-24">
+                    <h4 class="text-16 fw-medium text-neutral-700 mb-0 border-bottom-dashed-main pb-24">Change Password</h4>
+
+                    <div class="mt-24 mb-40">
+                        <form id="changePasswordForm">
+                            {% csrf_token %}
+                            <div class="row gy-4 align-items-center mb-24 flex-wrap">
+                                <div class="col-sm-6 col-xs-6">
+                                    <label for="oldPassword" class="fw-medium text-base text-neutral-800 mb-16">Old Password</label>
+                                    <div class="position-relative">
+                                        <input type="password" id="oldPassword" name="old_password" class="px-20 py-10 fw-normal text-14 text-neutral-700 w-100 bg-neutral-20 border border-neutral-30 rounded-14" placeholder="***********" required>
+                                        <span class="student-toggle-password text-16 position-absolute inset-inline-end-3-percent inset-block-start-18-px ph-bold ph-eye-closed" data-target="oldPassword"></span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6 col-xs-6">
+                                    <label for="newPassword" class="fw-medium text-base text-neutral-800 mb-16">New Password</label>
+                                    <div class="position-relative">
+                                        <input type="password" id="newPassword" name="new_password" class="px-20 py-10 fw-normal text-14 text-neutral-700 w-100 bg-neutral-20 border border-neutral-30 rounded-14" placeholder="***********" required>
+                                        <span class="student-toggle-password text-16 position-absolute inset-inline-end-3-percent inset-block-start-18-px ph-bold ph-eye-closed" data-target="newPassword"></span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-12">
+                                <label for="confirmPassword" class="fw-medium text-base text-neutral-800 mb-16">Confirm Password</label>
+                                <div class="position-relative">
+                                    <input type="password" id="confirmPassword" name="confirm_password" class="px-20 py-10 fw-normal text-14 text-neutral-700 w-100 bg-neutral-20 border border-neutral-30 rounded-14" placeholder="***********" required>
+                                    <span class="student-toggle-password text-16 position-absolute inset-inline-end-3-percent inset-block-start-18-px ph-bold ph-eye-closed" data-target="confirmPassword"></span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div class="mb-40">
+                        <h4 class="fw-medium text-18 text-neutral-700 mb-16">New password must contain :</h4>
+                        <ul>
+                            <li class="d-flex align-items-center gap-12 mb-12"><span class="w-6 h-6 bg-main-600 rounded-circle"></span><span class="text-14">At least 8 characters</span></li>
+                            <li class="d-flex align-items-center gap-12 mb-12"><span class="w-6 h-6 bg-main-600 rounded-circle"></span><span class="text-14">1 lowercase letter</span></li>
+                            <li class="d-flex align-items-center gap-12 mb-12"><span class="w-6 h-6 bg-main-600 rounded-circle"></span><span class="text-14">1 uppercase letter</span></li>
+                            <li class="d-flex align-items-center gap-12 mb-12"><span class="w-6 h-6 bg-main-600 rounded-circle"></span><span class="text-14">1 number</span></li>
+                            <li class="d-flex align-items-center gap-12 mb-12"><span class="w-6 h-6 bg-main-600 rounded-circle"></span><span class="text-14">1 special character</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-16 flex-wrap">
+                        <button type="button" id="savePasswordBtn" class="bg-main-600 px-24 py-12 rounded-12 fw-semibold text-white hover-bg-main-700 transition-03">Save Change</button>
+                    </div>
+                </div>
+
+            </div>
+            <!-- ============ Student dashboard Feedbacks end============ -->
+
+        </div>
+    </div>
+</section>
+<!-- =========== student dashboard section end ============== -->
+
+
+
+<!-- Spinner Overlay -->
+<div id="spinner-overlay" style="display:none;">
+    <div class="spinner"></div>
+</div>
+
+<style>
+#spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db; /* primary color */
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
+
+
+    <!-- Jquery js -->
+    <!-- <script src="{% static 'student_d_assets/js/jquery-3.7.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="{% static 'student_d_assets/js/boostrap.bundle.min.js' %}"></script>
+    <!-- select2 Js -->
+    <script src="{% static 'student_d_assets/js/select2.min.js' %}"></script>
+    <!-- Phosphor Icon Js -->
+    <script src="{% static 'student_d_assets/js/phosphor-icon.js' %}"></script>
+    <!-- Slick js -->
+    <script src="{% static 'student_d_assets/js/slick.min.js' %}"></script>
+    <!-- Slick js -->
+    <script src="{% static 'student_d_assets/js/counter.min.js' %}"></script>
+    <!-- magnific popup -->
+    <script src="{% static 'student_d_assets/js/magnific-popup.min.js' %}"></script>
+    <!-- Jquery Ui js -->
+    <script src="{% static 'student_d_assets/js/jquery-ui.js' %}"></script>
+    <!-- marquee js -->
+    <script src="{% static 'student_d_assets/js/marquee.min.js' %}"></script>
+    <!-- react charts-->
+     <script src="{% static 'student_d_assets/js/apexcharts.js' %}"></script>
+    <!-- plyr Js -->
+    <script src="{% static 'student_d_assets/js/plyr.js' %}"></script>
+    <!-- vanilla Tilt -->
+    <!-- Editor js Toolbar Start -->
+    <script src="{% static 'student_d_assets/js/editor-quill.js' %}"></script>
+    <!-- dataTables -->
+    <script src="{% static 'student_d_assets/js/dataTables.min.js' %}"></script>
+    <!-- Tilt -->
+    <script src="{% static 'student_d_assets/js/vanilla-tilt.min.js' %}"></script>
+    <!-- wow -->
+    <script src="{% static 'student_d_assets/js/wow.min.js' %}"></script>
+
+    <script src="{% static 'student_d_assets/js/aos.js' %}"></script>
+    
+    <!-- main js -->
+    <script src="{% static 'student_d_assets/js/main.js' %}"></script>
+
+
+    <script>
+
+    /* ============================
+       PHONE VALIDATION
+    ============================ */
+    document.getElementById("profileForm").addEventListener("submit", function(e) {
+        let phone = document.getElementById("phoneField").value.trim();
+        let phoneError = document.getElementById("phoneError");
+
+        let phoneRegex = /^\+\d{1,4}\s?\d{6,14}$/;
+
+        if (!phoneRegex.test(phone)) {
+            e.preventDefault();
+            phoneError.textContent = "Phone number must start with +234 or valid country code.";
+        } else {
+            phoneError.textContent = "";
+        }
+    });
+
+
+    /* ============================
+       TOGGLE PASSWORD ICON
+    ============================ */
+    document.querySelectorAll('.student-toggle-password').forEach(toggle => {
+        toggle.addEventListener('click', function() {
+            const target = document.getElementById(this.dataset.target);
+            if (target.type === "password") {
+                target.type = "text";
+                this.classList.remove("ph-eye-closed");
+                this.classList.add("ph-eye");
+            } else {
+                target.type = "password";
+                this.classList.add("ph-eye-closed");
+                this.classList.remove("ph-eye");
+            }
+        });
+    });
+
+
+    /* ============================
+       PASSWORD STRENGTH CHECK
+    ============================ */
+    function validatePassword(password) {
+        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$/.test(password);
+    }
+
+
+    /* ---------- TOAST ---------- */
+    function showToast(message, type = "info", duration = 3000, delay = 400) {
+        setTimeout(() => {
+            const container = document.getElementById("toast-container") || createToastContainer();
+            const toast = document.createElement("div");
+            toast.className = `msg msg-${type} toast-slide-in`;
+            toast.textContent = message;
+            container.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove("toast-slide-in");
+                toast.classList.add("toast-slide-out");
+                toast.addEventListener("animationend", () => toast.remove(), { once: true });
+            }, duration);
+        }, delay);
+    }
+
+    function createToastContainer() {
+        const div = document.createElement("div");
+        div.id = "toast-container";
+        div.style.cssText = "position:fixed;top:20px;right:20px;z-index:99999;";
+        document.body.appendChild(div);
+        return div;
+    }
+
+    function showSpinner() {
+        document.getElementById("spinner-overlay").style.display = "flex";
+    }
+
+    function hideSpinner() {
+        document.getElementById("spinner-overlay").style.display = "none";
+    }
+
+
+    /* ============================
+       UPDATE PASSWORD (AJAX)
+    ============================ */
+    document.getElementById("savePasswordBtn").addEventListener("click", function () {
+        const oldPass = document.getElementById("oldPassword").value.trim();
+        const newPass = document.getElementById("newPassword").value.trim();
+        const confirmPass = document.getElementById("confirmPassword").value.trim();
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        if (!oldPass) return showToast("Please enter your old password.", "warning");
+        if (!validatePassword(newPass)) return showToast("New password is too weak.", "danger");
+        if (newPass !== confirmPass) return showToast("Passwords do not match.", "warning");
+
+        showSpinner();
+
+        fetch("{% url 'update_password' %}", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRFToken": csrfToken
+            },
+            body: JSON.stringify({
+                old_password: oldPass,
+                new_password: newPass,
+                confirm_password: confirmPass
+            })
+        })
+        .then(r => r.json())
+        .then(data => {
+            hideSpinner();
+
+            if (data.success) {
+                showToast(data.message, "success");
+
+                setTimeout(() => {
+                    location.reload();   // 🔥 AUTO RELOAD AFTER SUCCESS
+                }, 1200);
+            } else {
+                showToast(data.message, "danger");
+            }
+        })
+        .catch(() => {
+            hideSpinner();
+            showToast("Something went wrong.", "danger");
+        });
+    });
+
+
+
+    /* ============================
+       PROFILE UPDATE AJAX
+    ============================ */
+    document.getElementById("profileForm")?.addEventListener("submit", function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const csrfToken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+
+        showSpinner();
+
+        fetch("{% url 'update_profile' %}", {
+            method: "POST",
+            headers: { "X-CSRFToken": csrfToken, "X-Requested-With": "XMLHttpRequest" },
+            body: formData
+        })
+        .then(r => r.json())
+        .then(data => {
+            hideSpinner();
+
+            if (data.success) {
+                showToast(data.message, "success");
+
+                setTimeout(() => {
+                    location.reload();   // 🔥 AUTO RELOAD AFTER SUCCESS
+                }, 1200);
+
+            } else {
+                if (data.errors) {
+                    for (let field in data.errors) {
+                        let el = document.getElementById(field + "Error");
+                        if (el) el.textContent = data.errors[field][0];
+                    }
+                }
+
+                showToast("Update failed.", "danger");
+            }
+        })
+        .catch(() => {
+            hideSpinner();
+            showToast("Network error.", "danger");
+        });
+    });
+
+
+
+    /* ============================
+       IMAGE UPLOAD + LIVE PREVIEW
+    ============================ */
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            const reader = new FileReader();
+            reader.onload = e => {
+                $('#imagenextPreview')
+                    .css('background-image', `url(${e.target.result})`)
+                    .hide().fadeIn(650);
+            };
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#imageUpload").change(function() {
+        readURL(this);
+        uploadProfilePicture();
+    });
+
+    function uploadProfilePicture() {
+        const fileInput = document.getElementById("imageUpload");
+        if (!fileInput.files[0]) return;
+
+        const formData = new FormData();
+        formData.append("imageUpload", fileInput.files[0]);
+        formData.append("csrfmiddlewaretoken", document.querySelector('[name=csrfmiddlewaretoken]').value);
+
+        showSpinner();
+
+        fetch("{% url 'update_profile_picture' %}", {
+            method: "POST",
+            headers: { "X-CSRFToken": document.querySelector('[name=csrfmiddlewaretoken]').value }
+            ,
+            body: formData
+        })
+        .then(r => r.json())
+        .then(data => {
+            hideSpinner();
+
+            if (data.success) {
+                showToast("Profile image updated!", "success");
+
+                setTimeout(() => {
+                    location.reload();   // 🔥 AUTO RELOAD AFTER SUCCESS
+                }, 1100);
+
+            } else {
+                showToast(data.message, "danger");
+            }
+        })
+        .catch(() => {
+            hideSpinner();
+            showToast("Upload failed.", "danger");
+        });
+    }
+
+</script>
+
+
+
+</body>
+</html>

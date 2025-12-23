@@ -1,0 +1,831 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========== Basic Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== SEO & Page Identity ========== -->
+    <title>The Winlos Academy | Nigeria’s Premier Christian Film School</title>
+    <meta name="description" content="The Winlos Academy is Nigeria’s premier Christian film school, commissioning cultural influencers who create powerful, faith-driven stories with technical mastery and spiritual integrity. Discover the story you were born to tell.">
+    <meta name="author" content="The Winlos Academy">
+    <meta name="keywords" content="christian film school nigeria, winlos academy, faith-based filmmaking, christian cinematography training, bible-based film school, nigerian christian film academy, filmmaking with purpose, spiritual storytelling, rev otis ojukwu film school">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== Open Graph / Facebook ========== -->
+    <meta property="og:title" content="The Winlos Academy | Nigeria’s Premier Christian Film School">
+    <meta property="og:description" content="We don’t just train filmmakers — we commission cultural influencers. Join Nigeria’s leading Christian film school and create stories that illuminate, inspire, and transform culture for Christ.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.thewinlosacademy.com">
+    <meta property="og:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg">
+    <meta property="og:image:alt" content="The Winlos Academy - Christian Film School in Nigeria">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="The Winlos Academy">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Winlos Academy | Christian Film School Nigeria">
+    <meta name="twitter:description" content="At TWA, we help you discover the story you were born to tell. Join Nigeria’s premier Christian film school.">
+    <meta name="twitter:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg">
+    <meta name="twitter:site" content="@winlosacademy">
+    <meta name="twitter:creator" content="@winlosacademy">
+
+    <!-- ========== Favicon & Touch Icons ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://www.thewinlosacademy.com">
+
+    <!-- ========== Preconnect for Speed ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- ========== Stylesheets (Keep Your Existing Ones) ========== -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- ========== Structured Data - Organization + EducationalOrganization ========== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["EducationalOrganization", "Organization"],
+      "name": "The Winlos Academy",
+      "alternateName": ["TWA", "Winlos Academy", "The Winlos Christian Film School"],
+      "url": "https://www.thewinlosacademy.com",
+      "logo": "https://www.thewinlosacademy.com/assets/img/logo/winlos_logo.png' %}",
+      "image": "https://www.thewinlosacademy.com/assets/img/og-image.jpg",
+      "description": "The Winlos Academy is Nigeria’s premier Christian film school, established to empower a new generation of filmmakers. We believe that the most powerful stories are those told with both technical mastery and spiritual integrity. We are not just training filmmakers; we are commissioning cultural influencers.",
+      "slogan": "Discover the story you were born to tell.",
+      "founder": {
+        "@type": "Person",
+        "name": "Rev. Otis Ojukwu"
+      },
+      "foundingDate": "2015",
+      "foundingLocation": "Lagos, Nigeria",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Winlos Studio, Miller Road",
+        "addressLocality": "Lagos",
+        "addressRegion": "Lagos State",
+        "postalCode": "",
+        "addressCountry": "NG"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+234-XXX-XXX-XXXX",
+        "contactType": "Admissions & General Inquiry",
+        "email": "info@thewinlosacademy.com",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://facebook.com/thewinlosacademy",
+        "https://instagram.com/thewinlosacademy",
+        "https://youtube.com/@thewinlosacademy",
+        "https://twitter.com/winlosacademy"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Film & Creative Programs",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Professional Filmmaking Diploma"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Screenwriting & Story Development"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+
+      <style>
+            @media (min-width:790px) {
+        .header-1 .header-right-items {
+          gap: 300px;
+        }
+
+    }
+
+
+    </style>
+
+
+    <!-- WOW.js Animation Init -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</head>
+
+
+    <body>
+
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="txt-loading">
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="W" class="letters-loading">
+                        W
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                 
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- GT Back To Top Start -->
+        <button id="back-top" class="back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+        <!-- GT MouseCursor Start -->
+        <div class="mouseCursor cursor-outer"></div>
+        <div class="mouseCursor cursor-inner"></div>
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="index.html">
+                                        <img style="width: 90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                                    </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                    <i class="fas fa-times"></i>
+                                    </button>
+                            </div>
+                        </div>
+                 
+                        <div class="mobile-menu fix mt-3"></div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+
+        
+
+        <!-- Header Section Start -->
+        <header id="header-sticky" class="header-1">
+         
+            <div class="container-fluid">
+                <div class="mega-menu-wrapper">
+                    <div class="header-main">
+                        <div class="logo">
+                                <a href="index.html" class="header-logo">
+                                    <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                                </a>
+                                 <a href="index.html" class="header-logo2">
+                                    <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                                </a>
+                        </div>
+                        <div class="header-right-items">
+                             <div class="mean__menu-wrapper">
+                            <div class="main-menu">
+                                <nav id="mobile-menu">
+                                     <ul>
+                                        <li class="active">
+                                            <a   href="{% url 'home' %}" class="border-none">
+                                            HOME
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a style="color:#F5E812;" href="{% url 'about_us' %}">
+                                                ABOUT US
+                                             
+                                            </a>
+                                        </li>
+                                         <li>
+                                            <a href="{% url 'program' %}">PROGRAMS</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'admission' %}">
+                                                ADMISSION
+                                                
+                                            </a>
+                                           
+                                        </li>
+                                       
+                                       
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        <div class="header-right d-flex justify-content-end align-items-center">
+                      
+                                 
+                         
+                     {% if user.is_authenticated %}
+                               <a href="{% url 'dashboard' %}" class="theme-btn">
+                              CONTINUE LEARNING
+                          </a>
+                      {% else %}
+                            <a href="{% url 'apply' %}" class="theme-btn">
+                              APPLY NOW
+                          </a>
+                      {% endif %}
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                        </div> 
+                    </div>
+                </div>
+            </div>
+        </header>
+
+
+        <section style="margin-bottom: -100px;" class="year-timeline-section">
+    <div class="container-fluid">
+        <div class="timeline-wrapper">
+
+            <div id="timeline-display" class="timeline-item">
+
+                <!-- LEFT YEARS -->
+                <div id="yearBlock" class="timeline-left fade">
+                    <h1 id="prevYear" class="year-faded"></h1>
+                    <h1 id="activeYear" class="year-active"></h1>
+                    <h1 id="nextYear" class="year-faded"></h1>
+                </div>
+
+                <!-- RIGHT CONTENT -->
+                <div id="contentBlock" class="timeline-right fade">
+                    <img id="contentImg" class="content-img img-fluid" alt="">
+                    <h2 id="contentTitle"></h2>
+                    <p id="contentText" class="mt-3 content_write_up"></p>
+
+                    <div class="nav-buttons">
+                        <button id="btnUp" class="nav-btn">
+                            <img class="nav-btn" src="{% static 'assets/img/up_button.png' %}" alt="">
+                        </button>
+                        <button id="btnDown" class="nav-btn">
+                            <img class="nav-btn" src="{% static 'assets/img/down_button.png' %}" alt="">
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<style>
+     #contentTitle{
+        font-size: 25px;
+    }
+    #contentText{
+        font-size: 16px;
+    }
+
+/* ---------------- FADE ANIMATION ------------------- */
+.fade {
+    opacity: 0;
+    animation: fadeIn .5s ease forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* ---------------- BUTTONS ------------------- */
+.nav-buttons {
+    margin-top: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+@media (max-width: 992px) {
+    .nav-buttons {
+        flex-direction: row;
+        gap: 20px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .nav-btn {
+        width: 60px;
+        height: 60px;
+    }
+}
+
+.nav-btn {
+    width: 43px;
+    height: 43px;
+    border-radius: 50%;
+    border: none;
+    font-size: 22px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), rgba(255, 255, 255, 0.20);
+    cursor: pointer;
+    transition: background .2s;
+}
+.nav-btn:hover {
+    background: #d0d0d0;
+}
+
+/* ---------------- GENERAL ------------------- */
+.year-timeline-section {
+    padding: 100px 0;
+    background: #fff;
+    min-height: 650px;   /* ⭐ ADDED FOR FIXED HEIGHT */
+}
+
+.timeline-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+}
+
+.timeline-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 45%;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: #ccc;
+    opacity: 0.5;
+}
+
+.timeline-wrapper::after {
+    content: "";
+    position: absolute;
+    left: 45%;
+    width: 4px;
+    height: 100px;
+    background: #000;
+    border-radius: 4px;
+    top: var(--scroll-position);
+}
+
+/* ---------------- ITEMS ------------------- */
+.timeline-item {
+    display: flex;
+    gap: 80px;
+    align-items: center;
+    margin-bottom: 250px;
+}
+
+.timeline-left {
+    flex: 0 0 45%;
+    text-align: center;
+}
+
+.timeline-left h1 {
+    font-size: 150px;
+    font-weight: 900;
+    line-height: 0.8;
+    margin: 0;
+    position: relative;
+    z-index: 1;
+}
+
+.year-faded { color: #e8e8e8; z-index: 0; }
+.year-active { color: #000; z-index: 2; }
+
+.timeline-right {
+    flex: 0 0 45%;
+    min-height: 420px;  /* ⭐ ADDED: FIXED CONTENT HEIGHT */
+}
+
+/* Allow text to scroll if too long */
+#contentBlock {
+    overflow-y: auto;  /* ⭐ ADDED */
+}
+
+/* IMAGE */
+.content-img {
+    width: 100%;
+    max-width: 150px;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+/* ---------------- RESPONSIVE ------------------- */
+@media (max-width: 1200px) {
+    .timeline-left h1 { font-size: 150px; }
+}
+
+@media (max-width: 992px) {
+    .timeline-wrapper::before,
+    .timeline-wrapper::after {
+        display: none;
+    }
+    .timeline-item {
+        flex-direction: column;
+        text-align: center;
+        margin-bottom: 150px;
+    }
+    .timeline-left h1 { font-size: 90px; }
+
+    .content-img {
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 576px) {
+    .timeline-left h1 { font-size: 60px; }
+    .content-img { max-width: 100%; }
+    .timeline-wrapper { padding: 0 20px; }
+}
+</style>
+
+<script>
+/*
+  Updated JavaScript:
+  - DOES NOT change your HTML/CSS structure.
+  - Supports per-item specification of an array `years: [...]` with any length (1,2,3...).
+  - If `years` exists it will be used to fill prev/active/next slots (array positions 0/1/2).
+  - If `years` is absent, fallback to original behavior using adjacent timelineData items.
+  - Content (img/title/text) comes from the timelineData item itself (the active center year for that item).
+*/
+
+/* ---------------- TIMELINE DATA ----------------------
+   You can either keep single `year` (original style) OR
+   provide `years: [prev, active, next]` for that item.
+   Examples below show mixed usage.
+*/
+
+const timelineData = [
+    {
+        years: [2012, 2013, 2020],
+        img: "",
+        title: "Our Story",
+        text: "The Winlos began in October 2013 with the launch of their YouTube channel, producing creative skits and dramatized stories that explored real-life relationships and the beauty and challenges of marriage. These early projects shaped a unique storytelling style that blended humor, faith, and relatable human experiences, laying the foundation for their future film work."
+    },
+
+    {
+        years: [2013, 2020, 2023],
+        img: "{% static 'assets/img/2020_about.png' %}",
+        title: "Twelve Forty-Five",
+        text: "Released in 2020, Twelve Forty-Five marked a major shift from short-form sketches to full cinematic storytelling. The film showcased their growing strength in faith-based narratives and demonstrated their commitment to producing impactful stories that inspire reflection, purpose, and spiritual depth in audiences around the world."
+    },
+
+    {
+        years: [2020, 2023, 2024],
+        img: "{% static 'assets/img/2023_about.png' %}",
+        title: "Prophet Suddenly 1",
+        text: "Premiering on YouTube on May 28, 2023, Prophet Suddenly explored themes of prophecy, calling, and the complex journey of ministry. The film resonated deeply with viewers for its authenticity and spiritual relevance, becoming a major milestone that expanded The Winlos’ reach in faith-based filmmaking."
+    },
+
+    {
+        years: [2023, 2024, 2025],
+        img: "{% static 'assets/img/2024_about.png' %}",
+        title: "Prophet Suddenly 2",
+        text: "Released in 2024, Prophet Suddenly 2 continued the powerful narrative, offering even deeper insight into spiritual calling, divine assignment, and the challenges faced in ministry. Its message connected strongly with global audiences, further establishing The Winlos as leading voices in faith-centered storytelling."
+    },
+
+    {
+        years: [2023, 2024, 2025],
+        img: "{% static 'assets/img/2024_2_about.png' %}",
+        title: "Holy Scam",
+        text: "Holy Scam is an intense and thought-provoking film that exposes the dangers of manipulation, greed, and deception within ministry. Following a charismatic preacher who misuses spiritual influence, the story highlights the consequences of moral compromise and calls viewers to reflect on integrity, accountability, and the true essence of faith."
+    },
+
+    {
+        years: [2024, 2025, 2026],
+        img: "{% static 'assets/img/2025_about.png' %}",
+        title: "A Love Like Raymond",
+        text: "A Love Like Raymond follows a young woman who becomes deeply attached to a charming and seemingly sincere man, only to uncover hidden intentions behind his actions. The film dives into themes of trust, discernment, and emotional vulnerability, raising important questions about love, faith, and God’s guidance in relationships."
+    },
+
+    {
+        years: [2024, 2025, 2026],
+        img: "{% static 'assets/img/2025_2_about.png' %}",
+        title: "Prophet Suddenly 3",
+        text: "Prophet Suddenly 3: The Music Minister explores the delicate balance between genuine spiritual calling and the pressures of fame-driven ministry. Centered on a gifted music minister, the film challenges viewers to examine the state of modern worship, emphasizing the importance of purity, consecration, and authentic devotion to God."
+    },
+
+    {
+        years: [2024, 2025, 2026],
+        img: "{% static 'assets/img/2025_3_about.png' %}",
+        title: "Will You Be My Wife?",
+        text: "Will You Be My Wife is a heartfelt Winlos drama that examines love, commitment, and the lifelong decision of choosing a partner. Through sincere, faith-driven storytelling, the film highlights the importance of godly relationships and the courage required to build a future rooted in trust, purpose, and spiritual values."
+    },
+
+    {
+        years: [2024, 2025, 2026],
+        img: "{% static 'assets/img/2025_4_about.png' %}",
+        title: "Secrets of Our Pastor’s Bed",
+        text: "Secrets of Our Pastor’s Bed is a gripping drama that uncovers hidden struggles, moral tension, and personal failures behind the façade of ministry. The film explores the consequences of secrecy and temptation, prompting viewers to reflect on accountability, integrity, and the deeper responsibilities carried by spiritual leaders."
+    },
+
+    {
+        years: [2024, 2025, 2026],
+        img: "{% static 'assets/img/2025_5_about.png' %}",
+        title: "Spirituals 1",
+        text: "Spirituals 1 is an inspiring Winlos film that portrays the power of faith, divine encounters, and the everyday challenges of following God’s voice. Through emotionally rich characters and relatable experiences, it encourages viewers to persevere, trust God’s leading, and embrace spiritual growth in their walk of faith."
+    },
+
+    {
+        years: [2024, 2025, 2026],
+        img: "{% static 'assets/img/2025_6_about.png' %}",
+        title: "Married to Her Father",
+        text: "Married to Her Father is a moving drama that delves into complicated family dynamics, unexpected responsibilities, and the emotional weight of decisions that shape relationships. The film presents a thoughtful look at how love, duty, and personal desires intersect in difficult and life-changing situations."
+    },
+
+    {
+        years: [2024, 2025, 2026],
+        img: "{% static 'assets/img/2025_7_about.png' %}",
+        title: "Spirituals 2",
+        text: "Spirituals 2 continues the inspiring journey introduced in its predecessor, exploring deeper spiritual challenges, divine guidance, and the resilience required to overcome life’s obstacles. The film encourages a renewed commitment to faith, obedience, and the transformative power of God’s presence."
+    },
+
+    {
+        years: [2024, 2025, 2026],
+        img: "{% static 'assets/img/2025_8_about.png' %}",
+        title: "Love in The Guest Room",
+        text: "Love in the Guest Room is a suspense-filled Winlos drama woven with secrets, emotional tension, and surprising revelations. The story explores love, trust, and the hidden layers within relationships, inviting viewers to reflect on vulnerability, honesty, and the unexpected truths that shape human connections."
+    }
+];
+
+
+
+
+let currentIndex = 0;
+
+const prevYear = document.getElementById("prevYear");
+const activeYear = document.getElementById("activeYear");
+const nextYear = document.getElementById("nextYear");
+
+const contentImg = document.getElementById("contentImg");
+const contentTitle = document.getElementById("contentTitle");
+const contentText = document.getElementById("contentText");
+
+const yearBlock = document.getElementById("yearBlock");
+const contentBlock = document.getElementById("contentBlock");
+
+function setYearsForItem(item) {
+    const yrs = item.years;
+    prevYear.textContent = yrs[0] || "";
+    activeYear.textContent = yrs[1] || yrs[0] || "";
+    nextYear.textContent = yrs[2] || "";
+}
+
+function runFadeAnimation() {
+    yearBlock.classList.remove("fade");
+    contentBlock.classList.remove("fade");
+    void yearBlock.offsetWidth;
+    void contentBlock.offsetWidth;
+    yearBlock.classList.add("fade");
+    contentBlock.classList.add("fade");
+}
+
+function updateTimeline() {
+    const item = timelineData[currentIndex];
+
+    setYearsForItem(item);
+    contentImg.src = item.img || "";
+    contentImg.style.display = item.img ? "block" : "none";
+
+    contentTitle.textContent = item.title;
+    contentText.textContent = item.text;
+
+    {% comment %} const slider = document.querySelector(".timeline-wrapper");
+    slider.style.setProperty("--scroll-position", currentIndex * 220 + "px"); {% endcomment %}
+
+    runFadeAnimation();
+}
+
+document.getElementById("btnDown").addEventListener("click", () => {
+    if (currentIndex < timelineData.length - 1) {
+        currentIndex++;
+        updateTimeline();
+    }
+});
+
+document.getElementById("btnUp").addEventListener("click", () => {
+    if (currentIndex > 0) {
+        currentIndex--;
+        updateTimeline();
+    }
+});
+
+updateTimeline();
+</script>
+
+
+
+ <!-- Newsletter Section - Exactly Like Your Design -->
+<section class="newsletter-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      
+      <!-- Left: Text + Form -->
+      <div class="col-lg-6">
+        <div class="newsletter-content">
+          <h2 class="wow fadeInUp" data-wow-duration="1s">
+            Stay Updated with Our<br>
+            <span style="color: #ffffff;">Newsletter</span>
+          </h2>
+          <p class="wow fadeInUp" data-wow-delay="0.3s">
+            Join our newsletter for the latest courses, events, and exclusive updates from our school.
+          </p>
+
+          <!-- Newsletter Form -->
+          <form class="newsletter-form wow fadeInUp" data-wow-delay="0.5s">
+            <div class="d-flex flex-column flex-sm-row gap-3">
+              <input type="email" class="form-control flex-grow-1" placeholder="Enter your email" required>
+              <button type="submit" class="btn btn-sm btn-signup text-nowrap"><span class="fw-bold">Sign up</span></button>
+            </div>
+            <div class="terms-text">
+             <input type="checkbox"> By clicking Sign Up, you agree to our <a href="#" style="color:#fafafa; text-decoration:underline;">Terms and Conditions</a>.
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Right: Image -->
+      <div class="col-lg-6 text-center text-lg-end">
+        <div class="newsletter-image wow fadeInRight" data-wow-delay="0.7s">
+          <img src="{% static 'assets/img/stay_updated.png' %}" 
+               alt="Filmmaker with camera" 
+               class="img-fluid">
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+ 
+  <footer class="winlows-footer">
+
+    <!-- Huge Background Text -->
+    <div class="winlows-text">Winlows</div>
+
+    <div class="container position-relative">
+      <div class="row">
+
+        <!-- Left: Logo + Address + Contact -->
+        <div class="col-lg-4 mb-5">
+          <div class="footer-logo mb-4">
+            <img src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Winlows Academy">
+          </div>
+          <div class="footer-address mb-3">
+            <strong>Address:</strong><br>
+            The Winlows Studio, Miller Road
+          </div>
+          <div class="footer-contact">
+            <strong>Contact:</strong><br>
+            +234 xxx xxxx xxx<br>
+            info@thewinlowsacademy.com
+          </div>
+          <div class="social-icons mt-4">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Middle: Links Column 1 -->
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h5>About Us</h5>
+          <ul>
+            <li><a href="{% url 'program' %}">Our Programs</a></li>
+            <li><a href="{% url 'apply' %}">Student Portal</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+
+         
+        </div>
+
+        <!-- Right: Links Column 2 -->
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h5>Blog Posts</h5>
+          <ul>
+            <li><a href="#">Events Calendar</a></li>
+            <li><a href="#">Success Stories</a></li>
+            <li><a href="#">Industry News</a></li>
+            <li><a href="#">Student Spotlight</a></li>
+          </ul>
+        </div>
+
+      </div>
+         <div class="footer-name wow img-custom-anim-left mb-0 mt-5">
+                <img class="img-fluid" src="{% static 'assets/img/Winlows_footer.png' %}" alt="">
+            </div>
+    </div>
+
+
+
+    <!-- Bottom Copyright Bar -->
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 text-center text-lg-start">
+            <p class="mb-0" style="color:#ffffff;">
+              © 2025 The Winlows Academy. All rights reserved.
+            </p>
+          </div>
+          <div class="col-lg-6 text-center text-white text-lg-end">
+            <a class="text-white" href="#">Privacy Policy</a>
+            <a class="text-white" href="#">Terms of Service</a>
+            <a class="text-white" href="#">Cookies Settings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+        <!--<< All JS Plugins >>-->
+        <script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+        <!--<< Viewport Js >>-->
+        <script src="{% static 'assets/js/viewport.jquery.js' %}"></script>
+        <!--<< Bootstrap Js >>-->
+        <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+        <!--<< Nice Select Js >>-->
+        <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+        <!--<< Waypoints Js >>-->
+        <script src="{% static 'assets/js/jquery.waypoints.js' %}"></script>
+        <!--<< Counterup Js >>-->
+        <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+        <!--<< Swiper Slider Js >>-->
+        <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+        <!--<< MeanMenu Js >>-->
+        <script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+        <!--<< Parallaxie Js >>-->
+        <script src="{% static 'assets/js/parallaxie.js' %}"></script>
+        <!--<< Magnific Popup Js >>-->
+        <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+        <!--<< Wow Animation Js >>-->
+        <script src="{% static 'assets/js/wow.min.js' %}"></script>
+        <!--<< Circle Progress Js >>-->
+        <script src="{% static 'assets/js/circle-progress.js' %}"></script>
+        <!--<< Main.js >>-->
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+    </body>
+</html>

@@ -1,0 +1,449 @@
+{% extends "../admin_sections/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+<div class="dashboard-body">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-with-buttons mb-24 flex-between flex-wrap gap-8">
+        <div class="breadcrumb mb-24">
+            <ul class="flex-align gap-4">
+                <li><a href="{% url 'Admin_dashboard' %}" class="text-gray-200 fw-normal text-15 hover-text-main-600">Home</a></li>
+                <li><span class="text-gray-500 fw-normal d-flex"><i class="ph ph-caret-right"></i></span></li>
+                <li><span class="text-main-600 fw-normal text-15">Create Course</span></li>
+            </ul>
+        </div>
+     
+    </div>
+
+    <!-- Step Progress --> 
+    <ul class="step-list mb-24" id="stepList">
+        <li class="step-list__item py-15 px-24 text-15 text-heading fw-medium flex-center gap-6 active" data-step="1">
+            <span class="icon text-xl d-flex"><i class="ph-fill ph-check-circle text-main-600"></i></span>
+            Course Details
+            <span class="line position-relative"></span>
+        </li>
+        <li class="step-list__item py-15 px-24 text-15 text-heading fw-medium flex-center gap-6" data-step="2">
+            <span class="icon text-xl d-flex"><i class="ph ph-circle"></i></span>
+            Upload Videos
+            <span class="line position-relative"></span>
+        </li>
+        <li class="step-list__item py-15 px-24 text-15 text-heading fw-medium flex-center gap-6" data-step="3">
+            <span class="icon text-xl d-flex"><i class="ph ph-circle"></i></span>
+            Course Price
+            <span class="line position-relative"></span>
+        </li>
+        <li class="step-list__item py-15 px-24 text-15 text-heading fw-medium flex-center gap-6" data-step="4">
+            <span class="icon text-xl d-flex"><i class="ph ph-circle"></i></span>
+            Publish Course
+        </li>
+    </ul>
+
+    <!-- ====================== STEP 1 – BASIC INFO ====================== -->
+    <div class="card step-card" id="step-1">
+        <div class="card-header border-bottom border-gray-100 flex-align gap-8">
+            <h5 class="mb-0">Basic Information</h5>
+        </div>
+        <div class="card-body">
+            <form id="formStep1" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div class="row gy-20">
+                    <div class="col-xxl-3 col-md-4 col-sm-5">
+                        <div class="mb-20">
+                            <label class="h5 fw-semibold font-heading mb-0">Promotion Image <span class="text-13 text-gray-400 fw-medium">(Required)</span></label>
+                            <p class="text-13 text-gray-400 mt-4">Recommended: 500x504px, JPG/PNG</p>
+                        </div>
+
+                        <div class="position-relative text-center" style="max-width: 280px;">
+                            <label for="promotion_image" class="d-block cursor-pointer position-relative">
+                                <img 
+                                  src="{% static 'dash_assets/images/dash_images/default-course-thumbnail.png' %}"
+                                  alt="Upload Promotion Image"
+                                  id="imagePreview"
+                                  class="upload-preview img-fluid rounded w-100"
+                                  style="height: 200px; object-fit: cover; border: 2px dashed #ccc;"
+                                >
+                                <div 
+                                  class="position-absolute bottom-0 start-50 translate-middle-x mb-2 
+                                         bg-main-600 text-white px-3 py-1 rounded small 
+                                         d-flex align-items-center gap-1"
+                                  style="font-size: 12px;"
+                                >
+                                  <i class="ph ph-upload-simple"></i> Upload Image
+                                </div>
+                            </label>
+                            <input type="file" id="promotion_image" accept="image/*" class="d-none">
+                            <small id="imageError" class="text-danger d-none">Image is required</small>
+                        </div>
+                    </div>
+
+                    <div class="col-xxl-9 col-md-8 col-sm-7">
+                        <div class="row g-20">
+                            <div class="col-sm-12">
+                                <label for="courseTitle" class="h5 mb-8 fw-semibold font-heading">Name of Course <span class="text-13 text-gray-400 fw-medium">(Required)</span></label>
+                                <div class="position-relative">
+                                    <input type="text" class="form-control py-11 pe-76" maxlength="255" id="courseTitle" placeholder="e.g., content creation" required>
+                                    <div class="text-gray-400 position-absolute inset-inline-end-0 top-50 translate-middle-y me-16">
+                                        <span id="charCount">0</span> / 255
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-6">
+                                <label for="courseCategory" class="h5 mb-8 fw-semibold font-heading">Course Type <span class="text-13 text-gray-400 fw-medium">(Required)</span></label>
+                               <select id="courseCategory" class="form-select py-9" required>
+                                    <option value="" disabled selected>Select course type</option>
+                                    <option value="cinematography">Cinematography</option>
+                                    <option value="scriptwriting">Scriptwriting</option>
+                                    <option value="video_editing">Video Editing</option>
+                                    <option value="sound_engineering">Sound Engineering</option>
+                                    <option value="filmmaking">Filmmaking</option>
+                                    <option value="set_design">Set Design</option>
+                                    <option value="vfx_design">VFX Design</option>
+                                    <option value="directing">Directing</option>
+                                    <option value="acting">Acting</option>
+
+                                    <option value="indie_filmmaker_bundle">Indie Filmmaker Bundle</option>
+                                    <option value="the_storyteller_bundle">The Storyteller Bundle</option>
+                                    <option value="the_technical_bundle">The Technical Bundle</option>
+                                    <option value="the_content_creation_bundle">The Content Creation Bundle</option>
+                                    <option value="the_business_of_film_making_bundle">
+                                        The Business of Film Making Bundle
+                                    </option>
+                                </select>
+
+                            </div>
+
+         
+                            <div class="col-sm-12">
+                                <label for="description" class="h5 mb-8 fw-semibold font-heading">Course Description <span class="text-13 text-gray-400 fw-medium">(Optional)</span></label>
+                                <textarea id="description" class="form-control" rows="5" placeholder="Describe what students will learn, prerequisites, and outcomes..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flex-align justify-content-end gap-8 mt-20">
+                        <a href="/admin/courses" class="btn btn-outline-main rounded-pill py-9">Cancel</a>
+                        <button type="button" id="next1" class="btn btn-main rounded-pill py-9">Continue to Videos</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ====================== STEP 2 – UPLOAD VIDEOS ====================== -->
+    <div class="card step-card d-none" id="step-2">
+        <div class="card-header border-bottom border-gray-100 flex-align gap-8">
+            <h5 class="mb-0">Upload Videos</h5>
+        </div>
+        <div class="card-body">
+            <div id="lessonContainer"></div>
+            <div class="mt-20 text-end">
+                <button type="button" class="btn btn-outline-main rounded-pill py-9" id="addLesson">+ Add Lesson</button>
+            </div>
+            <div class="flex-align justify-content-between gap-8 mt-20">
+                <button type="button" id="back2" class="btn btn-outline-main rounded-pill py-9">Back</button>
+                <button type="button" id="next2" class="btn btn-main rounded-pill py-9">Continue to Price</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================== STEP 3 – COURSE PRICE ====================== -->
+    <div class="card step-card d-none" id="step-3">
+        <div class="card-header border-bottom border-gray-100 flex-align gap-8">
+            <h5 class="mb-0">Course Price</h5>
+        </div>
+        <div class="card-body">
+            <div class="row gy-20">
+                <div class="col-sm-7">
+                    <label for="price" class="h5 mb-8 fw-semibold font-heading">Price (NGN) <span class="text-13 text-gray-400 fw-medium">(Required)</span></label>
+                    <input type="number" step="0.01" min="0" id="price" class="form-control py-9" placeholder="e.g., 49.99" required>
+                </div>
+            </div>
+            <div class="flex-align justify-content-between gap-8 mt-20">
+                <button type="button" id="back3" class="btn btn-outline-main rounded-pill py-9">Back</button>
+                <button type="button" id="next3" class="btn btn-main rounded-pill py-9">Review & Publish</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ====================== STEP 4 – PUBLISH COURSE ====================== -->
+    <div class="card step-card d-none" id="step-4">
+        <div class="card-header border-bottom border-gray-100 flex-align gap-8">
+            <h5 class="mb-0">Review & Publish</h5>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-info">
+                <strong>Course Summary</strong><br>
+                <div id="summary"></div>
+            </div>
+            <div class="flex-align justify-content-between gap-8 mt-20">
+                <button type="button" id="back4" class="btn btn-outline-main rounded-pill py-9">Back</button>
+                <button type="button" 
+                        id="publishBtn" 
+                        data-api-url="{% url 'create_course_api' %}"
+                        class="btn btn-main rounded-pill py-9">
+                    Publish Course
+                </button>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- ====================== JS + Toastify ====================== -->
+<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<!-- Loader Overlay -->
+<div id="loaderOverlay">
+    <div class="loader"></div>
+</div>
+
+<style>
+#loaderOverlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(255,255,255,0.8);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+.loader {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #16a34a;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+</style>
+
+<script>
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        document.cookie.split(';').forEach(cookie => {
+            cookie = cookie.trim();
+            if (cookie.startsWith(name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+            }
+        });
+    }
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+</script>
+
+<script>
+function showLoader() {
+    document.getElementById('loaderOverlay').style.display = 'flex';
+}
+function hideLoader() {
+    document.getElementById('loaderOverlay').style.display = 'none';
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+
+    /* ---------- Step Navigation ---------- */
+    const steps = document.querySelectorAll('.step-card');
+    const stepListItems = document.querySelectorAll('.step-list__item');
+    let currentStep = 1;
+
+    function showStep(step) {
+        steps.forEach(s => s.classList.add('d-none'));
+        document.getElementById(`step-${step}`).classList.remove('d-none');
+
+        stepListItems.forEach(item => {
+            item.classList.remove('active');
+            const icon = item.querySelector('i');
+            if (parseInt(item.dataset.step) < step) {
+                icon.className = 'ph-fill ph-check-circle text-main-600';
+            } else if (parseInt(item.dataset.step) === step) {
+                item.classList.add('active');
+                icon.className = 'ph ph-circle';
+            } else {
+                icon.className = 'ph ph-circle';
+            }
+        });
+
+        currentStep = step;
+    }
+
+    /* ---------- Step 1 Validation ---------- */
+    document.getElementById('next1').addEventListener('click', () => {
+        const title = courseTitle.value.trim();
+        const category = courseCategory.value;
+        const promoImage = promotion_image.files[0];
+
+        if (!promoImage) return showToast('error', 'Promotion image is required');
+        if (!title) return showToast('error', 'Course title is required');
+        if (!category) return showToast('error', 'Course type is required');
+
+        showStep(2);
+    });
+
+    document.getElementById('back2').addEventListener('click', () => showStep(1));
+
+    /* ---------- Step 2 Validation ---------- */
+    document.getElementById('next2').addEventListener('click', () => {
+        const lessons = document.querySelectorAll('.lesson-item');
+
+        if (lessons.length === 0) {
+            return showToast('error', 'Add at least one lesson');
+        }
+
+        for (let i = 0; i < lessons.length; i++) {
+            const title = lessons[i].querySelector('.lesson-title').value.trim();
+            const duration = lessons[i].querySelector('.lesson-duration').value;
+            const video = lessons[i].querySelector('.lesson-video').files[0];
+
+            if (!title || !video || !duration || duration <= 0) {
+                return showToast(
+                    'error',
+                    `Lesson ${i + 1} needs title, duration & video`
+                );
+            }
+        }
+        showStep(3);
+    });
+
+    document.getElementById('back3').addEventListener('click', () => showStep(2));
+
+    /* ---------- Step 3 Validation ---------- */
+    document.getElementById('next3').addEventListener('click', () => {
+        if (price.value === '' || price.value < 0) {
+            return showToast('error', 'Valid price is required');
+        }
+        generateSummary();
+        showStep(4);
+    });
+
+    document.getElementById('back4').addEventListener('click', () => showStep(3));
+
+    /* ---------- Image Preview ---------- */
+    promotion_image.addEventListener('change', () => {
+        const file = promotion_image.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = e => imagePreview.src = e.target.result;
+        reader.readAsDataURL(file);
+    });
+
+    /* ---------- Add Lessons ---------- */
+    const lessonContainer = document.getElementById('lessonContainer');
+
+    document.getElementById('addLesson').addEventListener('click', () => {
+        const lessonCount = lessonContainer.children.length + 1;
+
+        const lessonDiv = document.createElement('div');
+        lessonDiv.classList.add('lesson-item', 'mb-15', 'p-3', 'border', 'rounded');
+
+        lessonDiv.innerHTML = `
+            <input type="text" class="form-control mb-2 lesson-title"
+                   placeholder="Lesson ${lessonCount} title" required>
+
+            <input type="number" class="form-control mb-2 lesson-duration"
+                   placeholder="Duration (minutes)" min="1" required>
+
+            <input type="file" class="form-control mb-2 lesson-video"
+                   accept="video/*" required>
+
+            <button type="button" class="btn btn-sm btn-outline-danger removeLesson">
+                Remove
+            </button>
+        `;
+
+        lessonContainer.appendChild(lessonDiv);
+
+        lessonDiv.querySelector('.removeLesson').addEventListener('click', () => {
+            lessonDiv.remove();
+        });
+    });
+
+    /* ---------- Publish ---------- */
+    document.getElementById('publishBtn').addEventListener('click', async () => {
+        const formData = new FormData();
+
+        formData.append('name_of_course', courseTitle.value);
+        formData.append('course_type', courseCategory.value);
+        formData.append('description', description.value);
+        formData.append('price', price.value);
+        formData.append('promotion_image', promotion_image.files[0]);
+
+        document.querySelectorAll('.lesson-item').forEach((lesson, idx) => {
+            formData.append(`lessons[${idx}][title]`,
+                lesson.querySelector('.lesson-title').value);
+            formData.append(`lessons[${idx}][duration]`,
+                lesson.querySelector('.lesson-duration').value);
+            formData.append(`lessons[${idx}][video]`,
+                lesson.querySelector('.lesson-video').files[0]);
+        });
+
+        try {
+            showLoader();
+
+            const response = await fetch(publishBtn.dataset.apiUrl, {
+                method: 'POST',
+                headers: { 'X-CSRFToken': csrftoken },
+                body: formData
+            });
+
+            const data = await response.json();
+            hideLoader();
+
+            if (data.success) {
+                showToast('success', data.message);
+                setTimeout(() => {
+                    window.location.href = "{% url 'Admin_courses' %}";
+                }, 1500);
+            } else {
+                showToast('error', data.message || 'Something went wrong');
+            }
+        } catch (err) {
+            hideLoader();
+            showToast('error', 'Network error');
+            console.error(err);
+        }
+    });
+
+    /* ---------- Toast ---------- */
+    function showToast(type, message) {
+        Toastify({
+            text: message,
+            duration: 3000,
+            gravity: "top",
+            position: "right",
+            close: true,
+            backgroundColor: type === 'success' ? '#16a34a' : '#dc2626',
+        }).showToast();
+    }
+
+    /* ---------- Summary ---------- */
+    function generateSummary() {
+        let totalMinutes = 0;
+        document.querySelectorAll('.lesson-duration').forEach(d => {
+            totalMinutes += parseInt(d.value);
+        });
+
+        summary.innerHTML = `
+            <strong>Course Name:</strong> ${courseTitle.value}<br>
+            <strong>Course Type:</strong> ${courseCategory.value}<br>
+            <strong>Price:</strong> ₦${Number(price.value).toLocaleString()}<br>
+            <strong>Total Lessons:</strong> ${document.querySelectorAll('.lesson-item').length}<br>
+            <strong>Total Duration:</strong> ${totalMinutes} minutes
+        `;
+    }
+
+});
+</script>
+
+
+
+{% endblock contents %}

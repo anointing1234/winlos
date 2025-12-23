@@ -1,0 +1,815 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========== Basic Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== ADMIN PAGE IDENTITY ========== -->
+    <title>Winlos Academy Admin Portal | Secure Login & Signup</title>
+    <meta name="description" content="Secure administrator login and signup portal for The Winlos Academy. Authorized personnel only.">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- ========== Favicon ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+
+    <!-- ========== Stylesheets ========== -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+
+    <!-- ========== YOUR EXISTING STYLE (UNCHANGED) ========== -->
+    <!-- (Your full CSS block remains EXACTLY the same) -->
+         <style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+    }
+
+    /* ---------- TEXT SIZES REDUCED ---------- */
+    h1 { font-weight: bold; margin: 0; color: #fffdfdff; font-size: 22px; }
+    p { font-size: 12px; line-height: 18px; margin: 15px 0 20px; }
+    span { font-size: 11px; }
+
+    .sign-in-panel > form > a {
+        color: #333;
+        font-size: 12px;
+        text-decoration: none;
+        margin-top: 10px;
+        display: block;
+    }
+
+    /* ---------- BUTTON SMALLER ---------- */
+    .button {
+        border-radius: 15px;
+        border: 1px solid #ffffffff;
+        background-color: #000000ff;
+        color: #FFFFFF;
+        font-size: 11px;
+        font-weight: bold;
+        padding: 10px 30px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button.ghost {
+        background-color: transparent;
+        border-color: #fff;
+    }
+
+    /* ---------- INPUT SMALLER ---------- */
+    input {
+        background-color:white;
+        border: 1px solid black;
+        padding: 10px 12px;
+        margin: 6px 0;
+        width: 100%;
+        font-size: 13px;
+        border-radius: 4px;
+    }
+
+    /* ---------- MAIN AUTH BOX SMALLER ---------- */
+    .auth-wrapper {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        position: relative;
+        overflow: hidden;
+        width: 620px;   /* REDUCED from 768px */
+        max-width: 95%;
+        min-height: 420px; /* REDUCED HEIGHT */
+        margin: 40px auto;
+    }
+
+    .auth-panel {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transition: 0.6s ease-in-out;
+    }
+
+    .sign-in-panel { left: 0; width: 50%; z-index: 2; }
+    .auth-wrapper.right-panel-active .sign-in-panel { transform: translateX(100%); }
+
+    .sign-up-panel {
+        left: 0;
+        width: 50%;
+        opacity: 0;
+        z-index: 1;
+    }
+    .auth-wrapper.right-panel-active .sign-up-panel {
+        transform: translateX(100%);
+        opacity: 1;
+        z-index: 5;
+    }
+
+    .auth-overlay-wrapper {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        transition: 0.6s ease-in-out;
+        z-index: 100;
+    }
+
+    .auth-wrapper.right-panel-active .auth-overlay-wrapper {
+        transform: translateX(-100%);
+    }
+
+    .auth-overlay {
+        background: linear-gradient(to right, #000000ff,#000154);
+        color: #FFFFFF;
+        left: -100%;
+        width: 200%;
+        height: 100%;
+        transition: 0.6s ease-in-out;
+        position: relative;
+    }
+
+    .auth-wrapper.right-panel-active .auth-overlay {
+        transform: translateX(50%);
+    }
+
+    .auth-overlay-panel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 25px;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 50%;
+    }
+
+    .overlay-left { transform: translateX(-20%); }
+    .auth-wrapper.right-panel-active .overlay-left { transform: translateX(0); }
+
+    .overlay-right { right: 0; }
+
+
+    /* FORM SMALLER PADDING */
+    form {
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 30px;
+        height: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* ---------- MOBILE FIX ---------- */
+    @media (max-width: 768px) {
+        .auth-wrapper {
+            width: 100%;
+            height: auto;
+            min-height: unset;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0;
+            background: #fff;
+        }
+
+        /* Hide overlay */
+        .auth-overlay-wrapper { display: none; }
+
+        /* Panels stack */
+        .auth-panel {
+            position: relative;
+            width: 100% !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .sign-up-panel { display: none; }
+        .auth-wrapper.right-panel-active .sign-up-panel { display: block; }
+        .auth-wrapper.right-panel-active .sign-in-panel { display: none; }
+
+        .button { width: 100%; padding: 8px; }
+        h1 { font-size: 20px; }
+    }
+
+    /* PASSWORD FIELD WITH EYE ICON */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    padding-right: 40px !important;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Make auth box slightly bigger */
+.auth-wrapper {
+    width: 700px !important;
+}
+
+
+
+
+
+/* --- DEVICE LOGIC --- */
+.desktop-auth {
+    display: block;
+}
+
+.mobile-auth {
+    display: none;
+}
+
+/* Mobile version visible */
+@media (max-width: 768px) {
+    .desktop-auth {
+        display: none !important;
+    }
+    .mobile-auth {
+        display: block !important;
+    }
+}
+
+/* Desktop & tablet visible */
+@media (min-width: 769px) {
+    .desktop-auth {
+        display: block !important;
+    }
+    .mobile-auth {
+        display: none !important;
+    }
+}
+
+/* ------- WINLOS BRAND COLORS ------- */
+:root {
+    --winlos-yellow: #F9C10B;
+    --winlos-black: #000000;
+    --winlos-text: #222;
+}
+
+/* MOBILE AUTH BOX */
+.mobile-form-box {
+    background: #ffffff;
+    border-radius: 14px;
+    margin-bottom: 50px;
+    margin-top:50px;
+    {% comment %} border: 2px solid var(--winlos-yellow); {% endcomment %}
+    box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+}
+
+/* HEADINGS */
+.mobile-form-box h2 {
+    color: var(--winlos-black);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* INPUT STYLING */
+.mobile-form-box .form-control {
+    height: 48px;
+    border: 1.6px solid #eaeaea;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.mobile-form-box .form-control:focus {
+    border-color: var(--winlos-yellow);
+    box-shadow: 0 0 0 3px rgba(249, 193, 11, 0.28);
+}
+
+/* BUTTON STYLING */
+.mobile-form-box .btn {
+    height: 48px;
+    border-radius: 9px;
+    font-weight: 700;
+    font-size: 15px;
+    background: var(--winlos-black) !important;
+    color: white !important;
+    border: none;
+}
+
+/* BUTTON HOVER */
+.mobile-form-box .btn:hover {
+    background: var(--winlos-yellow) !important;
+    color: var(--winlos-black) !important;
+}
+
+/* LINKS */
+.mobile-form-box a {
+    color: var(--winlos-black);
+    font-weight: 600;
+}
+
+.mobile-form-box a:hover {
+    color: var(--winlos-yellow);
+}
+
+/* PASSWORD EYE ICON */
+.password-toggle {
+    color: var(--winlos-black);
+    font-size: 17px;
+}
+
+/* SWITCH TEXT */
+.mobile-form-box p {
+    color: var(--winlos-text);
+}
+
+
+/* ---------- BASE MESSAGE (your original) ---------- */
+.msg {
+    background: #fefefe;
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 9px 15px;
+    border-top: solid 3px #ccc;
+    border-radius: 6px;
+    box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* COLOR TYPES */
+.msg-info { border-color: #b8dbf2; color: #39b3d7; }
+.msg-success { border-color: #cef2b8; color: #80d651; }
+.msg-warning { border-color: rgba(255,165,0,.5); color: #db9e34; }
+.msg-danger { border-color: #ec8282; color: #c9302c; }
+.msg-primary { border-color: #9ca6f1; color: rgba(47,106,215,.9); }
+.msg-magick { border-color: #e0b8f2; color: #bb39d7; }
+
+/* ---------- TOAST WRAPPER ---------- */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    z-index: 99999;
+}
+
+/* ---------- ANIMATION ---------- */
+.toast-slide-in {
+    animation: toastSlideIn 0.4s ease forwards;
+}
+
+.toast-slide-out {
+    animation: toastSlideOut 0.4s ease forwards;
+}
+
+@keyframes toastSlideIn {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastSlideOut {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(100%); }
+}
+</style>
+</head>
+
+<body>
+
+<div id="toast-container"></div>
+
+<!-- ================= ADMIN HEADER ================= -->
+<div class="container mt-5 pt-4 text-center">
+    <img src="{% static 'assets/img/logo/winlos_logo.png' %}" style="width:90px;">
+    <h2 style="font-weight:800; margin-top:15px;">
+        Admin Portal
+    </h2>
+    <p style="max-width:520px; margin:10px auto; font-size:14px; color:#555;">
+        Restricted administrative access. Only authorized administrators are permitted.
+    </p>
+
+    <span style="
+        display:inline-block;
+        background:#000154;
+        color:white;
+        padding:6px 14px;
+        border-radius:20px;
+        font-size:12px;
+        font-weight:600;">
+        ADMIN AUTHENTICATION
+    </span>
+
+{% if request.user.is_authenticated %}
+      <a href="{% url 'Admin_dashboard' %}" style="
+        display:inline-block;
+        background:#000154;
+        color:white;
+        padding:6px 14px;
+        border-radius:20px;
+        font-size:12px;
+        font-weight:600;">
+        GO TO DASHBOARD
+</a>
+
+    {% endif %}
+</div>
+<!-- ================= AUTH WRAPPER ================= -->
+<div class="auth-wrapper mt-4 desktop-auth" id="authWrapper">
+
+    <!-- SIGN UP -->
+    <div class="auth-panel sign-up-panel">
+        <form id="signupForm">
+            {% csrf_token %}
+            <h1 class="text-dark">Create Admin Account</h1>
+            <span>Register a new administrator</span>
+            <div class="msg msg-warning">⚠️ Authorized administrators only.</div>
+            <input type="text" name="fullname" placeholder="Full Name" required/>
+            <input type="email" name="email" placeholder="Admin Email Address" required/>
+            <div class="password-wrapper">
+                <input type="password" name="password" placeholder="Create Password" id="signupPassword" required>
+                <i class="fa fa-eye password-toggle" onclick="togglePassword('signupPassword', this)"></i>
+            </div>
+            <button type="submit" id="signupBtn" class="w-100 button">Create Admin</button>
+        </form>
+    </div>
+
+    <!-- SIGN IN -->
+    <div class="auth-panel sign-in-panel">
+        <form id="signinForm">
+            {% csrf_token %}
+            <h1 class="text-dark">Admin Login</h1>
+            <span>Sign in to the administration dashboard</span>
+            <input type="email" name="email" placeholder="Admin Email Address" required/>
+            <div class="password-wrapper">
+                <input type="password" name="password" placeholder="Password" id="signinPassword" required>
+                <i class="fa fa-eye password-toggle" onclick="togglePassword('signinPassword', this)"></i>
+            </div>
+            <a href="#" id="forgotPasswordBtn">Forgot Admin Password?</a>
+            <button type="submit" id="signinBtn" class="w-100 button">Login</button>
+        </form>
+    </div>
+
+    <!-- OVERLAY -->
+    <div class="auth-overlay-wrapper">
+        <div class="auth-overlay">
+            <div class="auth-overlay-panel overlay-left">
+                <h1>Admin Access</h1>
+                <p>Login to manage courses, students, content, and platform settings.</p>
+                <button class="ghost button" id="signIn">Admin Login</button>
+            </div>
+            <div class="auth-overlay-panel overlay-right">
+                <h1>Admin Registration</h1>
+                <p>Create a secure administrator account for Winlos Academy.</p>
+                <button class="ghost button" id="signUp">Create Admin</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- MOBILE AUTH -->
+<div class="mobile-auth mt-4 px-3">
+    <div class="mobile-form-box p-3">
+        <div id="mobileLogin">
+            <h2 class="text-center">Admin Login</h2>
+            <p class="text-center">Sign in to the admin dashboard</p>
+            <input type="email" class="form-control mb-3" placeholder="Admin Email">
+            <div class="password-wrapper mb-3">
+                <input type="password" id="mobileLoginPass" class="form-control" placeholder="Password">
+                <i class="fa fa-eye password-toggle" onclick="togglePassword('mobileLoginPass', this)"></i>
+            </div>
+            <button class="btn w-100">Login</button>
+            <p class="text-center mt-3">
+                New admin? <a href="#" onclick="showMobileSignup()">Create account</a>
+            </p>
+        </div>
+
+        <div id="mobileSignup" style="display:none;">
+            <h2 class="text-center">Create Admin Account</h2>
+            <p class="text-center">Authorized personnel only</p>
+            <input type="text" class="form-control mb-3" placeholder="Full Name">
+            <input type="email" class="form-control mb-3" placeholder="Admin Email">
+            <div class="password-wrapper mb-3">
+                <input type="password" id="mobileSignupPass" class="form-control" placeholder="Create Password">
+                <i class="fa fa-eye password-toggle" onclick="togglePassword('mobileSignupPass', this)"></i>
+            </div>
+            <button class="btn w-100">Create Admin</button>
+            <p class="text-center mt-3">
+                Already an admin? <a href="#" onclick="showMobileLogin()">Login</a>
+            </p>
+        </div>
+    </div>
+</div>
+
+
+<!-- SCRIPTS -->
+<script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    // ---------------- Panel Toggle ----------------
+    const signUpBtn = document.getElementById("signUp");
+    const signInBtn = document.getElementById("signIn");
+    const authWrapper = document.getElementById("authWrapper");
+    signUpBtn.addEventListener("click", () => authWrapper.classList.add("right-panel-active"));
+    signInBtn.addEventListener("click", () => authWrapper.classList.remove("right-panel-active"));
+
+    // ---------------- Password Toggle ----------------
+    function togglePassword(id, el){
+        const field = document.getElementById(id);
+        field.type = field.type === "password" ? "text" : "password";
+        el.classList.toggle("fa-eye");
+        el.classList.toggle("fa-eye-slash");
+    }
+
+    function toggleSwalPassword(id, icon){
+        const input = document.getElementById(id);
+        input.type = input.type === "password" ? "text" : "password";
+        icon.classList.toggle("fa-eye");
+        icon.classList.toggle("fa-eye-slash");
+    }
+
+    // ---------------- Mobile Toggle ----------------
+    function showMobileSignup() {
+        document.getElementById("mobileLogin").style.display = "none";
+        document.getElementById("mobileSignup").style.display = "block";
+    }
+    function showMobileLogin() {
+        document.getElementById("mobileSignup").style.display = "none";
+        document.getElementById("mobileLogin").style.display = "block";
+    }
+
+    // ---------------- CSRF Helper ----------------
+    function getCSRFToken(){
+        return document.querySelector('[name=csrfmiddlewaretoken]').value;
+    }
+
+    // ---------------- Toast ----------------
+    function showToast(message, type="info"){
+        const container = document.getElementById("toast-container");
+        if(!container) return;
+        const toast = document.createElement("div");
+        toast.classList.add("msg", `msg-${type}`, "toast-slide-in");
+        toast.innerText = message;
+        container.appendChild(toast);
+        setTimeout(()=>{
+            toast.classList.add("toast-slide-out");
+            setTimeout(()=>toast.remove(),400);
+        },3000);
+    }
+
+    // ---------------- SweetAlert Loader ----------------
+    function showLoader() {
+        Swal.fire({
+            title: '',
+            allowOutsideClick: false,
+            showConfirmButton: false,
+            background: 'transparent',
+            backdrop: 'rgba(0,0,0,0.25)',
+            didOpen: () => {
+                const container = Swal.getHtmlContainer();
+                if(container) container.innerHTML = `<div class="custom-loader"></div>`;
+            }
+        });
+    }
+    function hideLoader(){ Swal.close(); }
+
+    function showError(msg){
+        Swal.fire({
+            title: 'Error',
+            text: msg,
+            icon: 'error',
+            customClass:{
+                popup:'my-swal-popup',
+                title:'my-swal-title',
+                confirmButton:'my-swal-btn'
+            }
+        });
+    }
+
+    // ---------------- Admin Signup ----------------
+    document.getElementById("signupForm")?.addEventListener("submit", async function(e){
+        e.preventDefault();
+        const btn = document.getElementById("signupBtn");
+        const originalText = btn.innerText;
+        btn.innerHTML = `<span class="spinner-border spinner-border-sm"></span>`; 
+        btn.disabled = true;
+
+        try{
+            const res = await fetch("{% url 'Admin_signup' %}", {
+                method: "POST",
+                headers: {"X-CSRFToken": getCSRFToken(), "X-Requested-With":"XMLHttpRequest"},
+                body: new FormData(this)
+            });
+            const data = await res.json();
+            if(data.status==="success"){
+                showToast(data.message,"success");
+                setTimeout(()=>window.location.href=data.redirect_url,1500);
+            } else showToast(data.message,"danger");
+        } catch(err){
+            showToast("Server error. Try again.","danger");
+        }
+        btn.innerText = originalText; 
+        btn.disabled = false;
+    });
+
+    // ---------------- Admin Signin ----------------
+    document.getElementById("signinForm")?.addEventListener("submit", async function(e){
+        e.preventDefault();
+        const btn = document.getElementById("signinBtn");
+        const originalText = btn.innerText;
+        btn.innerHTML = `<span class="spinner-border spinner-border-sm"></span>`; 
+        btn.disabled = true;
+
+        try{
+            const res = await fetch("{% url 'Admin_Login' %}", {
+                method: "POST",
+                headers: {"X-CSRFToken": getCSRFToken(), "X-Requested-With":"XMLHttpRequest"},
+                body: new FormData(this)
+            });
+            const data = await res.json();
+            if(data.status==="success"){
+                showToast(data.message,"success");
+                setTimeout(()=>window.location.href=data.redirect_url,1500);
+            } else showToast(data.message,"danger");
+        } catch(err){
+            showToast("Server error. Try again.","danger");
+        }
+        btn.innerText = originalText; 
+        btn.disabled = false;
+    });
+
+    // ---------------- Forgot Password ----------------
+    document.querySelectorAll("a[href='#']").forEach(el=>{
+        if(el.innerText.toLowerCase().includes("forgot")) el.addEventListener("click", async function(e){
+            e.preventDefault();
+            const { value: email, isConfirmed } = await Swal.fire({
+                title: 'Reset Password',
+                html:`<input type="email" id="swal-email" class="my-swal-input" placeholder="Enter your registered email">`,
+                showCancelButton:true,
+                confirmButtonText:'Send Code',
+                focusConfirm:false,
+                customClass:{
+                    popup:'my-swal-popup',
+                    title:'my-swal-title',
+                    confirmButton:'my-swal-btn',
+                    cancelButton:'my-swal-cancel-btn'
+                },
+                preConfirm: ()=>{
+                    const v = document.getElementById('swal-email').value;
+                    if(!v) Swal.showValidationMessage('Email is required');
+                    return v;
+                }
+            });
+
+            if(!isConfirmed) return;
+            showLoader();
+            try{
+                const res = await fetch("{% url 'Admin_password_reset' %}", {
+                    method:"POST",
+                    headers:{"X-CSRFToken":getCSRFToken(),"X-Requested-With":"XMLHttpRequest"},
+                    body:new URLSearchParams({email})
+                });
+                const data = await res.json();
+                hideLoader();
+                if(data.status!=="success"){ showError(data.message); return; }
+
+                const { value: resetData, isConfirmed: codeConfirmed } = await Swal.fire({
+                    title:'Enter Recovery Code',
+                    html:`
+                        <input id="reset-code" class="my-swal-input" placeholder="Recovery Code">
+                        <div style="position:relative;">
+                            <input id="reset-pass" type="password" class="my-swal-input" placeholder="New Password">
+                            <i class="fa fa-eye my-eye-icon" onclick="toggleSwalPassword('reset-pass', this)"></i>
+                        </div>
+                    `,
+                    confirmButtonText:'Change Password', showCancelButton:true,
+                    focusConfirm:false,
+                    customClass:{
+                        popup:'my-swal-popup',
+                        title:'my-swal-title',
+                        confirmButton:'my-swal-btn',
+                        cancelButton:'my-swal-cancel-btn'
+                    },
+                    preConfirm:()=>{
+                        const c = document.getElementById('reset-code').value;
+                        const p = document.getElementById('reset-pass').value;
+                        if(!c) Swal.showValidationMessage('Recovery code is required');
+                        if(!p) Swal.showValidationMessage('Password is required');
+                        return {code:c,password:p};
+                    }
+                });
+                if(!codeConfirmed) return;
+
+                showLoader();
+                const res2 = await fetch("{% url 'Admin_password_reset_confirm' %}", {
+                    method:"POST",
+                    headers:{"X-CSRFToken":getCSRFToken(),"X-Requested-With":"XMLHttpRequest"},
+                    body:new URLSearchParams({email, code:resetData.code, password:resetData.password})
+                });
+                const resp = await res2.json();
+                hideLoader();
+                if(resp.status!=="success"){ showError(resp.message); return; }
+
+                Swal.fire({
+                    title:'Success',
+                    text:resp.message,
+                    icon:'success',
+                    customClass:{popup:'my-swal-popup', title:'my-swal-title', confirmButton:'my-swal-btn'}
+                });
+
+            } catch(err){ hideLoader(); showError('Something went wrong. Please try again.'); }
+        });
+    });
+</script>
+
+<style>
+/* ---------------- SweetAlert Custom Style ---------------- */
+.my-swal-popup {
+    border-radius: 16px !important;
+    padding: 2rem !important;
+    background: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+.my-swal-title {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #222 !important;
+    margin-bottom: 1rem !important;
+}
+.my-swal-btn {
+    background-color: #000 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+}
+.my-swal-cancel-btn {
+    background-color: #ccc !important;
+    color: #333 !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+}
+.my-swal-input, .my-swal-input-field {
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-bottom: 10px !important;
+}
+.my-eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #555;
+    font-size: 16px;
+}
+.custom-loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #000;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 40px auto;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.swal2-validation-message {
+    font-size: 13px !important;
+    color: #ff3b30 !important;
+    margin-top: 4px !important;
+    text-align: center !important;
+}
+</style>
+
+
+
+</body>
+</html>
+

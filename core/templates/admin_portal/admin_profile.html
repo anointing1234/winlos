@@ -1,0 +1,620 @@
+{% extends "../admin_sections/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block contents %}
+
+<div class="dashboard-body">
+  <!-- Breadcrumb Start -->
+  <div class="breadcrumb mb-24">
+    <ul class="flex-align gap-4">
+      <li><a href="{% url 'home' %}" class="text-gray-200 fw-normal text-15 hover-text-main-600">Home</a></li>
+      <li><span class="text-gray-500 fw-normal d-flex"><i class="ph ph-caret-right"></i></span></li>
+      <li><span class="text-main-600 fw-normal text-15">Setting</span></li>
+    </ul>
+  </div>
+  <!-- Breadcrumb End -->
+
+ 
+  <!-- ✅ Profile Cover Section -->
+<div class="card overflow-hidden">
+  <div class="card-body p-0">
+    <div class="cover-img position-relative">
+      <input type="file" id="coverImageUpload" accept=".png, .jpg, .jpeg" class="d-none">
+    
+  <div class="avatar-preview">
+  <div
+    id="coverImagePreview"
+    style="
+      background-image: url({% if request.user.cover_pic %}{{ request.user.cover_pic.url }}{% else %}{% static 'dash_assets/images/profile_cover_pic.jpg' %}{% endif %});
+      height: 220px;
+      background-size: cover;
+      background-position: center;
+    ">
+  </div>
+</div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- Profile Header Section -->
+  <!-- ✅ Profile Header Section -->
+<div class="setting-profile px-24">
+  <div class="flex-between">
+    <div class="d-flex align-items-end flex-wrap mb-52 gap-24">
+      <div class="position-relative">
+  <img 
+    id="profileImagePreview"
+    src="{% if request.user.profile_pic %}{{ request.user.profile_pic.url }}{% else %}{% static 'student_d_assets/images/profile_pic.png' %}{% endif %}" 
+    alt="Profile" 
+    class="w-120 h-120 rounded-circle border border-white"
+  >
+
+  <label for="profileImageUpload" 
+    class="btn btn-dark position-absolute bottom-0 end-0 mb-1 me-1 rounded-circle"
+    style="width: 32px; height: 32px; padding: 4px; display: flex; align-items: center; justify-content: center;">
+    <i class="fa fa-camera" style="font-size: 14px;"></i>
+  </label>
+
+  <input type="file" id="profileImageUpload" accept=".png, .jpg, .jpeg" class="d-none">
+</div>
+
+      <div>
+        <h4 class="mb-8">{{ request.user.first_name|title }} {{ request.user.last_name|title }}</h4>
+        <div class="setting-profile__infos flex-align flex-wrap gap-16">
+          <div class="flex-align gap-6">
+            <span class="text-gray-600 d-flex text-lg"><i class="ph ph-map-pin"></i></span>
+            <span class="text-gray-600 d-flex text-15">{{ request.user.country|default:"Not specified" }}</span>
+          </div>
+          <div class="flex-align gap-6">
+            <span class="text-gray-600 d-flex text-lg"><i class="ph ph-calendar-dots"></i></span>
+            <span class="text-gray-600 d-flex text-15">Joined: {{ request.user.date_joined|date:"M d, Y" }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+    <!-- Tabs Navigation -->
+    <ul style="margin-top:100px;" class="nav common-tab style-two nav-pills mb-0 bg-white py-5 mt-5" id="pills-tab" role="tablist">
+      <li class="nav-item py-3" role="presentation">
+        <button class="nav-link active" id="pills-details-tab" data-bs-toggle="pill" data-bs-target="#pills-details" type="button" role="tab" aria-controls="pills-details" aria-selected="true">My Details</button>
+      </li>
+      <li class="nav-item  py-3" role="presentation">
+        <button class="nav-link" id="pills-password-tab" data-bs-toggle="pill" data-bs-target="#pills-password" type="button" role="tab" aria-controls="pills-password" aria-selected="false">Password</button>
+      </li>
+  
+    </ul>
+  </div>
+
+  <!-- Tab Contents -->
+  <div class="tab-content" id="pills-tabContent">
+
+    <!-- ✅ My Details Tab -->
+    <div class="tab-pane fade show active" id="pills-details" role="tabpanel" aria-labelledby="pills-details-tab" tabindex="0">
+      <div style="padding:20px;" class="card mt-24  shadow-sm border-0">
+        <div class="card-header border-bottom bg-light py-4 d-flex justify-content-between align-items-center">
+          <div>
+            <h4 class="mb-1 fw-semibold">My Profile</h4>
+            <p class="text-gray-600 text-15 mb-0">personal details</p>
+          </div>
+            <a style="font-size:15px;" href="#" id="editProfileBtn" class="btn btn-main rounded-pill py-9 px-4">
+            <i class="ph ph-pencil-simple-line me-2"></i>Edit Profile
+          </a>
+        </div>
+
+        <div id="detailsDisplay" class="card-body px-4 py-5 mt-5">
+         
+       
+
+          <div class="row g-4">
+            <div class="col-md-6 mb-5">
+              <div class="d-flex align-items-center p-3 border rounded-3 bg-main-50">
+                <div class="me-3 text-main-600 fs-4"><i class="ph ph-user"></i></div>
+                <div>
+                  <p class="mb-1 text-gray-500 small">Full Name</p>
+                  <h6 class="mb-0">{{ request.user.fullname|title }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-5">
+              <div class="d-flex align-items-center p-3 border rounded-3 bg-main-50">
+                <div class="me-3 text-main-600 fs-4"><i class="ph ph-envelope-simple"></i></div>
+                <div>
+                  <p class="mb-1 text-gray-500 small">Email</p>
+                  <h6 class="mb-0">{{ request.user.email }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-5">
+              <div class="d-flex align-items-center p-3 border rounded-3 bg-main-50">
+                <div class="me-3 text-main-600 fs-4"><i class="ph ph-phone"></i></div>
+                <div>
+                  <p class="mb-1 text-gray-500 small">Phone</p>
+                  <h6 class="mb-0">{{ request.user.phone_number|default:"Not provided" }}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-5">
+              <div class="d-flex align-items-center p-3 border rounded-3 bg-main-50">
+                <div class="me-3 text-main-600 fs-4"><i class="ph ph-map-pin"></i></div>
+                <div>
+                  <p class="mb-1 text-gray-500 small">Location</p>
+                  <h6 class="mb-0">
+                    {% if request.user.city or request.user.country %}
+                      {{ request.user.city|default:""|title }}, {{ request.user.country|default:""|title }}
+                    {% else %}
+                      Not specified
+                    {% endif %}
+                  </h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-5">
+              <div class="d-flex align-items-center p-3 border rounded-3 bg-main-50">
+                <div class="me-3 text-main-600 fs-4"><i class="ph ph-gender-intersex"></i></div>
+                <div>
+                  <p class="mb-1 text-gray-500 small">Gender</p>
+                  <h6 class="mb-0">{% if request.user.get_gender_display %}{{ request.user.get_gender_display }}{% else %}Not specified{% endif %}</h6>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-md-6 mb-5">
+              <div class="d-flex align-items-center p-3 border rounded-3 bg-main-50">
+                <div class="me-3 text-main-600 fs-4"><i class="ph ph-calendar"></i></div>
+                <div>
+                  <p class="mb-1 text-gray-500 small">Member Since</p>
+                  <h6 class="mb-0">{{ request.user.date_joined|date:"F j, Y" }}</h6>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-5 pt-5">
+            <h6 class="fw-semibold mb-5"><i class="ph ph-notebook me-2 text-main-600"></i>Bio</h6>
+            <p class="text-gray-700 bg-main-50 p-3 rounded-3">
+              {% if request.user.bio %}
+                {{ request.user.bio|title }}
+              {% else %}
+                You haven’t added a bio yet.
+              {% endif %}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+     <!-- ✅ Hidden Edit Form -->
+        <div id="editForm" class="card-body bg-white px-4 py-5 mt-5" style="display: none;   border-radius:10px;">
+          <form method="post" action="#">
+            {% csrf_token %}
+            <div style="padding:30px;" class="row g-4">
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">First Name</label>
+                <input type="text" name="first_name" value="{{ request.user.first_name }}" class="form-control py-10">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Last Name</label>
+                <input type="text" name="last_name" value="{{ request.user.last_name }}" class="form-control py-10">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Phone</label>
+                <input type="text" name="phone_number" value="{{ request.user.phone_number }}" class="form-control py-10">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">City</label>
+                <input type="text" name="city" value="{{ request.user.city }}" class="form-control py-10">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Country</label>
+                <input type="text" name="country" value="{{ request.user.country }}" class="form-control py-10">
+              </div>
+              <div class="col-md-6">
+                <label class="form-label fw-semibold">Gender</label>
+                <select name="gender" class="form-select py-10">
+                  <option value="">Select Gender</option>
+                  <option value="M" {% if request.user.gender == 'M' %}selected{% endif %}>Male</option>
+                  <option value="F" {% if request.user.gender == 'F' %}selected{% endif %}>Female</option>
+                  <option value="O" {% if request.user.gender == 'O' %}selected{% endif %}>Other</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <label class="form-label fw-semibold">Bio</label>
+                <textarea name="bio" class="form-control py-10">{{ request.user.bio }}</textarea>
+              </div>
+            </div>
+            <div class="text-end mt-5">
+              <button type="button" id="cancelEditBtn" class="btn btn-secondary rounded-pill py-9 px-4 me-3">Cancel</button>
+              <button type="submit" class="btn btn-main rounded-pill py-9 px-4">Save Changes</button>
+            </div>
+          </form>
+        </div>
+
+    <!-- ✅ Password Tab -->
+    <div class="tab-pane fade" id="pills-password" role="tabpanel" aria-labelledby="pills-password-tab" tabindex="0">
+      <div style="padding:20px;" class="card mt-24  shadow-sm border-0">
+        <div class="card-header border-bottom bg-light py-5">
+          <h4 class="mb-1 fw-semibold">Change Password</h4>
+          <p class="text-gray-600 text-15 mb-0">Update your account password securely</p>
+        </div>
+        <div style="padding:20px;" class="card-body px-4 mt-5 py-5">
+          <form id="passwordUpdateForm" method="post">
+  {% csrf_token %}
+  <div class="row g-4">
+
+    <!-- Current Password -->
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">Current Password</label>
+      <div class="password-wrapper">
+        <input type="password" name="current_password" id="currentPassword" class="form-control py-10" placeholder="Enter current password" required>
+        <span class="fa fa-eye toggle-password" id="toggleCurrentPassword"></span>
+      </div>
+    </div>
+
+    <!-- New Password -->
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">New Password</label>
+      <div class="password-wrapper">
+        <input type="password" name="new_password" id="newPassword" class="form-control py-10" placeholder="Enter new password" required>
+        <span class="fa fa-eye toggle-password" id="toggleNewPassword"></span>
+      </div>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="col-md-6">
+      <label class="form-label fw-semibold">Confirm New Password</label>
+      <div class="password-wrapper">
+        <input type="password" name="confirm_password" id="confirmPassword" class="form-control py-10" placeholder="Re-enter new password" required>
+        <span class="fa fa-eye toggle-password" id="toggleConfirmPassword"></span>
+      </div>
+    </div>
+
+    <div class="col-12 text-end mt-3">
+      <button type="submit" class="btn btn-main rounded-pill py-9 px-4" style="font-size:14px;">Save Changes</button>
+    </div>
+  </div>
+</form>
+
+        </div>
+      </div>
+    </div>
+
+    
+
+  </div>
+</div>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const editBtn = document.getElementById("editProfileBtn");
+  const cancelBtn = document.getElementById("cancelEditBtn");
+  const detailsDisplay = document.getElementById("detailsDisplay");
+  const editForm = document.getElementById("editForm");
+
+  // Function to open edit form
+  function openEditForm() {
+    detailsDisplay.style.display = "none";
+    editForm.style.display = "block";
+    editForm.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Function to close edit form
+  function closeEditForm() {
+    editForm.style.display = "none";
+    detailsDisplay.style.display = "block";
+    detailsDisplay.scrollIntoView({ behavior: "smooth" });
+  }
+
+  // Toggle form on edit button click
+  editBtn.addEventListener("click", function(e) {
+    e.preventDefault();
+    if (editForm.style.display === "block") {
+      closeEditForm();
+    } else {
+      openEditForm();
+    }
+  });
+
+  // Cancel button closes edit form
+  cancelBtn.addEventListener("click", function() {
+    closeEditForm();
+  });
+
+  // Close edit form if clicking outside the form
+  document.addEventListener("click", function(e) {
+    if (
+      editForm.style.display === "block" &&
+      !editForm.contains(e.target) && // click not inside form
+      !editBtn.contains(e.target)    // click not on edit button
+    ) {
+      closeEditForm();
+    }
+  });
+
+  // Close edit form when switching tabs
+  const tabButtons = document.querySelectorAll('#pills-tab button[data-bs-toggle="pill"]');
+  tabButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (editForm.style.display === "block") {
+        closeEditForm();
+      }
+    });
+  });
+});
+</script>
+
+
+
+
+<!-- Toastify JS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const editBtn = document.getElementById("editProfileBtn");
+  const cancelBtn = document.getElementById("cancelEditBtn");
+  const detailsDisplay = document.getElementById("detailsDisplay");
+  const editForm = document.getElementById("editForm");
+
+  // --- Toggle edit form ---
+  editBtn.addEventListener("click", function (e) {
+    e.preventDefault();
+    detailsDisplay.style.display = "none";
+    editForm.style.display = "block";
+  });
+
+  cancelBtn.addEventListener("click", function () {
+    editForm.style.display = "none";
+    detailsDisplay.style.display = "block";
+  });
+
+  // --- Handle Profile Update ---
+  editForm.querySelector("form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector("button[type='submit']");
+    submitBtn.disabled = true;
+    const spinner = `<span class="spinner-border spinner-border-sm me-2"></span>Saving...`;
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = spinner;
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch("{% url 'Admin_update_profile_details' %}", {
+        method: "POST",
+        headers: { "X-CSRFToken": formData.get("csrfmiddlewaretoken") },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        Toastify({
+          text: data.message,
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#4CAF50",
+        }).showToast();
+        setTimeout(() => window.location.reload(), 1200);
+      } else {
+        Toastify({
+          text: data.message || "Update failed.",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#f44336",
+        }).showToast();
+      }
+    } catch (error) {
+      console.error("Error updating profile:", error);
+      Toastify({
+        text: "Something went wrong. Please try again.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff9800",
+      }).showToast();
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+    }
+  });
+
+  // --- Handle Password Update ---
+  document.querySelector("#pills-password form").addEventListener("submit", async function (e) {
+    e.preventDefault();
+    const form = e.target;
+    const submitBtn = form.querySelector("button[type='submit']");
+    submitBtn.disabled = true;
+    const spinner = `<span class="spinner-border spinner-border-sm me-2"></span>Updating...`;
+    const originalText = submitBtn.innerHTML;
+    submitBtn.innerHTML = spinner;
+
+    try {
+      const formData = new FormData(form);
+      const response = await fetch("{% url 'Admin_update_password' %}", {
+        method: "POST",
+        headers: { "X-CSRFToken": formData.get("csrfmiddlewaretoken") },
+        body: formData,
+      });
+
+      const data = await response.json();
+
+      if (data.success) {
+        Toastify({
+          text: data.message,
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#4CAF50",
+        }).showToast();
+        form.reset();
+      } else {
+        Toastify({
+          text: data.message || "Password update failed.",
+          duration: 3000,
+          gravity: "top",
+          position: "right",
+          backgroundColor: "#f44336",
+        }).showToast();
+      }
+    } catch (error) {
+      console.error("Error updating password:", error);
+      Toastify({
+        text: "Something went wrong.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff9800",
+      }).showToast();
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = originalText;
+    }
+  });
+
+  /* -------------------------------------------------
+     PROFILE PICTURE UPLOAD
+  ------------------------------------------------- */
+  const profileUpload = document.getElementById('profileImageUpload');
+  const previewImg = document.getElementById('profileImagePreview');
+
+  let profileUploadingToast = null;          // unique name
+
+  profileUpload.addEventListener('change', async () => {
+    const file = profileUpload.files[0];
+    if (!file) return;
+
+    profileUploadingToast = Toastify({
+      text: "Uploading profile picture...",
+      duration: -1,
+      close: false,
+      gravity: "top",
+      position: "right",
+      backgroundColor: "#2196F3",
+    });
+    profileUploadingToast.showToast();
+
+    const formData = new FormData();
+    formData.append('profile_pic', file);
+    formData.append('csrfmiddlewaretoken', '{{ csrf_token }}');
+
+    try {
+      const resp = await fetch("{% url 'Admin_update_profile_picture' %}", {
+        method: 'POST',
+        body: formData,
+      });
+      const data = await resp.json();
+
+      if (profileUploadingToast) profileUploadingToast.hideToast();
+
+      Toastify({
+        text: data.message || (data.success ? "Profile updated!" : "Upload failed"),
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: data.success ? "#4CAF50" : "#f44336",
+      }).showToast();
+
+      if (data.success && data.profile_url) {
+        const newUrl = `${data.profile_url}?t=${Date.now()}`;
+        previewImg.src = newUrl;
+        previewImg.style.transition = 'opacity 0.3s';
+        previewImg.style.opacity = '0.7';
+        setTimeout(() => { previewImg.style.opacity = '1'; }, 50);
+      }
+    } catch (err) {
+      console.error(err);
+      if (profileUploadingToast) profileUploadingToast.hideToast();
+      Toastify({
+        text: "Something went wrong.",
+        duration: 3000,
+        gravity: "top",
+        position: "right",
+        backgroundColor: "#ff9800",
+      }).showToast();
+    }
+  });
+
+ 
+
+
+
+
+});
+</script>
+
+
+
+<style>
+.password-wrapper {
+  position: relative;
+}
+
+.toggle-password {
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  color: #777;
+  transition: color 0.3s ease, transform 0.2s ease;
+  font-size: 1.1rem;
+}
+
+.toggle-password:hover {
+  color: #064e3b; /* match your theme */
+  transform: translateY(-50%) scale(1.1);
+}
+
+@media (max-width: 576px) {
+  .toggle-password {
+    right: 12px;
+    font-size: 1.3rem;
+  }
+}
+</style>
+
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  const toggles = [
+    { input: "currentPassword", toggle: "toggleCurrentPassword" },
+    { input: "newPassword", toggle: "toggleNewPassword" },
+    { input: "confirmPassword", toggle: "toggleConfirmPassword" }
+  ];
+
+  toggles.forEach(({ input, toggle }) => {
+    const passwordInput = document.getElementById(input);
+    const toggleBtn = document.getElementById(toggle);
+
+    if (passwordInput && toggleBtn) {
+      toggleBtn.addEventListener("click", function(e) {
+        e.preventDefault();
+
+        const isPassword = passwordInput.type === "password";
+        passwordInput.type = isPassword ? "text" : "password";
+
+        // toggle eye icons
+        toggleBtn.classList.toggle("fa-eye");
+        toggleBtn.classList.toggle("fa-eye-slash");
+      });
+    }
+  });
+});
+</script>
+
+
+
+{% endblock contents %}

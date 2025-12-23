@@ -1,0 +1,337 @@
+{% extends "admin_sections/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+
+
+
+<div class="dashboard-body">
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb mb-24">
+        <ul class="flex-align gap-4">
+            <li><a href="index.html" class="text-gray-200 fw-normal text-15 hover-text-main-600">Home</a></li>
+            <li> <span class="text-gray-500 fw-normal d-flex"><i class="ph ph-caret-right"></i></span> </li>
+            <li><span class="text-dark fw-bold fw-normal  text-15">Dashboard</span></li>
+        </ul>
+    </div>
+    <!-- Breadcrumb End -->
+
+  <!-- Spinner Overlay (hidden by default) -->
+<div id="spinner" style="
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(255,255,255,0.7);
+    z-index: 1050;
+    justify-content: center;
+    align-items: center;
+">
+    <div class="spinner-border text-primary" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+
+    <div class="row gy-4">
+        <div class="col-lg-12">
+
+            <!-- Widgets Start -->
+            <div class="row gy-5">
+                <!-- Total Students Card -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card h-100 shadow" style="background: linear-gradient(135deg, #000000, #1a1a1a); border-radius: 15px;">
+                        <div class="card-body pe-0">
+                            <div class="d-flex align-items-center gap-5 mb-3">
+                                <span class="flex-shrink-0 w-56 h-56 flex-center rounded-circle bg-main-600 text-white text-2xl">
+                                    <i class="ph-fill ph-users-three"></i>
+                                </span>
+                                <span class="text-16 text-heading fw-bolder text-white">Total Students</span>
+                            </div>
+                            <div class="container flex-between m-5 align-items-end">
+                                <div>
+                                    <h4 class="mb-4 text-white">{{ total_students|default:"0" }}</h4>
+                                </div>
+                                <div>
+                                    <div id="studentsChart" class="remove-tooltip-title rounded-tooltip-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Total Sales Card -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card h-100 shadow" style="background: linear-gradient(135deg, #000000, #1a1a1a); border-radius: 15px;">
+                        <div class="card-body pe-0">
+                            <div class="d-flex align-items-center gap-5 mb-3">
+                                <span class="flex-shrink-0 w-56 h-56 flex-center rounded-circle bg-success-600 text-white text-2xl">
+                                    <i class="ph-fill ph-wallet"></i>
+                                </span>
+                                <span class="text-16 text-heading fw-bolder text-white">Total Sales</span>
+                            </div>
+                            <div class="container flex-between m-5 align-items-end">
+                                <div>
+                                    <h4 class="mb-4 text-white">₦{{ total_course_payments_amount|default:"0.00"|intcomma }}</h4>
+                                </div>
+                                <div>
+                                    <div id="salesChart" class="remove-tooltip-title rounded-tooltip-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Total Courses Card -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card h-100 shadow" style="background: linear-gradient(135deg, #000000, #1a1a1a); border-radius: 15px;">
+                        <div class="card-body pe-0">
+                            <div class="d-flex align-items-center gap-5 mb-3">
+                                <span class="flex-shrink-0 w-56 h-56 flex-center rounded-circle bg-purple-600 text-white text-2xl">
+                                    <i class="ph-fill ph-books"></i>
+                                </span>
+                                <span class="text-16 text-heading fw-bolder text-white">Total Courses</span>
+                            </div>
+                            <div class="container flex-between m-5 align-items-end">
+                                <div>
+                                    <h4 class="mb-4 text-white">{{ total_courses|default:"0" }}</h4>
+                                </div>
+                                <div>
+                                    <div id="coursesChart" class="remove-tooltip-title rounded-tooltip-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Sold Courses Card -->
+                <div class="col-xl-3 col-sm-6">
+                    <div class="card h-100 shadow" style="background: linear-gradient(135deg, #000000, #1a1a1a); border-radius: 15px;">
+                        <div class="card-body pe-0">
+                            <div class="d-flex align-items-center gap-5 mb-3">
+                                <span class="flex-shrink-0 w-56 h-56 flex-center rounded-circle bg-warning-600 text-white text-2xl">
+                                    <i class="ph-fill ph-shopping-cart"></i>
+                                </span>
+                                <span class="text-16 text-heading fw-bolder text-white">Total Sold Courses</span>
+                            </div>
+                            <div class="container flex-between m-5 align-items-end">
+                                <div>
+                                    <h4 class="mb-4 text-white">{{ total_course_payments_count|default:"0" }}</h4>
+                                </div>
+                                <div>
+                                    <div id="soldCoursesChart" class="remove-tooltip-title rounded-tooltip-value"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Widgets End -->
+
+            <!-- Students Table -->
+            <div style="margin-top:50px;" class="col-lg-12 shadow">
+                <div class="d-none d-md-block">
+                    <div class="card overflow-hidden p-5">
+                        <div class="card-body p-0 overflow-x-auto">
+                            <table id="studentTable" class="table table-striped table-hover">
+                                <thead>
+                                    <tr>
+                                      
+                                        <th class="h6 text-gray-300">Students</th>
+                                        <th class="h6 text-gray-300">Email ID</th>
+                                        <th class="h6 text-gray-300">Courses</th>
+                                        <th class="h6 text-gray-300">Status</th>
+                                        <th class="h6 text-gray-300">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for student in students %}
+                                    <tr class="student-row {% if forloop.counter > 4 %}extra-student d-none{% endif %}">
+                                  
+                                        <td>
+                                            <div class="flex-align gap-8">
+                                                {% if student.profile_pic %}
+                                                    <img src="{{ student.profile_pic.url }}" class="w-40 h-40 rounded-circle" alt="Profile">
+                                                {% else %}
+                                                    <img src="{% static 'student_d_assets/images/profile_pic.png' %}" class="w-40 h-40 rounded-circle" alt="Default">
+                                                {% endif %}
+                                                <span class="h6 mb-0 fw-medium text-gray-300">
+                                                    {{ student.fullname|default:student.username }}
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="h6 mb-0 fw-medium text-gray-300">
+                                                {{ student.email }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <span class="h6 mb-0 fw-medium text-gray-300">
+                                                {{ student.total_courses|default:"0" }}
+                                            </span>
+                                        </td>
+                                        <td>
+                                            {% if student.total_courses == 0 %}
+                                                <span class="text-13 py-2 px-8 bg-gray-50 text-gray-600 d-inline-flex align-items-center gap-8 rounded-pill">
+                                                    <span class="w-6 h-6 bg-gray-600 rounded-circle"></span>
+                                                    Not Enrolled
+                                                </span>
+                                            {% elif student.total_courses == student.completed_courses_count %}
+                                                <span class="text-13 py-2 px-8 bg-success-50 text-success-600 d-inline-flex align-items-center gap-8 rounded-pill">
+                                                    <span class="w-6 h-6 bg-success-600 rounded-circle"></span>
+                                                    Completed
+                                                </span>
+                                            {% else %}
+                                                <span class="text-13 py-2 px-8 bg-warning-50 text-warning-600 d-inline-flex align-items-center gap-8 rounded-pill">
+                                                    <span class="w-6 h-6 bg-warning-600 rounded-circle"></span>
+                                                    In Progress
+                                                </span>
+                                            {% endif %}
+                                        </td>
+                                        <td>
+                                            <button
+                                                class="bg-main-50 text-main-600 py-2 px-14 rounded-pill hover-bg-main-600 hover-text-white view-details"
+                                                data-student-id="{{ student.id }}">
+                                                View More
+                                            </button>
+                                        </td>
+                                    </tr>
+
+                                        <script type="application/json" id="studentData-{{ student.id }}">
+                                        {
+                                        "id": "{{ student.id }}",
+                                        "fullname": "{{ student.fullname|escapejs }}",
+                                        "username": "{{ student.username|escapejs }}",
+                                        "email": "{{ student.email|escapejs }}",
+                                        "phone": "{{ student.phone_number|default:''|escapejs }}",
+                                        "profile_pic": "{% if student.profile_pic %}{{ student.profile_pic.url }}{% else %}{% static 'student_d_assets/images/profile_pic.png' %}{% endif %}",
+                                        "additional_info": "{{ student.bio|default:''|escapejs }}"
+                                        }
+                                        </script>
+
+                                    {% empty %}
+                                    <tr>
+                                        <td colspan="7" class="text-center text-muted py-4">
+                                            No students found
+                                        </td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="card-footer d-flex justify-content-between align-items-center flex-wrap gap-3">
+                            <span id="studentCount" class="text-gray-900">
+                                Showing 1–4 of {{ students.count }} students
+                            </span>
+
+                            <button id="toggleStudentsBtn"
+                                class="btn btn-sm bg-dark hover text-white rounded-pill">
+                                See More
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mobile Cards -->
+                <div class="d-block d-md-none">
+                    <div class="row g-3" id="studentCards">
+                        {% for student in students %}
+                        <div class="col-12 student-card">
+                            <div class="card shadow-sm rounded-16">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center gap-3 mb-3">
+                                        {% if student.profile_pic %}
+                                            <img src="{{ student.profile_pic.url }}" class="w-40 h-40 rounded-circle" alt="Profile">
+                                        {% else %}
+                                            <img src="{% static 'student_d_assets/images/profile_pic.png' %}" class="w-40 h-40 rounded-circle" alt="Default">
+                                        {% endif %}
+                                        <div>
+                                            <h6 class="mb-0">{{ student.fullname|default:student.username }}</h6>
+                                            <small class="text-muted">{{ student.email }}</small>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="text-muted">Courses</span>
+                                        <span class="fw-semibold">{{ student.total_courses|default:"0" }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span class="text-muted">Completed</span>
+                                        <span class="fw-semibold">{{ student.completed_courses_count|default:"0" }}</span>
+                                    </div>
+                                    <div class="mb-3">
+                                        {% if student.total_courses > 0 and student.total_courses == student.completed_courses_count %}
+                                            <span class="badge bg-success-50 text-success-600 rounded-pill px-3 py-2">
+                                                Completed
+                                            </span>
+                                        {% elif student.total_courses > 0 %}
+                                            <span class="badge bg-warning-50 text-warning-600 rounded-pill px-3 py-2">
+                                                In Progress
+                                            </span>
+                                        {% else %}
+                                            <span class="badge bg-secondary-50 text-secondary-600 rounded-pill px-3 py-2">
+                                                No Courses
+                                            </span>
+                                        {% endif %}
+                                    </div>
+                                    <button class="btn btn-sm w-100 bg-main-50 text-main-600 rounded-pill view-details" data-student-id="{{ student.id }}">
+                                        View Student
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+<script type="application/json" id="studentData-{{ student.id }}">
+{
+  "id": "{{ student.id }}",
+  "fullname": "{{ student.fullname|escapejs }}",
+  "username": "{{ student.username|escapejs }}",
+  "email": "{{ student.email|escapejs }}",
+  "phone": "{{ student.phone_number|default:''|escapejs }}",
+  "profile_pic": "{% if student.profile_pic %}{{ student.profile_pic.url }}{% else %}{% static 'student_d_assets/images/profile_pic.png' %}{% endif %}",
+
+  "additional_info": "{{ student.bio|default:''|escapejs }}"
+}
+</script>
+
+                        {% empty %}
+                        <div class="col-12 text-center text-muted py-4">
+                            No students found.
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div class="text-center mt-5">
+                        <button id="loadMoreMobile"
+                            class="btn btn-sm bg-dark hover text-white rounded-pill">
+                            See More Students
+                        </button>
+                    </div>
+                </div>
+
+               <!-- Revenue Generate Card -->
+                <div class="card shadow mt-24">
+                    <div class="card-body">
+                        <div class="mb-0 d-flex justify-content-between flex-wrap gap-2">
+                            <h4 class="mb-0">Revenue Generated</h4>
+                           
+                        </div>
+
+                        <!-- Desktop Chart (hidden on mobile) -->
+                        <div id="revenueGenerateChart" class="tooltip-style y-value-left mt-4 d-none d-md-block"></div>
+
+                        <!-- Mobile Revenue Cards (hidden on desktop) -->
+                        <div id="revenueCardsMobile" class="d-block d-md-none mt-4 row g-3">
+                            <!-- JS will populate cards here -->
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+        </div>
+
+
+
+{% endblock contents %}

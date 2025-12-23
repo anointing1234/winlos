@@ -1,0 +1,636 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <!-- ========== Basic Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== SEO & Page Identity ========== -->
+    <title>The Winlos Academy | Nigeria’s Premier Christian Film School</title>
+    <meta name="description" content="The Winlos Academy is Nigeria’s premier Christian film school, commissioning cultural influencers who create powerful, faith-driven stories with technical mastery and spiritual integrity. Discover the story you were born to tell.">
+    <meta name="author" content="The Winlos Academy">
+    <meta name="keywords" content="christian film school nigeria, winlos academy, faith-based filmmaking, christian cinematography training, bible-based film school, nigerian christian film academy, filmmaking with purpose, spiritual storytelling, rev otis ojukwu film school">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== Open Graph / Facebook ========== -->
+    <meta property="og:title" content="The Winlos Academy | Nigeria’s Premier Christian Film School">
+    <meta property="og:description" content="We don’t just train filmmakers — we commission cultural influencers. Join Nigeria’s leading Christian film school and create stories that illuminate, inspire, and transform culture for Christ.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.thewinlosacademy.com">
+    <meta property="og:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg' %}">
+    <meta property="og:image:alt" content="The Winlos Academy - Christian Film School in Nigeria">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="The Winlos Academy">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Winlos Academy | Christian Film School Nigeria">
+    <meta name="twitter:description" content="At TWA, we help you discover the story you were born to tell. Join Nigeria’s premier Christian film school.">
+    <meta name="twitter:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg' %}">
+    <meta name="twitter:site" content="@winlosacademy">
+    <meta name="twitter:creator" content="@winlosacademy">
+
+    <!-- ========== Favicon & Touch Icons ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://www.thewinlosacademy.com">
+
+    <!-- ========== Preconnect for Speed ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="shortcut icon" href="{% static 'student_d_assets/images/logo/favicon.png' %}">
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/bootstrap.min.css' %}">
+    <!-- select2 -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/select2.min.css' %}">
+    <!-- Slick -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/slick.css' %}">
+    <!-- Slick -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/magnific-popup.css' %}">
+    <!-- jquery-ui -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/jquery-ui.css' %}">
+    <!-- plyr Css -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/plyr.css' %}">
+    <!-- Editor js Toolbar Start -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/editor-quill.css' %}">
+    <!-- animate -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/animate.css' %}">
+    <!-- dataTables.dataTables -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/dataTables.dataTables.min.css' %}">
+    
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/aos.css' %}">
+    <!-- Main css -->
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/main.css' %}">
+
+     <link rel="stylesheet" href="{% static 'student_d_assets/css/custom.css' %}">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+
+    <style>
+
+               .Linkactive{
+             background-color: var(--main-600) !important;
+             color: white !important
+        }
+
+
+        .student-dashbord-scrollbar {
+    scrollbar-width: none; /* Firefox */
+}
+        
+    /* Make course cards smaller & more balanced */
+.course-item {
+    padding: 10px !important;
+    border-radius: 14px;
+    transition: 0.2s ease;
+}
+
+.course-item__thumb {
+    height: 160px !important;
+}
+
+.course-item__thumb img {
+    object-fit: cover !important;
+}
+
+/* Reduce internal spacing */
+.course-item__content {
+    padding: 6px 2px !important;
+}
+
+.course-item__content h4 {
+    margin-bottom: 14px !important;
+}
+
+.course-item__content span,
+.course-item__content h4 a {
+    font-size: 14px !important;
+}
+
+/* Category pill */
+.course-item__content > div > span {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Lessons + Students Row */
+.flex-between {
+    margin-bottom: 12px !important;
+}
+
+.flex-align span.text-2xl {
+    font-size: 18px !important;
+}
+
+/* Reduce “Complete” text */
+.course-item__content .text-20 {
+    font-size: 15px !important;
+}
+
+/* Progress bar spacing */
+.mb-40 {
+    margin-bottom: 20px !important;
+}
+
+/* Floating percentage label */
+.floating-label {
+    font-size: 12px !important;
+    height: 28px !important;
+}
+
+/* Stars + Author */
+.flex-between.mt-28 {
+    margin-top: 14px !important;
+}
+
+.text-14 {
+    font-size: 12px !important;
+}
+
+.w-28.h-28 {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* Hover improvement */
+.course-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+
+    </style>
+
+
+</head> 
+<body>
+    
+     <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="txt-loading">
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="W" class="letters-loading">
+                        W
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                 
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--==================== Overlay Start ====================-->
+<div class="overlay"></div>
+<!--==================== Overlay End ====================-->
+
+<!--==================== Sidebar Overlay End ====================-->
+<div class="side-overlay"></div>
+<!--==================== Sidebar Overlay End ====================-->
+
+<!-- ==================== Scroll to Top End Here ==================== -->
+<div class="progress-wrap">
+  <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
+      <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
+  </svg>
+</div>
+<!-- ==================== Scroll to Top End Here ==================== -->
+
+<!-- ==================== Mobile Menu Start Here ==================== -->
+<div class="mobile-menu scroll-sm d-lg-none d-block">
+    <button type="button" class="close-button"><i class="ph ph-x"></i> </button>
+    <div class="mobile-menu__inner">
+        <a href="{% url 'home' %}" class="mobile-menu__logo">
+            <img style="max-width:90px;" src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Logo">
+        </a>
+        <div class="mobile-menu__menu">
+            
+<ul class="nav-menu flex-align nav-menu--mobile">
+    <li class="nav-menu__item  activePage">
+        <a href="{% url 'home' %}" class="nav-menu__link text-dark">Home</a> 
+    </li>
+    <li class="nav-menu__item ">
+        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">About Us</a>
+    </li>
+    <li class="nav-menu__item ">
+        <a href="{% url 'program' %}" class="nav-menu__link text-dark">Programs</a>
+    </li>
+    <li class="nav-menu__item ">
+        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">Admission</a>
+    </li> 
+</ul>
+
+       
+            
+        </div>
+    </div>
+</div>
+<!-- ==================== Mobile Menu End Here ==================== -->
+
+
+
+<!-- ==================== Header Start Here ==================== -->
+<header style="background-color:black;" class="header text-white">
+    <div class="container container--xl">
+        <nav class="header-inner flex-between gap-12">
+
+            <!-- Logo -->
+            <div class="header-logo-wrapper flex-align">
+                <a href="{% url 'home' %}" class="link">
+                    <img style="max-width:90px;" src="{% static 'assets/images/logo/winlos_logo_white.png' %}" alt="Logo">
+                </a>
+            </div>
+
+            <!-- Menu (centered) -->
+            <div class="header-menu d-lg-block d-none flex-grow-1">
+                <ul class="nav-menu flex-align justify-content-center">
+                    <li class="nav-menu__item activePage">
+                        <a href="{% url 'home' %}" class="nav-menu__link text-white">Home</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">About Us</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'program' %}" class="nav-menu__link text-white">Programs</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'admission' %}" class="nav-menu__link text-white">Admission</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Header Right -->
+            <div class="header-right flex-align">
+                <div class="dropdown">
+                    <button class="dropdown-toggle w-48 h-48" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {% if request.user.profile_pic and request.user.profile_pic.name %}
+                        <img src="{{ request.user.profile_pic.url }}" alt="Profile" class="w-54 h-54 rounded-circle">
+                        {% else %}
+                        <img src="{% static 'student_d_assets/images/profile_pic.png' %}" alt="">
+                        {% endif %}
+                    </button>
+                    <ul class="dropdown-menu rounded-12">
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'student_profile' %}">
+                                <span><i class="ph ph-user-circle"></i></span>
+                                <span>My Profile</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'logout' %}">
+                                <span><i class="ph ph-power"></i></span>
+                                <span>Log Out</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button type="button" class="toggle-mobileMenu d-lg-none text-white flex-center">
+                    <i class="ph ph-list"></i>
+                </button>
+            </div>
+
+        </nav>
+    </div>
+</header>
+<!-- ==================== Header End Here ==================== -->
+
+
+<!-- ============== student dashbord banner section start =============== -->
+<section class="breadcrumb pt-80 pb-187 bg-neutral-900 position-relative z-1 overflow-hidden mb-0 z-n1">
+
+    <div class="container container--lg">
+        <div class="d-flex align-items-center gap-16 justify-content-between flex-wrap">
+            <div class="breadcrumb__wrapper">
+                <h1 class="breadcrumb__title display-4 fw-semibold text-white mb-20">
+                    Learning Portal
+                </h1>
+
+                <ul class="breadcrumb__list d-flex align-items-center gap-4 flex-wrap">
+                    <li class="breadcrumb__item">
+                        <a href="{% url 'home' %}"
+                           class="breadcrumb__link text-white hover-text-warning-800 fw-medium">Home</a>
+                    </li>
+
+                    <li class="breadcrumb__item @@arrowTwoShowHide">
+                        <i class="text-white d-flex ph-bold ph-caret-right"></i>
+                    </li>
+                    <li class="breadcrumb__item">
+                        <span class="text-main-two-600">Profile</span>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</section>
+<!-- ============== student dashbord banner section end =============== -->
+
+
+<!-- =========== student dashbord section start ============== -->
+<section class="bg-main-25 pb-80 w-100 h-100">
+    <div class="container container--lg">
+
+        <!-- Dashboard Layout -->
+        <div class="d-flex gap-24 mt--120 z-2 position-relative">
+            <div class="student-overlay-sidebar"></div>
+
+            <!-- ========Dashboard Sidebar start======== -->
+            <div class="student-dashboard-sidebar px-20 py-24 max-w-288-px bg-white rounded-10 w-100 position-relative">
+
+                <div class="text-center">
+
+                    {% if request.user.profile_pic and request.user.profile_pic.name %}
+                        <img src="{{ request.user.profile_pic.url }}"
+                             alt="Profile"
+                             class="rounded-circle d-block mx-auto mt-2"
+                             style="width:85px; height:85px; object-fit:cover;">
+                    {% else %}
+                        <img src="{% static 'student_d_assets/images/profile_pic.png' %}"
+                             alt="Profile"
+                             class="rounded-circle d-block mx-auto mt-2"
+                             style="width:85px; height:85px; object-fit:cover;">
+                    {% endif %}
+
+                    <h5 style="margin-top:40px;" class="mb-2 text-neutral-200 mt-3">
+                        Welcome, {{ request.user.username }}
+                    </h5>
+
+                    <span class="text-neutral-500 text-14 fw-normal">
+                        {{ request.user.email }}
+                    </span>
+                </div>
+
+                <span class="w-100 bg-neutral-40 mb-24 mt-24 h-1 d-block"></span>
+
+                <div class="overflow-x-auto">
+                    <div class="student-dashbord-scrollbar min-w-max">
+                        <ul>
+
+                            <!-- Dashboard -->
+                            <li class="mb-8">
+                                <a href="{% url 'dashboard' %}"
+                                   class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-main-600 item-hover__text transition-03">
+                                        <i class="ph-bold ph-house"></i>
+                                    </span>
+                                    Dashboard
+                                </a>
+                            </li>
+
+                            <!-- Profile -->
+                            <li class="mb-8">
+                                <a href="{% url 'student_profile' %}"
+                                   class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          hover-bg-main-600 Linkactive px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-main-600 item-hover__text transition-03">
+                                        <i style="color:white;" class="ph-bold ph-user-circle"></i>
+                                    </span>
+                                    My Profile
+                                </a>
+                            </li>
+
+                            <!-- Courses -->
+                            <li class="mb-8">
+                                <a href="{% url 'courses' %}"
+                                   class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-main-600 item-hover__text transition-03">
+                                        <i class="ph-bold ph-graduation-cap"></i>
+                                    </span>
+                                    Courses
+                                </a>
+                            </li>
+
+                            <!-- Certificate Request -->
+                            <li class="mb-8">
+                                <a href="{% url 'certification' %}"
+                                   class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-main-600 item-hover__text transition-03">
+                                        <i class="ph-bold ph-certificate"></i>
+                                    </span>
+                                    Certificates
+                                </a>
+                            </li>
+
+                            <!-- Logout -->
+                            <li class="mb-8">
+                                <a href="{% url 'logout' %}"
+                                   class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-main-600 item-hover__text transition-03">
+                                        <i class="ph ph-sign-out"></i>
+                                    </span>
+                                    Logout
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="position-absolute inset-block-end-0 inset-inline-start-0 pb-16 px-16 w-100">
+                    <a href="#"
+                       class="text-14 fw-medium text-neutral-500 d-flex align-items-center gap-8  
+                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap bg-white">
+
+                        <span class="text-16 text-main-600 item-hover__text transition-03">
+                            <img src="{% static 'student_d_assets/images/certificate.png' %}"
+                                 alt="Certificate"
+                                 class="d-block mx-auto"
+                                 style="object-fit:contain;">
+                        </span>
+
+                    </a>
+                </div>
+
+            </div>
+            <!-- ========Dashboard Sidebar end======== -->
+
+
+            <!-- =========my profile start=========== -->
+            <div class="flex-grow-1" style="min-width:0; margin-top:70px;">
+
+                <div class="px-20">
+
+                    <div class="bg-white rounded-10 px-24 py-24">
+
+                        <div class="d-flex align-items-center justify-content-between gap-2 gap-md-4 mb-3 mb-md-4">
+                            <span class="fw-medium text-14 text-md-16 text-neutral-500">My Profile</span>
+
+                            <div class="d-flex align-items-center gap-2 gap-md-3">
+                                <button type="button"
+                                        class="toggle-student-dashbord-button text-neutral-900 fs-4 d-xl-none d-block">
+                                    <i class="ph-bold ph-list"></i>
+                                </button>
+
+                                <a href="{% url 'settings' %}"
+                                   class="btn btn-dark rounded-pill fw-semibold transition-03 hover-text-main-600 d-flex align-items-center gap-2 
+                                          px-3 py-1 px-md-4 py-md-2">
+                                    <span style="padding:5px; font-size:14px;">Update Profile</span>
+                                    <i style="padding:5px;" class="ph ph-upload-simple"></i>
+                                </a>
+
+                            </div>
+                        </div>
+
+                        <!-- BOOTSTRAP GRID -->
+                        <div class="row">
+
+                            <!-- LEFT COL -->
+                            <div class="col-md-6">
+
+                                <div class="d-flex flex-column flex-sm-row justify-content-between border-neutral-30 
+                                    border-top border-bottom px-20 py-26 line-height-105">
+                                    <span class="text-14 fw-normal text-neutral-600"><i class="bi bi-person-fill me-2"></i> Fullname</span>
+                                    <span class="text-14 fw-normal text-neutral-600">{{ request.user.fullname|title }}</span>
+                                </div>
+
+                                <div class="d-flex flex-column flex-sm-row justify-content-between border-neutral-30 
+                                    border-bottom px-20 py-26 line-height-105">
+                                    <span class="text-14 fw-normal text-neutral-600"><i class="bi bi-at me-2"></i> Username</span>
+                                    <span class="text-14 fw-normal text-neutral-600">{{ request.user.username }}</span>
+                                </div>
+
+                                <div class="d-flex flex-column flex-sm-row justify-content-between border-neutral-30 
+                                    border-bottom px-20 py-26 line-height-105">
+                                    <span class="text-14 fw-normal text-neutral-600"><i class="bi bi-envelope-fill me-2"></i> Email</span>
+                                    <span class="text-14 fw-normal text-neutral-600">{{ request.user.email }}</span>
+                                </div>
+
+                                <div class="d-flex flex-column flex-sm-row justify-content-between border-neutral-30 
+                                    border-bottom px-20 py-26 line-height-105">
+                                    <span class="text-14 fw-normal text-neutral-600"><i class="bi bi-telephone-fill me-2"></i> Phone Number</span>
+                                    <span class="text-14 fw-normal text-neutral-600">
+                                        {{ request.user.phone_number|default:"Not Provided" }}
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <!-- RIGHT COL -->
+                            <div class="col-md-6">
+
+                                <div class="d-flex flex-column flex-sm-row justify-content-between border-neutral-30 
+                                    border-top border-bottom px-20 py-26 line-height-105">
+                                    <span class="text-14 fw-normal text-neutral-600"><i class="bi bi-calendar-event-fill me-2"></i> Registration Date</span>
+                                    <span class="text-14 fw-normal text-neutral-600">
+                                        {{ request.user.date_joined|date:"F d, Y h:i A" }}
+                                    </span>
+                                </div>
+
+                                <div class="d-flex flex-column flex-sm-row justify-content-between border-neutral-30 
+                                    border-bottom px-20 py-26 line-height-105">
+                                    <span class="text-14 fw-normal text-neutral-600"><i class="bi bi-geo-alt-fill me-2"></i> Country</span>
+                                    <span class="text-14 fw-normal text-neutral-600">
+                                        {{ request.user.country|default:"Not Provided" }}
+                                    </span>
+                                </div>
+
+                                <div class="d-flex flex-column flex-sm-row justify-content-between border-neutral-30 
+                                    border-bottom px-20 py-26 line-height-105">
+                                    <span class="text-14 fw-normal text-neutral-600"><i class="bi bi-building me-2"></i> City</span>
+                                    <span class="text-14 fw-normal text-neutral-600">
+                                        {{ request.user.city|default:"Not Provided" }}
+                                    </span>
+                                </div>
+
+                                <div class="d-flex flex-column flex-sm-row justify-content-between border-neutral-30 
+                                    border-bottom px-20 py-24 line-height-105">
+                                    <span class="text-14 fw-normal text-neutral-600"><i class="bi bi-journal-text me-2"></i> Biography</span>
+                                    <span class="text-14 fw-normal text-neutral-600 max-w-344-px pb-40">
+                                        {{ request.user.bio|default:"No biography added." }}
+                                    </span>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <!-- =========my profile end=========== -->
+
+        </div>
+
+    </div>
+</section>
+<!-- =========== student dashbord section end ============== -->
+
+
+
+    <!-- Jquery js -->
+    <!-- <script src="{% static 'student_d_assets/js/jquery-3.7.1.min.js"></script> -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap Bundle Js -->
+    <script src="{% static 'student_d_assets/js/boostrap.bundle.min.js' %}"></script>
+    <!-- select2 Js -->
+    <script src="{% static 'student_d_assets/js/select2.min.js' %}"></script>
+    <!-- Phosphor Icon Js -->
+    <script src="{% static 'student_d_assets/js/phosphor-icon.js' %}"></script>
+    <!-- Slick js -->
+    <script src="{% static 'student_d_assets/js/slick.min.js' %}"></script>
+    <!-- Slick js -->
+    <script src="{% static 'student_d_assets/js/counter.min.js' %}"></script>
+    <!-- magnific popup -->
+    <script src="{% static 'student_d_assets/js/magnific-popup.min.js' %}"></script>
+    <!-- Jquery Ui js -->
+    <script src="{% static 'student_d_assets/js/jquery-ui.js' %}"></script>
+    <!-- marquee js -->
+    <script src="{% static 'student_d_assets/js/marquee.min.js' %}"></script>
+    <!-- react charts-->
+     <script src="{% static 'student_d_assets/js/apexcharts.js' %}"></script>
+    <!-- plyr Js -->
+    <script src="{% static 'student_d_assets/js/plyr.js' %}"></script>
+    <!-- vanilla Tilt -->
+    <!-- Editor js Toolbar Start -->
+    <script src="{% static 'student_d_assets/js/editor-quill.js' %}"></script>
+    <!-- dataTables -->
+    <script src="{% static 'student_d_assets/js/dataTables.min.js' %}"></script>
+    <!-- Tilt -->
+    <script src="{% static 'student_d_assets/js/vanilla-tilt.min.js' %}"></script>
+    <!-- wow -->
+    <script src="{% static 'student_d_assets/js/wow.min.js' %}"></script>
+
+    <script src="{% static 'student_d_assets/js/aos.js' %}"></script>
+    
+    <!-- main js -->
+    <script src="{% static 'student_d_assets/js/main.js' %}"></script>
+    
+
+
+</body>
+</html>

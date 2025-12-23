@@ -1,0 +1,243 @@
+/* 02.1 Preloader */
+.preloader {
+  align-items: center;
+  cursor: default;
+  display: flex;
+  justify-content: center;
+
+  /* Fullscreen fixed centered */
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  z-index: 9999999;
+  text-align: center;
+
+  background: #fff; /* optional */
+}
+
+/* Force the animation-preloader to always center */
+.animation-preloader {
+  position: relative;
+  z-index: 10;
+}
+
+/* Fix the loader stripes at the bottom */
+.preloader .loader {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+/* SPINNER */
+.preloader .animation-preloader .spinner {
+  animation: spinner 1s infinite linear;
+  border-radius: 50%;
+  border: 3px solid rgba(0, 0, 0, 0.2);
+  border-top-color: var(--theme);
+  height: 9em;
+  width: 9em;
+  margin: 0 auto 2em auto;
+}
+
+@media (max-width: 767px) {
+  .preloader .animation-preloader .spinner {
+    width: 7em;
+    height: 7em;
+    margin-bottom: 1.2em;
+  }
+}
+
+/* TEXT */
+.preloader .animation-preloader .txt-loading {
+  font: bold 5em "Poppins", sans-serif;
+  user-select: none;
+}
+
+@media (max-width: 767px) {
+  .preloader .animation-preloader .txt-loading {
+    font-size: 2.4em;
+  }
+}
+
+/* LETTER ANIMATIONS */
+.preloader .animation-preloader .txt-loading .letters-loading {
+   color: black;
+  position: relative;
+}
+
+.preloader .animation-preloader .txt-loading .letters-loading::before {
+  animation: letters-loading 4s infinite;
+  content: attr(data-text-preloader);
+  position: absolute;
+  left: 0;
+  top: -3px;
+  opacity: 0;
+  transform: rotateY(-90deg);
+   color: black;
+}
+
+/* KEYFRAMES */
+@keyframes spinner {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes letters-loading {
+  0%   { opacity: 0; transform: rotateY(-90deg); }
+  20%  { opacity: 1; transform: rotateY(0); }
+  40%  { opacity: 1; transform: rotateY(0); }
+  60%  { opacity: 0; transform: rotateY(90deg); }
+  100% { opacity: 0; transform: rotateY(90deg); }
+}
+
+
+
+
+
+        .Active{
+             background-color: var(--main-600) !important;
+             color: white !important
+        }
+
+        
+        .student-dashbord-scrollbar {
+    scrollbar-width: none; /* Firefox */
+}
+
+
+
+    /* Make course cards smaller & more balanced */
+.course-item {
+    padding: 10px !important;
+    border-radius: 14px;
+    transition: 0.2s ease;
+}
+
+.course-item__thumb {
+    height: 160px !important;
+}
+
+.course-item__thumb img {
+    object-fit: cover !important;
+}
+
+/* Reduce internal spacing */
+.course-item__content {
+    padding: 6px 2px !important;
+}
+
+.course-item__content h4 {
+    margin-bottom: 14px !important;
+}
+
+.course-item__content span,
+.course-item__content h4 a {
+    font-size: 14px !important;
+}
+
+/* Category pill */
+.course-item__content > div > span {
+    font-size: 12px !important;
+    padding: 4px 10px !important;
+    margin-bottom: 10px !important;
+}
+
+/* Lessons + Students Row */
+.flex-between {
+    margin-bottom: 12px !important;
+}
+
+.flex-align span.text-2xl {
+    font-size: 18px !important;
+}
+
+/* Reduce “Complete” text */
+.course-item__content .text-20 {
+    font-size: 15px !important;
+}
+
+/* Progress bar spacing */
+.mb-40 {
+    margin-bottom: 20px !important;
+}
+
+/* Floating percentage label */
+.floating-label {
+    font-size: 12px !important;
+    height: 28px !important;
+}
+
+/* Stars + Author */
+.flex-between.mt-28 {
+    margin-top: 14px !important;
+}
+
+.text-14 {
+    font-size: 12px !important;
+}
+
+.w-28.h-28 {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+/* Hover improvement */
+.course-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+}
+
+
+
+   .hover-shadow:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.08) !important;
+        transform: translateY(-1px);
+    }
+
+    .nav-tabs .nav-link {
+        border: none;
+        background-color: #f8f9fa;
+        color: #495057;
+        border-radius: 8px 8px 0 0;
+        padding: 8px 16px;
+        transition: all 0.3s ease;
+    }
+
+    .nav-tabs .nav-link.active {
+        background-color: #0d6efd;
+        color: #fff;
+    }
+
+    .list-group-item {
+        transition: all 0.3s ease;
+    }
+
+    @media (max-width: 768px) {
+        .lesson-info p {
+            font-size: 12px;
+            display: block;
+            line-height: 1.3;
+        }
+
+        .lesson-info h6 {
+            font-size: 13px;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .lesson-info p {
+            display: none; /* hide description on very small screens */
+        }
+    }
+
+
+
+
+    /* quiz css  */
+
+

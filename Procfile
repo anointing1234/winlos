@@ -1,0 +1,1 @@
+web: gunicorn winlos.wsgi --log-file -

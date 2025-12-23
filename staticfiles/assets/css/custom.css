@@ -1,0 +1,1074 @@
+  /* Stop horizontal movement / overflow */
+
+  /* index page */
+
+
+
+     @media (min-width:790px) {
+        .header-1 .header-right-items {
+          gap: 300px;
+        }
+      }
+      hr{
+        width: 250px;
+      }
+      .headline{
+  color: #FFF;
+font-size: 50px;
+font-style: normal;
+font-weight: 500;
+line-height: 100%; /* 50px */
+      }
+
+      .step-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* center horizontally */
+  gap: 6px;            /* spacing between circle and line */
+}
+
+.start_botton{
+  border-radius: 100px;
+background: #FFEF09;
+
+display: inline-flex;
+padding: 2px 2px 2px 34px;
+align-items: center;
+gap: 14px;
+}
+
+@media (max-width:768px) {
+  .Choose-text{
+    font-size: medium;
+  }
+}
+
+.heme-bpp {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  vertical-align: middle;
+  display: inline-block;
+  border: none;
+  text-transform: capitalize;
+  text-align: center;
+  border-radius: 30px;
+  background: rgb(255, 255, 255);
+  font-family: "Poppins", sans-serif;
+  color: black;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 20px 20px;
+  letter-spacing: -0.18px;
+}
+
+.footer_text_name{
+background: linear-gradient(359deg, #000 22.28%, #FFF 84.73%);
+background-clip: text;
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+font-size: 340px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+}
+
+.last-event {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+@media (max-width: 768px) {
+  #header_text{
+    display: none;
+  }
+  .tablet_image{
+    display: none;
+  }
+
+}
+
+@media (min-width: 800px) {
+   #header_text{
+    display: none;
+  }
+  .mobile_image{
+    display: none;
+  }
+}
+
+@media(width: 768px){
+    .mobile_image{
+    display: none;
+  }
+       .tablet_image{
+    display: block;
+  }
+}
+
+@media (width:712px){
+      .tablet_image{
+    display: block;
+  }
+    .mobile_image{
+    display: none;
+  }
+}
+
+@media (width:640px){
+      .tablet_image{
+    display: block;
+  }
+    .mobile_image{
+    display: none;
+  }
+}
+
+@media (min-width: 1024px) {
+    .tablet_image{
+    display: none;
+  }
+
+     #header_text{
+    display: block;
+  }
+    .mobile_image{
+    display: none;
+  }
+
+}
+
+
+
+
+
+  html, body {
+    overflow-x: hidden !important;
+}
+
+/* Ensure animated elements never slide too far */
+.wow {
+    max-width: 100%;
+}
+
+
+
+/* Fix parallax and sections forcing width */
+/* section, div {
+    max-width: 100% !important;
+} */
+
+/* Fix rotated course cards overflowing */
+.course-cards {
+    max-width: 100%;
+}
+
+/* Remove Bootstrap grid overflow on narrow screens */
+.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+
+@media (max-width:768px) {
+    .explore-btn{
+        margin-top:40px;
+    }
+}
+  
+  @media (max-width: 1300px) {
+        #header_text {
+            /* Ensures the image takes up 100% of its container's width, forcing it to shrink */
+            width: 100%;
+            /* Caps the maximum size to 500px, but width: 100% is what fixes the overflow */
+            max-width: 400px;
+            /* Good practice: remove any padding/margin that might be pushing it out */
+            height: auto; 
+        }
+
+        /* Assuming this should be #header_bottom_image (added the missing 'h') */
+        #header_bottom_image { 
+            /* Ensures the image takes up 100% of its container's width, forcing it to shrink */
+            width: 100%;
+            /* Caps the maximum size to 700px */
+            max-width: 800px;
+            height: auto;
+        }
+        .bannner{
+            margin-top: 50px;
+        }
+
+        
+    }
+
+@media (min-width: 768px) { /* Bootstrap large screens */
+    .explore-btn {
+        margin-top: 200px;
+    }
+}
+
+
+    /* Center Button Wrapper */
+.center-button-wrapper {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    pointer-events: none;
+    
+    margin-top: 30px;/* image remains clickable if needed */
+}
+
+
+.explore-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;              /* slightly smaller gap */
+    background: #ffffff;
+    padding: 4px 12px;      /* reduced padding */
+    border-radius: 35px;    /* still rounded but tighter */
+    font-size: 14px;        /* smaller text */
+    font-weight: 600;
+    color: #000;
+    text-decoration: none;
+    pointer-events: auto;
+    transition: all 0.3s ease;
+    box-shadow: 0px 3px 14px rgba(0,0,0,0.12);
+    margin-top: 100px;
+}
+
+/* circle arrow */
+.explore-btn span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #000;
+    color: #fff;
+    width: 22px;            /* smaller circle */
+    height: 22px;
+    border-radius: 50%;
+    font-size: 12px;        /* smaller arrow */
+}
+
+
+/* Hover */
+.explore-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 576px) {
+    .explore-btn {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+
+    .explore-btn span {
+        width: 24px;
+        height: 24px;
+        font-size: 12px;
+    }
+}
+
+/* Main Section Styling */
+.twa-about-section {
+    padding: 80px 0;
+    border-radius: 20px;
+}
+
+/* Titles */
+.about-subtitle {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+    color: #777;
+}
+
+.about-title {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.3;
+    margin-bottom: 25px;
+    color: #222;
+}
+
+/* Bullet List */
+.about-bullets {
+    padding-left: 18px;
+    margin: 0;
+}
+
+.about-bullets li {
+    font-size: 16px;
+    margin-bottom: 10px;
+    list-style-type: disc;
+}
+
+/* Right Column Text */
+.about-text {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 20px;
+    line-height: 1.7;
+}
+
+/* Icon Cards */
+.about-icon-card {
+    padding: 25px;
+    text-align: left;
+    height: 100%;
+    border-left: 0.5px solid rgb(160, 157, 157);
+}
+
+.about-icon-card h4 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-top: 15px;
+    margin-bottom: 8px;
+}
+
+.about-icon-card p {
+    font-size: 15px;
+    color: #666;
+    line-height: 1.6;
+}
+
+.icon-img {
+    width: 45px;
+    height: 45px;
+    object-fit: contain;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .about-title {
+        font-size: 26px;
+    }
+
+    .about-icon-card {
+        text-align: center;
+    }
+    .header_text{
+        width: 200px;
+    }
+}
+
+/* Section Background with Faded Look */
+.twa-about-section {
+    position: relative;
+    padding: 80px 0;
+    background: url("assets/img/about_image.png") center/contain no-repeat;
+}
+
+.twa-about-section::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* adjust transparency */     /* reduce brightness of image */
+    z-index: -1;
+}
+
+.gold-list li::marker {
+    color: rgb(196, 168, 13);
+    font-size: 1.2em; /* optional: makes the dot slightly larger */
+}
+
+
+
+
+/* Number circles */
+.step-circle {
+  display: flex;
+width: 50px;
+height: 50px;
+padding: 19px 23px;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 10px;
+aspect-ratio: 1/1;
+border-radius: 35px;
+border: 2px solid #666;
+}
+
+  /* border: 2px solid #666; */
+
+.active-step {
+    background: #f9d841; /* same yellow as screenshot */
+    border-color: #f9d841;
+    color: #000;
+    font-weight: 700;
+}
+
+
+
+
+/* Big WINLOS text */
+.winlos-overlay {
+    position: absolute;
+    bottom: -40px;
+    left: 0;
+    font-size: 160px;
+    font-weight: 900;
+    opacity: 0.08;
+    color: white;
+    line-height: 0.8;
+    user-select: none;
+}
+
+
+
+
+
+
+
+
+.courses-section {
+  background: #000;
+  
+}
+
+.courses-wrapper {
+  border-radius: 20px;
+  position: relative;
+
+}
+
+/* Icon */
+.icon-box {
+  width: 55px;
+  height: 55px;
+  background: #fff;
+  color: #ff6f4e;
+  border-radius: 12px;
+  font-size: 24px;
+}
+
+/* Cards row container */
+.course-cards {
+  display: flex;
+  gap: 30px;
+  justify-content: center;
+  align-items: flex-end;
+  position: relative;
+}
+
+/* Cards */
+.course-card {
+  width: 140px;
+  height: 140px;
+  background: #fff;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  transition: 0.3s ease;
+  flex-shrink: 0; /* IMPORTANT → needed for slider mode */
+  margin-bottom: 20px;
+}
+
+.course-card img {
+  width: 55px;
+  height: 55px;
+  object-fit: contain;
+}
+
+.course-card .label {
+  margin-top: 10px;
+  font-weight: 500;
+  color: #000;
+}
+
+.course-card .subtext {
+  font-size: 12px;
+  opacity: 0.6;
+  margin-top: -5px;
+  text-align: center;
+}
+
+
+/* Rotations (desktop only) */
+.rotate-left { 
+  transform: rotate(-20deg) translateY(35px);
+}
+.rotate-small-left { transform: rotate(-8deg); }
+.rotate-small-right { transform: rotate(8deg); }
+.rotate-right {
+  transform: translateY(35px) rotate(20deg);   /* ← THIS WORKS PERFECTLY */
+}
+
+
+/* Default hover (subtle, safe for all devices) */
+.course-card {
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1) !important;
+}
+
+/* Subtle hover for ALL screens (optional, looks good on mobile too) */
+.course-card:hover {
+    transform: translateY(-10px) !important;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15) !important;
+}
+
+/* EXTREME POP-UP EFFECT — ONLY ON LARGE SCREENS */
+@media (min-width: 992px) {
+    .course-card:hover {
+        transform: translateY(-50px) scale(1.3) !important;
+        z-index: 20 !important;
+        box-shadow: 0 40px 80px rgba(0,0,0,0.7) !important;
+    }
+}
+
+/* Optional: Add a slight scale on tap for mobile (nice UX) */
+@media (max-width: 991px) {
+    .course-card:active {
+        transform: translateY(-8px) scale(1.02) !important;
+        box-shadow: 0 15px 30px rgba(0,0,0,0.2) !important;
+    }
+}
+
+/* Arrows */
+.slider-arrow {
+  width: 40px;
+  height: 40px;
+  background: #222;
+  color: #fff;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 16px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.arrow-left { left: -20px; }
+.arrow-right { right: -20px; }
+
+
+
+
+
+/* -------------------------------------- */
+/* MOBILE: Reliable horizontal card slider */
+/* -------------------------------------- */
+@media (max-width: 768px) {
+  /* Critical fixes for smooth snapping */
+  .course-cards {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-padding: 0 20px;           /* Prevents edge clipping */
+    padding: 10px 20px 40px 20px;     /* Space for arrows + breathing room */
+    gap: 25px;                        /* Reduced gap for mobile */
+    justify-content: flex-start !important;  /* ← CRUCIAL FIX */
+    align-items: center;
+    scrollbar-width: none;            /* Hide scrollbar (Firefox) */
+    -webkit-overflow-scrolling: touch; /* Smooth iOS scroll */
+  }
+
+  .course-cards::-webkit-scrollbar {
+    display: none;                    /* Hide scrollbar (Chrome/Safari) */
+  }
+
+  .course-card {
+    scroll-snap-align: center;
+    scroll-snap-stop: always;         /* Forces stop on each card */
+    flex-shrink: 0;
+    width: 150px !important;          /* Consistent size on mobile */
+    height: 150px !important;
+    margin: 0 !important;
+  }
+
+  /* Remove all transforms and special sizing on mobile */
+  .rotate-left,
+  .rotate-right,
+  .rotate-small-left,
+  .rotate-small-right,
+  .main-card {
+    transform: none !important;
+    width: 150px !important;
+    height: 150px !important;
+    margin: 0 !important;
+  }
+
+  /* Move arrows to bottom center */
+  .slider-arrow {
+    top: auto;
+    bottom: -10px;
+    transform: none;
+    width: 44px;
+    height: 44px;
+    background: #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  }
+
+  .arrow-left { left: 15px; }
+  .arrow-right { right: 15px; }
+}
+
+
+
+
+
+
+
+
+
+.events-section {
+      background: #000;
+      padding: 100px 0;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .events-title {
+      font-size: 48px;
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 80px;
+      color: #fff;
+    }
+
+    .event-item {
+      position: relative;
+      margin-bottom: 60px;
+    }
+
+    .event-img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+      transition: transform 0.4s ease;
+    }
+
+    .event-img:hover {
+      transform: translateY(-10px);
+    }
+
+    .event-caption {
+      position: absolute;
+      bottom: -30px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: rgba(0, 0, 0, 0.7);
+      padding: 10px 25px;
+      border-radius: 50px;
+      font-size: 14px;
+      white-space: nowrap;
+      backdrop-filter: blur(5px);
+      color: #fff;
+    }
+
+
+
+    /* Adjust spacing on larger screens */
+    @media (min-width: 992px) {
+      .offset-custom-1 { margin-left: 8%; }
+      .offset-custom-2 { margin-left: -5%; }
+      .offset-custom-3 { margin-left: 12%; }
+      .offset-custom-4 { margin-left: 9%; }
+    }
+
+    /* Mobile adjustments */
+    @media (max-width: 768px) {
+      .events-title {
+        font-size: 36px;
+        margin-bottom: 50px;
+      }
+      .event-caption {
+        font-size: 13px;
+        padding: 8px 20px;
+      }
+      .event-img {
+        max-width: 300px;
+      }
+    }
+
+
+
+    .newsletter-section {
+      background-color: #000;
+      padding: 120px 0;
+      font-family: 'Inter', sans-serif;
+      overflow: hidden;
+    }
+
+    .newsletter-content h2 {
+      color: #fff;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+
+    .newsletter-content p {
+      color: #ccc;
+      font-size: 18px;
+      margin-bottom: 40px;
+      max-width: 500px;
+    }
+
+    .newsletter-form {
+      max-width: 520px;
+    }
+
+    .newsletter-form .form-control {
+      background-color: transparent;
+      border: 2px solid #333;
+      border-radius: 50px;
+      padding: 16px 24px;
+      font-size: 16px;
+      color: #fff;
+      height: 58px;
+    }
+
+    .newsletter-form .form-control::placeholder {
+      color: #888;
+    }
+
+    .newsletter-form .form-control:focus {
+      border-color: #ff6f4e;
+      box-shadow: 0 0 0 0.2rem rgba(255, 111, 78, 0.2);
+      background-color: transparent;
+    }
+
+    .newsletter-form .btn-signup {
+      background-color: #fff;
+      color: #000;
+      font-weight: 600;
+      padding: 0 32px;
+      border-radius: 50px;
+      height: 58px;
+      border: none;
+      transition: all 0.3s ease;
+    }
+
+    .newsletter-form .btn-signup:hover {
+      background-color:#B0A54C;
+      color: #fff;
+      transform: translateY(-2px);
+    }
+
+    .terms-text {
+      color: #999;
+      font-size: 13px;
+      margin-top: 16px;
+    }
+
+    .newsletter-image img {
+      border-radius: 24px;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+      max-width: 100%;
+      height: auto;
+    }
+
+    /* Mobile Responsive */
+    @media (max-width: 992px) {
+      .newsletter-content h2 {
+        font-size: 38px;
+        text-align: center;
+      }
+      .newsletter-content p {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .newsletter-form {
+        margin: 0 auto;
+      }
+      .newsletter-image {
+        margin-top: 60px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .newsletter-content h2 {
+        font-size: 32px;
+      }
+      .newsletter-form .btn-signup {
+        width: 100%;
+        margin-top: 12px;
+      }
+    }
+
+
+
+    /* ============== FAQ SECTION - FULLY FIXED ============== */
+.faq-section {
+  background: #f8f9fa;
+  padding: 140px 0;
+  font-family: 'Inter', sans-serif, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.faq-title {
+  font-size: 120px;
+  font-weight: 900;
+  color: #000;
+  line-height: 1;
+  letter-spacing: -6px;
+}
+
+/* Right Card */
+.faq-card {
+  background: #fff;
+  border-radius: 32px;
+  padding: 40px 45px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.06);
+}
+
+/* ============== ACCORDION - CLEAN CUSTOM PLUS ============== */
+
+/* Remove Bootstrap's default arrow completely */
+.accordion-button::after {
+  display: none !important;           /* This kills the default icon */
+}
+
+/* Add our own clean + icon */
+.accordion-button {
+  position: relative;
+  background: transparent !important;
+  border: none !important;
+  font-size: 17px;
+  font-weight: 500;
+  color: #222;
+  padding: 22px 50px 22px 0 !important;   /* Extra right padding for icon */
+  box-shadow: none !important;
+}
+
+/* Custom + icon */
+.accordion-button::before {
+  content: "+";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 32px;
+  font-weight: 300;
+  color: #000;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.35s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+}
+
+/* Turn + into × when open */
+.accordion-button:not(.collapsed)::before {
+  content: "+";
+  transform: translateY(-50%) rotate(45deg);
+  font-weight: 400;
+}
+
+/* Active state */
+.accordion-button:not(.collapsed) {
+  color: #000 !important;
+  font-weight: 600;
+  background: transparent !important;
+}
+
+/* Body */
+.accordion-body {
+  padding: 8px 0 28px 0;
+  color: #555;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+/* Dividers */
+.accordion-item {
+  border: none;
+  border-top: 1px solid #e7e2e2;
+  background: transparent;
+  padding: 0;
+}
+
+.accordion-item:first-child {
+  border-top: none;
+}
+
+/* ============== RESPONSIVE ============== */
+@media (max-width: 992px) {
+  .faq-title {
+    font-size: 80px;
+    letter-spacing: -4px;
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .faq-card {
+    border-radius: 28px;
+    padding: 35px 30px;
+    margin-top: 30px;
+  }
+
+  .accordion-button {
+    padding: 18px 50px 18px 0 !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .faq-title {
+    font-size: 58px;
+    letter-spacing: -2px;
+  }
+
+  .faq-card {
+    padding: 28px 20px;
+    border-radius: 22px;
+  }
+
+  .accordion-button {
+    font-size: 16px;
+    padding: 16px 45px 16px 0 !important;
+  }
+
+  .accordion-button::before {
+    font-size: 28px;
+    width: 36px;
+  }
+}
+
+    /* MAIN FOOTER - STICKS TO BOTTOM */
+    .winlows-footer {
+      background: #000;
+      color: #aaa;
+      padding-top: 100px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .footer-logo img {
+      width: 140px;
+      filter: brightness(0) invert(1);
+      opacity: 0.9;
+    }
+
+    .footer-address, .footer-contact {
+      font-size: 15px;
+      line-height: 1.8;
+      color: #ccc;
+    }
+
+    .footer-links h5 {
+      color: #fff;
+      font-weight: 600;
+      margin-bottom: 20px;
+      font-size: 18px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .footer-links ul li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links ul li a {
+      color: #aaa;
+      text-decoration: none;
+      transition: color 0.3s;
+      font-size: 15px;
+    }
+
+    .footer-links ul li a:hover {
+      color: #fff;
+    }
+
+    .social-icons a {
+      color: #aaa;
+      font-size: 18px;
+      margin-right: 20px;
+      transition: color 0.3s;
+    }
+
+    .social-icons a:hover {
+      color: #fff;
+    }
+
+    /* Huge WINLOWS Text */
+    .winlows-text {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 280px;
+      font-weight: 900;
+      color: transparent;
+      -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+      letter-spacing: -10px;
+      pointer-events: none;
+      user-select: none;
+      white-space: nowrap;
+      opacity: 0.3;
+    }
+
+    /* Bottom Copyright Bar */
+    .footer-bottom {
+      background: #000;
+      padding: 30px 0;
+      border-top: 1px solid #222;
+      font-size: 14px;
+      margin-top: 80px;
+    }
+
+    .footer-bottom a {
+      color: #888;
+      text-decoration: none;
+      margin: 0 15px;
+      transition: color 0.3s;
+    }
+
+    .footer-bottom a:hover {
+      color: #fff;
+    }
+
+    @media (max-width: 992px) {
+      .winlows-text {
+        font-size: 160px;
+        letter-spacing: -5px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .winlows-text {
+        font-size: 100px;
+        bottom: -20px;
+      }
+      .footer-links {
+        margin-top: 40px;
+      }
+    }
+
+.winlows-text {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 280px;
+  font-weight: 900;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(255,255,255,0.05);
+
+  letter-spacing: -10px;
+  pointer-events: none;
+  user-select: none;
+  white-space: nowrap;
+  opacity: 0.3;
+}

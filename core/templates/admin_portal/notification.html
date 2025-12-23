@@ -1,0 +1,181 @@
+{% extends "../admin_sections/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+<div class="dashboard-body">
+  <!-- Breadcrumb -->
+  <div class="breadcrumb mb-24">
+    <ul class="flex-align gap-4">
+      <li><a href="{% url 'Admin_dashboard' %}" class="text-gray-200 fw-normal text-15 hover-text-main-600">Home</a></li>
+      <li><span class="text-gray-500 fw-normal d-flex"><i class="ph ph-caret-right"></i></span></li>
+      <li><span class="text-main-600 fw-normal text-15">Notifications</span></li>
+    </ul>
+  </div>
+
+  <div class="row gy-4">
+    <!-- Sidebar Filters -->
+    <div class="col-xl-3">
+      <div class="card h-100 p-0">
+        <div class="card-body p-24">
+          <h5 class="text-heading mb-3 pb-5 fw-semibold">Notification Filters</h5>
+          <ul>
+            <li class="mb-5 email-links"><a href="#" class="hover-bg-main-50 px-20 py-8 w-100 rounded-pill text-gray-300 hover-text-gray-600 active"><i class="ph ph-bell me-2"></i> All Notifications</a></li>
+
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- Notifications List -->
+    <div class="col-xl-9">
+      <div class="card h-100 p-0 email-card">
+        <div class="card-header border-bottom bg-base py-16 px-24 d-flex justify-content-between align-items-center">
+          <h5 class="text-heading fw-semibold mb-0">Recent Notifications</h5>
+          <button type="button" class="reload-button text-secondary-light text-xl d-flex rounded-4" title="Reload">
+            <i class="ph ph-arrows-clockwise"></i>
+          </button>
+        </div>
+
+        <div class="card-body p-0">
+          {% if notifications %}
+          <ul class="list-unstyled m-0">
+            {% for note in notifications %}
+            <li class="notification-item px-24 py-16 border-bottom border-gray-100">
+              <div class="d-flex justify-content-between align-items-start gap-12">
+                <!-- Star -->
+             
+
+                <!-- Main content -->
+                <div class="flex-grow-1">
+                  <div class="d-flex justify-content-between align-items-center mb-2">
+                    <span class="fw-semibold text-heading">
+                      {{ note.user.get_full_name|default:note.user.username }} asked in "{{ note.course.name_of_course }}"
+                    </span>
+                    <span class="text-gray-400 small">{{ note.created_at|naturaltime }}</span>
+                  </div>
+
+                  <p class="mb-3 text-dark">{{ note.question_text }}</p>
+
+                  <div class="text-end mb-3">
+                    <button class="btn btn-sm btn-outline-main reply-toggle" data-id="{{ note.id }}">
+                      <i class="ph ph-chat-teardrop-text me-1"></i> Reply
+                    </button>
+                  </div>
+
+                  <!-- ==== REPLY BOX ==== -->
+                  <div id="reply-box-{{ note.id }}" class="reply-box  rounded-3 p-3 d-none">
+                    <ul id="replies-{{ note.id }}" class="list-unstyled mb-3 gap-8 d-flex flex-column">
+                      {% for reply in note.answers.all %}
+                      <li class="d-flex gap-8">
+                        <div class="flex-grow-1">
+                          <div class="d-flex align-items-center gap-2 mb-1">
+                            <strong class="text-heading">{{ reply.user.get_full_name|default:reply.user.username }}</strong>
+                            <span class="text-gray-400 small">{{ reply.created_at|naturaltime }}</span>
+                          </div>
+                          <p class="mb-0 text-gray-600">{{ reply.answer_text }}</p>
+                        </div>
+                      </li>
+                      {% empty %}
+                      <li class="text-gray-400 small">No replies yet.</li>
+                      {% endfor %}
+                    </ul>
+
+                    <form class="reply-form d-flex gap-2" data-id="{{ note.id }}">
+                      {% csrf_token %}
+                      <textarea name="reply_message" rows="2" class="form-control flex-grow-1" placeholder="Type your reply..." required></textarea>
+                      <button type="submit" class="btn btn-main btn-sm flex-shrink-0">
+                        <i class="ph ph-paper-plane-tilt me-1"></i> Send
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+          <div class="p-5 text-center text-gray-400">
+            <i class="ph ph-bell text-4xl mb-2 d-block"></i>
+            <p>No notifications yet.</p>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================  SCRIPT  ==================== -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  // ---------- Toggle reply box ----------
+  document.querySelectorAll('.reply-toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const box = document.getElementById(`reply-box-${btn.dataset.id}`);
+      box.classList.toggle('d-none');
+    });
+  });
+
+  // ---------- Star button (no jQuery) ----------
+  document.querySelectorAll('.starred-button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const icon = btn.querySelector('i');
+      if (icon.classList.contains('ph-star')) {
+        icon.classList.remove('ph-star');
+        icon.classList.add('ph-fill', 'ph-star', 'text-warning-600');
+      } else {
+        icon.classList.remove('ph-fill', 'ph-star', 'text-warning-600');
+        icon.classList.add('ph-star');
+      }
+    });
+  });
+
+  // ---------- Reload page ----------
+  document.querySelector('.reload-button').addEventListener('click', () => location.reload());
+
+  // ---------- AJAX reply ----------
+  document.querySelectorAll('.reply-form').forEach(form => {
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+
+      const questionId = form.dataset.id;
+      const textarea   = form.querySelector('textarea');
+      const replyList  = document.getElementById(`replies-${questionId}`);
+
+      const payload = new FormData(form);
+      payload.append('reply_message', textarea.value.trim());
+
+      try {
+        const resp = await fetch(`/reply-to-question/${questionId}/`, {
+          method: 'POST',
+          body: payload,
+          headers: { 'X-CSRFToken': payload.get('csrfmiddlewaretoken') }
+        });
+
+        const data = await resp.json();
+
+        if (data.status === 'success') {
+          // Remove "No replies yet" placeholder
+          const placeholder = replyList.querySelector('.text-gray-400');
+          if (placeholder) placeholder.remove();
+
+          // Append the HTML that the view rendered
+          replyList.insertAdjacentHTML('beforeend', data.reply_html);
+
+          // Clear & focus textarea
+          textarea.value = '';
+          textarea.focus();
+        } else {
+          alert(data.message || 'Something went wrong');
+        }
+      } catch (err) {
+        console.error(err);
+        alert('Network error');
+      }
+    });
+  });
+});
+</script>
+
+{% endblock contents %}

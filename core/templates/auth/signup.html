@@ -1,0 +1,1135 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========== Basic Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== SEO & Page Identity ========== -->
+    <title>The Winlos Academy | Nigeria’s Premier Christian Film School</title>
+    <meta name="description" content="The Winlos Academy is Nigeria’s premier Christian film school, commissioning cultural influencers who create powerful, faith-driven stories with technical mastery and spiritual integrity. Discover the story you were born to tell.">
+    <meta name="author" content="The Winlos Academy">
+    <meta name="keywords" content="christian film school nigeria, winlos academy, faith-based filmmaking, christian cinematography training, bible-based film school, nigerian christian film academy, filmmaking with purpose, spiritual storytelling, rev otis ojukwu film school">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== Open Graph / Facebook ========== -->
+    <meta property="og:title" content="The Winlos Academy | Nigeria’s Premier Christian Film School">
+    <meta property="og:description" content="We don’t just train filmmakers — we commission cultural influencers. Join Nigeria’s leading Christian film school and create stories that illuminate, inspire, and transform culture for Christ.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.thewinlosacademy.com">
+    <meta property="og:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg">
+    <meta property="og:image:alt" content="The Winlos Academy - Christian Film School in Nigeria">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="The Winlos Academy">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Winlos Academy | Christian Film School Nigeria">
+    <meta name="twitter:description" content="At TWA, we help you discover the story you were born to tell. Join Nigeria’s premier Christian film school.">
+    <meta name="twitter:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg">
+    <meta name="twitter:site" content="@winlosacademy">
+    <meta name="twitter:creator" content="@winlosacademy">
+
+    <!-- ========== Favicon & Touch Icons ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://www.thewinlosacademy.com">
+
+    <!-- ========== Preconnect for Speed ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- ========== Stylesheets ========== -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- ========== Structured Data ========== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["EducationalOrganization", "Organization"],
+      "name": "The Winlos Academy",
+      "alternateName": ["TWA", "Winlos Academy", "The Winlos Christian Film School"],
+      "url": "https://www.thewinlosacademy.com",
+      "logo": "https://www.thewinlosacademy.com/assets/img/logo/winlos_logo.png",
+      "image": "https://www.thewinlosacademy.com/assets/img/og-image.jpg",
+      "description": "The Winlos Academy is Nigeria’s premier Christian film school, established to empower a new generation of filmmakers. We believe that the most powerful stories are those told with both technical mastery and spiritual integrity. We are not just training filmmakers; we are commissioning cultural influencers.",
+      "slogan": "Discover the story you were born to tell.",
+      "founder": {
+        "@type": "Person",
+        "name": "Rev. Otis Ojukwu"
+      },
+      "foundingDate": "2015",
+      "foundingLocation": "Lagos, Nigeria",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Winlos Studio, Miller Road",
+        "addressLocality": "Lagos",
+        "addressRegion": "Lagos State",
+        "postalCode": "",
+        "addressCountry": "NG"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+234-XXX-XXX-XXXX",
+        "contactType": "Admissions & General Inquiry",
+        "email": "info@thewinlosacademy.com",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://facebook.com/thewinlosacademy",
+        "https://instagram.com/thewinlosacademy",
+        "https://youtube.com/@thewinlosacademy",
+        "https://twitter.com/winlosacademy"
+      ]
+    }
+    </script>
+
+    <style>
+    @import url('https://fonts.googleapis.com/css?family=Montserrat:400,800');
+
+    * { box-sizing: border-box; }
+
+    body {
+        font-family: 'Montserrat', sans-serif;
+        background: #f5f5f5;
+        margin: 0;
+    }
+
+    /* ---------- TEXT SIZES REDUCED ---------- */
+    h1 { font-weight: bold; margin: 0; color: #fffdfdff; font-size: 22px; }
+    p { font-size: 12px; line-height: 18px; margin: 15px 0 20px; }
+    span { font-size: 11px; }
+
+    .sign-in-panel > form > a {
+        color: #333;
+        font-size: 12px;
+        text-decoration: none;
+        margin-top: 10px;
+        display: block;
+    }
+
+    /* ---------- BUTTON SMALLER ---------- */
+    .button {
+        border-radius: 15px;
+        border: 1px solid #ffffffff;
+        background-color: #000000ff;
+        color: #FFFFFF;
+        font-size: 11px;
+        font-weight: bold;
+        padding: 10px 30px;
+        letter-spacing: 0.5px;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    button.ghost {
+        background-color: transparent;
+        border-color: #fff;
+    }
+
+    /* ---------- INPUT SMALLER ---------- */
+    input {
+        background-color:white;
+        border: 1px solid black;
+        padding: 10px 12px;
+        margin: 6px 0;
+        width: 100%;
+        font-size: 13px;
+        border-radius: 4px;
+    }
+
+    /* ---------- MAIN AUTH BOX SMALLER ---------- */
+    .auth-wrapper {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        position: relative;
+        overflow: hidden;
+        width: 620px;   /* REDUCED from 768px */
+        max-width: 95%;
+        min-height: 420px; /* REDUCED HEIGHT */
+        margin: 40px auto;
+    }
+
+    .auth-panel {
+        position: absolute;
+        top: 0;
+        height: 100%;
+        transition: 0.6s ease-in-out;
+    }
+
+    .sign-in-panel { left: 0; width: 50%; z-index: 2; }
+    .auth-wrapper.right-panel-active .sign-in-panel { transform: translateX(100%); }
+
+    .sign-up-panel {
+        left: 0;
+        width: 50%;
+        opacity: 0;
+        z-index: 1;
+    }
+    .auth-wrapper.right-panel-active .sign-up-panel {
+        transform: translateX(100%);
+        opacity: 1;
+        z-index: 5;
+    }
+
+    .auth-overlay-wrapper {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 50%;
+        height: 100%;
+        overflow: hidden;
+        transition: 0.6s ease-in-out;
+        z-index: 100;
+    }
+
+    .auth-wrapper.right-panel-active .auth-overlay-wrapper {
+        transform: translateX(-100%);
+    }
+
+    .auth-overlay {
+        background: linear-gradient(to right, #000000ff,#000154);
+        color: #FFFFFF;
+        left: -100%;
+        width: 200%;
+        height: 100%;
+        transition: 0.6s ease-in-out;
+        position: relative;
+    }
+
+    .auth-wrapper.right-panel-active .auth-overlay {
+        transform: translateX(50%);
+    }
+
+    .auth-overlay-panel {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        padding: 0 25px;
+        text-align: center;
+        top: 0;
+        height: 100%;
+        width: 50%;
+    }
+
+    .overlay-left { transform: translateX(-20%); }
+    .auth-wrapper.right-panel-active .overlay-left { transform: translateX(0); }
+
+    .overlay-right { right: 0; }
+
+
+    /* FORM SMALLER PADDING */
+    form {
+        background-color: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 30px;
+        height: 100%;
+        justify-content: center;
+        text-align: center;
+    }
+
+    /* ---------- MOBILE FIX ---------- */
+    @media (max-width: 768px) {
+        .auth-wrapper {
+            width: 100%;
+            height: auto;
+            min-height: unset;
+            border-radius: 0;
+            box-shadow: none;
+            margin: 0;
+            background: #fff;
+        }
+
+        /* Hide overlay */
+        .auth-overlay-wrapper { display: none; }
+
+        /* Panels stack */
+        .auth-panel {
+            position: relative;
+            width: 100% !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .sign-up-panel { display: none; }
+        .auth-wrapper.right-panel-active .sign-up-panel { display: block; }
+        .auth-wrapper.right-panel-active .sign-in-panel { display: none; }
+
+        .button { width: 100%; padding: 8px; }
+        h1 { font-size: 20px; }
+    }
+
+    /* PASSWORD FIELD WITH EYE ICON */
+.password-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.password-wrapper input {
+    padding-right: 40px !important;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #333;
+    font-size: 16px;
+}
+
+/* Make auth box slightly bigger */
+.auth-wrapper {
+    width: 700px !important;
+}
+
+
+
+
+
+/* --- DEVICE LOGIC --- */
+.desktop-auth {
+    display: block;
+}
+
+.mobile-auth {
+    display: none;
+}
+
+/* Mobile version visible */
+@media (max-width: 768px) {
+    .desktop-auth {
+        display: none !important;
+    }
+    .mobile-auth {
+        display: block !important;
+    }
+}
+
+/* Desktop & tablet visible */
+@media (min-width: 769px) {
+    .desktop-auth {
+        display: block !important;
+    }
+    .mobile-auth {
+        display: none !important;
+    }
+}
+
+/* ------- WINLOS BRAND COLORS ------- */
+:root {
+    --winlos-yellow: #F9C10B;
+    --winlos-black: #000000;
+    --winlos-text: #222;
+}
+
+/* MOBILE AUTH BOX */
+.mobile-form-box {
+    background: #ffffff;
+    border-radius: 14px;
+    margin-bottom: 50px;
+    margin-top:50px;
+    {% comment %} border: 2px solid var(--winlos-yellow); {% endcomment %}
+    box-shadow: 0 12px 20px rgba(0,0,0,0.12);
+}
+
+/* HEADINGS */
+.mobile-form-box h2 {
+    color: var(--winlos-black);
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+/* INPUT STYLING */
+.mobile-form-box .form-control {
+    height: 48px;
+    border: 1.6px solid #eaeaea;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+}
+
+.mobile-form-box .form-control:focus {
+    border-color: var(--winlos-yellow);
+    box-shadow: 0 0 0 3px rgba(249, 193, 11, 0.28);
+}
+
+/* BUTTON STYLING */
+.mobile-form-box .btn {
+    height: 48px;
+    border-radius: 9px;
+    font-weight: 700;
+    font-size: 15px;
+    background: var(--winlos-black) !important;
+    color: white !important;
+    border: none;
+}
+
+/* BUTTON HOVER */
+.mobile-form-box .btn:hover {
+    background: var(--winlos-yellow) !important;
+    color: var(--winlos-black) !important;
+}
+
+/* LINKS */
+.mobile-form-box a {
+    color: var(--winlos-black);
+    font-weight: 600;
+}
+
+.mobile-form-box a:hover {
+    color: var(--winlos-yellow);
+}
+
+/* PASSWORD EYE ICON */
+.password-toggle {
+    color: var(--winlos-black);
+    font-size: 17px;
+}
+
+/* SWITCH TEXT */
+.mobile-form-box p {
+    color: var(--winlos-text);
+}
+
+
+/* ---------- BASE MESSAGE (your original) ---------- */
+.msg {
+    background: #fefefe;
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 12px 18px;
+    border-top: solid 3px #ccc;
+    border-radius: 6px;
+    box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* COLOR TYPES */
+.msg-info { border-color: #b8dbf2; color: #39b3d7; }
+.msg-success { border-color: #cef2b8; color: #80d651; }
+.msg-warning { border-color: rgba(255,165,0,.5); color: #db9e34; }
+.msg-danger { border-color: #ec8282; color: #c9302c; }
+.msg-primary { border-color: #9ca6f1; color: rgba(47,106,215,.9); }
+.msg-magick { border-color: #e0b8f2; color: #bb39d7; }
+
+/* ---------- TOAST WRAPPER ---------- */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    z-index: 99999;
+}
+
+/* ---------- ANIMATION ---------- */
+.toast-slide-in {
+    animation: toastSlideIn 0.4s ease forwards;
+}
+
+.toast-slide-out {
+    animation: toastSlideOut 0.4s ease forwards;
+}
+
+@keyframes toastSlideIn {
+    from { opacity: 0; transform: translateX(100%); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes toastSlideOut {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(100%); }
+}
+</style>
+</head>
+<body>
+
+    <div id="toast-container"></div>
+
+
+    <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="txt-loading">
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="W" class="letters-loading">
+                        W
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                 
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- GT Back To Top Start -->
+        <button id="back-top" class="back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+        <!-- GT MouseCursor Start -->
+        <div class="mouseCursor cursor-outer"></div>
+        <div class="mouseCursor cursor-inner"></div>
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="index.html">
+                                        <img style="width: 90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                                    </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                    <i class="fas fa-times"></i>
+                                    </button>
+                            </div>
+                        </div>
+                 
+                        <div class="mobile-menu fix mt-3"></div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+
+        
+
+        
+   <!-- ================= DESKTOP AUTH ================= -->
+<div class="auth-wrapper mt-5 pt-5 desktop-auth" id="authWrapper">
+
+    <!-- SIGN UP -->
+    <div class="auth-panel sign-up-panel">
+        <form id="signupForm">
+            {% csrf_token %}
+            <h1 class="text-dark">Create Your Account</h1>
+            <span>Start your learning journey with Winlos Academy</span>
+
+            <input type="text" name="fullname" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+
+            <div class="password-wrapper">
+                <input type="password" name="password" placeholder="Create Password" id="signupPassword" required>
+                <i class="fa fa-eye password-toggle" onclick="togglePassword('signupPassword', this)"></i>
+            </div>
+
+            <button id="signupBtn" type="submit" class="w-100 button">
+                Sign Up
+            </button>
+        </form>
+    </div>
+
+    <!-- SIGN IN -->
+    <div class="auth-panel sign-in-panel">
+        <form id="signinForm">
+            {% csrf_token %}
+            <h1 class="text-dark">Welcome Back</h1>
+            <span>Login with your registered email</span>
+
+            <input type="email" name="email" placeholder="Email Address" required>
+
+            <div class="password-wrapper">
+                <input type="password" name="password" placeholder="Password" id="signinPassword" required>
+                <i class="fa fa-eye password-toggle" onclick="togglePassword('signinPassword', this)"></i>
+            </div>
+
+            <a class="reset_btn" href="#">Forgot Password?</a>
+
+            <button id="signinBtn" type="submit" class="w-100 button">
+                Sign In
+            </button>
+        </form>
+    </div>
+
+    <!-- Overlay -->
+    <div class="auth-overlay-wrapper">
+        <div class="auth-overlay">
+            <div class="auth-overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>Access your dashboard and continue your training.</p>
+                <button type="button" class="ghost button" id="signIn">Sign In</button>
+            </div>
+            <div class="auth-overlay-panel overlay-right">
+                <h1>Join Winlos Academy</h1>
+                <p>Gain skills, learn from experts, and take the next step.</p>
+                <button type="button" class="ghost button" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ================= MOBILE AUTH ================= -->
+<div class="mobile-auth mt-4 px-3">
+    <div class="mobile-form-box p-3">
+
+        <!-- MOBILE LOGIN -->
+        <div id="mobileLogin">
+            <form id="mobileSigninForm">
+                {% csrf_token %}
+                <h2 class="text-center mb-3">Welcome Back</h2>
+
+                <input type="email" name="email" class="form-control mb-3" placeholder="Email Address" required>
+
+                <div class="password-wrapper mb-3">
+                    <input type="password" name="password" id="mobileLoginPass" class="form-control" placeholder="Password" required>
+                    <i class="fa fa-eye password-toggle" onclick="togglePassword('mobileLoginPass', this)"></i>
+                </div>
+
+                <button type="submit" class="btn w-100" style="background:black;color:white;">
+                    Sign In
+                </button>
+
+                <p class="text-center mt-3">
+                    Don’t have an account?
+                    <a href="#" onclick="showMobileSignup()">Create one</a>
+                </p>
+            </form>
+        </div>
+
+        <!-- MOBILE SIGNUP -->
+        <div id="mobileSignup" style="display:none;">
+            <form id="mobileSignupForm">
+                {% csrf_token %}
+                <h2 class="text-center mb-3">Create Account</h2>
+
+                <input type="text" name="fullname" class="form-control mb-3" placeholder="Full Name" required>
+                <input type="email" name="email" class="form-control mb-3" placeholder="Email Address" required>
+
+                <div class="password-wrapper mb-3">
+                    <input type="password" name="password" id="mobileSignupPass" class="form-control" placeholder="Create Password" required>
+                    <i class="fa fa-eye password-toggle" onclick="togglePassword('mobileSignupPass', this)"></i>
+                </div>
+
+                <button type="submit" class="btn w-100" style="background:black;color:white;">
+                    Sign Up
+                </button>
+
+                <p class="text-center mt-3">
+                    Already have an account?
+                    <a href="#" onclick="showMobileLogin()">Sign In</a>
+                </p>
+            </form>
+        </div>
+    </div>
+</div>
+
+       <footer  class="winlows-footer">
+
+    <!-- Huge Background Text -->
+    <div class="winlows-text">Winlows</div>
+
+    <div class="container position-relative">
+      <div class="row">
+
+        <!-- Left: Logo + Address + Contact -->
+        <div class="col-lg-4 mb-5">
+          <div class="footer-logo mb-4">
+            <img src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Winlows Academy">
+          </div>
+          <div class="footer-address mb-3">
+            <strong>Address:</strong><br>
+            The Winlows Studio, Miller Road
+          </div>
+          <div class="footer-contact">
+            <strong>Contact:</strong><br>
+            +234 xxx xxxx xxx<br>
+            info@thewinlowsacademy.com
+          </div>
+          <div class="social-icons mt-4">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- Middle: Links Column 1 -->
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h5>About Us</h5>
+          <ul>
+            <li><a href="#">Our Programs</a></li>
+            <li><a href="#">Student Portal</a></li>
+            <li><a href="#">Contact Us</a></li>
+            <li><a href="#">FAQs</a></li>
+          </ul>
+
+         
+        </div>
+
+        <!-- Right: Links Column 2 -->
+        <div class="col-lg-4 col-md-6 footer-links">
+          <h5>Blog Posts</h5>
+          <ul>
+            <li><a href="#">Events Calendar</a></li>
+            <li><a href="#">Success Stories</a></li>
+            <li><a href="#">Industry News</a></li>
+            <li><a href="#">Student Spotlight</a></li>
+          </ul>
+        </div>
+
+      </div>
+         <div class="footer-name wow img-custom-anim-left mb-0 mt-5">
+                <img class="img-fluid" src="{% static 'assets/img/Winlows_footer.png' %}" alt="">
+            </div>
+    </div>
+
+
+
+    <!-- Bottom Copyright Bar -->
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-6 text-center text-lg-start">
+            <p class="mb-0" style="color:#ffffff;">
+              © 2025 The Winlows Academy. All rights reserved.
+            </p>
+          </div>
+          <div class="col-lg-6 text-center text-white text-lg-end">
+            <a class="text-white" href="#">Privacy Policy</a>
+            <a class="text-white" href="#">Terms of Service</a>
+            <a class="text-white" href="#">Cookies Settings</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+       
+
+
+    <!-- Scripts -->
+    <script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+    <script src="{% static 'assets/js/viewport.jquery.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.waypoints.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+    <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+    <script src="{% static 'assets/js/parallaxie.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+    <script src="{% static 'assets/js/wow.min.js' %}"></script>
+    <script src="{% static 'assets/js/circle-progress.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+<script>
+function togglePassword(fieldId, iconElement) {
+    const field = document.getElementById(fieldId);
+    const isPassword = field.type === "password";
+
+    field.type = isPassword ? "text" : "password";
+    iconElement.classList.toggle("fa-eye");
+    iconElement.classList.toggle("fa-eye-slash");
+}
+</script>
+
+
+<script>
+function showMobileSignup() {
+    document.getElementById("mobileLogin").style.display = "none";
+    document.getElementById("mobileSignup").style.display = "block";
+}
+function showMobileLogin() {
+    document.getElementById("mobileSignup").style.display = "none";
+    document.getElementById("mobileLogin").style.display = "block";
+}
+</script>
+
+
+<!-- ================= SCRIPT ================= -->
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    function showToast(message, type="success") {
+        const container = document.getElementById("toast-container");
+        const toast = document.createElement("div");
+        toast.className = `msg msg-${type}`;
+        toast.innerText = message;
+        container.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+    }
+
+    function handleForm(formId, btnId, url) {
+        const form = document.getElementById(formId);
+        if (!form) return;
+
+        form.addEventListener("submit", e => {
+            e.preventDefault();
+
+            const btn = btnId ? document.getElementById(btnId) : form.querySelector("button");
+            const originalText = btn.innerHTML;
+
+            btn.innerHTML = `<span class="spinner-border spinner-border-sm"></span>`;
+            btn.disabled = true;
+
+            fetch(url, {
+                method: "POST",
+                body: new FormData(form),
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+            .then(res => res.json())
+            .then(data => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+
+                if (data.status === "success") {
+                    showToast(data.message, "success");
+                    setTimeout(() => window.location.href = data.redirect_url, 1200);
+                } else {
+                    showToast(data.message, "danger");
+                }
+            })
+            .catch(() => {
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                showToast("Something went wrong.", "danger");
+            });
+        });
+    }
+
+    handleForm("signupForm", "signupBtn", "{% url 'signup' %}");
+    handleForm("signinForm", "signinBtn", "{% url 'Login' %}");
+    handleForm("mobileSignupForm", null, "{% url 'signup' %}");
+    handleForm("mobileSigninForm", null, "{% url 'Login' %}");
+});
+
+// helpers
+function togglePassword(id, icon) {
+    const input = document.getElementById(id);
+    input.type = input.type === "password" ? "text" : "password";
+    icon.classList.toggle("fa-eye");
+    icon.classList.toggle("fa-eye-slash");
+}
+function showMobileSignup() {
+    mobileLogin.style.display = "none";
+    mobileSignup.style.display = "block";
+}
+function showMobileLogin() {
+    mobileSignup.style.display = "none";
+    mobileLogin.style.display = "block";
+}
+</script>
+
+<script>
+const signUp = document.getElementById("signUp");
+const signIn = document.getElementById("signIn");
+const wrapper = document.getElementById("authWrapper");
+
+signUp.onclick = () => wrapper.classList.add("right-panel-active");
+signIn.onclick = () => wrapper.classList.remove("right-panel-active");
+</script>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+// Loader functions with faded overlay
+function showLoader() {
+    Swal.fire({
+        title: '',
+        allowOutsideClick: false,
+        showConfirmButton: false,
+        background: 'transparent',          // Transparent popup
+        backdrop: 'rgba(0,0,0,0.25)',       // Faded overlay behind spinner
+        didOpen: () => {
+            const container = Swal.getHtmlContainer();
+            if (container) container.innerHTML = `<div class="custom-loader"></div>`;
+        }
+    });
+}
+
+function hideLoader() {
+    Swal.close();
+}
+
+// Toggle password visibility
+function toggleSwalPassword(id, icon) {
+    const input = document.getElementById(id);
+    if (input.type === "password") {
+        input.type = "text";
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    } else {
+        input.type = "password";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }
+}
+
+// Custom error message
+function showError(message) {
+    Swal.fire({
+        title: 'Error',
+        text: message,
+        icon: 'error',
+        customClass: {
+            popup: 'my-swal-popup',
+            title: 'my-swal-title',
+            confirmButton: 'my-swal-btn'
+        }
+    });
+}
+
+// Attach event to all reset buttons
+document.querySelectorAll(".reset_btn").forEach(btn => {
+    btn.addEventListener("click", async function(e) {
+        e.preventDefault();
+
+        // Step 1: Enter Email
+        const { value: email, isConfirmed } = await Swal.fire({
+            title: 'Reset Password',
+            html: `<input type="email" id="swal-email" class="my-swal-input" placeholder="Enter your registered email">`,
+            showCancelButton: true,
+            confirmButtonText: 'Send Code',
+            customClass: {
+                popup: 'my-swal-popup',
+                title: 'my-swal-title',
+                confirmButton: 'my-swal-btn',
+                cancelButton: 'my-swal-cancel-btn',
+                input: 'my-swal-input-field'
+            },
+            focusConfirm: false,
+            preConfirm: () => {
+                const emailVal = document.getElementById('swal-email').value;
+                if (!emailVal) Swal.showValidationMessage('Email is required');
+                return emailVal;
+            }
+        });
+
+        if (!isConfirmed) return;
+        showLoader();
+
+        try {
+            // Send reset email
+            const res = await fetch("{% url 'password_reset' %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                body: new URLSearchParams({ email })
+            });
+            const data = await res.json();
+            hideLoader();
+
+            if (data.status !== "success") {
+                showError(data.message);
+                return;
+            }
+
+            // Step 2: Enter Code + New Password
+            const { value: resetData, isConfirmed: codeConfirmed } = await Swal.fire({
+                title: 'Enter Recovery Code',
+                html: `
+                    <input id="reset-code" class="my-swal-input" placeholder="Recovery Code">
+                    <div style="position:relative;">
+                        <input id="reset-pass" type="password" class="my-swal-input" placeholder="New Password">
+                        <i class="fa fa-eye my-eye-icon" onclick="toggleSwalPassword('reset-pass', this)"></i>
+                    </div>
+                `,
+                confirmButtonText: 'Change Password',
+                showCancelButton: true,
+                customClass: {
+                    popup: 'my-swal-popup',
+                    title: 'my-swal-title',
+                    confirmButton: 'my-swal-btn',
+                    cancelButton: 'my-swal-cancel-btn',
+                    input: 'my-swal-input-field'
+                },
+                focusConfirm: false,
+                preConfirm: () => {
+                    const code = document.getElementById('reset-code').value;
+                    const password = document.getElementById('reset-pass').value;
+                    if (!code) Swal.showValidationMessage('Recovery code is required');
+                    if (!password) Swal.showValidationMessage('Password is required');
+                    return { code, password };
+                }
+            });
+
+            if (!codeConfirmed) return;
+            showLoader();
+
+            // Step 3: Send code + new password
+            const res2 = await fetch("{% url 'password_reset_confirm' %}", {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": "{{ csrf_token }}",
+                    "X-Requested-With": "XMLHttpRequest"
+                },
+                body: new URLSearchParams({
+                    email,
+                    code: resetData.code,
+                    password: resetData.password
+                })
+            });
+            const resp = await res2.json();
+            hideLoader();
+
+            if (resp.status !== "success") {
+                showError(resp.message);
+                return;
+            }
+
+            Swal.fire({
+                title: 'Success',
+                text: resp.message,
+                icon: 'success',
+                customClass: {
+                    popup: 'my-swal-popup',
+                    title: 'my-swal-title',
+                    confirmButton: 'my-swal-btn'
+                }
+            });
+
+        } catch (err) {
+            hideLoader();
+            showError('Something went wrong. Please try again.');
+        }
+
+    });
+});
+</script>
+
+<style>
+/* Popup container */
+.my-swal-popup {
+    border-radius: 16px !important;
+    padding: 2rem !important;
+    background: #ffffff !important;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
+}
+
+/* Title */
+.my-swal-title {
+    font-size: 22px !important;
+    font-weight: 700 !important;
+    color: #222 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Buttons */
+.my-swal-btn {
+    background-color: #000 !important;
+    color: #fff !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    font-weight: 600 !important;
+    font-size: 14px !important;
+}
+.my-swal-cancel-btn {
+    background-color: #ccc !important;
+    color: #333 !important;
+    border-radius: 8px !important;
+    padding: 10px 20px !important;
+    font-weight: 500 !important;
+}
+
+/* Input fields */
+.my-swal-input, .my-swal-input-field {
+    font-size: 14px !important;
+    padding: 8px 12px !important;
+    border-radius: 8px !important;
+    border: 1px solid #ddd !important;
+    width: 100% !important;
+    box-sizing: border-box;
+    margin-bottom: 10px !important;
+}
+
+/* Eye icon for password */
+.my-eye-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #555;
+    font-size: 16px;
+}
+
+/* Simple modern spinner */
+.custom-loader {
+    border: 4px solid #f3f3f3;      /* Light grey */
+    border-top: 4px solid #000;     /* Black spinner */
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 40px auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* SweetAlert validation messages */
+.swal2-validation-message {
+    font-size: 13px !important;
+    color: #ff3b30 !important;   /* Custom red */
+    margin-top: 4px !important;
+    text-align: center !important;
+}
+</style>
+
+
+</body>
+</html>

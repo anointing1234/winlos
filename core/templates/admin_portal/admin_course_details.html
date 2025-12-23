@@ -1,0 +1,492 @@
+{% extends "../admin_sections/base.html" %}
+{% load static %}
+{% load humanize %}
+
+{% block contents %}
+<div class="dashboard-body">
+
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb mb-24">
+        <ul class="flex-align gap-4">
+            <li><a href="{% url 'home' %}" class="text-gray-200 fw-normal text-15 hover-text-main-600">Home</a></li>
+            <li><span class="text-gray-500 fw-normal d-flex"><i class="ph ph-caret-right"></i></span></li>
+            <li><span class="text-main-600 fw-normal text-15">{{ course.name_of_course }}</span></li>
+        </ul>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <!-- ================== COURSE DETAILS VIEW ================== -->
+    <div id="courseDetailsView" class="row gy-4">
+
+        <!-- Left Column: Course Info -->
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm rounded-16">
+                <div class="card-body p-lg-20 p-sm-3">
+
+                    <!-- Header: Title, Course Type -->
+                    <div class="flex-between flex-wrap gap-16 mb-20">
+                        <div>
+                            <h3 class="mb-4 fw-bold text-dark">{{ course.name_of_course }}</h3>
+                        </div>
+                        <span class="py-6 px-16 bg-main-50 text-main-600 rounded-pill text-15">
+                            {{ course.get_course_type_display }}
+                        </span>
+                    </div>
+
+                    <!-- Course Image -->
+                    <div class="rounded-16 overflow-hidden mb-20">
+                        {% if course.promotion_image %}
+                            <img src="{{ course.promotion_image.url }}" alt="{{ course.name_of_course }}" class="img-fluid rounded-16 w-100" style="max-height: 350px; object-fit: cover;">
+                        {% else %}
+                            <img src="{% static 'images/default_course.jpg' %}" alt="No Image" class="img-fluid rounded-16 w-100" style="max-height: 350px; object-fit: cover;">
+                        {% endif %}
+                    </div>
+
+                     <!-- Course Price -->
+                <div class="mb-24 d-flex align-items-center gap-12">
+                    <span class="text-gray-400 fw-semibold">Price:</span>
+                    {% if course.price > 0 %}
+                        <span class="py-2 px-12 bg-success-50 text-success-700 rounded-pill fw-bold text-16">
+                            ₦{{ course.price|intcomma }}
+                        </span>
+                    {% else %}
+                        <span class="py-2 px-12 bg-warning-50 text-warning-700 rounded-pill fw-bold text-16">
+                            Free
+                        </span>
+                    {% endif %}
+                </div>
+
+                    <!-- Course Details -->
+                    <div class="mb-24 pb-24 border-bottom border-gray-100">
+                        <h5 class="mb-12 fw-bold">About this course</h5>
+                        <p class="text-gray-300 text-15">{{ course.description|default:"No description provided." }}</p>
+                    </div>
+
+                    <!-- Instructor Info -->
+                    <div>
+                        <h5 class="mb-12 fw-bold">Instructor</h5>
+                        <div class="flex-align gap-12 mb-3">
+                            <img 
+                                src="{% if instructor.profile_pic %}{{ instructor.profile_pic.url }}{% else %}{% static 'dash_assets/images/thumbs/course-placeholder.png' %}{% endif %}" 
+                                alt="{{ instructor.get_full_name|default:instructor.username }}" 
+                                class="w-44 h-44 rounded-circle object-fit-cover flex-shrink-0 border border-gray-200"
+                            >
+                            <div>
+                                <h6 class="fw-bold mb-1">{{ instructor.get_full_name|default:instructor.username }}</h6>
+                                <span class="text-13 text-gray-400">{{ instructor.role|default:"Course Instructor" }}</span>
+                            </div>
+                        </div>
+                        {% if instructor.bio %}
+                            <p class="text-gray-400 text-14">{{ instructor.bio }}</p>
+                        {% endif %}
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Lessons + Course Info -->
+        <div class="col-lg-6">
+
+            <!-- Lessons Card -->
+            <div class="card border-0 shadow-sm rounded-16 mb-24">
+                <div class="card-body p-0">
+                    <div class="course-item">
+                        <div class="border-bottom border-gray-100 p-16">
+                            <h5 class="fw-bold mb-2">{{ course.name_of_course }}</h5>
+                            <span class="text-gray-400 text-14">{{ lessons.count }} Lessons | {{ course.total_duration_minutes }} mins</span>
+                        </div>
+                        <div class="course-item-dropdown active border-bottom border-gray-100">
+                            <ul class="course-list p-16 pb-0">
+                                {% for lesson in lessons %}
+                                    <li class="course-list__item flex-align gap-8 mb-16 {% if lesson.completed %}active{% endif %}">
+                                        <span class="circle flex-shrink-0 text-32 d-flex text-gray-100">
+                                            <i class="ph {% if lesson.completed %}ph-check-circle text-main-600{% else %}ph-circle{% endif %}"></i>
+                                        </span>
+                                        <div class="w-100">
+                                            <span class="text-gray-300 fw-medium d-block">
+                                                {{ forloop.counter }}. {{ lesson.title }}
+                                                <span class="text-dark fw-normal d-block text-13">{{ lesson.duration_minutes }} mins</span>
+                                            </span>
+                                        </div>
+                                    </li>
+                                {% empty %}
+                                    <li class="text-gray-400 p-3">No lessons added yet.</li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Course Info Card -->
+            <div class="card border-0 shadow-sm rounded-16">
+                <div class="card-body">
+                    <div class="mb-24 pb-24 border-bottom border-gray-100">
+                        <h5 class="mb-12 fw-bold">Course Details</h5>
+                        <ul class="text-gray-300 text-15 list-unstyled mb-0">
+                            <li class="mb-6"><i class="ph ph-checks text-main-600 me-2"></i> Lessons: {{ course.total_lessons }}</li>
+                            <li class="mb-6"><i class="ph ph-checks text-main-600 me-2"></i> Duration: {{ course.total_duration_minutes }} mins</li>
+                            <li><i class="ph ph-checks text-main-600 me-2"></i> Created on: {{ course.created_at|date:"M d, Y" }}</li>
+                        </ul>
+
+                        {% if request.user == course.created_by or request.user.is_staff %}
+                        <div class="text-end mt-16">
+                            <button id="editCourseBtn" class="btn btn-main rounded-pill px-20 py-8 shadow-sm hover-shadow-lg">
+                                <i class="ph ph-pencil-simple me-2"></i> Edit Course
+                            </button>
+                        </div>
+                        {% endif %}
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ================== EDIT COURSE VIEW ================== -->
+    <div id="courseEditView" class="d-none">
+
+        <form method="POST" enctype="multipart/form-data"
+              action="#"
+              class="card border-0 shadow-sm rounded-16 p-24">
+            {% csrf_token %}
+
+            <!-- STEP INDICATOR -->
+            <div class="d-flex align-items-center gap-12 mb-24">
+                <span class="badge bg-main-600 py-2 px-3">Step <span id="stepNumber">1</span> of 4</span>
+                <span class="text-gray-400">Edit Course Details</span>
+            </div>
+
+            <!-- ================= STEP 1 ================= -->
+            <div class="edit-step" data-step="1">
+                <h5 class="fw-bold mb-16">Basic Information</h5>
+
+                <div class="mb-16">
+                    <label class="form-label fw-semibold">Course Name</label>
+                    <input type="text" name="name_of_course"
+                           class="form-control shadow-sm"
+                           value="{{ course.name_of_course }}" required>
+                </div>
+
+                <div class="mb-16">
+                    <label class="form-label fw-semibold">Course Type</label>
+                    <select name="course_type" class="form-select shadow-sm">
+                        {% for value, label in course.COURSE_TYPES %}
+                            <option value="{{ value }}" {% if course.course_type == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- ================= STEP 2 ================= -->
+            <div class="edit-step d-none" data-step="2">
+                <h5 class="fw-bold mb-16">Description & Pricing</h5>
+
+                <div class="mb-16">
+                    <label class="form-label fw-semibold">Description</label>
+                    <textarea name="description" rows="4" class="form-control shadow-sm">{{ course.description }}</textarea>
+                </div>
+
+                <div class="mb-16">
+                    <label class="form-label fw-semibold">Price (₦)</label>
+                    <input type="number" name="price"
+                           class="form-control shadow-sm"
+                           step="0.01"
+                           value="{{ course.price }}">
+                </div>
+            </div>
+
+            <!-- ================= STEP 3 ================= -->
+            <div class="edit-step d-none" data-step="3">
+                <h5 class="fw-bold mb-16">Promotion Image</h5>
+
+                <div class="mb-16">
+                    <label class="form-label fw-semibold">Upload New Image</label>
+                    <input type="file" name="promotion_image" class="form-control shadow-sm">
+                </div>
+
+                {% if course.promotion_image %}
+                    <img src="{{ course.promotion_image.url }}"
+                         class="rounded-12 mt-12 shadow-sm"
+                         style="max-height:150px;">
+                {% endif %}
+            </div>
+
+            <!-- ================= STEP 4 ================= -->
+            <div class="edit-step d-none" data-step="4">
+                <h5 class="fw-bold mb-16">Lessons</h5>
+
+                <div id="lessonsContainer">
+                    {% for lesson in lessons %}
+                    <div class="lesson-item border p-16 rounded-12 mb-16 shadow-sm" data-lesson-id="{{ lesson.id }}">
+                        <div class="d-flex justify-content-between align-items-center mb-12">
+                            <h6 class="fw-bold mb-0">Lesson {{ forloop.counter }}</h6>
+                            <button type="button" class="btn btn-sm btn-outline-danger removeLessonBtn">
+                                <i class="ph ph-x-circle"></i> Remove
+                            </button>
+                        </div>
+
+                        <div class="mb-12">
+                            <label class="form-label fw-semibold">Title</label>
+                            <input type="text" name="lesson_title_{{ lesson.id }}" class="form-control" value="{{ lesson.title }}" required>
+                        </div>
+
+                        <div class="mb-12">
+                            <label class="form-label fw-semibold">Description</label>
+                            <textarea name="lesson_description_{{ lesson.id }}" rows="2" class="form-control">{{ lesson.description }}</textarea>
+                        </div>
+
+                        <div class="mb-12">
+                            <label class="form-label fw-semibold">Duration (minutes)</label>
+                            <input type="number" name="lesson_duration_{{ lesson.id }}" class="form-control" value="{{ lesson.duration_minutes }}" required>
+                        </div>
+
+                        <div class="mb-12">
+                            <label class="form-label fw-semibold">Video (optional)</label>
+                            <input type="file" name="lesson_video_{{ lesson.id }}" class="form-control">
+                            {% if lesson.video %}
+                                <small class="text-gray-400">Current: {{ lesson.video.name }}</small>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+                <button type="button" id="addLessonBtn" class="btn btn-outline-main rounded-pill px-16 py-6 mt-12">
+                    <i class="ph ph-plus-circle me-2"></i> Add New Lesson
+                </button>
+            </div>
+
+            <!-- ACTION BUTTONS -->
+            <div class="d-flex justify-content-between mt-32">
+                <button type="button" id="prevStep"
+                        class="btn btn-outline-gray rounded-pill px-20"
+                        disabled>
+                    <i class="ph ph-arrow-left me-2"></i> Back
+                </button>
+
+                <div class="d-flex gap-12">
+                    <button type="button" id="closeEditBtn"
+                            class="btn btn-danger rounded-pill px-24">
+                        <i class="ph ph-x-circle me-2"></i> Cancel
+                    </button>
+
+                    <button type="button" id="nextStep"
+                            class="btn btn-main rounded-pill px-24">
+                        Next <i class="ph ph-arrow-right ms-2"></i>
+                    </button>
+
+                    <button type="submit"
+                            id="saveCourseBtn"
+                            class="btn btn-success rounded-pill px-24 d-none shadow-sm">
+                        <i class="ph ph-check-circle me-2"></i> Save Changes
+                    </button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+
+</div>
+
+<script>
+let currentStep = 1;
+const totalSteps = 4;
+
+const detailsView = document.getElementById("courseDetailsView");
+const editView = document.getElementById("courseEditView");
+
+const editBtn = document.getElementById("editCourseBtn");
+const nextBtn = document.getElementById("nextStep");
+const prevBtn = document.getElementById("prevStep");
+const saveBtn = document.getElementById("saveCourseBtn");
+const closeBtn = document.getElementById("closeEditBtn");
+const stepNumber = document.getElementById("stepNumber");
+const steps = document.querySelectorAll(".edit-step");
+
+// Lessons dynamic add/remove
+const lessonsContainer = document.getElementById("lessonsContainer");
+const addLessonBtn = document.getElementById("addLessonBtn");
+let newLessonCounter = 0;
+
+function showStep(step) {
+    steps.forEach(s => s.classList.add("d-none"));
+    document.querySelector(`[data-step="${step}"]`).classList.remove("d-none");
+
+    stepNumber.textContent = step;
+    prevBtn.disabled = step === 1;
+    nextBtn.classList.toggle("d-none", step === totalSteps);
+    saveBtn.classList.toggle("d-none", step !== totalSteps);
+}
+
+editBtn.addEventListener("click", () => {
+    detailsView.classList.add("d-none");
+    editView.classList.remove("d-none");
+    showStep(1);
+});
+
+nextBtn.addEventListener("click", () => {
+    if (currentStep < totalSteps) {
+        currentStep++;
+        showStep(currentStep);
+    }
+});
+
+prevBtn.addEventListener("click", () => {
+    if (currentStep > 1) {
+        currentStep--;
+        showStep(currentStep);
+    }
+});
+
+closeBtn.addEventListener("click", () => {
+    editView.classList.add("d-none");
+    detailsView.classList.remove("d-none");
+    currentStep = 1;
+    showStep(currentStep);
+});
+
+// Add new lesson dynamically
+addLessonBtn.addEventListener("click", () => {
+    newLessonCounter++;
+    const lessonHtml = `
+    <div class="lesson-item border p-16 rounded-12 mb-16 shadow-sm">
+        <div class="d-flex justify-content-between align-items-center mb-12">
+            <h6 class="fw-bold mb-0">New Lesson</h6>
+            <button type="button" class="btn btn-sm btn-outline-danger removeLessonBtn">
+                <i class="ph ph-x-circle"></i> Remove
+            </button>
+        </div>
+
+        <div class="mb-12">
+            <label class="form-label fw-semibold">Title</label>
+            <input type="text" name="new_lesson_title_${newLessonCounter}" class="form-control" required>
+        </div>
+
+        <div class="mb-12">
+            <label class="form-label fw-semibold">Description</label>
+            <textarea name="new_lesson_description_${newLessonCounter}" rows="2" class="form-control"></textarea>
+        </div>
+
+        <div class="mb-12">
+            <label class="form-label fw-semibold">Duration (minutes)</label>
+            <input type="number" name="new_lesson_duration_${newLessonCounter}" class="form-control" required>
+        </div>
+
+        <div class="mb-12">
+            <label class="form-label fw-semibold">Video (optional)</label>
+            <input type="file" name="new_lesson_video_${newLessonCounter}" class="form-control">
+        </div>
+    </div>
+    `;
+    lessonsContainer.insertAdjacentHTML("beforeend", lessonHtml);
+});
+
+// Remove lesson dynamically
+lessonsContainer.addEventListener("click", function(e){
+    if(e.target.closest(".removeLessonBtn")){
+        const lessonItem = e.target.closest(".lesson-item");
+        lessonItem.remove();
+    }
+});
+</script>
+
+
+
+
+<!-- Toast Container -->
+<div id="toastContainer" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+
+<style>
+/* ---------- BASE MESSAGE ---------- */
+.msg {
+    background: #fefefe;
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 12px 18px;
+    border-top: solid 3px #ccc;
+    border-radius: 6px;
+    box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 0.4s ease;
+}
+
+/* COLOR TYPES */
+.msg-info { border-color: #b8dbf2; color: #39b3d7; }
+.msg-success { border-color: #cef2b8; color: #80d651; }
+.msg-warning { border-color: rgba(255,165,0,.5); color: #db9e34; }
+.msg-danger { border-color: #ec8282; color: #c9302c; }
+.msg-primary { border-color: #9ca6f1; color: rgba(47,106,215,.9); }
+.msg-magick { border-color: #e0b8f2; color: #bb39d7; }
+</style>
+
+<script>
+// ---------- Toast function ----------
+function showToast(message, type="info", duration=4000){
+    const container = document.getElementById("toastContainer");
+    const toast = document.createElement("div");
+    toast.className = `msg msg-${type}`;
+    toast.textContent = message;
+    container.appendChild(toast);
+
+    // Animate in
+    setTimeout(() => {
+        toast.style.opacity = 1;
+        toast.style.transform = "translateX(0)";
+    }, 50);
+
+    // Remove after duration
+    setTimeout(() => {
+        toast.style.opacity = 0;
+        toast.style.transform = "translateX(50px)";
+        setTimeout(() => toast.remove(), 400);
+    }, duration);
+}
+
+// ---------- AJAX Form Submission ----------
+const editForm = document.querySelector("#courseEditView form");
+
+editForm.addEventListener("submit", function(e){
+    e.preventDefault();
+
+    const formData = new FormData(editForm);
+
+    fetch("{% url 'ajax_update_course' course.id %}", {
+        method: "POST",
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+        },
+        body: formData
+    })
+    .then(res => res.json())
+    .then(data => {
+        console.log("[DEV]", data);
+
+        if(data.status === "success"){
+            showToast(data.message, "success");
+            setTimeout(() => location.reload(), 1500); // Refresh after toast
+        } else {
+            showToast(data.message, "danger");
+        }
+    })
+    .catch(err => {
+        console.error("[DEV] AJAX error:", err);
+        showToast("An unexpected error occurred. Check console.", "warning");
+    });
+});
+</script>
+
+
+
+
+{% endblock contents %}

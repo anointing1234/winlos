@@ -1,0 +1,179 @@
+{% extends "../admin_sections/base.html" %}
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+
+
+
+
+<div class="dashboard-body">
+    <!-- Breadcrumb Start -->
+    <div class="breadcrumb mb-24">
+        <ul class="flex-align gap-4">
+            <li><a href="index.html" class="text-gray-200 fw-normal text-15 hover-text-main-600">Home</a></li>
+            <li> <span class="text-gray-500 fw-normal d-flex"><i class="ph ph-caret-right"></i></span> </li>
+            <li><span class="text-dark fw-bold fw-normal text-15 ">Online Courses</span></li>
+        </ul>
+    </div>
+    <!-- Breadcrumb End -->
+
+    <div class="row g-20">
+        {% for course in courses %}
+        <div class="col-xxl-3 col-lg-4 col-sm-6">
+            <div class="card border shadow border-gray-100">
+                <div class="card-body p-8">
+                    <a href="{% url 'admin_course_details' course.id %}" 
+                       class="bg-main-100 rounded-8 overflow-hidden text-center mb-8 h-164 flex-center p-8">
+                        {% if course.promotion_image %}
+                            <img src="{{ course.promotion_image.url }}" alt="{{ course.name_of_course }}">
+                        {% else %}
+                            <img src="{% static 'dash_assets/images/thumbs/default-course.png' %}" alt="Default Course Image">
+                        {% endif %}
+                    </a>
+                    <div class="p-8">
+                        <span class="text-13 py-2 px-10 rounded-pill bg-success-50 text-success-600 mb-16">
+                            {{ course.get_course_type_display }}
+                        </span>
+                        <h5 class="mb-0">
+                            <a href="{% url 'admin_course_details' course.id %}" class="hover-text-main-600">
+                                {{ course.name_of_course }}
+                            </a>
+                        </h5>
+
+                        <div class="flex-align gap-8 flex-wrap mt-16">
+                            {% if course.created_by.profile_pic %}
+                                <img src="{{ course.created_by.profile_pic.url }}" 
+                                     class="w-28 h-28 rounded-circle object-fit-cover" alt="{{ course.created_by.get_full_name }}">
+                            {% else %}
+                                <img src="{% static 'dash_assets/images/thumbs/course-placeholder.png' %}" 
+                                     class="w-28 h-28 rounded-circle object-fit-cover" alt="Default User">
+                            {% endif %}
+                            <div>
+                                <span class="text-gray-600 text-13">
+                                    Created by 
+                                    <a href="#" 
+                                       class="fw-semibold text-gray-700 hover-text-main-600 hover-text-decoration-underline">
+                                        {{ course.created_by.get_full_name|default:course.created_by.username }}
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="flex-align gap-8 mt-12 pt-12 border-top border-gray-100">
+                            <div class="flex-align gap-4">
+                                <span class="text-sm text-main-600 d-flex"><i class="ph ph-video-camera"></i></span>
+                                <span class="text-13 text-gray-600">{{ course.total_lessons }} Lessons</span>
+                            </div>
+                            <div class="flex-align gap-4">
+                                <span class="text-sm text-main-600 d-flex"><i class="ph ph-clock"></i></span>
+                                <span class="text-13 text-gray-600">  {{ course.total_duration_minutes }} Minutes</span>
+                            </div>
+                        </div>
+
+                        <div class="flex-between gap-4 flex-wrap mt-24">
+                            <a href="{% url 'admin_course_details' course.id %}" 
+                            class="btn btn-outline-main rounded-pill py-9">
+                                View Details
+                            </a>
+
+
+                        <!-- Delete Course Form -->
+                        <form class="delete-course-form" data-course-id="{{ course.id }}">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-danger rounded-pill py-9">
+                                Delete
+                            </button>
+                        </form>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {% empty %}
+        <div class="col-12 text-center mt-24">
+            <img style="max-width:300px;" src="{% static 'dash_assets/images/dash_images/admin_courses_unavailable.png' %}" alt="No Courses Available">
+            <div class="mt-16">
+                <a href="{% url 'create_course_page' %}" 
+                   class="btn btn-main rounded-pill py-12 px-24 text-white fw-semibold hover-shadow-lg">
+                    Create Your First Course
+                </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+
+
+</div>
+
+
+<!-- Toastify CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+<!-- Toastify JS -->
+<script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+    const forms = document.querySelectorAll(".delete-course-form");
+    forms.forEach(form => {
+        form.addEventListener("submit", function(e) {
+            e.preventDefault();
+            const courseId = form.dataset.courseId;
+            const csrftoken = form.querySelector("[name=csrfmiddlewaretoken]").value;
+
+            fetch(`/courses/delete/${courseId}/`, {
+                method: "POST",
+                headers: {
+                    "X-CSRFToken": csrftoken,
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === "success") {
+                    Toastify({
+                        text: "Course deleted successfully",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "#16a34a",
+                    }).showToast();
+
+                                // Reload the page after the toast duration
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1500); // reload after 1.5s so user sees the toast
+
+                    // Remove the course card from DOM
+                    form.closest(".col-xxl-3").remove();
+                } else {
+                    Toastify({
+                        text: data.message || "Deletion failed",
+                        duration: 3000,
+                        gravity: "top",
+                        position: "right",
+                        backgroundColor: "#dc2626",
+                    }).showToast();
+                }
+            })
+            .catch(err => {
+                Toastify({
+                    text: "Network error: " + err.message,
+                    duration: 3000,
+                    gravity: "top",
+                    position: "right",
+                    backgroundColor: "#dc2626",
+                }).showToast();
+            });
+        });
+    });
+});
+</script>
+
+
+{% endblock contents %}

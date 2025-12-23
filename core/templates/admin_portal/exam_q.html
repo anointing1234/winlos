@@ -1,0 +1,415 @@
+{% extends "../admin_sections/base.html" %} 
+{% load static %}
+{% load humanize %}
+{% block contents %}
+
+
+
+<style> 
+    
+
+    
+/* ---------- BASE MESSAGE (your original) ---------- */
+.msg {
+    background: #fefefe;
+    color: #666;
+    font-weight: bold;
+    font-size: 14px;
+    padding: 12px 18px;
+    border-top: solid 3px #ccc;
+    border-radius: 6px;
+    box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* COLOR TYPES */
+.msg-info { border-color: #b8dbf2; color: #39b3d7; }
+.msg-success { border-color: #cef2b8; color: #80d651; }
+.msg-warning { border-color: rgba(255,165,0,.5); color: #db9e34; }
+.msg-danger { border-color: #ec8282; color: #c9302c; }
+.msg-primary { border-color: #9ca6f1; color: rgba(47,106,215,.9); }
+.msg-magick { border-color: #e0b8f2; color: #bb39d7; }
+
+
+/* Style question and option items */
+.question-item {
+    background: #f9f9f9;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+}
+
+.option-item {
+    background: #fff;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 8px;
+}
+
+/* Buttons always visible */
+.option-item button,
+.question-item button {
+    display: inline-block;
+}
+
+/* Make option inputs and buttons spaced nicely */
+.option-item input[type="text"] {
+    flex: 1;
+}
+
+.addOption, .removeQuestion, .removeOption {
+    margin-left: 5px;
+}
+
+
+/* Make Add/Remove buttons always visible and properly colored */
+.addOption,
+.removeQuestion,
+.removeOption {
+    color: #ffffffff !important;           /* Text color */
+    background-color: #000000ff !important; /* Light background */
+    border: 1px solid #ccc !important;   /* Visible border */
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+/* Hover effect for better UX */
+.addOption:hover,
+.removeQuestion:hover,
+.removeOption:hover {
+    background-color: #6b581aff !important;
+    color: #000 !important;
+}
+
+</style>
+
+
+<div class="dashboard-body">
+
+    <!-- Spinner Overlay -->
+<div id="spinnerOverlay" class="d-none position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" 
+     style="background: rgba(0,0,0,0.3); z-index: 1050;">
+    <div class="spinner-border text-primary" role="status" style="width: 4rem; height: 4rem;">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-with-buttons mb-24 flex-between flex-wrap gap-8">
+        <div class="breadcrumb mb-24">
+            <ul class="flex-align gap-4">
+                <li><a href="{% url 'Admin_dashboard' %}" class="text-gray-200 fw-normal text-15 hover-text-main-600">Home</a></li>
+                <li><span class="text-gray-500 fw-normal d-flex"><i class="ph ph-caret-right"></i></span></li>
+                <li><span class="text-main-600 fw-normal text-15">Create Exam</span></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Step Progress --> 
+    <ul class="step-list mb-24" id="stepList">
+        <li class="step-list__item py-15 px-24 text-15 text-heading fw-medium flex-center gap-6 active" data-step="1">
+            <span class="icon text-xl d-flex"><i class="ph-fill ph-check-circle text-main-600"></i></span>
+            Exam Details
+            <span class="line position-relative"></span>
+        </li>
+        <li class="step-list__item py-15 px-24 text-15 text-heading fw-medium flex-center gap-6" data-step="2">
+            <span class="icon text-xl d-flex"><i class="ph ph-circle"></i></span>
+            Questions & Answers
+        </li>
+    </ul>
+
+    <!-- ====================== STEP 1 – EXAM INFO ====================== -->
+    <div class="card step-card" id="step-1">
+        <div class="card-header border-bottom border-gray-100 flex-align gap-8">
+            <h5 class="mb-0">Exam Information</h5>
+        </div>
+        <div class="card-body">
+            <form id="examForm">
+                {% csrf_token %}
+                <div class="row gy-20">
+                    <div class="col-sm-6">
+                        <label for="examTitle" class="h5 mb-8 fw-semibold font-heading">Exam Title <span class="text-13 text-gray-400 fw-medium">(Required)</span></label>
+                        <input type="text" id="examTitle" class="form-control py-11" placeholder="e.g., Cinematography Basics Exam" required>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <label for="examCourse" class="h5 mb-8 fw-semibold font-heading">Select Course <span class="text-13 text-gray-400 fw-medium">(Required)</span></label>
+                        <select id="examCourse" class="form-select py-9" required>
+                            <option value="" disabled selected>Select a course</option>
+                            {% for course in courses %}
+                                <option value="{{ course.id }}">{{ course.name_of_course }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label for="duration" class="h5 mb-8 fw-semibold font-heading">Duration (minutes)</label>
+                        <input type="number" id="duration" class="form-control py-9" min="1" value="20">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label for="totalMarks" class="h5 mb-8 fw-semibold font-heading">Total Marks</label>
+                        <input type="number" id="totalMarks" class="form-control py-9" min="1" value="100">
+                    </div>
+
+                    <div class="col-sm-4">
+                        <label for="passMark" class="h5 mb-8 fw-semibold font-heading">Pass Mark</label>
+                        <input type="number" id="passMark" class="form-control py-9" min="1" value="50">
+                    </div>
+
+                    <div class="col-sm-12">
+                        <label for="examDescription" class="h5 mb-8 fw-semibold font-heading">Description (Optional)</label>
+                        <textarea id="examDescription" class="form-control" rows="4" placeholder="Add details about the exam..."></textarea>
+                    </div>
+                </div>
+
+                <div class="flex-align justify-content-end gap-8 mt-20">
+                    <button type="button" id="next1" class="btn btn-main rounded-pill py-9">Continue to Questions</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- ====================== STEP 2 – QUESTIONS & ANSWERS ====================== -->
+    <div class="card step-card d-none" id="step-2">
+        <div class="card-header border-bottom border-gray-100 flex-align gap-8">
+            <h5 class="mb-0">Add Questions & Answers</h5>
+        </div>
+        <div class="card-body">
+            <div id="questionsContainer"></div>
+
+            <div class="mt-20 text-end">
+                <button type="button" class="btn btn-outline-main rounded-pill py-9" id="addQuestion">+ Add Question</button>
+            </div>
+
+            <div class="flex-align justify-content-between gap-8 mt-20">
+                <button type="button" id="back2" class="btn btn-outline-main rounded-pill py-9">Back</button>
+                <button type="button" id="publishExamBtn" class="btn btn-main rounded-pill py-9">Create Exam</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!-- ====================== Toast Container ====================== -->
+<div id="toastContainer" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+
+
+<!-- ====================== JS ====================== -->
+<script>
+// ---------- Get CSRF token ----------
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    console.log('CSRF Token:', cookieValue);
+    return cookieValue;
+}
+const csrftoken = getCookie('csrftoken');
+
+// ---------- Spinner helpers ----------
+function showSpinner() {
+    document.getElementById('spinnerOverlay').classList.remove('d-none');
+    console.log('Spinner shown');
+}
+
+function hideSpinner() {
+    document.getElementById('spinnerOverlay').classList.add('d-none');
+    console.log('Spinner hidden');
+}
+
+// ---------- DOMContentLoaded ----------
+document.addEventListener('DOMContentLoaded', () => {
+    const steps = document.querySelectorAll('.step-card');
+    const stepListItems = document.querySelectorAll('.step-list__item');
+    const questionsContainer = document.getElementById('questionsContainer');
+    let currentStep = 1;
+
+    // ---------- Toast ----------
+    function showToast(type, message, duration = 3000) {
+        console.log('Toast:', type, message);
+        const container = document.getElementById('toastContainer');
+        const toast = document.createElement('div');
+        toast.className = `msg msg-${type}`;
+        toast.textContent = message;
+        container.appendChild(toast);
+        setTimeout(() => {
+            toast.style.opacity = '0';
+            toast.style.transition = 'opacity 0.5s ease';
+            setTimeout(() => toast.remove(), 500);
+        }, duration);
+    }
+
+    // ---------- Step Navigation ----------
+    function showStep(step) {
+        showSpinner(); // Show spinner on step change
+        setTimeout(() => {
+            steps.forEach(s => s.classList.add('d-none'));
+            document.getElementById(`step-${step}`).classList.remove('d-none');
+
+            stepListItems.forEach(item => {
+                item.classList.remove('active');
+                const icon = item.querySelector('i');
+                if (parseInt(item.dataset.step) < step) {
+                    icon.className = 'ph-fill ph-check-circle text-main-600';
+                } else if (parseInt(item.dataset.step) === step) {
+                    item.classList.add('active');
+                    icon.className = 'ph ph-circle';
+                } else {
+                    icon.className = 'ph ph-circle';
+                }
+            });
+
+            currentStep = step;
+            console.log('Current Step:', currentStep);
+            hideSpinner(); // Hide spinner after step switch
+        }, 200); // small delay for UX effect
+    }
+
+    document.getElementById('next1').addEventListener('click', () => {
+        if (!examTitle.value.trim() || !examCourse.value) {
+            showToast('danger', 'Exam title and course are required.');
+            return;
+        }
+        showStep(2);
+    });
+
+    document.getElementById('back2').addEventListener('click', () => showStep(1));
+
+    // ---------- Add Questions ----------
+    document.getElementById('addQuestion').addEventListener('click', () => {
+        showSpinner();
+        setTimeout(() => {
+            const qIndex = questionsContainer.children.length + 1;
+            console.log('Adding Question', qIndex);
+
+            const questionDiv = document.createElement('div');
+            questionDiv.classList.add('question-item');
+            questionDiv.innerHTML = `
+                <label class="h6">Question ${qIndex}</label>
+                <textarea class="form-control mb-2 question-text" rows="2" placeholder="Enter question text..." required></textarea>
+                <div class="options-container mb-2"></div>
+                <button type="button" class="btn btn-sm btn-outline-primary addOption mb-2">+ Add Option</button>
+                <button type="button" class="btn btn-sm btn-outline-danger removeQuestion">Remove Question</button>
+            `;
+            questionsContainer.appendChild(questionDiv);
+
+            const optionsContainer = questionDiv.querySelector('.options-container');
+
+            // Add Option
+            questionDiv.querySelector('.addOption').addEventListener('click', () => {
+                showSpinner();
+                setTimeout(() => {
+                    const optionIndex = optionsContainer.children.length + 1;
+                    console.log(`Adding Option ${optionIndex} to Question ${qIndex}`);
+                    const optionDiv = document.createElement('div');
+                    optionDiv.classList.add('option-item', 'd-flex', 'align-items-center', 'gap-2');
+                    optionDiv.innerHTML = `
+                        <input type="text" class="form-control option-text" placeholder="Option ${optionIndex}" required>
+                        <label class="d-flex align-items-center gap-1">
+                            <input type="checkbox" class="is-correct"> Correct
+                        </label>
+                        <button type="button" class="btn btn-sm btn-outline-danger removeOption">Remove</button>
+                    `;
+                    optionsContainer.appendChild(optionDiv);
+                    optionDiv.querySelector('.removeOption').addEventListener('click', () => optionDiv.remove());
+                    hideSpinner();
+                }, 100);
+            });
+
+            // Remove Question
+            questionDiv.querySelector('.removeQuestion').addEventListener('click', () => {
+                console.log('Removing Question', qIndex);
+                questionDiv.remove();
+            });
+
+            hideSpinner();
+        }, 100);
+    });
+
+    // ---------- Publish Exam ----------
+    document.getElementById('publishExamBtn').addEventListener('click', async () => {
+        const formData = new FormData();
+        formData.append('title', examTitle.value);
+        formData.append('course', examCourse.value);
+        formData.append('description', examDescription.value);
+        formData.append('duration_minutes', duration.value);
+        formData.append('total_marks', totalMarks.value);
+        formData.append('pass_mark', passMark.value);
+
+        const questions = document.querySelectorAll('.question-item');
+        if (questions.length === 0) {
+            showToast('warning', 'Add at least one question.');
+            return;
+        }
+
+        let hasEmptyOption = false;
+        questions.forEach((q, i) => {
+            formData.append(`questions[${i}][question_text]`, q.querySelector('.question-text').value);
+            const options = q.querySelectorAll('.option-item');
+            if (options.length === 0) {
+                showToast('warning', `Question ${i+1} needs at least one option.`);
+                hasEmptyOption = true;
+                return;
+            }
+            options.forEach((opt, j) => {
+                formData.append(`questions[${i}][options][${j}][option_text]`, opt.querySelector('.option-text').value);
+                formData.append(`questions[${i}][options][${j}][is_correct]`, opt.querySelector('.is-correct').checked);
+            });
+        });
+        if (hasEmptyOption) return;
+
+        try {
+            showSpinner();
+            console.log('Submitting Form to:', "{% url 'create_exam_api' %}");
+            const response = await fetch("{% url 'create_exam_api' %}", {
+                method: 'POST',
+                headers: { 'X-CSRFToken': csrftoken },
+                body: formData
+            });
+
+            console.log('Raw Response:', response);
+            const data = await response.json();
+            console.log('Response Data:', data);
+
+            if (data.success) {
+                showToast('success', 'Exam created successfully!');
+                setTimeout(() => window.location.href = "{% url 'Admin_exams' %}", 1500);
+            } else {
+                showToast('danger', data.message || 'Error creating exam');
+            }
+        } catch (err) {
+            console.error('Fetch Error:', err);
+            showToast('danger', 'Network error');
+        } finally {
+            hideSpinner();
+        }
+    });
+
+});
+</script>
+
+
+
+{% endblock contents %}

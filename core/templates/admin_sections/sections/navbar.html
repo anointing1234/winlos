@@ -1,0 +1,118 @@
+{% load static %}
+<!-- ============================ Sidebar Start ============================ -->
+<aside class="sidebar">
+    <!-- Sidebar Close Button -->
+    <button type="button" class="sidebar-close-btn text-gray-500 hover-text-white hover-bg-main-600 text-md w-24 h-24 border border-gray-100 hover-border-main-600 d-xl-none d-flex flex-center rounded-circle position-absolute">
+        <i class="ph ph-x"></i>
+    </button>
+
+    <!-- Logo -->
+ <!-- Logo -->
+<a href="{% url 'Admin_dashboard' %}"
+   class="sidebar__logo d-flex justify-content-center align-items-center
+          p-20 position-sticky top-0 bg-gray w-100 z-3">
+
+    <img src="{% static 'assets/img/logo/winlos_logo.png' %}"
+         alt="The Winlos Academy"
+         style="max-width: 90px; height: auto;">
+</a>
+
+
+    <div class="sidebar-menu-wrapper overflow-y-auto scroll-sm">
+        <div class="p-20 pt-10">
+            <ul class="sidebar-menu">
+
+                <!-- Dashboard -->
+                <li class="sidebar-menu__item {% if request.resolver_match.url_name == 'Admin_dashboard' %}activePage{% endif %}">
+                    <a href="{% url 'Admin_dashboard' %}" class="sidebar-menu__link">
+                        <span class="icon"><i class="ph ph-gauge"></i></span>
+                        <span class="text">Admin Dashboard</span>
+                    </a>
+                </li>
+
+                <!-- Courses -->
+                <li class="sidebar-menu__item {% if request.resolver_match.url_name == 'Admin_courses' %}activePage{% endif %}">
+                    <a href="{% url 'Admin_courses' %}" class="sidebar-menu__link">
+                        <span class="icon"><i class="ph ph-graduation-cap"></i></span>
+                        <span class="text">Courses</span>
+                    </a> 
+                </li>
+
+                <!-- Create a Course -->
+                <li class="sidebar-menu__item {% if request.resolver_match.url_name == 'create_course_page' %}activePage{% endif %}">
+                    <a href="{% url 'create_course_page' %}" class="sidebar-menu__link">
+                        <span class="icon"><i class="ph ph-plus-circle"></i></span>
+                        <span class="text">Create a Course</span>
+                    </a>
+                </li>
+
+
+                <!-- Sidebar Menu Item: Create Exam Questions -->
+                <li class="sidebar-menu__item {% if request.resolver_match.url_name == 'Admin_exams' %}activePage{% endif %}">
+                    <a href="{% url 'Admin_exams' %}" class="sidebar-menu__link">
+                        <span class="icon">
+                            <!-- Updated icon: ph-pencil-simple for creating/editing -->
+                            <i class="ph ph-pencil-simple" aria-hidden="true"></i>
+                        </span>
+                        <span class="text">Exam Questions</span>
+                    </a>
+                </li>
+
+
+
+                
+
+                <!-- Sidebar Menu Item: Create Exam Questions -->
+                <li class="sidebar-menu__item {% if request.resolver_match.url_name == 'create_exam_questions' %}activePage{% endif %}">
+                    <a href="{% url 'create_exam_questions' %}" class="sidebar-menu__link">
+                        <span class="icon">
+                            <i class="ph ph-plus-circle" aria-hidden="true"></i>
+                        </span>
+                        <span class="text">Create Exam Questions</span>
+                    </a>
+                </li>
+
+
+                <!-- Divider -->
+                <li class="sidebar-menu__item">
+                    <span class="text-gray-300 text-sm px-20 pt-20 fw-semibold border-top border-gray-100 d-block text-uppercase">Settings</span>
+                </li>
+
+                <!-- Profile Settings -->
+                <li class="sidebar-menu__item {% if request.resolver_match.url_name == 'admin_profile' %}activePage{% endif %}">
+                    <a href="{% url 'admin_profile' %}" class="sidebar-menu__link">
+                        <span class="icon"><i class="ph ph-user-circle-gear"></i></span>
+                        <span class="text">Profile Settings</span>
+                    </a>
+                </li>
+
+                <!-- Create a new admin -->
+<li class="sidebar-menu__item">
+    <a href="{% url 'Admin_access' %}" class="sidebar-menu__link text-dark hover-text-success-600">
+        <span class="icon"><i class="ph ph-user-plus"></i></span>
+        <span class="text">Create a new admin</span>
+    </a>
+</li>
+
+                <!-- Logout -->
+                <li class="sidebar-menu__item">
+                    <a href="{% url 'Admin_logout' %}" class="sidebar-menu__link text-danger hover-text-danger-600">
+                        <span class="icon"><i class="ph ph-sign-out"></i></span>
+                        <span class="text">Logout</span>
+                    </a>
+                </li>
+
+            </ul>
+
+            <!-- Sidebar Bottom Card -->
+            <div class="p-20 pt-5">
+                <div class="bg-main-50 p-20 pt-0 rounded-16 text-center mt-74">
+                    <span class="border border-5 bg-white mx-auto border-primary-50 w-114 h-114 rounded-circle flex-center text-success-600 text-2xl translate-n74">
+                        <img src="{% static 'dash_assets/images/icons/certificate.png' %}" alt="Certificate" class="centerised-img">
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</aside>
+<!-- ============================ Sidebar End ============================ -->
