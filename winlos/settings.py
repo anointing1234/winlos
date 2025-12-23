@@ -220,8 +220,8 @@ STATICFILES_DIRS = [
     BASE_DIR / "core" / "static",
 ]
 # Use the Custom Domain for the URLs
-STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
-MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+STATIC_URL = f"{AWS_S3_CUSTOM_DOMAIN}/static/"
+MEDIA_URL = f"{AWS_S3_CUSTOM_DOMAIN}/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
