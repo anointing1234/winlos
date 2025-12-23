@@ -181,48 +181,49 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.2/howto/static-files/
 
-
 # --------------------------------------------------
 # STATIC & MEDIA (CLOUDFLARE R2)
 # --------------------------------------------------
 
-AWS_ACCESS_KEY_ID = env("CLOUDFLARE_R2_ACCESS_KEY")
-AWS_SECRET_ACCESS_KEY = env("CLOUDFLARE_R2_SECRET_KEY")
-AWS_STORAGE_BUCKET_NAME = env("CLOUDFLARE_R2_BUCKET_NAME")
-AWS_S3_ENDPOINT_URL = env("CLOUDFLARE_R2_ENDPOINT_URL")
+# Use R2 only when NOT in Debug mode (Production)
+if not DEBUG:
+    AWS_ACCESS_KEY_ID = env("CLOUDFLARE_R2_ACCESS_KEY")
+    AWS_SECRET_ACCESS_KEY = env("CLOUDFLARE_R2_SECRET_KEY")
+    AWS_STORAGE_BUCKET_NAME = env("CLOUDFLARE_R2_BUCKET_NAME")
+    AWS_S3_ENDPOINT_URL = env("CLOUDFLARE_R2_ENDPOINT_URL")
+    AWS_S3_CUSTOM_DOMAIN = env("CLOUDFLARE_R2_PUBLIC_URL_DOMAIN") 
 
-AWS_S3_REGION_NAME = "auto"
-AWS_S3_SIGNATURE_VERSION = "s3v4"
-AWS_DEFAULT_ACL = None
-AWS_QUERYSTRING_AUTH = False
+    AWS_S3_REGION_NAME = "auto"
+    AWS_S3_SIGNATURE_VERSION = "s3v4"
+    AWS_DEFAULT_ACL = None
+    AWS_QUERYSTRING_AUTH = False
 
-AWS_S3_OBJECT_PARAMETERS = {
-    "CacheControl": "max-age=31536000",
-}
-
-STORAGES = {
-    "default": {
-        "BACKEND": "storages.backends.s3.S3Storage",
-        "OPTIONS": {
-            "location": "media",
+    STORAGES = {
+        "default": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {"location": "media"},
         },
-    },
-    "staticfiles": {
-        "BACKEND": "storages.backends.s3.S3Storage",
-        "OPTIONS": {
-            "location": "static",
+        "staticfiles": {
+            "BACKEND": "storages.backends.s3.S3Storage",
+            "OPTIONS": {"location": "static"},
         },
-    },
-}
+    }
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+else:
+    # Local Development Settings
+    STATIC_URL = "static/"
+    STATIC_ROOT = BASE_DIR / "staticfiles"
+    MEDIA_URL = "media/"
+    MEDIA_ROOT = BASE_DIR / "media"
 
-# 🔴 THIS WAS MISSING
+# This stays outside the IF block
 STATICFILES_DIRS = [
     BASE_DIR / "core" / "static",
 ]
-
-STATIC_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/static/"
-MEDIA_URL = f"{AWS_S3_ENDPOINT_URL}/{AWS_STORAGE_BUCKET_NAME}/media/"
-
+# Use the Custom Domain for the URLs
+STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
