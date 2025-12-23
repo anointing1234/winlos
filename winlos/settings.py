@@ -25,7 +25,8 @@ from redis.exceptions import ConnectionError as RedisConnectionError
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env()
 
-environ.Env.read_env(os.path.join(BASE_DIR,'file.env'))
+environ.Env.read_env()
+
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
@@ -278,7 +279,6 @@ if not DEBUG:
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
     X_FRAME_OPTIONS = "DENY"
-
 
 
 
