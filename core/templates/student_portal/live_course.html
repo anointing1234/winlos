@@ -623,17 +623,6 @@
 
         <!-- MAIN SECTION -->
         <div style="margin-top:25px;" class="w-100">
-
-            
-            <!-- LESSON TITLE -->
-            <div class="px-40 py-32 bg-white rounded-10 shadow mb-24 d-flex justify-content-between align-items-center flex-wrap">
-                <div>
-                    <h3 class="text-20 fw-semibold text-neutral-800 mb-4">{{ course.name_of_course }}</h3>
-                    <p class="text-neutral-600 text-14">{{ lesson.title|title }}</p>
-                </div>
-                <a href="{% url 'dashboard' %}" class="theme-btn">← Back to Dashboard</a>
-            </div>
-
             {% if all_lessons %}
                 <!-- LESSON TITLE -->
                 <div class="px-40 py-32 bg-white rounded-10 shadow mb-24 d-flex justify-content-between align-items-center flex-wrap">
@@ -774,9 +763,8 @@
             </span>
         </a>
     {% else %}
-        <a id="take-exam-btn" href="#" class="exam-action-btn btn-success">
-            <i class="ph-bold ph-notepad"></i><span>Take Exam</span>
-        </a>
+    
+    
     {% endif %}
 
     <!-- ALWAYS show "View Certificate" button -->
