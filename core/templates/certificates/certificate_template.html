@@ -186,7 +186,6 @@
     .certificate-wrapper { margin: 0; padding: 0; max-width: 100%; }
   }
 
-
   
 </style>
 </head>
@@ -244,146 +243,80 @@
 </div>
 
 <script>
-  // Generate PDF using html2pdf with reliable settings
+  // Generate PDF using html2pdf with proper landscape A4 settings
   function downloadPDF() {
-    const wrapper = document.querySelector('.certificate-wrapper');
-    if (!wrapper) {
-      alert('Certificate content not found.');
-      return;
-    }
-
-    // Save original inline styles
-    const originalStyles = {
-      display: wrapper.style.display,
-      position: wrapper.style.position,
-      left: wrapper.style.left,
-      top: wrapper.style.top,
-      visibility: wrapper.style.visibility
-    };
-
-    // Make element renderable off-screen without forcing a huge width
-    wrapper.style.display = 'block';
-    wrapper.style.position = 'absolute';
-    wrapper.style.left = '-9999px';
-    wrapper.style.top = '-9999px';
-    wrapper.style.visibility = 'hidden';
-
+    const element = document.getElementById('certificate');
+    
     const opt = {
       margin: 0,
       filename: 'certificate.pdf',
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: {
-        scale: 2,                    // Reduced from 3 → safe & sharp
+      html2canvas: { 
+        scale: 3,
         useCORS: true,
         letterRendering: true,
-        logging: false,
-        scrollX: 0,
-        scrollY: -window.scrollY,
-        windowWidth: 1200,           // Ensures consistent layout (ignores mobile viewport)
-        backgroundColor: '#f0f2f5'   // Matches your page background
+        logging: false
       },
-      jsPDF: {
-        unit: 'mm',
-        format: 'a4',
+      jsPDF: { 
+        unit: 'mm', 
+        format: 'a4', 
         orientation: 'landscape',
         compress: true
       },
       pagebreak: { mode: 'avoid-all' }
     };
-
-    html2pdf()
-      .set(opt)
-      .from(wrapper)
-      .save()
-      .then(() => {
-        // Restore original styles
-        Object.assign(wrapper.style, originalStyles);
-      })
-      .catch(err => {
-        console.error('PDF generation error:', err);
-        Object.assign(wrapper.style, originalStyles);
-        alert('Failed to generate PDF. Check console for details.');
-      });
+    
+    html2pdf().set(opt).from(element).save();
   }
 
-  // Updated viewPDF function (same improvements applied)
   function viewPDF() {
-    const wrapper = document.querySelector('.certificate-wrapper');
-    if (!wrapper) {
-      alert('Certificate content not found.');
-      return;
-    }
-
-    const originalStyles = {
-      display: wrapper.style.display,
-      position: wrapper.style.position,
-      left: wrapper.style.left,
-      top: wrapper.style.top,
-      visibility: wrapper.style.visibility
-    };
-
-    wrapper.style.display = 'block';
-    wrapper.style.position = 'absolute';
-    wrapper.style.left = '-9999px';
-    wrapper.style.top = '-9999px';
-    wrapper.style.visibility = 'hidden';
-
+    const element = document.getElementById('certificate');
+    
     const opt = {
       margin: 0,
       filename: 'certificate.pdf',
       image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: {
-        scale: 2,
+      html2canvas: { 
+        scale: 3,
         useCORS: true,
         letterRendering: true,
-        logging: false,
-        windowWidth: 1200,
-        backgroundColor: '#f0f2f5'
+        logging: false
       },
-      jsPDF: {
-        unit: 'mm',
-        format: 'a4',
+      jsPDF: { 
+        unit: 'mm', 
+        format: 'a4', 
         orientation: 'landscape',
         compress: true
-      }
+      },
+      pagebreak: { mode: 'avoid-all' }
     };
-
-    html2pdf()
-      .set(opt)
-      .from(wrapper)
-      .output('blob')
-      .then(pdfBlob => {
-        // Restore styles immediately
-        Object.assign(wrapper.style, originalStyles);
-
-        const pdfUrl = URL.createObjectURL(pdfBlob);
-        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
-
-        if (isMobile) {
-          const newWindow = window.open('', '_blank');
-          newWindow.document.write(`
-            <!DOCTYPE html>
-            <html>
-            <head>
-              <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-              <style>
-                body { margin:0; padding:0; display:flex; justify-content:center; align-items:center; height:100vh; background:#f0f0f0; }
-                iframe { border:none; width:100%; height:100vh; }
-              </style>
-            </head>
-            <body>
-              <iframe src="${pdfUrl}" type="application/pdf"></iframe>
-            </body>
-            </html>
-          `);
-        } else {
-          window.open(pdfUrl, '_blank');
-        }
-      })
-      .catch(err => {
-        Object.assign(wrapper.style, originalStyles);
-        console.error('PDF preview failed:', err);
-      });
+    
+    html2pdf().set(opt).from(element).output('blob').then(function(pdfBlob) {
+      const pdfUrl = URL.createObjectURL(pdfBlob);
+      // Check if mobile device
+      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+      if (isMobile) {
+        // For mobile, open in a new tab that will be centered
+        const newWindow = window.open('', '_blank');
+        newWindow.document.write(`
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+            <style>
+              body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f0f0f0; }
+              iframe { border: none; width: 100%; height: 100vh; }
+            </style>
+          </head>
+          <body>
+            <iframe src="${pdfUrl}" type="application/pdf"></iframe>
+          </body>
+          </html>
+        `);
+      } else {
+        window.open(pdfUrl);
+      }
+    });
   }
 </script>
 
