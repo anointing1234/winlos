@@ -207,7 +207,7 @@
         <p style="margin-top:20px; font-size: 12px;">An Online Non-Credit Course Authorised By <br> The Winlos Academy</p>
       </div>
       <div class="signature-block">
-        <img src="{{ request.scheme }}://{{ request.get_host }}{{ signature_url }}" style="width:100px;" class="mb-2" />
+        <img src="{{ signature_url }}" style="width:100px;" class="mb-2" />
         <div class="sign-line"></div>
         <div class="signer"><strong>{{ signer_name }}</strong><br>{{ signer_title }}</div>
       </div>
@@ -218,7 +218,7 @@
       <div class="ribbon-title fw-bolder">COURSE<br>CERTIFICATE</div>
       <div style="padding:5px; margin-top:200px;" class="seal shadow">
         <div class="seal-text-top">THE WINLOS</div>
-        <div class="seal-text-mid"><img src="{{ request.scheme }}://{{ request.get_host }}{{ logo_url }}" class="um-logo" alt="Logo" /></div>
+        <div class="seal-text-mid"><img src="{{ logo_url }}" class="um-logo" alt="Logo" /></div>
         <div class="seal-text-bottom">ACADEMY</div>
       </div>
       <div class="ribbon-bottom"></div>

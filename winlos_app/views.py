@@ -774,9 +774,12 @@ def view_certificate(request, course_id):
         "academy_name": "The Winlos Academy",
 
         # These will resolve correctly in dev and prod
-        "logo_url": static("assets/img/preloader.png"),
-        "signature_url": static("assets/img/signature.png"),
-
+          "logo_url": request.build_absolute_uri(
+        static("assets/img/preloader.png")
+            ),
+            "signature_url": request.build_absolute_uri(
+                static("assets/img/signature.png")
+            ),
         "watermark_text": watermark_text,
 
         "full_name": getattr(request.user, "fullname", request.user.username),
