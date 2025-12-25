@@ -245,9 +245,50 @@
 
 
 <script>
+function toBase64(imgUrl) {
+  return fetch(imgUrl, { mode: 'cors' })
+    .then(res => res.blob())
+    .then(blob => new Promise((resolve) => {
+      const reader = new FileReader();
+      reader.onloadend = () => resolve(reader.result);
+      reader.readAsDataURL(blob);
+    }));
+}
+</script>
+
+<script>
+  // Convert all images inside certificate to base64 before PDF
+  async function prepareImages() {
+    const images = document.querySelectorAll('#certificate img');
+
+    for (const img of images) {
+      if (!img.src.startsWith('data:')) {
+        const originalSrc = img.src;
+        try {
+          const base64 = await toBase64(originalSrc);
+          img.setAttribute('data-original-src', originalSrc);
+          img.src = base64;
+        } catch (e) {
+          console.warn('Failed to convert image:', originalSrc);
+        }
+      }
+    }
+  }
+
+  // Restore images after PDF generation
+  function restoreImages() {
+    const images = document.querySelectorAll('#certificate img');
+    images.forEach(img => {
+      const original = img.getAttribute('data-original-src');
+      if (original) img.src = original;
+    });
+  }
+
   // Generate PDF using html2pdf with proper landscape A4 settings
-  function downloadPDF() {
+  async function downloadPDF() {
     const element = document.getElementById('certificate');
+
+    await prepareImages();
 
     const opt = {
       margin: 0,
@@ -256,7 +297,7 @@
       html2canvas: { 
         scale: 3,
         useCORS: true,
-        allowTaint: false,   // FIX: prevent taint errors
+        allowTaint: true,
         letterRendering: true,
         logging: false,
         backgroundColor: '#ffffff'
@@ -270,11 +311,14 @@
       pagebreak: { mode: 'avoid-all' }
     };
     
-    html2pdf().set(opt).from(element).save();
+    await html2pdf().set(opt).from(element).save();
+    restoreImages();
   }
 
-  function viewPDF() {
+  async function viewPDF() {
     const element = document.getElementById('certificate');
+
+    await prepareImages();
 
     const opt = {
       margin: 0,
@@ -283,7 +327,7 @@
       html2canvas: { 
         scale: 3,
         useCORS: true,
-        allowTaint: false,   // FIX
+        allowTaint: true,
         letterRendering: true,
         logging: false,
         backgroundColor: '#ffffff'
@@ -296,8 +340,10 @@
       },
       pagebreak: { mode: 'avoid-all' }
     };
-
+    
     html2pdf().set(opt).from(element).output('blob').then(function(pdfBlob) {
+      restoreImages();
+
       const pdfUrl = URL.createObjectURL(pdfBlob);
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -324,7 +370,6 @@
     });
   }
 </script>
-
 
 
 </body>
