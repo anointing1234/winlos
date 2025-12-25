@@ -186,13 +186,7 @@
     .certificate-wrapper { margin: 0; padding: 0; max-width: 100%; }
   }
 
-  .certificate-wrapper.pdf-mode {
-  display: block !important;
-  position: absolute;
-  left: -9999px;
-  top: -9999px;
-  width: 1100px; /* or your desired fixed width */
-}
+
   
 </style>
 </head>
@@ -250,7 +244,7 @@
 </div>
 
 <script>
-  // Generate PDF using html2pdf with proper landscape A4 settings
+  // Generate PDF using html2pdf with reliable settings
   function downloadPDF() {
     const wrapper = document.querySelector('.certificate-wrapper');
     if (!wrapper) {
@@ -258,35 +252,35 @@
       return;
     }
 
-    // Save original styles to restore later
+    // Save original inline styles
     const originalStyles = {
       display: wrapper.style.display,
       position: wrapper.style.position,
       left: wrapper.style.left,
       top: wrapper.style.top,
-      width: wrapper.style.width,
       visibility: wrapper.style.visibility
     };
 
-    // Force the wrapper to be renderable (off-screen) for html2canvas
+    // Make element renderable off-screen without forcing a huge width
     wrapper.style.display = 'block';
     wrapper.style.position = 'absolute';
     wrapper.style.left = '-9999px';
     wrapper.style.top = '-9999px';
-    wrapper.style.width = '1100px'; // Matches your max-width
-    wrapper.style.visibility = 'hidden'; // Prevents any flash
+    wrapper.style.visibility = 'hidden';
 
     const opt = {
       margin: 0,
       filename: 'certificate.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: {
-        scale: 3,
+        scale: 2,                    // Reduced from 3 → safe & sharp
         useCORS: true,
         letterRendering: true,
         logging: false,
         scrollX: 0,
-        scrollY: -window.scrollY
+        scrollY: -window.scrollY,
+        windowWidth: 1200,           // Ensures consistent layout (ignores mobile viewport)
+        backgroundColor: '#f0f2f5'   // Matches your page background
       },
       jsPDF: {
         unit: 'mm',
@@ -297,19 +291,22 @@
       pagebreak: { mode: 'avoid-all' }
     };
 
-    // Generate and download the PDF
-    html2pdf().set(opt).from(wrapper).save().then(() => {
-      // Restore original styles after PDF is generated
-      Object.assign(wrapper.style, originalStyles);
-    }).catch(err => {
-      console.error('PDF generation failed:', err);
-      // Still restore styles on error
-      Object.assign(wrapper.style, originalStyles);
-      alert('Failed to generate PDF. Please try again.');
-    });
+    html2pdf()
+      .set(opt)
+      .from(wrapper)
+      .save()
+      .then(() => {
+        // Restore original styles
+        Object.assign(wrapper.style, originalStyles);
+      })
+      .catch(err => {
+        console.error('PDF generation error:', err);
+        Object.assign(wrapper.style, originalStyles);
+        alert('Failed to generate PDF. Check console for details.');
+      });
   }
 
-  // Optional: Keep viewPDF if you use it elsewhere (also updated to use wrapper)
+  // Updated viewPDF function (same improvements applied)
   function viewPDF() {
     const wrapper = document.querySelector('.certificate-wrapper');
     if (!wrapper) {
@@ -322,7 +319,6 @@
       position: wrapper.style.position,
       left: wrapper.style.left,
       top: wrapper.style.top,
-      width: wrapper.style.width,
       visibility: wrapper.style.visibility
     };
 
@@ -330,7 +326,6 @@
     wrapper.style.position = 'absolute';
     wrapper.style.left = '-9999px';
     wrapper.style.top = '-9999px';
-    wrapper.style.width = '1100px';
     wrapper.style.visibility = 'hidden';
 
     const opt = {
@@ -338,10 +333,12 @@
       filename: 'certificate.pdf',
       image: { type: 'jpeg', quality: 0.98 },
       html2canvas: {
-        scale: 3,
+        scale: 2,
         useCORS: true,
         letterRendering: true,
-        logging: false
+        logging: false,
+        windowWidth: 1200,
+        backgroundColor: '#f0f2f5'
       },
       jsPDF: {
         unit: 'mm',
@@ -351,37 +348,42 @@
       }
     };
 
-    html2pdf().set(opt).from(wrapper).output('blob').then(function(pdfBlob) {
-      // Restore styles first
-      Object.assign(wrapper.style, originalStyles);
+    html2pdf()
+      .set(opt)
+      .from(wrapper)
+      .output('blob')
+      .then(pdfBlob => {
+        // Restore styles immediately
+        Object.assign(wrapper.style, originalStyles);
 
-      const pdfUrl = URL.createObjectURL(pdfBlob);
-      const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        const pdfUrl = URL.createObjectURL(pdfBlob);
+        const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
-      if (isMobile) {
-        const newWindow = window.open('', '_blank');
-        newWindow.document.write(`
-          <!DOCTYPE html>
-          <html>
-          <head>
-            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-            <style>
-              body { margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; min-height: 100vh; background: #f0f0f0; }
-              iframe { border: none; width: 100%; height: 100vh; }
-            </style>
-          </head>
-          <body>
-            <iframe src="${pdfUrl}" type="application/pdf"></iframe>
-          </body>
-          </html>
-        `);
-      } else {
-        window.open(pdfUrl, '_blank');
-      }
-    }).catch(err => {
-      Object.assign(wrapper.style, originalStyles);
-      console.error('PDF view failed:', err);
-    });
+        if (isMobile) {
+          const newWindow = window.open('', '_blank');
+          newWindow.document.write(`
+            <!DOCTYPE html>
+            <html>
+            <head>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+              <style>
+                body { margin:0; padding:0; display:flex; justify-content:center; align-items:center; height:100vh; background:#f0f0f0; }
+                iframe { border:none; width:100%; height:100vh; }
+              </style>
+            </head>
+            <body>
+              <iframe src="${pdfUrl}" type="application/pdf"></iframe>
+            </body>
+            </html>
+          `);
+        } else {
+          window.open(pdfUrl, '_blank');
+        }
+      })
+      .catch(err => {
+        Object.assign(wrapper.style, originalStyles);
+        console.error('PDF preview failed:', err);
+      });
   }
 </script>
 
