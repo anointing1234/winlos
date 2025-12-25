@@ -567,15 +567,15 @@ flex: 1 0 0;
 }
 
 .btn-apply-now{
-    display: flex;
 padding: 8px 20px;
-justify-content: center;
-align-items: center;
 gap: 8px;
-    border-radius: 25px;
-    color: white;
+border-radius: 25px;
 border: 1px solid var(--Color-Neutral-Darkest, #000);
 background: var(--Color-Neutral-Darkest, #000);
+color:white;
+margin-top: 50px;
+font-weight: 600;
+margin-top:20px;
 }
     </style>
 
@@ -704,6 +704,16 @@ background: var(--Color-Neutral-Darkest, #000);
                                             </a>
                                            
                                         </li>
+                                                                     {% if user.is_authenticated %}
+
+                                              <li class="d-block d-lg-none">
+                                            <a href="{% url 'dashboard' %}">      CONTINUE LEARNING</a>
+                                        </li>
+                                        {% else %}
+                                          <li class="d-block d-lg-none">
+                                            <a href="{% url 'apply' %}">Apply Now</a>
+                                        </li>
+                                        {% endif %}
                                        
                                        
                                     </ul>
@@ -848,7 +858,7 @@ Learn to use lighting creatively to enhance mood and storytelling. <br>
 Understand shot composition, perspective, and visual rhythm. <br>
 Develop the ability to translate scripts and concepts into compelling visual narratives.</p>
 
-<button class="APP_B fadeInUp" data-wow-delay=".2s">APPLY NOW</button>
+<a href="{% url 'apply' %}" class="APP_B fadeInUp" data-wow-delay=".2s">APPLY NOW</a>
 
 
 
@@ -884,7 +894,7 @@ Develop the ability to translate scripts and concepts into compelling visual nar
                     <li><i class="fas fa-check-circle"></i> Understand the principles of visual storytelling and shot composition.</li>
                 </ul>
 
-                <button class="btn-apply-now mt-3 px-4 py-2 wow fadeInUp" data-wow-delay=".4s">APPLY NOW</button>
+                <a  href="{% url 'apply' %}" class="btn-apply-now mt-3 px-4 py-2 wow fadeInUp" data-wow-delay=".4s">APPLY NOW</a>
 
             </div>
 
@@ -918,7 +928,7 @@ Develop the ability to translate scripts and concepts into compelling visual nar
                     <li><i class="fas fa-check-circle"></i> Apply color grading, audio mixing, and visual effects.</li>
                 </ul>
 
-                <button class="btn-apply-now mt-3 px-4 py-2 wow fadeInUp" data-wow-delay=".4s">APPLY NOW</button>
+                <a  href="{% url 'apply' %}" class="btn-apply-now mt-3 px-4 py-2 wow fadeInUp" data-wow-delay=".4s">APPLY NOW</a>
             </div>
 
             <!-- IMAGE FIRST ON MOBILE -->
@@ -962,7 +972,7 @@ Develop the ability to translate scripts and concepts into compelling visual nar
                     <li><i class="fas fa-check-circle"></i> Explore different genres and storytelling styles.</li>
                 </ul>
 
-                <button class="btn-apply-now mt-3 px-4 py-2 wow fadeInUp" data-wow-delay=".4s">APPLY NOW</button>
+                <a  href="{% url 'apply' %}" class="btn-apply-now mt-3 px-4 py-2 wow fadeInUp" data-wow-delay=".4s">APPLY NOW</a>
             </div>
 
         </div>
@@ -995,7 +1005,7 @@ Develop the ability to translate scripts and concepts into compelling visual nar
                     <li><i class="fas fa-check-circle"></i> Build storytelling through sound & music.</li>
                 </ul>
 
-                <button class="btn-apply-now mt-3 px-4 py-2 wow fadeInUp" data-wow-delay=".4s">APPLY NOW</button>
+                <a  href="{% url 'apply' %}" class="btn-apply-now mt-3 px-4 py-2 wow fadeInUp" data-wow-delay=".4s">APPLY NOW</a>
             </div>
 
             <!-- IMAGE FIRST ON MOBILE -->
@@ -1040,7 +1050,7 @@ Develop the ability to translate scripts and concepts into compelling visual nar
                     <li><i class="fas fa-check-circle"></i> Collaborate with directors and cinematographers.</li>
                 </ul>
 
-                <button class="btn-apply-now mt-3 px-4 py-2 wow fadeInUp" data-wow-delay=".4s">APPLY NOW</button>
+                <a  href="{% url 'apply' %}" class="btn-apply-now mt-3 px-4 py-2 wow fadeInUp" data-wow-delay=".4s">APPLY NOW</a>
 
             </div>
 

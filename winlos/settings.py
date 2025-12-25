@@ -17,15 +17,17 @@ from django.templatetags.static import static
 from django.urls import reverse_lazy
 from django.utils.translation import gettext_lazy as _
 import environ
-from dotenv import load_dotenv
-from django.core.cache import caches
 from redis.exceptions import ConnectionError as RedisConnectionError
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-env = environ.Env()
 
-environ.Env.read_env()
+env = environ.Env(
+    DEBUG=(bool, False)
+)
+
+# ✅ EXPLICIT PATH (THIS IS THE KEY FIX)
+environ.Env.read_env(BASE_DIR / ".env")
 
 
 # Quick-start development settings - unsuitable for production
@@ -38,20 +40,20 @@ SECRET_KEY = env("SECRET_KEY", default="unsafe-dev-key")
 
 DEBUG = env.bool("DEBUG", default=False)
 
+
+# ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
+# CSRF_TRUSTED_ORIGINS = ["http://localhost", "http://127.0.0.1"]
+
+
 ALLOWED_HOSTS = env.list(
-    "ALLOWED_HOSTS",
-    default=["winlos-production.up.railway.app"]
-)
-
-
+        "ALLOWED_HOSTS",
+        default=["winlos-production.up.railway.app"]
+    )
 CSRF_TRUSTED_ORIGINS = env.list(
-    "CSRF_TRUSTED_ORIGINS",
-    default=["https://winlos-production.up.railway.app"]
-)
+        "CSRF_TRUSTED_ORIGINS",
+        default=["https://winlos-production.up.railway.app"]
+    )
 
-
-# CSRF_TRUSTED_ORIGINS = ["https://tslacademy-production.up.railway.app"]
-# ALLOWED_HOSTS = ["tslacademy-production.up.railway.app"]
 
 LOGIN_URL = 'login'
 ADMIN_LOGIN_URL = 'Admin_login'
@@ -142,10 +144,14 @@ else:
             "USER": env("DB_USER"),
             "PASSWORD": env("DB_PASSWORD"),
             "HOST": env("DB_HOST"),
-            "PORT": int(env("DB_PORT")),
-            # "CONN_MAX_AGE": 600,
+            "PORT": env("DB_PORT"),  # ← leave as string
+            "CONN_MAX_AGE": 600,
+            # "OPTIONS": {
+            #     "sslmode": "require",  # important for Railway
+            # },
         }
     }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
@@ -234,15 +240,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # PAYSTACK_VERIFY_URL = "https://api.paystack.co/transaction/verify/"
 
 
-# --------------------------------------------------
-# CACHING (SIMPLE & SAFE)
-# --------------------------------------------------
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.locmem.LocMemCache",
-    }
-}
 
 SESSION_ENGINE = "django.contrib.sessions.backends.db"
 
@@ -258,7 +256,7 @@ AUTHENTICATION_BACKENDS = [
 # --------------------------------------------------
 # EMAIL (RESEND)
 # --------------------------------------------------
-DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="info@nibc-nl.com")
+DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="info@winlosacademy.com")
 
 EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
 
@@ -272,12 +270,12 @@ ANYMAIL = {
 # --------------------------------------------------
 # SECURITY (PRODUCTION ONLY)
 # --------------------------------------------------
-if not DEBUG:
-    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    X_FRAME_OPTIONS = "DENY"
+# if not DEBUG:
+#     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+#     SECURE_SSL_REDIRECT = True
+#     SESSION_COOKIE_SECURE = True
+#     CSRF_COOKIE_SECURE = True
+#     X_FRAME_OPTIONS = "DENY"
 
 
 

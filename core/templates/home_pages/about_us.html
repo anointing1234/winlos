@@ -257,6 +257,16 @@
                                             </a>
                                            
                                         </li>
+                                                                     {% if user.is_authenticated %}
+
+                                              <li class="d-block d-lg-none">
+                                            <a href="{% url 'dashboard' %}">      CONTINUE LEARNING</a>
+                                        </li>
+                                        {% else %}
+                                          <li class="d-block d-lg-none">
+                                            <a href="{% url 'apply' %}">Apply Now</a>
+                                        </li>
+                                        {% endif %}
                                        
                                        
                                     </ul>
