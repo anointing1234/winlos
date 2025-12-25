@@ -245,50 +245,9 @@
 
 
 <script>
-function toBase64(imgUrl) {
-  return fetch(imgUrl, { mode: 'cors' })
-    .then(res => res.blob())
-    .then(blob => new Promise((resolve) => {
-      const reader = new FileReader();
-      reader.onloadend = () => resolve(reader.result);
-      reader.readAsDataURL(blob);
-    }));
-}
-</script>
-
-<script>
-  // Convert all images inside certificate to base64 before PDF
-  async function prepareImages() {
-    const images = document.querySelectorAll('#certificate img');
-
-    for (const img of images) {
-      if (!img.src.startsWith('data:')) {
-        const originalSrc = img.src;
-        try {
-          const base64 = await toBase64(originalSrc);
-          img.setAttribute('data-original-src', originalSrc);
-          img.src = base64;
-        } catch (e) {
-          console.warn('Failed to convert image:', originalSrc);
-        }
-      }
-    }
-  }
-
-  // Restore images after PDF generation
-  function restoreImages() {
-    const images = document.querySelectorAll('#certificate img');
-    images.forEach(img => {
-      const original = img.getAttribute('data-original-src');
-      if (original) img.src = original;
-    });
-  }
-
   // Generate PDF using html2pdf with proper landscape A4 settings
-  async function downloadPDF() {
+  function downloadPDF() {
     const element = document.getElementById('certificate');
-
-    await prepareImages();
 
     const opt = {
       margin: 0,
@@ -297,7 +256,7 @@ function toBase64(imgUrl) {
       html2canvas: { 
         scale: 3,
         useCORS: true,
-        allowTaint: true,
+        allowTaint: false,   // FIX: prevent taint errors
         letterRendering: true,
         logging: false,
         backgroundColor: '#ffffff'
@@ -311,14 +270,11 @@ function toBase64(imgUrl) {
       pagebreak: { mode: 'avoid-all' }
     };
     
-    await html2pdf().set(opt).from(element).save();
-    restoreImages();
+    html2pdf().set(opt).from(element).save();
   }
 
-  async function viewPDF() {
+  function viewPDF() {
     const element = document.getElementById('certificate');
-
-    await prepareImages();
 
     const opt = {
       margin: 0,
@@ -327,7 +283,7 @@ function toBase64(imgUrl) {
       html2canvas: { 
         scale: 3,
         useCORS: true,
-        allowTaint: true,
+        allowTaint: false,   // FIX
         letterRendering: true,
         logging: false,
         backgroundColor: '#ffffff'
@@ -340,10 +296,8 @@ function toBase64(imgUrl) {
       },
       pagebreak: { mode: 'avoid-all' }
     };
-    
-    html2pdf().set(opt).from(element).output('blob').then(function(pdfBlob) {
-      restoreImages();
 
+    html2pdf().set(opt).from(element).output('blob').then(function(pdfBlob) {
       const pdfUrl = URL.createObjectURL(pdfBlob);
       const isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
 
@@ -370,6 +324,7 @@ function toBase64(imgUrl) {
     });
   }
 </script>
+
 
 
 </body>
