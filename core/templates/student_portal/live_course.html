@@ -1350,9 +1350,7 @@ video::-webkit-media-controls {
 })();
 </script>
 
-
 <script>
-// YouTube-style Big Play Button + Hide Native Play Button
 document.addEventListener('DOMContentLoaded', function () {
     const videoContainer = document.querySelector('.video-container');
     const video = document.getElementById('lesson-video');
@@ -1360,37 +1358,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (!videoContainer || !video || !bigPlayButton) return;
 
-    // Click the big center button → play video
+    // Big center button → play video
     bigPlayButton.addEventListener('click', function (e) {
         e.stopPropagation();
         video.play();
     });
 
-    // Click anywhere else on video → show native controls (timeline, volume, etc.)
-    videoContainer.addEventListener('click', function (e) {
-        if (e.target.closest('.big-play-button')) return; // ignore big button
-
-        // This triggers the browser's native control visibility
-        // (tapping shows timeline, duration, etc.)
-        video.focus();
-        if (video.paused) {
-            video.play();
-        } else {
-            video.pause();
-        }
+    // Hide big button when video plays
+    video.addEventListener('play', function () {
+        videoContainer.classList.add('playing');
     });
 
-    // Update state: hide big button when playing
-    video.addEventListener('play', () => videoContainer.classList.add('playing'));
-    video.addEventListener('pause', () => videoContainer.classList.remove('playing'));
-    video.addEventListener('ended', () => videoContainer.classList.remove('playing'));
+    // Show big button when paused or ended
+    video.addEventListener('pause', function () {
+        videoContainer.classList.remove('playing');
+    });
 
-    // If video resumes from middle (page reload), hide big button
+    video.addEventListener('ended', function () {
+        videoContainer.classList.remove('playing');
+    });
+
+    // If video is already playing (page reload / resume)
     if (!video.paused) {
         videoContainer.classList.add('playing');
     }
 });
 </script>
+
 
 
 </body>
