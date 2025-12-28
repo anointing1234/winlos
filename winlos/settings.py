@@ -33,30 +33,30 @@ environ.Env.read_env(BASE_DIR / ".env")
 SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-dev-key")
 DEBUG = False
 
-ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
-CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "http://localhost,http://127.0.0.1").split(",")
-DEBUG_PROPAGATE_EXCEPTIONS = False
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+# CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "http://localhost,http://127.0.0.1").split(",")
+# DEBUG_PROPAGATE_EXCEPTIONS = False
 
 
 
 
 
-# # ALLOWED_HOSTS: only the hostnames, no http/https
-# ALLOWED_HOSTS = [
-#     host.strip()
-#     for host in os.getenv("ALLOWED_HOSTS", "winlos-production.up.railway.app").split(",")
-#     if host.strip()
-# ]
+# ALLOWED_HOSTS: only the hostnames, no http/https
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv("ALLOWED_HOSTS", "winlos-production.up.railway.app").split(",")
+    if host.strip()
+]
 
-# # CSRF_TRUSTED_ORIGINS: must include full scheme (https is required in production)
-# CSRF_TRUSTED_ORIGINS = [
-#     origin.strip()
-#     for origin in os.getenv(
-#         "CSRF_TRUSTED_ORIGINS",
-#         "https://winlos-production.up.railway.app,https://www.winlos-production.up.railway.app"
-#     ).split(",")
-#     if origin.strip()
-# ]
+# CSRF_TRUSTED_ORIGINS: must include full scheme (https is required in production)
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv(
+        "CSRF_TRUSTED_ORIGINS",
+        "https://winlos-production.up.railway.app,https://www.winlos-production.up.railway.app"
+    ).split(",")
+    if origin.strip()
+]
 
 
 LOGIN_URL = 'login'
@@ -237,10 +237,10 @@ if 'AWS_S3_CUSTOM_DOMAIN' in locals():
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 
 
-# if not DEBUG:
-#     # Additional headers
-#     SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
-#     SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
+if not DEBUG:
+    # Additional headers
+    SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -279,17 +279,17 @@ ANYMAIL = {"RESEND_API_KEY": os.getenv("RESEND_API_KEY")}
 # --------------------------------------------------
 # SECURITY (PRODUCTION ONLY)
 # --------------------------------------------------
-# if not DEBUG:
-#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-#     SECURE_SSL_REDIRECT = True
-#     SESSION_COOKIE_SECURE = True
-#     CSRF_COOKIE_SECURE = True
-#     SECURE_BROWSER_XSS_FILTER = True
-#     SECURE_CONTENT_TYPE_NOSNIFF = True
-#     X_FRAME_OPTIONS = 'DENY'
-#     SECURE_HSTS_SECONDS = 31536000  # 1 year
-#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-#     SECURE_HSTS_PRELOAD = True
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 
 PAYSTACK_PUBLIC_KEY = os.getenv("PAYSTACK_PUBLIC_KEY")
