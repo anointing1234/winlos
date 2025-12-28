@@ -236,27 +236,17 @@ class Course(models.Model):
         ("the_business_of_film_making_bundle", "The Business of Film Making Bundle"),
     ]
 
-
-
-
-
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     course_type = models.CharField(max_length=50, choices=COURSE_TYPES)
     name_of_course = models.CharField(max_length=255)
-
-
-
-
     created_by = models.ForeignKey(
         Account,
         on_delete=models.CASCADE,
         related_name="created_courses"
     )
-
     promotion_image = models.ImageField(upload_to='course_images/', blank=True, null=True)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(default=timezone.now)
-
     price = models.DecimalField(max_digits=10, decimal_places=2, default=0.00)
     rating = models.DecimalField(max_digits=2, decimal_places=1, default=0.0)
 
@@ -270,12 +260,14 @@ class Course(models.Model):
     def __str__(self):
         return self.name_of_course
 
-    # Optimize image AFTER save
+    # ---------------- Image Optimization ----------------
     def optimize_image(self):
         if not self.promotion_image:
             return
 
         try:
+            # Open image from storage (works for remote backends too)
+            self.promotion_image.open()
             img = Image.open(self.promotion_image)
             img = img.convert("RGB")
             img = img.resize((500, 504), Image.LANCZOS)
@@ -284,6 +276,7 @@ class Course(models.Model):
             img.save(buffer, format="JPEG", quality=85, optimize=True)
             buffer.seek(0)
 
+            # Save optimized image back to the field
             self.promotion_image.save(
                 self.promotion_image.name,
                 ContentFile(buffer.read()),
@@ -293,7 +286,7 @@ class Course(models.Model):
         except Exception as e:
             print("Image optimization failed:", e)
 
-    # Delete old image correctly
+    # ---------------- Delete old image safely ----------------
     def delete_old_image(self):
         if not self.pk:
             return
@@ -304,24 +297,27 @@ class Course(models.Model):
             return
 
         if old.promotion_image and old.promotion_image != self.promotion_image:
-            if os.path.isfile(old.promotion_image.path):
-                os.remove(old.promotion_image.path)
+            try:
+                old.promotion_image.delete(save=False)  # Works with remote storage
+            except Exception as e:
+                print("Failed to delete old image:", e)
 
+    # ---------------- Save method ----------------
     def save(self, *args, **kwargs):
         self.delete_old_image()
         super().save(*args, **kwargs)
         self.optimize_image()
-        super().save(update_fields=['promotion_image'])
+        if self.promotion_image:
+            super().save(update_fields=['promotion_image'])
 
+    # ---------------- Properties ----------------
     @property
     def total_lessons(self):
         return self.lessons.count()
     
     @property
     def total_duration_minutes(self):
-        return self.lessons.aggregate(
-            total=Sum("duration_minutes")
-        )["total"] or 0
+        return self.lessons.aggregate(total=Sum("duration_minutes"))["total"] or 0
 
     @property
     def average_rating(self):
@@ -329,11 +325,7 @@ class Course(models.Model):
     
     @property
     def students_count(self):
-        """
-        Returns number of students who have purchased / enrolled in this course
-        """
         return self.enrollments.filter(is_active=True).count()
-    
 
 
 # ================================================================

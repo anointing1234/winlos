@@ -15,7 +15,7 @@ from .models import (
 class LessonInline(TabularInline):
     model = Lesson
     extra = 0
-    fields = ["title", "order", "duration_minutes"]
+    fields = ["title","duration_minutes"]
     ordering = ["order"]
 
 
