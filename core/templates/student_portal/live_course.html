@@ -1346,36 +1346,43 @@ video::-webkit-media-controls-start-playback-button {
 </script>
 
 
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-    const videoContainer = document.querySelector('.video-container');
+    const container = document.querySelector('.video-container');
     const video = document.getElementById('lesson-video');
-    const bigPlayButton = document.querySelector('.big-play-button');
+    const playBtn = document.querySelector('.big-play-button');
 
-    if (!video || !bigPlayButton) return;
+    if (!container || !video || !playBtn) return;
 
-    // Click big button → play
-    bigPlayButton.addEventListener('click', function (e) {
+    // Big button ONLY plays
+    playBtn.addEventListener('click', function (e) {
         e.stopPropagation();
         video.play();
     });
 
-    // Hide button on play
-    video.addEventListener('play', function () {
-        videoContainer.classList.add('playing');
+    // Clicking video pauses / plays
+    video.addEventListener('click', function () {
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
     });
 
-    // Show button on pause/end
-    video.addEventListener('pause', function () {
-        videoContainer.classList.remove('playing');
+    video.addEventListener('play', () => {
+        container.classList.add('playing');
     });
 
-    video.addEventListener('ended', function () {
-        videoContainer.classList.remove('playing');
+    video.addEventListener('pause', () => {
+        container.classList.remove('playing');
+    });
+
+    video.addEventListener('ended', () => {
+        container.classList.remove('playing');
     });
 });
 </script>
-
 
 
 </body>

@@ -28,5 +28,5 @@ urlpatterns = [
 ]
 
 
-# # Custom 500 error page
-# handler500 = 'winlos_app.views.custom_500_view'
+# Custom 500 error page
+handler500 = 'winlos_app.views.custom_500_view'
