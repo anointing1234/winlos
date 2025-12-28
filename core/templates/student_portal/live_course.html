@@ -755,70 +755,70 @@
                             </video>
                         </div>
 
-     <!-- META -->
-      <div class="card border-1  rounded-16  p-10 mb-20">
+                    <!-- META -->
+                    <div class="card border-1  rounded-16  p-10 mb-20">
 
-       
-<div class="container d-flex align-items-center gap-5 mb-3  mb-10 flex-wrap">
+                    
+                <div class="container d-flex align-items-center gap-5 mb-3  mb-10 flex-wrap">
 
-  <!-- Lessons -->
-  <div class="d-flex align-items-center me-4">
-    <i class="ph-bold ph-video-camera text-neutral-700 me-2"></i>
-    <span class="text-neutral-700 text-16 fw-medium">
-      {{ course.total_lessons }} Lessons
-    </span>
-  </div>
+                <!-- Lessons -->
+                <div class="d-flex align-items-center me-4">
+                    <i class="ph-bold ph-video-camera text-neutral-700 me-2"></i>
+                    <span class="text-neutral-700 text-16 fw-medium">
+                    {{ course.total_lessons }} Lessons
+                    </span>
+                </div>
 
-  <!-- Students -->
-  <div class="d-flex align-items-center me-4">
-    <i class="ph ph-user-circle text-neutral-700 me-2"></i>
-    <span class="text-neutral-700 text-16 fw-medium">
-      {{ course.students_count }} Student{{ course.students_count|pluralize }}
-    </span>
-  </div>
+                <!-- Students -->
+                <div class="d-flex align-items-center me-4">
+                    <i class="ph ph-user-circle text-neutral-700 me-2"></i>
+                    <span class="text-neutral-700 text-16 fw-medium">
+                    {{ course.students_count }} Student{{ course.students_count|pluralize }}
+                    </span>
+                </div>
 
-  <!-- Rating -->
-  <div class="d-flex align-items-center">
-    {% if course.average_rating|default:0 > 0 %}
-      <i class="ph-fill ph-star text-warning me-1"></i>
-      <span class="text-muted fw-medium">
-        {{ course.average_rating }}/5
-      </span>
-    {% else %}
-      <i class="ph ph-star text-warning me-1"></i>
-      <span class="text-muted fw-medium">0/5</span>
-    {% endif %}
-  </div>
+                <!-- Rating -->
+                <div class="d-flex align-items-center">
+                    {% if course.average_rating|default:0 > 0 %}
+                    <i class="ph-fill ph-star text-warning me-1"></i>
+                    <span class="text-muted fw-medium">
+                        {{ course.average_rating }}/5
+                    </span>
+                    {% else %}
+                    <i class="ph ph-star text-warning me-1"></i>
+                    <span class="text-muted fw-medium">0/5</span>
+                    {% endif %}
+                </div>
 
-</div>
+                </div>
 
-<hr>
+                <hr>
 
-<span
-  class="d-inline-flex align-items-center align-self-start w-auto
-         px-12 py-5 bg-light fw-medium text-13 border rounded-12 mb-16"
-  style="color:#AE971D; line-height:1; white-space:nowrap;"
->
-  {{ course.course_type|title }}
-</span>
+                <span
+                class="d-inline-flex align-items-center align-self-start w-auto
+                        px-12 py-5 bg-light fw-medium text-13 border rounded-12 mb-16"
+                style="color:#AE971D; line-height:1; white-space:nowrap;"
+                >
+                {{ course.course_type|title }}
+                </span>
 
- 
-
-
-
-        <div class="d-flex align-items-center gap-2 mb-10"> 
-                             
-         <span class="fw-normal text-14 text-neutral-400">Created by: {{ course.created_by.username|title }}</span>
-              
-
-        </div>
-
-
-
-
-        
-      </div>
                 
+
+
+
+                <div class="d-flex align-items-center gap-2 mb-10"> 
+                                    
+                <span class="fw-normal text-14 text-neutral-400">Created by: {{ course.created_by.username|title }}</span>
+                    
+
+                </div>
+
+
+
+
+                
+            </div>
+                        
       
       
                   
@@ -835,27 +835,27 @@
 
 
                       <!-- WHAT YOU WILL LEARN -->
-      <div class="card border-1  rounded-16 p-24">
-        <h5 class="fw-bold mb-16"> <span style="width:8px;height:8px;background:#AE971D;border-radius:50%;" class="me-8"></span> What You'll Learn</h5>
-        <ul class="list-unstyled row g-3 mb-0">
-          <li class="text-14" >
-            <i class="ph-bold ph-check-circle text-success  mt-1"></i>
-            Develop a comprehensive understanding of film business principles
-          </li>
-          <li class="text-14">
-            <i class="ph-bold ph-check-circle text-success mt-1"></i>
-            Create sustainable income streams from your creative work
-          </li>
-          <li class="text-14" >
-            <i class="ph-bold ph-check-circle text-success mt-1"></i>
-            Master marketing and distribution strategies
-          </li>
-          <li class="text-14">
-            <i class="ph-bold ph-check-circle text-success mt-1"></i>
-            Build a professional network in the film industry
-          </li>
-        </ul>
-      </div>
+                <div class="card border-1  rounded-16 p-24">
+                    <h5 class="fw-bold mb-16"> <span style="width:8px;height:8px;background:#AE971D;border-radius:50%;" class="me-8"></span> What You'll Learn</h5>
+                    <ul class="list-unstyled row g-3 mb-0">
+                    <li class="text-14" >
+                        <i class="ph-bold ph-check-circle text-success  mt-1"></i>
+                        Develop a comprehensive understanding of film business principles
+                    </li>
+                    <li class="text-14">
+                        <i class="ph-bold ph-check-circle text-success mt-1"></i>
+                        Create sustainable income streams from your creative work
+                    </li>
+                    <li class="text-14" >
+                        <i class="ph-bold ph-check-circle text-success mt-1"></i>
+                        Master marketing and distribution strategies
+                    </li>
+                    <li class="text-14">
+                        <i class="ph-bold ph-check-circle text-success mt-1"></i>
+                        Build a professional network in the film industry
+                    </li>
+                    </ul>
+                </div>
                    
 
                     </div>
@@ -882,35 +882,35 @@
                         <div class="card border-1  rounded-16 p-24">
 
                             <h6 class="text-16 fw-semibold text-neutral-800 mb-16">Modules</h6>
-<div class="lesson-list" style="max-height: 480px; overflow-y: auto;">
-    {% for l in all_lessons %}
-        <a href="{% url 'course_live' course.id %}?lesson={{ l.id }}"
-           class="d-flex align-items-start gap-12 p-12 rounded-10 border mb-12
-           {% if l.id == lesson.id %} bg-dark text-white {% else %} bg-light text-dark {% endif %}">
+                            <div class="lesson-list" style="max-height: 480px; overflow-y: auto;">
+                                {% for l in all_lessons %}
+                                    <a href="{% url 'course_live' course.id %}?lesson={{ l.id }}"
+                                    class="d-flex align-items-start gap-12 p-12 rounded-10 border mb-12
+                                    {% if l.id == lesson.id %} bg-dark text-white {% else %} bg-light text-dark {% endif %}">
 
-            <!-- Lesson Number / Icon -->
-            <div class="w-36 h-36 rounded-8 flex-center 
-                {% if l.id == lesson.id %}  text-white {% else %}  text-dark {% endif %}">
-                {% if l.id == lesson.id %}
-                    <i style="color:white;" class="ph-bold ph-video-camera  me-2"></i>
-                {% else %}
-                     <i style="color:black;" class="ph-bold ph-lock-open "></i>
-                {% endif %}
-            </div>
+                                        <!-- Lesson Number / Icon -->
+                                        <div class="w-36 h-36 rounded-8 flex-center 
+                                            {% if l.id == lesson.id %}  text-white {% else %}  text-dark {% endif %}">
+                                            {% if l.id == lesson.id %}
+                                                <i style="color:white;" class="ph-bold ph-video-camera  me-2"></i>
+                                            {% else %}
+                                                <i style="color:black;" class="ph-bold ph-lock-open "></i>
+                                            {% endif %}
+                                        </div>
 
-            <!-- Lesson Title & Duration -->
-            <div>
-                <p class="fw-semibold mb-2 text-12 {% if l.id == lesson.id %} text-white {% else %} text-dark {% endif %}">
-                    {{ l.title }}
-                </p>
-                <span class="text-12 {% if l.id == lesson.id %} text-white {% else %} text-dark {% endif %}">
-              <i class="ph-bold ph-clock me-2 {% if l.id == lesson.id %} text-white {% else %} text-dark {% endif %}"></i> 
-{{ l.duration_minutes }} mins
- </span>
-            </div>
-        </a>
-    {% endfor %}
-</div>
+                                        <!-- Lesson Title & Duration -->
+                                        <div>
+                                            <p class="fw-semibold mb-2 text-12 {% if l.id == lesson.id %} text-white {% else %} text-dark {% endif %}">
+                                                {{ l.title }}
+                                            </p>
+                                            <span class="text-12 {% if l.id == lesson.id %} text-white {% else %} text-dark {% endif %}">
+                                        <i class="ph-bold ph-clock me-2 {% if l.id == lesson.id %} text-white {% else %} text-dark {% endif %}"></i> 
+                            {{ l.duration_minutes }} mins
+                            </span>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
 
 
 
@@ -920,18 +920,18 @@
 
                        
                                <!-- CTA -->
-        <div style="margin-top:20px; background-color:black; color:white;" class="card border-1  rounded-16 p-10 ">
-      <div style="margin-bottom:20px;" class="d-flex justify-content-center text-center">
-  <span class="fw-semibold">
-    Explore More Courses?<br>
-    <span class="text-white">Continue learning and expand your skills.</span>
+                                <div style="margin-top:20px; background-color:black; color:white;" class="card border-1  rounded-16 p-10 ">
+                            <div style="margin-bottom:20px;" class="d-flex justify-content-center text-center">
+                        <span class="fw-semibold">
+                            Explore More Courses?<br>
+                            <span class="text-white">Continue learning and expand your skills.</span>
 
-       <a  style="margin-top:20px;" href="{% url 'courses' %}" class="btn btn-warning w-100 fw-semibold rounded-10"
-               style="color:#fff;border-radius:30px">
-              Expolore
-            </a>
-  </span>
-</div>
+                            <a  style="margin-top:20px;" href="{% url 'courses' %}" class="btn btn-warning w-100 fw-semibold rounded-10"
+                                    style="color:#fff;border-radius:30px">
+                                    Expolore
+                                    </a>
+                        </span>
+                        </div>
 
 
 
@@ -993,16 +993,18 @@
         </a>
     {% else %}
     
-    
-    {% endif %}
 
-    <!-- ALWAYS show "View Certificate" button -->
+        <!-- ALWAYS show "View Certificate" button -->
     <a id="view-certificate" style="background-color:#9C8401;"
        href="{% url 'view_certificate' course.id %}"
        class="exam-action-btn btn-sm ">
         <i class="ph-bold ph-certificate"></i>
         <span>View Certificate</span>
     </a>
+    
+    {% endif %}
+
+
 
    </div>
 </div>
