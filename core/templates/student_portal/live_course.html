@@ -968,49 +968,57 @@
 
 
 {% if completed_lessons == total_lessons %}
+<!-- Fixed footer only when course is 100% completed -->
 <div id="course-options-footer"
-     class="position-fixed bottom-0 start-0 w-100  text-white 
-            d-flex justify-content-center align-items-center py-2 shadow-lg"
-     style="z-index:1050; background-color:black;">
-   <div class="d-flex justify-content-center align-items-center flex-wrap gap-3 mt-3">
+     class="position-fixed bottom-0 start-0 w-100 text-white 
+            d-flex justify-content-center align-items-center py-3 shadow-lg"
+     style="z-index: 1050; background-color: black;">
+    <div class="d-flex justify-content-center align-items-center flex-wrap gap-3">
 
-    <!-- Exam button handling -->
-    {% if exam %}
-        {% if exam_action == 'results' %}
-            {% url 'view_exam_results' course.id exam.id as exam_url %}
-        {% else %}
-            {% url 'take_exam' course.id exam.id as exam_url %}
+        <!-- Exam Button (only if exam exists) -->
+        {% if exam %}
+            {% if exam_action == 'results' %}
+                {% url 'view_exam_results' course.id exam.id as exam_url %}
+                {% with button_text="Results" icon="ph-chart-pie" %}
+            {% elif exam_action == 'review' %}
+                {% url 'take_exam' course.id exam.id as exam_url %}
+                {% with button_text="View Review" icon="ph-eye" %}
+            {% elif exam_action == 'continue' %}
+                {% url 'take_exam' course.id exam.id as exam_url %}
+                {% with button_text="Continue Exam" icon="ph-play-circle" %}
+            {% else %}
+                {% url 'take_exam' course.id exam.id as exam_url %}
+                {% with button_text="Take Exam" icon="ph-notepad" %}
+            {% endif %}
+
+            <a href="{{ exam_url }}"
+               class="btn btn-sm btn-outline-light d-inline-flex align-items-center gap-2 px-4 py-2 text-white border-white">
+                <i class="ph-bold {{ icon }}"></i>
+                <span>{{ button_text }}</span>
+            </a>
+            {% endwith %}
         {% endif %}
 
-        <a id="take-exam-btn" style="background-color:white;" href="{{ exam_url }}" class="exam-action-btn btn-sm ">
-            <i style="color:black;" class="ph-bold ph-notepad"></i>
-            <span style="color:black;">
-                {% if exam_action == 'continue' %}Continue Exam
-                {% elif exam_action == 'review' %}View Review
-                {% elif exam_action == 'results' %}Results
-                {% else %}Take Exam{% endif %}
-            </span>
-        </a>
-    {% else %}
-    
+        <!-- View Certificate Button (only if certificate exists) -->
+        {% if certificate %}
+            <a href="{% url 'view_certificate' course.id %}"
+               class="btn btn-sm d-inline-flex align-items-center gap-2 px-4 py-2"
+               style="background-color: #9C8401; color: white;">
+                <i class="ph-bold ph-certificate"></i>
+                <span>View Certificate</span>
+            </a>
+        {% elif has_certificate %} {# fallback if you have a boolean flag #}
+            <a href="{% url 'view_certificate' course.id %}"
+               class="btn btn-sm d-inline-flex align-items-center gap-2 px-4 py-2"
+               style="background-color: #9C8401; color: white;">
+                <i class="ph-bold ph-certificate"></i>
+                <span>View Certificate</span>
+            </a>
+        {% endif %}
 
-        <!-- ALWAYS show "View Certificate" button -->
-    <a id="view-certificate" style="background-color:#9C8401;"
-       href="{% url 'view_certificate' course.id %}"
-       class="exam-action-btn btn-sm ">
-        <i class="ph-bold ph-certificate"></i>
-        <span>View Certificate</span>
-    </a>
-    
-    {% endif %}
-
-
-
-   </div>
+    </div>
 </div>
 {% endif %}
-
-
 
 
 <!-- =========== student dashbord section end ============== -->
