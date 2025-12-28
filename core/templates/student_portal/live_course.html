@@ -395,6 +395,63 @@
   }
 }
 
+
+
+
+.video-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* Big center play button - YouTube style */
+.big-play-button {
+    width: 100px;
+    height: 100px;
+    background: rgba(0, 0, 0, 0.6);
+    border-radius: 50%;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    z-index: 10;
+    pointer-events: auto; /* allows clicking the button */
+}
+
+.big-play-button:hover {
+    background: rgba(0, 0, 0, 0.8);
+    transform: scale(1.1);
+}
+
+/* Hide the big button when video starts playing */
+.video-container.playing .big-play-button {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+/* Mobile */
+@media (max-width: 575px) {
+    .big-play-button {
+        width: 80px;
+        height: 80px;
+    }
+    .big-play-button i {
+        font-size: 40px !important;
+        margin-left: 4px;
+    }
+}
+
+
+/* Hide native play button (center + controls bar) */
+video::-webkit-media-controls-play-button,
+video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+}
+
+/* Keep all other controls visible */
+video::-webkit-media-controls {
+    opacity: 1 !important;
+}
     </style>
 
 
@@ -741,19 +798,31 @@
                     <!-- LEFT COLUMN: VIDEO -->
                     <div class="col-12 col-md-12 col-lg-8">
 
-                        <div class="text-dark  p-24 ">
-                            <!-- VIDEO PLAYER -->
-                            <video id="lesson-video" class="w-100 rounded-10"
-                                   controls
-                                   controlsList="nodownload"
-                                   preload="metadata"
-                                   data-lesson-id="{{ lesson.id }}"
-                                   data-next-url="{% if next_lesson_url %}{{ next_lesson_url }}{% endif %}"
-                                   data-lesson-completed="{% if lesson_completed %}true{% else %}false{% endif %}">
-                                <source src="{{ lesson.video.url }}" type="video/mp4">
-                                Your browser does not support the video tag.
-                            </video>
-                        </div>
+
+                        <div class="text-dark p-24">
+    <!-- VIDEO PLAYER WITH YOUTUBE-STYLE BIG CENTER PLAY BUTTON -->
+    <div class="video-container position-relative">
+        <video id="lesson-video"
+               class="w-100 rounded-10"
+               preload="metadata"
+               controls
+               controlsList="nodownload noplaybackrate nofullscreen"  <!-- hides play button & more -->
+               playsinline
+               poster="{% if lesson.thumbnail %}{{ lesson.thumbnail.url }}{% endif %}"
+               data-lesson-id="{{ lesson.id }}"
+               data-next-url="{% if next_lesson_url %}{{ next_lesson_url }}{% endif %}"
+               data-lesson-completed="{% if lesson_completed %}true{% else %}false{% endif %}">
+            <source src="{{ lesson.video.url }}" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+
+        <!-- Custom Big Center Play Button (YouTube style) -->
+        <div class="big-play-button position-absolute top-50 start-50 translate-middle
+                    d-flex align-items-center justify-content-center pointer-events-auto">
+            <i class="ph-bold ph-play text-white" style="font-size: 48px; margin-left: 6px;"></i>
+        </div>
+    </div>
+</div>
 
                     <!-- META -->
                     <div class="card border-1  rounded-16  p-10 mb-20">
@@ -1279,6 +1348,48 @@
     });
 
 })();
+</script>
+
+
+<script>
+// YouTube-style Big Play Button + Hide Native Play Button
+document.addEventListener('DOMContentLoaded', function () {
+    const videoContainer = document.querySelector('.video-container');
+    const video = document.getElementById('lesson-video');
+    const bigPlayButton = videoContainer?.querySelector('.big-play-button');
+
+    if (!videoContainer || !video || !bigPlayButton) return;
+
+    // Click the big center button → play video
+    bigPlayButton.addEventListener('click', function (e) {
+        e.stopPropagation();
+        video.play();
+    });
+
+    // Click anywhere else on video → show native controls (timeline, volume, etc.)
+    videoContainer.addEventListener('click', function (e) {
+        if (e.target.closest('.big-play-button')) return; // ignore big button
+
+        // This triggers the browser's native control visibility
+        // (tapping shows timeline, duration, etc.)
+        video.focus();
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    });
+
+    // Update state: hide big button when playing
+    video.addEventListener('play', () => videoContainer.classList.add('playing'));
+    video.addEventListener('pause', () => videoContainer.classList.remove('playing'));
+    video.addEventListener('ended', () => videoContainer.classList.remove('playing'));
+
+    // If video resumes from middle (page reload), hide big button
+    if (!video.paused) {
+        videoContainer.classList.add('playing');
+    }
+});
 </script>
 
 
