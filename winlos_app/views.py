@@ -611,21 +611,26 @@ def mark_lesson_complete(request):
     course = lesson.course
 
     # Get or create lesson progress
-    lp, _ = LessonProgress.objects.get_or_create(
+    lp, created = LessonProgress.objects.get_or_create(
         user=request.user,
         lesson=lesson,
         defaults={'status': 'in_progress'}
     )
 
-    if watched_seconds and isinstance(watched_seconds, int):
-        lp.watched_duration = max(lp.watched_duration or 0, watched_seconds)
+    # Check if lesson was already completed
+    already_completed = lp.status == 'completed'
 
-    lp.status = 'completed'
-    lp.completed_at = timezone.now()
-    lp.save()
+    # Only update if not completed
+    if not already_completed:
+        if watched_seconds and isinstance(watched_seconds, int):
+            lp.watched_duration = max(lp.watched_duration or 0, watched_seconds)
 
-    # Update overall course progress
-    CourseProgress.update_user_progress(request.user, course)
+        lp.status = 'completed'
+        lp.completed_at = timezone.now()
+        lp.save()
+
+        # Update overall course progress
+        CourseProgress.update_user_progress(request.user, course)
 
     # Calculate progress
     lesson_progress_qs = LessonProgress.objects.filter(user=request.user, lesson__course=course)
@@ -660,6 +665,7 @@ def mark_lesson_complete(request):
 
     return JsonResponse({
         "success": True,
+        "already_completed": already_completed,  # ✅ New flag
         "next_lesson_url": next_lesson_url,
         "course_completed": (completed == total),
         "progress_percent": percent,

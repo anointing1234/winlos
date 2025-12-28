@@ -805,6 +805,7 @@ video::-webkit-media-controls-start-playback-button {
                controls
                controlsList="nodownload noplaybackrate nofullscreen"
                playsinline
+               data-lesson-id="{{ lesson.id }}"
                poster="{% if lesson.thumbnail %}{{ lesson.thumbnail.url }}{% endif %}">
             <source src="{{ lesson.video.url }}" type="video/mp4">
             Your browser does not support the video tag.
@@ -1146,8 +1147,7 @@ video::-webkit-media-controls-start-playback-button {
     <!-- main js -->
     <script src="{% static 'student_d_assets/js/main.js' %}"></script>
 
-
-    <!-- Spinner Overlay -->
+<!-- Spinner Overlay -->
 <div id="spinner-overlay" style="display:none;">
     <div class="spinner"></div>
 </div>
@@ -1190,13 +1190,16 @@ video::-webkit-media-controls-start-playback-button {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
+
 <script>
 (function () {
     const video = document.getElementById('lesson-video');
     if (!video) return;
 
     const lessonId = video.dataset.lessonId;
+    let completionSent = false;
 
+    /* ---------------- CSRF ---------------- */
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie) {
@@ -1211,8 +1214,7 @@ video::-webkit-media-controls-start-playback-button {
     }
     const csrftoken = getCookie('csrftoken');
 
-    let completionSent = false;
-
+    /* ---------------- Spinner ---------------- */
     function showSpinner() {
         document.getElementById('spinner-overlay').style.display = 'flex';
     }
@@ -1220,11 +1222,9 @@ video::-webkit-media-controls-start-playback-button {
         document.getElementById('spinner-overlay').style.display = 'none';
     }
 
-    // Wrapper to show SweetAlert after spinner
-    async function showSwal(options) {
-        showSpinner();
-        await new Promise(r => setTimeout(r, 300)); // small delay for spinner to show
-        hideSpinner();
+    /* ---------------- SweetAlert ---------------- */
+    function showSwal(options) {
+        if (Swal.isVisible()) Swal.close();
         return Swal.fire(options);
     }
 
@@ -1232,6 +1232,7 @@ video::-webkit-media-controls-start-playback-button {
         if (typeof confetti === "function") {
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
         }
+        hideSpinner();
         showSwal({
             title: "🎉 Congratulations! 🎉",
             text: "You have completed the course!",
@@ -1247,6 +1248,7 @@ video::-webkit-media-controls-start-playback-button {
     }
 
     function askToPlayNext(url) {
+        hideSpinner();
         showSwal({
             title: "Lesson Completed!",
             text: "Do you want to play the next lesson?",
@@ -1270,9 +1272,12 @@ video::-webkit-media-controls-start-playback-button {
         });
     }
 
+    /* ---------------- Completion ---------------- */
     async function sendCompletion(watchedSeconds = null) {
         if (completionSent) return;
         completionSent = true;
+
+        showSpinner(); // Always show spinner
 
         try {
             const resp = await fetch("{% url 'mark_lesson_complete' %}", {
@@ -1282,21 +1287,38 @@ video::-webkit-media-controls-start-playback-button {
                     "Content-Type": "application/json",
                     "X-CSRFToken": csrftoken
                 },
-                body: JSON.stringify({ lesson_id: lessonId, watched_seconds: watchedSeconds })
+                body: JSON.stringify({
+                    lesson_id: lessonId,
+                    watched_seconds: watchedSeconds
+                })
             });
-            const data = await resp.json();
-            console.log("[LessonScript] markCompleted response:", data);
 
+            const data = await resp.json();
+
+            // Update progress bar silently
             const bar = document.getElementById('course-progress-bar');
             if (bar && data.progress_percent !== undefined) {
                 bar.style.width = data.progress_percent + "%";
             }
 
+            // If lesson was already completed, just hide spinner and do nothing
+            if (data.already_completed) {
+                console.log("Lesson already completed. Spinner briefly shown.");
+                hideSpinner();
+                return;
+            }
+
+            // Handle course completion
             if (data.course_completed) {
                 showConfetti(() => window.location.reload());
-            } else if (data.next_lesson_url) {
+            }
+            // Handle next lesson
+            else if (data.next_lesson_url) {
                 askToPlayNext(data.next_lesson_url);
-            } else {
+            }
+            // Default lesson completion popup
+            else {
+                hideSpinner();
                 showSwal({
                     title: "Lesson Completed!",
                     text: "You have finished this lesson.",
@@ -1313,6 +1335,7 @@ video::-webkit-media-controls-start-playback-button {
 
         } catch (err) {
             console.error(err);
+            hideSpinner();
             showSwal({
                 title: "Error",
                 text: "Something went wrong. Please try again.",
@@ -1326,25 +1349,13 @@ video::-webkit-media-controls-start-playback-button {
         }
     }
 
+    /* ---------------- Video End ---------------- */
     video.addEventListener("ended", () => {
-        showSwal({
-            title: "Completed!",
-            text: "Checking progress...",
-            icon: "info",
-            showConfirmButton: false,
-            allowOutsideClick: false,
-            timer: 1500,
-            customClass: {
-                popup: 'my-swal-popup',
-                title: 'my-swal-title',
-            }
-        });
         sendCompletion(Math.floor(video.duration));
     });
 
 })();
 </script>
-
 
 
 <script>
