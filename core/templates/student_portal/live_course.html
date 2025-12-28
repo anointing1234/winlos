@@ -396,8 +396,6 @@
 }
 
 
-
-
 .video-container {
     position: relative;
     overflow: hidden;
@@ -405,8 +403,12 @@
     cursor: pointer;
 }
 
-/* Big center play button - YouTube style */
+/* Big center play button */
 .big-play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     width: 100px;
     height: 100px;
     background: rgba(0, 0, 0, 0.6);
@@ -414,19 +416,18 @@
     backdrop-filter: blur(4px);
     transition: all 0.3s ease;
     z-index: 10;
-    pointer-events: auto; /* allows clicking the button */
+    cursor: pointer;
 }
 
 .big-play-button:hover {
     background: rgba(0, 0, 0, 0.8);
-    transform: scale(1.1);
+    transform: translate(-50%, -50%) scale(1.1);
 }
 
-/* Hide the big button when video starts playing */
+/* Hide when playing */
 .video-container.playing .big-play-button {
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s;
 }
 
 /* Mobile */
@@ -437,21 +438,15 @@
     }
     .big-play-button i {
         font-size: 40px !important;
-        margin-left: 4px;
     }
 }
 
-
-/* Hide native play button (center + controls bar) */
+/* Hide native center play button (Chrome / Safari) */
 video::-webkit-media-controls-play-button,
 video::-webkit-media-controls-start-playback-button {
     display: none !important;
 }
 
-/* Keep all other controls visible */
-video::-webkit-media-controls {
-    opacity: 1 !important;
-}
     </style>
 
 
@@ -799,26 +794,29 @@ video::-webkit-media-controls {
                     <div class="col-12 col-md-12 col-lg-8">
 
 
-                        <div class="text-dark p-24">
-    <!-- VIDEO PLAYER WITH YOUTUBE-STYLE BIG CENTER PLAY BUTTON -->
+                       <div class="text-dark p-24">
     <div class="video-container position-relative">
+
+        <!-- VIDEO -->
         <video id="lesson-video"
                class="w-100 rounded-10"
                preload="metadata"
                controls
-               controlsList="nodownload noplaybackrate nofullscreen"  <!-- hides play button & more -->
+               controlsList="nodownload noplaybackrate nofullscreen"
                playsinline
-               poster="{% if lesson.thumbnail %}{{ lesson.thumbnail.url }}{% endif %}"
-               data-lesson-id="{{ lesson.id }}"
-               data-next-url="{% if next_lesson_url %}{{ next_lesson_url }}{% endif %}"
-               data-lesson-completed="{% if lesson_completed %}true{% else %}false{% endif %}">
+               poster="{% if lesson.thumbnail %}{{ lesson.thumbnail.url }}{% endif %}">
             <source src="{{ lesson.video.url }}" type="video/mp4">
             Your browser does not support the video tag.
         </video>
 
-       
+        <!-- BIG CENTER PLAY BUTTON -->
+        <div class="big-play-button d-flex align-items-center justify-content-center">
+            <i class="bi bi-play-fill text-white" style="font-size:48px; margin-left:4px;"></i>
+        </div>
+
     </div>
 </div>
+
 
                     <!-- META -->
                     <div class="card border-1  rounded-16  p-10 mb-20">
@@ -1346,26 +1344,27 @@ video::-webkit-media-controls {
 })();
 </script>
 
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     const videoContainer = document.querySelector('.video-container');
     const video = document.getElementById('lesson-video');
-    const bigPlayButton = videoContainer?.querySelector('.big-play-button');
+    const bigPlayButton = document.querySelector('.big-play-button');
 
-    if (!videoContainer || !video || !bigPlayButton) return;
+    if (!video || !bigPlayButton) return;
 
-    // Big center button → play video
+    // Click big button → play
     bigPlayButton.addEventListener('click', function (e) {
         e.stopPropagation();
         video.play();
     });
 
-    // Hide big button when video plays
+    // Hide button on play
     video.addEventListener('play', function () {
         videoContainer.classList.add('playing');
     });
 
-    // Show big button when paused or ended
+    // Show button on pause/end
     video.addEventListener('pause', function () {
         videoContainer.classList.remove('playing');
     });
@@ -1373,11 +1372,6 @@ document.addEventListener('DOMContentLoaded', function () {
     video.addEventListener('ended', function () {
         videoContainer.classList.remove('playing');
     });
-
-    // If video is already playing (page reload / resume)
-    if (!video.paused) {
-        videoContainer.classList.add('playing');
-    }
 });
 </script>
 
