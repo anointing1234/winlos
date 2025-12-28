@@ -22,9 +22,6 @@ from redis.exceptions import ConnectionError as RedisConnectionError
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-env = environ.Env(
-    DEBUG=(bool, False)
-)
 
 # ✅ EXPLICIT PATH (THIS IS THE KEY FIX)
 environ.Env.read_env(BASE_DIR / ".env")
@@ -32,27 +29,34 @@ environ.Env.read_env(BASE_DIR / ".env")
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
+# Quick-start development settings
+SECRET_KEY = os.getenv("SECRET_KEY", "unsafe-dev-key")
+DEBUG = os.getenv("DEBUG", "False").lower() in ("true", "1", "yes")
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env("SECRET_KEY", default="unsafe-dev-key")
-
-# SECURITY WARNING: don't run with debug turned on in production!
-
-DEBUG = env.bool("DEBUG", default=False)
-
-
-# ALLOWED_HOSTS = ["localhost", "127.0.0.1"]
-# CSRF_TRUSTED_ORIGINS = ["http://localhost", "http://127.0.0.1"]
+# ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
+# CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "http://localhost,http://127.0.0.1").split(",")
+# DEBUG_PROPAGATE_EXCEPTIONS = False
 
 
-ALLOWED_HOSTS = env.list(
-        "ALLOWED_HOSTS",
-        default=["winlos-production.up.railway.app"]
-    )
-CSRF_TRUSTED_ORIGINS = env.list(
+
+
+
+# ALLOWED_HOSTS: only the hostnames, no http/https
+ALLOWED_HOSTS = [
+    host.strip()
+    for host in os.getenv("ALLOWED_HOSTS", "winlos-production.up.railway.app").split(",")
+    if host.strip()
+]
+
+# CSRF_TRUSTED_ORIGINS: must include full scheme (https is required in production)
+CSRF_TRUSTED_ORIGINS = [
+    origin.strip()
+    for origin in os.getenv(
         "CSRF_TRUSTED_ORIGINS",
-        default=["https://winlos-production.up.railway.app"]
-    )
+        "https://winlos-production.up.railway.app,https://www.winlos-production.up.railway.app"
+    ).split(",")
+    if origin.strip()
+]
 
 
 LOGIN_URL = 'login'
@@ -129,6 +133,8 @@ WSGI_APPLICATION = 'winlos.wsgi.application'
 # --------------------------------------------------
 # DATABASE
 # --------------------------------------------------
+
+# Database
 if DEBUG:
     DATABASES = {
         "default": {
@@ -140,17 +146,18 @@ else:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.postgresql",
-            "NAME": env("DB_NAME"),
-            "USER": env("DB_USER"),
-            "PASSWORD": env("DB_PASSWORD"),
-            "HOST": env("DB_HOST"),
-            "PORT": env("DB_PORT"),  # ← leave as string
-            "CONN_MAX_AGE": 600,
-            # "OPTIONS": {
-            #     "sslmode": "require",  # important for Railway
-            # },
+            "NAME": os.getenv("DB_NAME"),
+            "USER": os.getenv("DB_USER"),
+            "PASSWORD": os.getenv("DB_PASSWORD"),
+            "HOST": os.getenv("DB_HOST"),
+            "PORT": os.getenv("DB_PORT", "5432"),
+            "CONN_MAX_AGE": 900,
+            "OPTIONS": {
+            "sslmode": "require",  # important for Railway
+        },
         }
     }
+
 
 
 # Password validation
@@ -192,12 +199,13 @@ USE_TZ = True
 # --------------------------------------------------
 
 # Use R2 only when NOT in Debug mode (Production)
+# Static & media
 if not DEBUG:
-    AWS_ACCESS_KEY_ID = env("CLOUDFLARE_R2_ACCESS_KEY")
-    AWS_SECRET_ACCESS_KEY = env("CLOUDFLARE_R2_SECRET_KEY")
-    AWS_STORAGE_BUCKET_NAME = env("CLOUDFLARE_R2_BUCKET_NAME")
-    AWS_S3_ENDPOINT_URL = env("CLOUDFLARE_R2_ENDPOINT_URL")
-    AWS_S3_CUSTOM_DOMAIN = env("CLOUDFLARE_R2_PUBLIC_URL_DOMAIN") 
+    AWS_ACCESS_KEY_ID = os.getenv("CLOUDFLARE_R2_ACCESS_KEY")
+    AWS_SECRET_ACCESS_KEY = os.getenv("CLOUDFLARE_R2_SECRET_KEY")
+    AWS_STORAGE_BUCKET_NAME = os.getenv("CLOUDFLARE_R2_BUCKET_NAME")
+    AWS_S3_ENDPOINT_URL = os.getenv("CLOUDFLARE_R2_ENDPOINT_URL")
+    AWS_S3_CUSTOM_DOMAIN = os.getenv("CLOUDFLARE_R2_PUBLIC_URL_DOMAIN")
 
     AWS_S3_REGION_NAME = "auto"
     AWS_S3_SIGNATURE_VERSION = "s3v4"
@@ -215,19 +223,24 @@ if not DEBUG:
         },
     }
 else:
-    # Local Development Settings
     STATIC_URL = "static/"
     STATIC_ROOT = BASE_DIR / "staticfiles"
     MEDIA_URL = "media/"
     MEDIA_ROOT = BASE_DIR / "media"
 
-# This stays outside the IF block
-STATICFILES_DIRS = [
-    BASE_DIR / "core" / "static",
-]
-# Use the Custom Domain for the URLs
-STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
-MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+STATICFILES_DIRS = [BASE_DIR / "core" / "static"]
+
+
+# Always set these when using R2 (even if DEBUG=True locally with R2)
+if 'AWS_S3_CUSTOM_DOMAIN' in locals():
+    STATIC_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/static/"
+    MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
+
+
+if not DEBUG:
+    # Additional headers
+    SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+    SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -256,13 +269,9 @@ AUTHENTICATION_BACKENDS = [
 # --------------------------------------------------
 # EMAIL (RESEND)
 # --------------------------------------------------
-DEFAULT_FROM_EMAIL = env("DEFAULT_FROM_EMAIL", default="info@winlosacademy.com")
-
+DEFAULT_FROM_EMAIL = "info@winlosacademy.com"
 EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
-
-ANYMAIL = {
-    "RESEND_API_KEY": env("RESEND_API_KEY"),
-}
+ANYMAIL = {"RESEND_API_KEY": os.getenv("RESEND_API_KEY")}
 
 
 
@@ -270,21 +279,38 @@ ANYMAIL = {
 # --------------------------------------------------
 # SECURITY (PRODUCTION ONLY)
 # --------------------------------------------------
-# if not DEBUG:
-#     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-#     SECURE_SSL_REDIRECT = True
-#     SESSION_COOKIE_SECURE = True
-#     CSRF_COOKIE_SECURE = True
-#     X_FRAME_OPTIONS = "DENY"
+if not DEBUG:
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+    SECURE_BROWSER_XSS_FILTER = True
+    SECURE_CONTENT_TYPE_NOSNIFF = True
+    X_FRAME_OPTIONS = 'DENY'
+    SECURE_HSTS_SECONDS = 31536000  # 1 year
+    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+    SECURE_HSTS_PRELOAD = True
 
 
-
-PAYSTACK_PUBLIC_KEY = env("PAYSTACK_PUBLIC_KEY")
-PAYSTACK_SECRET_KEY = env("PAYSTACK_SECRET_KEY")
+PAYSTACK_PUBLIC_KEY = os.getenv("PAYSTACK_PUBLIC_KEY")
+PAYSTACK_SECRET_KEY = os.getenv("PAYSTACK_SECRET_KEY")
 PAYSTACK_BASE_URL = "https://api.paystack.co"
 
 
 
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+        },
+    },
+    "root": {
+        "handlers": ["console"],
+        "level": "INFO",
+    },
+}
 
 # ======================
 # DJANGO UNFOLD SETTINGS

@@ -24,7 +24,7 @@ urlpatterns = [
     # Student portal views — student only
     path('dashboard/', student_required(views.student_dashboard), name='dashboard'),
     path('student_profile/', student_required(views.student_profile), name='student_profile'),
-    path('settings/', student_required(views.settings), name='settings'),
+    path('settings/', student_required(views.Settings), name='settings'),
     path('courses/', student_required(views.Courses), name='courses'),
     path('certification/', student_required(views.certification), name='certification'),
     path('update_profile/', student_required(views.update_profile), name='update_profile'),

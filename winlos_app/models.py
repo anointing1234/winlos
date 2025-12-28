@@ -20,6 +20,8 @@ import re
 from django.db.models import Sum
 
 
+
+
 # =========================================
 #   FILE UPLOAD PATH
 # =========================================
@@ -27,7 +29,6 @@ def user_profile_upload_path(instance, filename):
     ext = filename.split('.')[-1]
     filename = f"profile_{uuid.uuid4()}.{ext}"
     return os.path.join("profile_pics", f"user_{instance.id}", filename)
-
 
 # =========================================
 #   ACCOUNT MANAGER
@@ -37,7 +38,6 @@ class AccountManager(BaseUserManager):
     def create_user(self, email, password=None, **extra_fields):
         if not email:
             raise ValueError("An email is required")
-
         email = self.normalize_email(email)
         user = self.model(email=email, **extra_fields)
         user.set_password(password or self.make_random_password())
@@ -48,12 +48,9 @@ class AccountManager(BaseUserManager):
         extra_fields.setdefault("is_active", True)
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
-
         if not password:
             raise ValueError("Superuser must have a password")
-
         return self.create_user(email, password, **extra_fields)
-
 
 # =========================================
 #   CHOICES
@@ -69,29 +66,25 @@ ROLE = (
     ('instructor', 'Instructor'),
 )
 
-
 # =========================================
-#              ACCOUNT MODEL
+#   ACCOUNT MODEL
 # =========================================
 class Account(AbstractBaseUser, PermissionsMixin):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
 
-    email = models.EmailField(_('email address'), unique=True, max_length=100)
-    username = models.CharField(_('username'), max_length=30, unique=True, blank=True)
-    fullname = models.CharField(_('full name'), max_length=100, blank=True)
-
+    email = models.EmailField(unique=True, max_length=100)
+    username = models.CharField(max_length=30, unique=True, blank=True)
+    fullname = models.CharField(max_length=100, blank=True)
     phone_number = models.CharField(
-        _('phone number'),
-        max_length=15,
-        blank=True,
+        max_length=15, blank=True,
         validators=[RegexValidator(r'^\+?1?\d{9,15}$')]
     )
-    country = models.CharField(_('country'), max_length=100, blank=True)
-    city = models.CharField(_('city'), max_length=100, blank=True)
-    area_of_expertise = models.CharField(_('expertise area'), max_length=150, blank=True)
-    gender = models.CharField(_('gender'), max_length=1, choices=GENDER_CHOICES, default='O')
-    role = models.CharField(_('role'), max_length=20, choices=ROLE, default='student')
-    bio = models.CharField(_('bio'), max_length=300, blank=True)
+    country = models.CharField(max_length=100, blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    area_of_expertise = models.CharField(max_length=150, blank=True)
+    gender = models.CharField(max_length=1, choices=GENDER_CHOICES, default='O')
+    role = models.CharField(max_length=20, choices=ROLE, default='student')
+    bio = models.CharField(max_length=300, blank=True)
 
     profile_pic = models.ImageField(upload_to=user_profile_upload_path, blank=True, null=True)
 
@@ -117,11 +110,10 @@ class Account(AbstractBaseUser, PermissionsMixin):
         return self.email
 
     # =========================================
-    #   USERNAME GENERATOR  (KEEP SAME LOGIC)
+    #   USERNAME GENERATOR
     # =========================================
     def generate_username(self):
         import string
-
         if self.fullname:
             parts = self.fullname.strip().split()
             first_initial = parts[0][0].upper() if parts else random.choice(string.ascii_uppercase)
@@ -129,19 +121,14 @@ class Account(AbstractBaseUser, PermissionsMixin):
         else:
             first_initial = random.choice(string.ascii_uppercase)
             last_initial = random.choice(string.ascii_lowercase)
-
-        # Try 10 random patterns
         for _ in range(10):
             random_number = random.randint(100, 999)
             username = f"{first_initial}{last_initial}{random_number}@"
             if not Account.objects.filter(username=username).exists():
                 self.username = username
                 return username
-
-        # Final fallback
-        final_username = f"{first_initial}{last_initial}{int(datetime.now().timestamp())}@"
-        self.username = final_username
-        return final_username
+        self.username = f"{first_initial}{last_initial}{int(datetime.now().timestamp())}@"
+        return self.username
 
     # =========================================
     #   IMAGE COMPRESSION
@@ -150,52 +137,61 @@ class Account(AbstractBaseUser, PermissionsMixin):
         img = Image.open(image)
         img = img.convert("RGB")
         img.thumbnail((600, 600))
-
         buffer = BytesIO()
         img.save(buffer, format="JPEG", quality=70)
         buffer.seek(0)
-
         return ContentFile(buffer.read(), name=image.name)
 
     @property
     def courses_count(self):
-        """
-        Returns the number of active courses the user is enrolled in
-        """
         return self.enrollments.filter(is_active=True).count()
+
+    def profile_completion_percentage(self):
+        """
+        Calculates profile completeness based on filled fields.
+        """
+        fields_to_check = [
+            'username', 'fullname', 'phone_number', 'country', 'city', 
+             'gender', 'bio', 'profile_pic'
+        ]
+
+        filled_count = 0
+        total_fields = len(fields_to_check)
+
+        for field in fields_to_check:
+            value = getattr(self, field)
+            if value:
+                filled_count += 1
+
+        # Calculate percentage
+        percentage = int((filled_count / total_fields) * 100)
+        return percentage
     # =========================================
     #   SAVE OVERRIDE
     # =========================================
     def save(self, *args, **kwargs):
-
-        # Create username automatically
         if not self.username:
             self.generate_username()
-
         # Delete old profile picture if replaced
         if self.pk:
             try:
                 old = Account.objects.get(pk=self.pk)
-                if old.profile_pic and self.profile_pic and old.profile_pic != self.profile_pic:
-                    if os.path.isfile(old.profile_pic.path):
-                        os.remove(old.profile_pic.path)
+                if old.profile_pic and self.profile_pic != old.profile_pic:
+                    old.profile_pic.delete(save=False)
             except Account.DoesNotExist:
                 pass
-
         # Compress uploaded picture
         if self.profile_pic and hasattr(self.profile_pic, "file"):
             self.profile_pic = self.compress_image(self.profile_pic)
-
         super().save(*args, **kwargs)
 
     # =========================================
-    #   DELETE USER — REMOVE OLD IMAGE
+    #   DELETE USER — REMOVE IMAGE
     # =========================================
     def delete(self, *args, **kwargs):
-        if self.profile_pic and os.path.isfile(self.profile_pic.path):
-            os.remove(self.profile_pic.path)
+        if self.profile_pic:
+            self.profile_pic.delete(save=False)
         super().delete(*args, **kwargs)
-
 
 
 # ================================================================
@@ -340,20 +336,29 @@ class Course(models.Model):
     
 
 
-
-
 # ================================================================
 #                          LESSON MODEL
 # ================================================================
 class Lesson(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    course = models.ForeignKey(Course, on_delete=models.CASCADE, related_name="lessons")
+    course = models.ForeignKey('Course', on_delete=models.CASCADE, related_name="lessons")
     title = models.CharField(max_length=255)
     description = models.TextField(blank=True, null=True)  # <-- New description field
     video = models.FileField(upload_to='lesson_videos/', blank=True, null=True)
     duration_minutes = models.PositiveIntegerField(default=0)
-    order = models.PositiveIntegerField(default=1)
-   
+    order = models.PositiveIntegerField(default=1, editable=False)
+
+    class Meta:
+        ordering = ['order']  # default ordering by the order field
+
+    def save(self, *args, **kwargs):
+        if not self.pk:  # Only set order for new lessons
+            last_order = Lesson.objects.filter(course=self.course).aggregate(models.Max('order'))['order__max']
+            self.order = (last_order or 0) + 1
+        super().save(*args, **kwargs)
+
+    def __str__(self):
+        return f"{self.title} (Order: {self.order})"
     
 
 
@@ -375,7 +380,7 @@ class LessonProgress(models.Model):
     completed_at = models.DateTimeField(blank=True, null=True)
     watched_duration = models.PositiveIntegerField(default=0)
     duration_seconds = models.PositiveIntegerField(default=0) 
-
+    order = models.PositiveIntegerField(default=0) 
     class Meta:
         unique_together = ('user', 'lesson')
 

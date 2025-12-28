@@ -9,10 +9,11 @@ from django.contrib.auth.decorators import login_required
 from django.http import JsonResponse
 import json
 import os
-import json, requests, logging
+import json, requests
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth import authenticate, login as auth_login ,logout
 from django.utils import timezone
+from django.db.models import Avg
 from .models import (
 Course,
 Enrollment,
@@ -40,7 +41,7 @@ from .utils.emails import send_password_reset_email
 import hmac
 import hashlib
 from django.db import transaction
-from django.conf import settings as set
+from django.conf import settings as Set
 from django.db.models import Sum
 from django.db.models.functions import ExtractMonth
 from django.utils.timezone import now
@@ -150,9 +151,50 @@ def student_dashboard(request):
 
 
 def student_profile(request):
-    return render(request,'student_portal/student_profile.html')    
+    user = request.user
+    profile_completion = user.profile_completion_percentage()
 
-def settings(request):
+    # Fetch active enrollments
+    enrollments = Enrollment.objects.filter(user=user, is_active=True).select_related("course")
+
+    course_ids = [e.course.id for e in enrollments]
+
+    # Fetch progress objects in bulk
+    progresses = CourseProgress.objects.filter(user=user, course_id__in=course_ids)
+    progresses_dict = {p.course_id: p for p in progresses}
+
+    enrolled_courses_count = enrollments.count()
+    completed_courses_count = 0
+
+    # Count completed courses based on progress
+    for enrollment in enrollments:
+        course = enrollment.course
+        progress_obj = progresses_dict.get(course.id)
+        progress = progress_obj.progress_percent if progress_obj else 0
+
+        if progress >= 100:
+            completed_courses_count += 1
+
+    # Certificates count
+    certificates_count = Certificate.objects.filter(user=user).count()
+
+    context = {
+        "enrolled_courses_count": enrolled_courses_count,
+        "completed_courses_count": completed_courses_count,
+        "certificates_count": certificates_count,
+        "profile_completion":  profile_completion,
+    }
+
+    return render(request, 'student_portal/student_profile.html', context)
+
+
+
+
+
+
+    
+
+def Settings(request):
     return render(request,'student_portal/student_profile_settings.html')
 
 
@@ -278,12 +320,31 @@ def Courses(request):
     courses = Course.objects.all().order_by('-created_at')
     return render(request,'student_portal/student_courses.html',{"courses": courses})
 
-
-
 def certification(request):
-    courses = Course.objects.all().order_by('-created_at')
-    return render(request,'student_portal/certification.html',{"courses": courses})
+    user = request.user
 
+    # Get all certificates for the current user
+    certificates = Certificate.objects.filter(user=user).select_related('course', 'user').order_by('-issued_at')
+
+    # Total Certificates
+    total_certificates = certificates.count()
+
+    # Courses Completed
+    completed_courses_count = CourseProgress.objects.filter(user=user, status='completed').count()
+
+    # Average Grade from completed exams
+    avg_grade = ExamAttempt.objects.filter(user=user, status='completed').aggregate(
+        avg_score=Avg('score')
+    )['avg_score'] or 0
+
+    context = {
+        "certificates": certificates,
+        "enrolled_courses_count": total_certificates,  # Total Certificates
+        "active_courses_count": completed_courses_count,  # Courses Completed
+        "completed_courses_count": round(avg_grade, 2),  # Average Grade
+    }
+
+    return render(request, 'student_portal/certification.html', context)
 
 @login_required  # Needed for AJAX POST
 def update_password(request):
@@ -327,14 +388,13 @@ def update_password(request):
 
 
 
-
 def update_profile(request):
     if request.method != "POST":
         return JsonResponse({"success": False, "message": "Invalid request"}, status=405)
 
     user = request.user
 
-    # Get data from FormData (sent via AJAX)
+    # Get data from FormData
     fullname     = request.POST.get('fullname', '').strip()
     username     = request.POST.get('username', '').strip()
     email        = request.POST.get('email', '').strip()
@@ -345,7 +405,7 @@ def update_profile(request):
 
     errors = {}
 
-    # Validation
+    # --- Validation ---
     if not fullname:
         errors['fullname'] = ["Full name is required."]
 
@@ -370,12 +430,12 @@ def update_profile(request):
         }, status=400)
 
     try:
-        # Update user fields
+        # --- Update user fields ---
         user.fullname = fullname
         user.username = username
         user.email = email
 
-        # Optional fields (only set if they exist on your User model)
+        # Optional fields
         if hasattr(user, 'phone_number'):
             user.phone_number = phone_number or None
         if hasattr(user, 'country'):
@@ -393,14 +453,12 @@ def update_profile(request):
         })
 
     except Exception as e:
-        print(e)  # For debugging (remove in production if you want)
+        # Debugging (remove in production)
+        print("Update profile error:", e)
         return JsonResponse({
             "success": False,
             "message": "Something went wrong. Please try again."
         }, status=500)
-    
-
-
 
 
 
@@ -413,7 +471,7 @@ def update_profile_picture(request):
 
     file = request.FILES['imageUpload']
 
-    # Optional: Validate file type
+    # Validate file type
     valid_extensions = ['.jpg', '.jpeg', '.png']
     ext = os.path.splitext(file.name)[1].lower()
     if ext not in valid_extensions:
@@ -422,7 +480,7 @@ def update_profile_picture(request):
             "message": "Only JPG, JPEG, and PNG files are allowed."
         }, status=400)
 
-    # Optional: Limit size (e.g. 5MB)
+    # Limit size (5MB)
     if file.size > 5 * 1024 * 1024:
         return JsonResponse({
             "success": False,
@@ -430,10 +488,11 @@ def update_profile_picture(request):
         }, status=400)
 
     try:
-        # Delete old picture if exists and not default
-        if request.user.profile_pic and os.path.isfile(request.user.profile_pic.path):
+        # Delete old picture if exists (works for R2 / remote storage)
+        if request.user.profile_pic:
             request.user.profile_pic.delete(save=False)
 
+        # Save new picture
         request.user.profile_pic = file
         request.user.save()
 
@@ -444,6 +503,8 @@ def update_profile_picture(request):
         })
 
     except Exception as e:
+        import traceback
+        print(traceback.format_exc())  # Will print full error for debugging
         return JsonResponse({
             "success": False,
             "message": "Failed to upload image."
@@ -531,10 +592,6 @@ def course_live(request, cour_id):
     })
 
 
-
-# --------------------------
-# MARK LESSON COMPLETE
-# --------------------------
 @login_required
 def mark_lesson_complete(request):
     if request.method != "POST":
@@ -570,14 +627,18 @@ def mark_lesson_complete(request):
     # Update overall course progress
     CourseProgress.update_user_progress(request.user, course)
 
-    # Calculate completed lessons and percentage
+    # Calculate progress
     lesson_progress_qs = LessonProgress.objects.filter(user=request.user, lesson__course=course)
     total = course.lessons.count()
     completed = lesson_progress_qs.filter(status='completed').count()
     percent = round((completed / total) * 100, 2) if total > 0 else 0.0
 
-    next_lesson = next((l for l in course.lessons.all() if l.order > lesson.order), None)
-    next_lesson_url = reverse('course_live', args=[str(course.id)]) + f'?lesson={next_lesson.id}' if next_lesson else None
+    # Determine next lesson
+    next_lesson = Lesson.objects.filter(course=course, order__gt=lesson.order).order_by('order').first()
+    next_lesson_url = (
+        reverse('course_live', args=[str(course.id)]) + f'?lesson={next_lesson.id}' 
+        if next_lesson else None
+    )
 
     # Exam action
     exam_action = None
@@ -585,12 +646,11 @@ def mark_lesson_complete(request):
     if exam:
         attempt = ExamAttempt.objects.filter(user=request.user, exam=exam).first()
         if attempt:
-            if attempt.status == "in_progress":
-                exam_action = "continue"
-            elif attempt.status == "submitted":
-                exam_action = "review"
-            elif attempt.status == "completed":
-                exam_action = "results"
+            exam_action = {
+                "in_progress": "continue",
+                "submitted": "review",
+                "completed": "results"
+            }.get(attempt.status, "start")
         else:
             exam_action = "start"
 
@@ -606,9 +666,6 @@ def mark_lesson_complete(request):
         "exam_action": exam_action,
         "lesson_id": str(lesson.id),
     })
-
-
-
 
 
 
@@ -676,34 +733,46 @@ def submit_exam(request, course_id, exam_id):
     })
 
 
-@login_required
 def exam_results(request, course_id, exam_id):
-    exam = get_object_or_404(Exam.objects.prefetch_related('questions__options'), id=exam_id, course__id=course_id)
+    """
+    Handles exam submission and calculates score.
+    """
+    exam = get_object_or_404(
+        Exam.objects.prefetch_related('questions__options'),
+        id=exam_id,
+        course__id=course_id
+    )
+
+    # Get or create the user's attempt
     attempt, _ = ExamAttempt.objects.get_or_create(exam=exam, user=request.user)
 
     if request.method == "POST":
-        # Save answers and recalc score
-        selected_answers = {}
+        # Collect answers from POST data
+        user_answers = {}
         for question in exam.questions.all():
             values = request.POST.getlist(f'answers_{question.id}')
-            selected_answers[str(question.id)] = [str(v) for v in values]
+            user_answers[str(question.id)] = [str(v) for v in values]
 
-        attempt.calculate_score(selected_answers)
+        # Calculate score and save attempt
+        attempt.calculate_score(user_answers)
 
-    # Prepare questions + options for template efficiently
+    # Prepare questions + options for template
     questions_data = []
     for question in exam.questions.all():
         options = list(question.options.all())
         correct_ids = {str(opt.id) for opt in options if opt.is_correct}
-        selected_ids = set(str(opt) for opt in attempt.selected_answers.get(str(question.id), []))
 
-        options_data = []
-        for option in options:
-            options_data.append({
+        # Ensure selected_answers is always a dict
+        attempt_answers = getattr(attempt, 'selected_answers', {}) or {}
+        selected_ids = set(str(opt_id) for opt_id in attempt_answers.get(str(question.id), []))
+
+        options_data = [
+            {
                 "option": option,
                 "is_correct": str(option.id) in correct_ids,
                 "is_selected": str(option.id) in selected_ids
-            })
+            } for option in options
+        ]
 
         questions_data.append({
             "question": question,
@@ -718,25 +787,40 @@ def exam_results(request, course_id, exam_id):
     return render(request, 'student_portal/exam_pages/quiz_answer.html', context)
 
 
+# ==============================
+# View Only Exam Results
+# ==============================
 @login_required
 def view_exam_results(request, course_id, exam_id):
-    exam = get_object_or_404(Exam.objects.prefetch_related('questions__options'), id=exam_id, course__id=course_id)
+    """
+    Display previously submitted exam attempt for review.
+    """
+    exam = get_object_or_404(
+        Exam.objects.prefetch_related('questions__options'),
+        id=exam_id,
+        course__id=course_id
+    )
     attempt = get_object_or_404(ExamAttempt, exam=exam, user=request.user)
 
-    # Prepare questions + options for template efficiently
+    # Ensure selected_answers is always a dictionary
+    attempt_answers = getattr(attempt, 'selected_answers', {}) or {}
+
     questions_data = []
     for question in exam.questions.all():
         options = list(question.options.all())
         correct_ids = {str(opt.id) for opt in options if opt.is_correct}
-        selected_ids = set(str(opt.id) for opt in attempt.selected_answers.get(str(question.id), []))
+        
+        # Get the selected answer IDs for this question
+        question_answers = attempt_answers.get(str(question.id), [])
+        selected_ids = set(str(answer_id) for answer_id in question_answers)
 
-        options_data = []
-        for option in options:
-            options_data.append({
+        options_data = [
+            {
                 "option": option,
                 "is_correct": str(option.id) in correct_ids,
                 "is_selected": str(option.id) in selected_ids
-            })
+            } for option in options
+        ]
 
         questions_data.append({
             "question": question,
@@ -749,7 +833,6 @@ def view_exam_results(request, course_id, exam_id):
         "questions_data": questions_data
     }
     return render(request, 'student_portal/exam_pages/quiz_answer.html', context)
-
 
 
 
@@ -998,22 +1081,42 @@ def update_profile_details(request):
 
 
 def update_cover_picture(request):
-    if request.method != "POST" or not request.FILES.get("cover_pic"):
+    """
+    AJAX: Update user's cover picture (works with remote storage like Cloudflare R2)
+    """
+    if request.method != "POST":
+        return JsonResponse({"success": False, "message": "Invalid request."})
+
+    file = request.FILES.get("cover_pic")
+    if not file:
         return JsonResponse({"success": False, "message": "No image uploaded."})
 
     user = request.user
-    user.cover_pic = request.FILES["cover_pic"]
-    user.save()
+    try:
+        # Delete old cover picture if exists (remote storage safe)
+        if user.cover_pic:
+            user.cover_pic.delete(save=False)
 
-    # Build the absolute URL that the browser can use
-    cover_url = request.build_absolute_uri(user.cover_pic.url)
-    return JsonResponse({
-        "success": True,
-        "message": "Cover photo updated successfully!",
-        "cover_url": cover_url
-    })
+        # Assign new file
+        user.cover_pic = file
+        user.save()
 
+        # Build absolute URL
+        cover_url = request.build_absolute_uri(user.cover_pic.url)
 
+        return JsonResponse({
+            "success": True,
+            "message": "Cover photo updated successfully!",
+            "cover_url": cover_url
+        })
+
+    except Exception as e:
+        import traceback
+        print(traceback.format_exc())  # Optional: debug in console
+        return JsonResponse({
+            "success": False,
+            "message": "Failed to update cover photo."
+        })
 
 
 def request_password_reset(request):
@@ -1588,15 +1691,21 @@ def Admin_update_profile_details(request):
 @login_required
 def Admin_update_profile_picture(request):
     """
-    AJAX: Update profile picture
+    AJAX: Update admin profile picture (compatible with Cloudflare R2 / remote storage)
     """
     if request.method == "POST":
         user = request.user
         try:
             file = request.FILES.get('profile_pic')
             if file:
-                user.profile_pic = file  # compress_image will run automatically in save()
+                # Delete old profile pic if exists (remote-safe)
+                if user.profile_pic:
+                    user.profile_pic.delete(save=False)
+
+                # Assign new file (compress_image runs automatically in save())
+                user.profile_pic = file
                 user.save()
+
                 return JsonResponse({
                     "success": True,
                     "message": "Profile picture updated successfully.",
@@ -1605,8 +1714,12 @@ def Admin_update_profile_picture(request):
             else:
                 return JsonResponse({"success": False, "message": "No file uploaded."})
         except Exception as e:
-            return JsonResponse({"success": False, "message": str(e)})
+            import traceback
+            print(traceback.format_exc())  # Optional: debug in console
+            return JsonResponse({"success": False, "message": "Failed to upload image."})
+    
     return JsonResponse({"success": False, "message": "Invalid request"})
+
 
 
 @login_required
@@ -1659,7 +1772,7 @@ def initialize_course_payment(request, course_id):
     )
 
     headers = {
-        "Authorization": f"Bearer {set.PAYSTACK_SECRET_KEY}",
+        "Authorization": f"Bearer {Set.PAYSTACK_SECRET_KEY}",
         "Content-Type": "application/json",
     }
 
@@ -1676,7 +1789,7 @@ def initialize_course_payment(request, course_id):
     }
 
     response = requests.post(
-        f"{set.PAYSTACK_BASE_URL}/transaction/initialize",
+        f"{Set.PAYSTACK_BASE_URL}/transaction/initialize",
         headers=headers,
         json=payload,
         timeout=10
@@ -1699,7 +1812,7 @@ def paystack_webhook(request):
     paystack_signature = request.headers.get("x-paystack-signature")
 
     computed_signature = hmac.new(
-        set.PAYSTACK_SECRET_KEY.encode(),
+        Set.PAYSTACK_SECRET_KEY.encode(),
         request.body,
         hashlib.sha512
     ).hexdigest()
@@ -1760,11 +1873,11 @@ def payment_success(request):
         return redirect("dashboard")
 
     headers = {
-        "Authorization": f"Bearer {set.PAYSTACK_SECRET_KEY}",
+        "Authorization": f"Bearer {Set.PAYSTACK_SECRET_KEY}",
     }
 
     response = requests.get(
-        f"{set.PAYSTACK_BASE_URL}/transaction/verify/{reference}",
+        f"{Set.PAYSTACK_BASE_URL}/transaction/verify/{reference}",
         headers=headers,
         timeout=10
     )
@@ -1885,3 +1998,16 @@ def add_course_comment(request, course_id):
         return JsonResponse({"status": "success", "message": "Comment added!", "comment_html": comment_html})
 
     return JsonResponse({"status": "error", "message": "Invalid request."})
+
+
+
+
+
+# winlos_app/views.py
+from django.views.debug import technical_500_response
+import sys
+
+def custom_500_view(request):
+    if not Set.DEBUG:
+        # Show full traceback even with DEBUG=False
+        return technical_500_response(request, *sys.exc_info())

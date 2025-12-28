@@ -71,143 +71,61 @@
     <link rel="stylesheet" href="{% static 'student_d_assets/css/aos.css' %}">
     <!-- Main css -->
     <link rel="stylesheet" href="{% static 'student_d_assets/css/main.css' %}">
-      <link rel="stylesheet" href="{% static 'student_d_assets/css/custom.css' %}">
+
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/custom.css' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 
+<style>
+  .Active {
+    background-color: black !important;
+}
 
+    .btn-hover-white {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
 
-    <style>
-        
-           .link_active{
-             background-color: var(--main-600) !important;
-             color: white !important
-        }
+.btn-hover-white::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2); /* White overlay */
+    transition: left 0.3s ease;
+}
 
-
-                .student-dashbord-scrollbar {
-    scrollbar-width: none; /* Firefox */
+.btn-hover-white:hover::after {
+    left: 0;
 }
 
 
-
-
-    /* Make course cards smaller & more balanced */
-.course-item {
-    padding: 10px !important;
-    border-radius: 14px;
-    transition: 0.2s ease;
+.container--xl {
+  max-height: 80px;
 }
 
-.course-item__thumb {
-    height: 160px !important;
+.bg-dark-pure {
+    background-color: white !important; /* pure black */
+    color:black; /* text white */
+    transition: background-color 0.3s ease;
 }
 
-.course-item__thumb img {
-    object-fit: cover !important;
-}
-
-/* Reduce internal spacing */
-.course-item__content {
-    padding: 6px 2px !important;
-}
-
-.course-item__content h4 {
-    margin-bottom: 14px !important;
-}
-
-.course-item__content span,
-.course-item__content h4 a {
-    font-size: 14px !important;
-}
-
-/* Category pill */
-.course-item__content > div > span {
-    font-size: 12px !important;
-    padding: 4px 10px !important;
-    margin-bottom: 10px !important;
-}
-
-/* Lessons + Students Row */
-.flex-between {
-    margin-bottom: 12px !important;
-}
-
-.flex-align span.text-2xl {
-    font-size: 18px !important;
-}
-
-/* Reduce “Complete” text */
-.course-item__content .text-20 {
-    font-size: 15px !important;
-}
-
-/* Progress bar spacing */
-.mb-40 {
-    margin-bottom: 20px !important;
-}
-
-/* Floating percentage label */
-.floating-label {
-    font-size: 12px !important;
-    height: 28px !important;
-}
-
-/* Stars + Author */
-.flex-between.mt-28 {
-    margin-top: 14px !important;
-}
-
-.text-14 {
-    font-size: 12px !important;
-}
-
-.w-28.h-28 {
-    width: 24px !important;
-    height: 24px !important;
-}
-
-/* Hover improvement */
-.course-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+.bg-dark-pure:hover {
+    background-color: black !important; /* hover slightly lighter */
 }
 
 
-
-
-.empty-lessons-card {
-    border: 2px dashed #d0d5dd;
-    background: #fafafa;
-    transition: all 0.3s ease;
-}
-
-.empty-lessons-card:hover {
-    background: #f5f7fa;
-    border-color: #b2b7c2;
-}
-
-.empty-lessons-card .empty-icon {
-    width: 64px;
-    height: 64px;
-    border-radius: 50%;
-    background: rgba(0, 0, 0, 0.05);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 0 auto;
-}
-
-.empty-lessons-card .empty-icon i {
-    font-size: 28px;
-    color: #667085;
-}
-
-    </style>
+</style>
+  
 
 
 </head> 
-<body>
-    
+<body class="bg-white">
+
 
       <!-- Preloader Start -->
         <div id="preloader" class="preloader">
@@ -243,6 +161,7 @@
             </div>
         </div>
 
+    
 
 <!--==================== Overlay Start ====================-->
 <div class="overlay"></div>
@@ -271,26 +190,25 @@
             
 <ul class="nav-menu flex-align nav-menu--mobile">
     <li class="nav-menu__item  activePage">
-        <a href="{% url 'home' %}" class="nav-menu__link text-dark">Home</a> 
+        <a href="{% url 'home' %}" class="nav-menu__link text-dark">HOME</a> 
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">About Us</a>
+        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">ABOUT US</a>
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'program' %}" class="nav-menu__link text-dark">Programs</a>
+        <a href="{% url 'program' %}" class="nav-menu__link text-dark">PROGRAMS</a>
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">Admission</a>
+        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">ADMISSION</a>
     </li> 
 </ul>
 
-          
+       
             
         </div>
     </div>
 </div>
 <!-- ==================== Mobile Menu End Here ==================== -->
-
 
 
 <!-- ==================== Header Start Here ==================== -->
@@ -309,16 +227,16 @@
             <div class="header-menu d-lg-block d-none flex-grow-1">
                 <ul class="nav-menu flex-align justify-content-center">
                     <li class="nav-menu__item activePage">
-                        <a href="{% url 'home' %}" class="nav-menu__link text-white">Home</a>
+                        <a href="{% url 'home' %}" class="nav-menu__link text-white">HOME</a>
                     </li>
                     <li class="nav-menu__item">
-                        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">About Us</a>
+                        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">ABOUT US</a>
                     </li>
                     <li class="nav-menu__item">
-                        <a href="{% url 'program' %}" class="nav-menu__link text-white">Programs</a>
+                        <a href="{% url 'program' %}" class="nav-menu__link text-white">PROGRAMS</a>
                     </li>
                     <li class="nav-menu__item">
-                        <a href="{% url 'admission' %}" class="nav-menu__link text-white">Admission</a>
+                        <a href="{% url 'admission' %}" class="nav-menu__link text-white">ADMISSION</a>
                     </li>
                 </ul>
             </div>
@@ -326,13 +244,29 @@
             <!-- Header Right -->
             <div class="header-right flex-align">
                 <div class="dropdown">
-                    <button class="dropdown-toggle w-48 h-48" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if request.user.profile_pic and request.user.profile_pic.name %}
-                        <img src="{{ request.user.profile_pic.url }}" alt="Profile" class="w-54 h-54 rounded-circle">
-                        {% else %}
-                        <img src="{% static 'student_d_assets/images/profile_pic.png' %}" alt="">
-                        {% endif %}
-                    </button>
+                   <button 
+    style="background-color:#a48a01; border-radius:50%; padding:0; overflow:hidden;"
+    class="dropdown-toggle w-48 h-48 d-flex align-items-center justify-content-center"
+    type="button" 
+    data-bs-toggle="dropdown" 
+    aria-expanded="false"
+>
+    {% if request.user.profile_pic and request.user.profile_pic.name %}
+        <img 
+            src="{{ request.user.profile_pic.url }}" 
+            alt="Profile" 
+            class="rounded-circle"
+            style="width:100%; height:100%; object-fit:cover;"
+        >
+    {% else %}
+        <img 
+            src="{% static 'student_d_assets/images/profile_pic.png' %}" 
+            alt="Profile" 
+            class="rounded-circle"
+            style="width:100%; height:100%; object-fit:cover;"
+        >
+    {% endif %}
+</button>
                     <ul class="dropdown-menu rounded-12">
                         <li>
                             <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'student_profile' %}">
@@ -360,163 +294,166 @@
 
 
 
-<!-- ============== student dashbord banner section start =============== -->
-<section class="breadcrumb pt-80 pb-187 bg-neutral-900 position-relative z-1 overflow-hidden mb-0 z-n1">
+<!-- =========== student dashboard section start ============== -->
 
-    
-    <div class="container container--lg">
+<section style="margin-top:100px;" class="bg-white pb-80 w-100 h-100">
+    <div  class="container-fluid ">
+
+        <div class="d-flex gap-24 mt--120 z-2 position-relative">
+            <div class="student-overlay-sidebar"></div>
+
+            <!-- ======== Dashboard Sidebar START ======== -->
+            <div class="student-dashboard-sidebar  border px-20 py-24 max-w-288-px bg-white rounded-20 w-100 position-relative">
+
+                <div style="background-color:#000000; padding:20px; border-radius:20px;" class="text-center">
+
+               {% if request.user.profile_pic and request.user.profile_pic.name %}
+          <img
+            src="{{ request.user.profile_pic.url }}"
+            alt="Profile"
+            class="rounded-circle d-block mx-auto mt-2"
+            style="
+                width:70px;
+            height:70px;
+            object-fit:cover;
+            background-color:#a48a01;
+            padding:3px;
+            ">
+            {% else %}
+                <img
+                    src="{% static 'student_d_assets/images/profile_pic.png' %}"
+                    alt="Profile"
+                    class="rounded-circle d-block mx-auto mt-2"
+                    style="
+                        width:70px;
+                        height:70px;
+                        object-fit:cover;
+                        background-color:#a48a01;
+                        padding:3px;
+                    ">
+            {% endif %}
+
+                <h6 style="margin-top:15px;" class="mb-1  text-white fw-normal" style="margin-top:30px;">
+                    Welcome, {{ request.user.username }}
+                </h6>
+
+                <span style="margin-top:10px;" class="d-block text-white-50 text-9">
+                    {{ request.user.email }}
+                </span>
+
+                                </div>
+
+            
+
+                <div style="margin-top:30px;">
+                    <div class=" min-w-max">
+                        <ul>
+
+                            <!-- Dashboard -->
+                            <li class="mb-8">
+                                <a href="{% url 'dashboard' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          bg-dark-pure  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-house"></i>
+                                    </span>
+                                    Dashboard
+                                </a>
+                            </li>
+
+                            <!-- Profile -->
+                            <li class="mb-8">
+                                <a href="{% url 'student_profile' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                           bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-user-circle"></i>
+                                    </span>
+                                    My Profile
+                                </a>
+                            </li>
+
+                            <!-- Courses -->
+                            <li class="mb-8">
+                                <a href="{% url 'courses' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          Active  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i style="color:white;" class="ph-bold ph-graduation-cap"></i>
+                                    </span>
+                                    Courses
+                                </a>
+                            </li>
+
+                            <!-- Certificates -->
+                            <li class="mb-8">
+                                <a href="{% url 'certification' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-certificate"></i>
+                                    </span>
+                                    Certificates
+                                </a>
+                            </li>
+                          <hr style="border-top: 1px solid rgba(0, 0, 0, 0.3); margin-top: 15px;">
+                            <!-- Logout -->
+                            <li class="mb-8">
+                                <a href="{% url 'logout' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-danger 
+                                          bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-danger item-hover__text transition-03">
+                                        <i class="ph ph-sign-out"></i>
+                                    </span>
+                                    Logout
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                
+
+            </div>
+            <!-- ======== Dashboard Sidebar END ======== -->
+
+
+
+   
+            <!-- =============================================== -->
+            <!-- MAIN DASHBOARD CONTENT (FIXED WRAPPER)          -->
+            <!-- =============================================== -->
+<div class="flex-grow-1" style="min-width: 0; margin-top:50px;">
+
+         <div style="background-color:#000000; padding:20px; border-radius:20px;" class="container">
         <div class="d-flex align-items-center gap-16 justify-content-between flex-wrap">
             <div class="breadcrumb__wrapper">
-              <h1 class="breadcrumb__title display-4 fw-semibold text-white mb-20">
-                Learning Portal
-            </h1>
+              <h3 class="breadcrumb__title display-10 fw-semibold text-white mb-20">
+               Courses
+            </h3>
 
                 <ul class="breadcrumb__list d-flex align-items-center gap-4 flex-wrap">
                     <li class="breadcrumb__item">
-                        <a href="{% url 'home' %}" class="breadcrumb__link text-white hover-text-warning-800 fw-medium">Home</a>
+                        <a href="{% url 'home' %}" class="breadcrumb__link text-white hover-text-warning-800 fw-bold">Home</a>
                     </li>
                
                     <li class="breadcrumb__item @@arrowTwoShowHide">
                         <i class="text-white d-flex ph-bold ph-caret-right"></i>
                     </li>
                     <li class="breadcrumb__item"> 
-                        <span class="text-main-two-600">Dashboard</span> 
+                        <span style="color:#ae971d;" class="fw-bold">Courses</span> 
                     </li>
                 </ul>
             </div>
          
         </div>
     </div>
-</section>
-<!-- ============== student dashbord banner section end =============== -->
 
-<!-- =========== student dashbord section start ============== -->
-
-<section class="bg-main-25 pb-80 w-100 h-100">
-    <div class="container container--lg">
-        <div class="d-flex gap-24 mt--120 z-2 position-relative">
-            <div class="student-overlay-sidebar"></div>
-   <!-- ========Dashboard Sidebar start======== -->
-<div class="student-dashboard-sidebar px-20 py-24 max-w-288-px bg-white rounded-10 w-100 position-relative">
-
-    <div class="text-center">
-
-        {% if request.user.profile_pic and request.user.profile_pic.name %}
-            <img src="{{ request.user.profile_pic.url }}"
-                 alt="Profile"
-                 class="rounded-circle d-block mx-auto mt-2"
-                 style="width:85px; height:85px; object-fit:cover;">
-        {% else %}
-            <img src="{% static 'student_d_assets/images/profile_pic.png' %}"
-                 alt="Profile"
-                 class="rounded-circle d-block mx-auto mt-2"
-                 style="width:85px; height:85px; object-fit:cover;">
-        {% endif %}
-
-        <h5 style="margin-top:40px;"  class="mb-2 text-neutral-200 mt-3">
-            Welcome, {{ request.user.username }}
-        </h5>
-
-        <span class="text-neutral-500 text-14 fw-normal">
-            {{ request.user.email }}
-        </span>
-    </div>
-
-    <span class="w-100 bg-neutral-40 mb-24 mt-24 h-1 d-block"></span>
-
-    <div class="overflow-x-auto">
-        <div class="student-dashbord-scrollbar min-w-max"> 
-            <ul>
-
-                <!-- Dashboard -->
-                <li class="mb-8">
-                    <a href="{% url 'dashboard' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i  class="ph-bold ph-house"></i>
-                        </span>
-                        Dashboard
-                    </a>
-                </li>
-
-                <!-- Profile -->
-                <li class="mb-8">
-                    <a href="{% url 'student_profile' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph-bold ph-user-circle"></i>
-                        </span>
-                        My Profile
-                    </a>
-                </li>
-
-                <!-- Enrolled Courses -->
-                <li class="mb-8">
-                    <a href="{% url 'courses' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 link_active px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i style="color:white;" class="ph-bold ph-graduation-cap"></i>
-                        </span>
-                        Courses
-                    </a>
-                </li>
-
-                <!-- Certificate Request -->
-                <li class="mb-8">
-                    <a href="{% url 'certification' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph-bold ph-certificate"></i>
-                        </span>
-                        Certificates
-                    </a>
-                </li>
-
-                <!-- Logout -->
-                <li class="mb-8">
-                    <a href="{% url 'logout' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph ph-sign-out"></i>
-                        </span>
-                        Logout
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-
-    <div class="position-absolute inset-block-end-0 inset-inline-start-0 pb-16 px-16 w-100">
-        <a href="#" class="text-14 fw-medium text-neutral-500 d-flex align-items-center gap-8  
-                          hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap bg-white">
-
-            <span class="text-16 text-main-600 item-hover__text transition-03">
-                <img src="{% static 'student_d_assets/images/certificate.png' %}"
-                     alt="Certificate"
-                     class="d-block mx-auto"
-                     style=" object-fit:contain;">
-            </span>
-
-        </a>
-    </div>
-
-</div>
-<!-- ========Dashboard Sidebar end======== -->
-
-<!-- ================================== Explore Course Two Section Start =========================== -->
-<section class="explore-course position-relative z-1 w-100">
-    <div class="container">
-
-        <div class="d-flex align-items-center gap-8 justify-content-between flex-wrap">
-            <div class="d-flex align-items-center gap-16 flex-wrap">
-                <h2 class="text-white">Available Courses</h2>
-                 <button type="button" 
+                <div style="margin-top:20px;" class="mb-32">
+                    <div class="d-flex align-items-center gap-16 justify-content-between">
+                        <h5 style="color:black;" class="mt-12 font-semibold">Available Courses</h5>
+                        <button type="button" 
         class="toggle-student-dashbord-button d-xl-none d-block"
         style="
             background-color: #fff; 
@@ -532,10 +469,10 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         ">
     <i class="ph-bold ph-list"></i>
-            </div>
-        </div>
+                    </div>
 
-        <div style="margin-top:100px;" class="tab-content" id="pills-tabContent">
+
+                    <div style="margin-top:10px;" class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-categories" role="tabpanel">
 
                 <div class="row gy-4">
@@ -543,7 +480,8 @@
                     {% for course in courses %}
                     <div class="col-xl-4 col-md-6 col-sm-6">
 
-                        <div class="course-item  empty-lessons-card rounded-16 p-12 h-100 box-shadow-md">
+          <div class="course-item border  border-1 empty-lessons-card rounded-16 p-12 h-100">
+
 
                             <!-- Course Thumbnail -->
                             <a href="{% url 'course_detail' course.id %}" class="course-item__thumb rounded-12 overflow-hidden d-block">
@@ -563,7 +501,7 @@
 
                                 <!-- Category -->
                                 <div class="mt-3">
-                                    <span class="px-12 py-6 text-success-600 fw-medium text-16 bg-success-50 border-success-100 border rounded-10 mb-16 d-inline-block">
+                                    <span style="color:#AE971D;" class="px-12 py-6 fw-medium bg-light text-16  border rounded-10 mb-16 d-inline-block">
                                         {{ course.course_type|title }}
                                     </span>
 
@@ -592,42 +530,42 @@
 
                                     <!-- Rating -->
                                     <div class="d-flex align-items-center gap-3">
-    <!-- Star Rating -->
-    <ul class="d-flex align-items-center gap-1 mb-0 list-unstyled">
-        {% for i in "12345"|make_list %}
-            {% with forloop.counter as star_number %}
-                {% if star_number <= course.average_rating|floatformat:0 %}
-                    <!-- Full star -->
-                    <li class="text-warning">
-                        <i class="ph-fill ph-star"></i>
-                    </li>
-                {% elif star_number <= course.average_rating|add:0.4 %}
-                    <!-- Half star (optional – looks great) -->
-                    <li class="text-warning position-relative">
-                        <i class="ph ph-star"></i>
-                        <i class="ph-fill ph-star position-absolute top-0 start-0" style="width:50%; overflow:hidden;"></i>
-                    </li>
-                {% else %}
-                    <!-- Empty star -->
-                    <li class="text-warning-300">
-                        <i class="ph ph-star"></i>
-                    </li>
-                {% endif %}
-            {% endwith %}
-        {% endfor %}
-    </ul>
+                                            <!-- Star Rating -->
+                                            <ul class="d-flex align-items-center gap-1 mb-0 list-unstyled">
+                                                {% for i in "12345"|make_list %}
+                                                    {% with forloop.counter as star_number %}
+                                                        {% if star_number <= course.average_rating|floatformat:0 %}
+                                                            <!-- Full star -->
+                                                            <li class="text-warning">
+                                                                <i class="ph-fill ph-star"></i>
+                                                            </li>
+                                                        {% elif star_number <= course.average_rating|add:0.4 %}
+                                                            <!-- Half star (optional – looks great) -->
+                                                            <li class="text-warning position-relative">
+                                                                <i class="ph ph-star"></i>
+                                                                <i class="ph-fill ph-star position-absolute top-0 start-0" style="width:50%; overflow:hidden;"></i>
+                                                            </li>
+                                                        {% else %}
+                                                            <!-- Empty star -->
+                                                            <li class="text-warning-300">
+                                                                <i class="ph ph-star"></i>
+                                                            </li>
+                                                        {% endif %}
+                                                    {% endwith %}
+                                                {% endfor %}
+                                            </ul>
 
-    <!-- Rating number -->
-    <span class="fw-medium text-neutral-600 ms-1">
-        {{ course.average_rating|floatformat:1 }}/5
-    </span>
+                                            <!-- Rating number -->
+                                            <span class="fw-medium text-neutral-600 ms-1">
+                                                {{ course.average_rating|floatformat:1 }}/5
+                                            </span>
 
 
-</div>
+                                        </div>
 
- <div class="d-flex align-items-center gap-8">
-                        
-                        <span class="fw-normal text-14 text-neutral-400">Created by: {{ course.created_by.username|title }}</span>
+                                        <div class="d-flex align-items-center gap-8">
+                                                                
+                                                                <span class="fw-normal text-14 text-neutral-400">Created by: {{ course.created_by.username|title }}</span>
                     </div>
 
                                 </div>
@@ -638,14 +576,14 @@
                     </div>
 
                     {% empty %}
-                    <div class="container-fluid border border-dotted bg-white shadow d-flex justify-content-center col-12 w-100 text-center py-40">
-                        <div class="row">
-                            <img src="{% static 'student_d_assets/images/admin_courses_unavailable.png' %}"
-                                alt="No Courses Available" class="img-fluid mb-24"
-                                style="max-width:200px; display:block; margin:auto;">
-                            <h4 class="text-neutral-700 fw-semibold">No courses available</h4>
-                        </div>
-                    </div>
+                   <div class="col-12 bg-white d-flex flex-column align-items-center justify-content-center text-center py-30">
+    <img src="{% static 'student_d_assets/images/admin_courses_unavailable.png' %}"
+         alt="No Courses"
+         class="img-fluid mb-10"
+         style="max-width: 180px;">
+    <h4 class="text-neutral-700 fw-semibold mb-8">No courses available</h4>
+
+</div>
                     {% endfor %}
 
                 </div>
@@ -653,30 +591,57 @@
             </div>
         </div>
 
+
+        
+                
+
+        </div>
+        
+<!-- ================= COMPLETE PROFILE SECTION ================= -->
+<div class="container mb-32">
+
+   <div 
+    class="rounded-20 px-32 py-32 text-center"
+    style="
+        background: black;
+        color:#fff;
+    "
+>
+
+
+        <!-- Title -->
+        <h4 style="color:white;" class="fw-bold mb-12">
+            Ready to Start Your Journey?
+        </h4>
+
+        <!-- Description -->
+        <p class="text-14  mb-20" style="max-width:680px;margin:auto;color:white;">
+          Join our community of filmmakers and start creating content that reflects truth, hope, and moral clarity.
+        </p>
+
+       
+
+    </div>
+
+</div>
+<!-- ================= END COMPLETE PROFILE SECTION ================= -->
+
+
     </div>
 </section>
-<!-- ================================== Explore Course Two Section End =========================== -->
 
-
-        </div>            
-    </div>
-</section>
-<!-- =========== student dashbord section end ============== -->
-
-
+<!-- =========== student dashboard section end ============== -->
 
 
 
 <!-- ==================== student Footer Start Here ==================== -->
 <footer style="background-color:black;" class="footer position-relative z-1">
-    <img src="assets/images/shapes/shape2.png" alt="" class="shape five animation-scalation">
-    <img src="assets/images/shapes/shape6.png" alt="" class="shape one animation-scalation">
     <div class="container-fluid text-end">
         <!-- bottom Footer -->
         <div class="bottom-footer border-top border-dashed border-neutral-600 border-0 py-32">
             <div class="">
                 <div class="bottom-footer__inner flex-wrap">
-                    <p class="text-white text-16 fw-normal"> © 2025  
+                    <p class="text-white text-12 fw-bold"> © 2025  
                             <span class="text-white">The Winlows Academy.</span>
                         All rights reserved.
                     </p>
@@ -730,6 +695,48 @@
 
 
     
+<script>
+let originalValues = [];
+
+function toggleEdit(isEditing) {
+    const viewFields = document.querySelectorAll(".view-field");
+    const editFields = document.querySelectorAll(".edit-field");
+
+    const editBtn = document.getElementById("editBtn");
+    const cancelBtn = document.getElementById("cancelBtn");
+
+    if (isEditing) {
+        originalValues = [];
+
+        viewFields.forEach((view, index) => {
+            const edit = editFields[index];
+
+            originalValues.push(edit.value);
+
+            view.classList.add("d-none");
+            edit.classList.remove("d-none");
+        });
+
+        editBtn.innerHTML = "💾 Save";
+        editBtn.setAttribute("type", "submit");
+        cancelBtn.style.display = "inline-block";
+
+    } else {
+        editFields.forEach((edit, index) => {
+            edit.value = originalValues[index];
+            edit.classList.add("d-none");
+            viewFields[index].classList.remove("d-none");
+        });
+
+        editBtn.innerHTML = `<i class="ph ph-pencil-simple"></i> Update Profile`;
+        editBtn.setAttribute("type", "button");
+        cancelBtn.style.display = "none";
+    }
+}
+</script>
+
+
+  
 
 
 </body>

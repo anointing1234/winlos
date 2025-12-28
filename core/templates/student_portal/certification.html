@@ -71,114 +71,61 @@
     <link rel="stylesheet" href="{% static 'student_d_assets/css/aos.css' %}">
     <!-- Main css -->
     <link rel="stylesheet" href="{% static 'student_d_assets/css/main.css' %}">
-      <link rel="stylesheet" href="{% static 'student_d_assets/css/custom.css' %}">
+
+    <link rel="stylesheet" href="{% static 'student_d_assets/css/custom.css' %}">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
 
+<style>
+  .Active {
+    background-color: black !important;
+}
 
+    .btn-hover-white {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
 
-    <style>
-        
-           .link_active{
-             background-color: var(--main-600) !important;
-             color: white !important
-        }
+.btn-hover-white::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2); /* White overlay */
+    transition: left 0.3s ease;
+}
 
-
-                .student-dashbord-scrollbar {
-    scrollbar-width: none; /* Firefox */
+.btn-hover-white:hover::after {
+    left: 0;
 }
 
 
-
-
-    /* Make course cards smaller & more balanced */
-.course-item {
-    padding: 10px !important;
-    border-radius: 14px;
-    transition: 0.2s ease;
+.container--xl {
+  max-height: 80px;
 }
 
-.course-item__thumb {
-    height: 160px !important;
+.bg-dark-pure {
+    background-color: white !important; /* pure black */
+    color:black; /* text white */
+    transition: background-color 0.3s ease;
 }
 
-.course-item__thumb img {
-    object-fit: cover !important;
-}
-
-/* Reduce internal spacing */
-.course-item__content {
-    padding: 6px 2px !important;
-}
-
-.course-item__content h4 {
-    margin-bottom: 14px !important;
-}
-
-.course-item__content span,
-.course-item__content h4 a {
-    font-size: 14px !important;
-}
-
-/* Category pill */
-.course-item__content > div > span {
-    font-size: 12px !important;
-    padding: 4px 10px !important;
-    margin-bottom: 10px !important;
-}
-
-/* Lessons + Students Row */
-.flex-between {
-    margin-bottom: 12px !important;
-}
-
-.flex-align span.text-2xl {
-    font-size: 18px !important;
-}
-
-/* Reduce “Complete” text */
-.course-item__content .text-20 {
-    font-size: 15px !important;
-}
-
-/* Progress bar spacing */
-.mb-40 {
-    margin-bottom: 20px !important;
-}
-
-/* Floating percentage label */
-.floating-label {
-    font-size: 12px !important;
-    height: 28px !important;
-}
-
-/* Stars + Author */
-.flex-between.mt-28 {
-    margin-top: 14px !important;
-}
-
-.text-14 {
-    font-size: 12px !important;
-}
-
-.w-28.h-28 {
-    width: 24px !important;
-    height: 24px !important;
-}
-
-/* Hover improvement */
-.course-item:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+.bg-dark-pure:hover {
+    background-color: black !important; /* hover slightly lighter */
 }
 
 
-    </style>
+</style>
+  
 
 
 </head> 
-<body>
-    
+<body class="bg-white">
+
 
       <!-- Preloader Start -->
         <div id="preloader" class="preloader">
@@ -214,6 +161,7 @@
             </div>
         </div>
 
+    
 
 <!--==================== Overlay Start ====================-->
 <div class="overlay"></div>
@@ -242,26 +190,25 @@
             
 <ul class="nav-menu flex-align nav-menu--mobile">
     <li class="nav-menu__item  activePage">
-        <a href="{% url 'home' %}" class="nav-menu__link text-dark">Home</a> 
+        <a href="{% url 'home' %}" class="nav-menu__link text-dark">HOME</a> 
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">About Us</a>
+        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">ABOUT US</a>
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'program' %}" class="nav-menu__link text-dark">Programs</a>
+        <a href="{% url 'program' %}" class="nav-menu__link text-dark">PROGRAMS</a>
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">Admission</a>
+        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">ADMISSION</a>
     </li> 
 </ul>
 
-          
+       
             
         </div>
     </div>
 </div>
 <!-- ==================== Mobile Menu End Here ==================== -->
-
 
 
 <!-- ==================== Header Start Here ==================== -->
@@ -280,16 +227,16 @@
             <div class="header-menu d-lg-block d-none flex-grow-1">
                 <ul class="nav-menu flex-align justify-content-center">
                     <li class="nav-menu__item activePage">
-                        <a href="{% url 'home' %}" class="nav-menu__link text-white">Home</a>
+                        <a href="{% url 'home' %}" class="nav-menu__link text-white">HOME</a>
                     </li>
                     <li class="nav-menu__item">
-                        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">About Us</a>
+                        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">ABOUT US</a>
                     </li>
                     <li class="nav-menu__item">
-                        <a href="{% url 'program' %}" class="nav-menu__link text-white">Programs</a>
+                        <a href="{% url 'program' %}" class="nav-menu__link text-white">PROGRAMS</a>
                     </li>
                     <li class="nav-menu__item">
-                        <a href="{% url 'admission' %}" class="nav-menu__link text-white">Admission</a>
+                        <a href="{% url 'admission' %}" class="nav-menu__link text-white">ADMISSION</a>
                     </li>
                 </ul>
             </div>
@@ -297,13 +244,29 @@
             <!-- Header Right -->
             <div class="header-right flex-align">
                 <div class="dropdown">
-                    <button class="dropdown-toggle w-48 h-48" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if request.user.profile_pic and request.user.profile_pic.name %}
-                        <img src="{{ request.user.profile_pic.url }}" alt="Profile" class="w-54 h-54 rounded-circle">
-                        {% else %}
-                        <img src="{% static 'student_d_assets/images/profile_pic.png' %}" alt="">
-                        {% endif %}
-                    </button>
+                   <button 
+    style="background-color:#a48a01; border-radius:50%; padding:0; overflow:hidden;"
+    class="dropdown-toggle w-48 h-48 d-flex align-items-center justify-content-center"
+    type="button" 
+    data-bs-toggle="dropdown" 
+    aria-expanded="false"
+>
+    {% if request.user.profile_pic and request.user.profile_pic.name %}
+        <img 
+            src="{{ request.user.profile_pic.url }}" 
+            alt="Profile" 
+            class="rounded-circle"
+            style="width:100%; height:100%; object-fit:cover;"
+        >
+    {% else %}
+        <img 
+            src="{% static 'student_d_assets/images/profile_pic.png' %}" 
+            alt="Profile" 
+            class="rounded-circle"
+            style="width:100%; height:100%; object-fit:cover;"
+        >
+    {% endif %}
+</button>
                     <ul class="dropdown-menu rounded-12">
                         <li>
                             <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'student_profile' %}">
@@ -330,168 +293,166 @@
 <!-- ==================== Header End Here ==================== -->
 
 
-<!-- ============== student dashbord banner section start =============== -->
-<section class="breadcrumb pt-80 pb-187 bg-neutral-900 position-relative z-1 overflow-hidden mb-0 z-n1">
 
-    
-    <div class="container container--lg">
+<!-- =========== student dashboard section start ============== -->
+
+<section style="margin-top:100px;" class="bg-white pb-80 w-100 h-100">
+    <div  class="container-fluid ">
+
+        <div class="d-flex gap-24 mt--120 z-2 position-relative">
+            <div class="student-overlay-sidebar"></div>
+
+            <!-- ======== Dashboard Sidebar START ======== -->
+            <div class="student-dashboard-sidebar  border px-20 py-24 max-w-288-px bg-white rounded-20 w-100 position-relative">
+
+                <div style="background-color:#000000; padding:20px; border-radius:20px;" class="text-center">
+
+               {% if request.user.profile_pic and request.user.profile_pic.name %}
+          <img
+            src="{{ request.user.profile_pic.url }}"
+            alt="Profile"
+            class="rounded-circle d-block mx-auto mt-2"
+            style="
+                width:70px;
+            height:70px;
+            object-fit:cover;
+            background-color:#a48a01;
+            padding:3px;
+            ">
+            {% else %}
+                <img
+                    src="{% static 'student_d_assets/images/profile_pic.png' %}"
+                    alt="Profile"
+                    class="rounded-circle d-block mx-auto mt-2"
+                    style="
+                        width:70px;
+                        height:70px;
+                        object-fit:cover;
+                        background-color:#a48a01;
+                        padding:3px;
+                    ">
+            {% endif %}
+
+                <h6 style="margin-top:15px;" class="mb-1  text-white fw-normal" style="margin-top:30px;">
+                    Welcome, {{ request.user.username }}
+                </h6>
+
+                <span style="margin-top:10px;" class="d-block text-white-50 text-9">
+                    {{ request.user.email }}
+                </span>
+
+                                </div>
+
+            
+
+                <div style="margin-top:30px;">
+                    <div class=" min-w-max">
+                        <ul>
+
+                            <!-- Dashboard -->
+                            <li class="mb-8">
+                                <a href="{% url 'dashboard' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          bg-dark-pure  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-house"></i>
+                                    </span>
+                                    Dashboard
+                                </a>
+                            </li>
+
+                            <!-- Profile -->
+                            <li class="mb-8">
+                                <a href="{% url 'student_profile' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                           bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-user-circle"></i>
+                                    </span>
+                                    My Profile
+                                </a>
+                            </li>
+
+                            <!-- Courses -->
+                            <li class="mb-8">
+                                <a href="{% url 'courses' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                         bg-dark-pure  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i  class="ph-bold ph-graduation-cap"></i>
+                                    </span>
+                                    Courses
+                                </a>
+                            </li>
+
+                            <!-- Certificates -->
+                            <li class="mb-8">
+                                <a href="{% url 'certification' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                            Active px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i style="color:white;" class="ph-bold ph-certificate"></i>
+                                    </span>
+                                    Certificates
+                                </a>
+                            </li>
+                          <hr style="border-top: 1px solid rgba(0, 0, 0, 0.3); margin-top: 15px;">
+                            <!-- Logout -->
+                            <li class="mb-8">
+                                <a href="{% url 'logout' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-danger 
+                                          bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-danger item-hover__text transition-03">
+                                        <i class="ph ph-sign-out"></i>
+                                    </span>
+                                    Logout
+                                </a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+
+                
+
+            </div>
+            <!-- ======== Dashboard Sidebar END ======== -->
+
+
+
+   
+            <!-- =============================================== -->
+            <!-- MAIN DASHBOARD CONTENT (FIXED WRAPPER)          -->
+            <!-- =============================================== -->
+<div class="flex-grow-1" style="min-width: 0; margin-top:50px;">
+
+         <div style="background-color:#000000; padding:20px; border-radius:20px;" class="container">
         <div class="d-flex align-items-center gap-16 justify-content-between flex-wrap">
             <div class="breadcrumb__wrapper">
-              <h1 class="breadcrumb__title display-4 fw-semibold text-white mb-20">
-                Learning Portal
-            </h1>
+              <h3 class="breadcrumb__title display-10 fw-semibold text-white mb-20">
+               My Certificates
+            </h3>
 
                 <ul class="breadcrumb__list d-flex align-items-center gap-4 flex-wrap">
                     <li class="breadcrumb__item">
-                        <a href="{% url 'home' %}" class="breadcrumb__link text-white hover-text-warning-800 fw-medium">Home</a>
+                        <a href="{% url 'home' %}" class="breadcrumb__link text-white hover-text-warning-800 fw-bold">Home</a>
                     </li>
                
                     <li class="breadcrumb__item @@arrowTwoShowHide">
                         <i class="text-white d-flex ph-bold ph-caret-right"></i>
                     </li>
                     <li class="breadcrumb__item"> 
-                        <span class="text-main-two-600">Dashboard</span> 
+                        <span style="color:#ae971d;" class="fw-bold">Certificates</span> 
                     </li>
                 </ul>
             </div>
          
         </div>
     </div>
-</section>
-<!-- ============== student dashbord banner section end =============== -->
 
-<!-- =========== student dashbord section start ============== -->
-
-<section class="bg-main-25 pb-80 w-100 h-100">
-    <div class="container container--lg">
-        <div class="d-flex gap-24 mt--120 z-2 position-relative">
-            <div class="student-overlay-sidebar"></div>
-   <!-- ========Dashboard Sidebar start======== -->
-<div class="student-dashboard-sidebar px-20 py-24 max-w-288-px bg-white rounded-10 w-100 position-relative">
-
-    <div class="text-center">
-
-        {% if request.user.profile_pic and request.user.profile_pic.name %}
-            <img src="{{ request.user.profile_pic.url }}"
-                 alt="Profile"
-                 class="rounded-circle d-block mx-auto mt-2"
-                 style="width:85px; height:85px; object-fit:cover;">
-        {% else %}
-            <img src="{% static 'student_d_assets/images/profile_pic.png' %}"
-                 alt="Profile"
-                 class="rounded-circle d-block mx-auto mt-2"
-                 style="width:85px; height:85px; object-fit:cover;">
-        {% endif %}
-
-        <h5 style="margin-top:40px;"  class="mb-2 text-neutral-200 mt-3">
-            Welcome, {{ request.user.username }}
-        </h5>
-
-        <span class="text-neutral-500 text-14 fw-normal">
-            {{ request.user.email }}
-        </span>
-    </div>
-
-    <span class="w-100 bg-neutral-40 mb-24 mt-24 h-1 d-block"></span>
-
-    <div class="overflow-x-auto">
-        <div class="student-dashbord-scrollbar min-w-max"> 
-            <ul>
-
-                <!-- Dashboard -->
-                <li class="mb-8">
-                    <a href="{% url 'dashboard' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i  class="ph-bold ph-house"></i>
-                        </span>
-                        Dashboard
-                    </a>
-                </li>
-
-                <!-- Profile -->
-                <li class="mb-8">
-                    <a href="{% url 'student_profile' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph-bold ph-user-circle"></i>
-                        </span>
-                        My Profile
-                    </a>
-                </li>
-
-                <!-- Enrolled Courses -->
-                <li class="mb-8">
-                    <a href="{% url 'courses' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i  class="ph-bold ph-graduation-cap"></i>
-                        </span>
-                        Courses
-                    </a>
-                </li>
-
-                <!-- Certificate Request -->
-                <li class="mb-8">
-                    <a href="{% url 'certification' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 link_active py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i style="color:white;" class="ph-bold ph-certificate"></i>
-                        </span>
-                        Certificates
-                    </a>
-                </li>
-
-                <!-- Logout -->
-                <li class="mb-8">
-                    <a href="{% url 'logout' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph ph-sign-out"></i>
-                        </span>
-                        Logout
-                    </a>
-                </li>
-
-            </ul>
-        </div>
-    </div>
-
-    <div class="position-absolute inset-block-end-0 inset-inline-start-0 pb-16 px-16 w-100">
-        <a href="#" class="text-14 fw-medium text-neutral-500 d-flex align-items-center gap-8  
-                          hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap bg-white">
-
-            <span class="text-16 text-main-600 item-hover__text transition-03">
-                <img src="{% static 'student_d_assets/images/certificate.png' %}"
-                     alt="Certificate"
-                     class="d-block mx-auto"
-                     style=" object-fit:contain;">
-            </span>
-
-        </a>
-    </div>
-
-</div>
-<!-- ========Dashboard Sidebar end======== -->
-
-<!-- ================================== Explore Course Two Section Start =========================== -->
-<section class="explore-course position-relative z-1 w-100">
-    <div class="container">
-
-        <div class="d-flex align-items-center gap-8 justify-content-between flex-wrap">
-            <div style="margin-top:-50px;" class="d-flex align-items-center gap-16 flex-wrap">
-                 <div>
-                <h2 class="text-white fw-bold text-32 mb-4">Certified Courses</h2>
-                <p class="text-white text-16 mb-0">
-                    Explore high-quality programs that offer official certificates upon completion.
-                </p>
-            </div>
-               <button type="button" 
+                <div style="margin-top:20px;" class="mb-32">
+                    <div class="d-flex align-items-center gap-16 justify-content-between">
+                        <button type="button" 
         class="toggle-student-dashbord-button d-xl-none d-block"
         style="
             background-color: #fff; 
@@ -507,135 +468,345 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.15);
         ">
     <i class="ph-bold ph-list"></i>
+                    </div>
+
+
+
+
+                    <!-- DASHBOARD CARDS -->
+<div class="row w-100 mt-5 g-4">
+
+  <!-- Total Certificates -->
+  <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card h-100" style="border:1px solid #e9ecef; border-radius:16px;">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <span class="text-muted text-uppercase small fw-light">
+              Total Certificates
+            </span>
+            <h4 style="color:black;" class="fw-bold mt-3 mb-0">
+              {{ enrolled_courses_count|default:'0' }}
+            </h4>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-center rounded-circle"
+               style="width:56px; height:56px; border:1px solid #e9ecef;">
+       <i class="bi bi-award text-white d-flex align-items-center justify-content-center"
+   style="
+     width:36px;
+     height:36px;
+     background-color:#AE971D;
+     border-radius:50%;
+     font-size:18px;
+   ">
+</i>
+</div>
+        </div>
+                          <!-- Add hr here -->
+    <hr style="border-top: 1px solid rgba(0, 0, 0, 0.3); margin-top: 5px;">
+      </div>
+    </div>
+  </div>
+
+  <!-- Courses Completed -->
+  <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card h-100" style="border:1px solid #e9ecef; border-radius:16px;">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <span class="text-muted text-uppercase small fw-light">
+              Courses Completed
+            </span>
+            <h4 style="color:black;" class="fw-bold mt-3 mb-0">
+              {{ active_courses_count|default:'0' }}
+            </h4>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-center rounded-circle"
+               style="width:56px; height:56px; border:1px solid #e9ecef;">
+       
+               <i class="bi bi-check-circle d-flex align-items-center justify-content-center text-white"
+   style="
+     width:36px;
+     height:36px;
+     background-color:#AE971D;
+     border-radius:50%;
+     font-size:18px;
+   ">
+</i>
+
             </div>
         </div>
+                          <!-- Add hr here -->
+    <hr style="border-top: 1px solid rgba(0, 0, 0, 0.3); margin-top: 15px;">
+      </div>
+    </div>
+  </div>
 
-        <div style="margin-top:100px;" class="tab-content" id="pills-tabContent">
+  <!-- Average Grade -->
+  <div class="col-lg-4 col-md-6 col-sm-12">
+    <div class="card h-100" style="border:1px solid #e9ecef; border-radius:16px;">
+      <div class="card-body">
+        <div class="d-flex justify-content-between align-items-center">
+          <div>
+            <span class="text-muted text-uppercase small fw-light">
+              Average Grade
+            </span>
+            <h3 style="color:black;" class="fw-bold mt-3 mb-0">
+              {{ completed_courses_count|default:'0' }}
+            </h3>
+          </div>
+
+          <div class="d-flex align-items-center justify-content-center rounded-circle"
+               style="width:56px; height:56px; border:1px solid #e9ecef;">
+               <i class="bi bi-award d-flex align-items-center justify-content-center text-white"
+   style="
+     width:36px;
+     height:36px;
+     background-color:#AE971D;
+     border-radius:50%;
+     font-size:18px;
+   ">
+</i>
+
+          </div>
+        </div>
+                          <!-- Add hr here -->
+    <hr style="border-top: 1px solid rgba(0, 0, 0, 0.3); margin-top: 15px;">
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- END DASHBOARD CARDS -->
+
+
+                    <div style="margin-top:10px;" class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-categories" role="tabpanel">
 
                 <div class="row gy-4">
 
-                    {% for course in courses %}
-                    <div class="col-xl-4 col-md-6 col-sm-6">
+              {% for certificate in certificates %}
+<div class="col-xl-4 col-md-6 col-sm-6">
+    <div class="certificate-card border border-1 rounded-16 p-16 h-100 position-relative" style="background:#fff;">
+        
+        <!-- Certificate Thumbnail -->
+        <div class="certificate-thumb rounded-12 overflow-hidden mb-12">
+            {% if certificate.course.promotion_image %}
+            <img src="{{ certificate.course.promotion_image.url }}" 
+                 alt="{{ certificate.course.name_of_course }}"
+                 class="rounded-12 cover-img"
+                 style="width:100%; height:100px; object-fit:cover;">
+            {% else %}
+            <img src="https://via.placeholder.com/500x300?text=Certificate"
+                 class="rounded-12 cover-img"
+                 style="width:100%; height:100px; object-fit:cover;">
+            {% endif %}
+        </div>
 
-                        <div class="course-item bg-white rounded-16 p-12 h-100 box-shadow-md">
+        <!-- Certificate Badge -->
+        <span class="px-10 py-4 fw-medium bg-light text-14 border rounded-8 mb-12 d-inline-block" style="color:#AE971D;">
+            {{ certificate.certificate_id }}
+        </span>
 
-                            <!-- Course Thumbnail -->
-                            <a href="{% url 'course_detail' course.id %}" class="course-item__thumb rounded-12 overflow-hidden d-block">
-                                {% if course.promotion_image %}
-                                <img src="{{ course.promotion_image.url }}" 
-                                     alt="{{ course.name_of_course }}"
-                                     class="course-item__img rounded-12 cover-img transition-2"
-                                     style="width:100%; height:220px; object-fit:cover;">
-                                {% else %}
-                                <img src="https://via.placeholder.com/500x300?text=No+Image"
-                                     class="course-item__img rounded-12 cover-img transition-2"
-                                     style="width:100%; height:220px; object-fit:cover;">
-                                {% endif %}
-                            </a>
+        <!-- Certificate Info -->
+        <div class="d-flex align-items-center gap-6 mb-12">
+            <span class="text-neutral-700 fs-18 d-flex">
+                <i class="ph-bold ph-medal"></i>
+            </span>
+            <span  class="fs-14 fw-medium">
+                Issued on {{ certificate.issued_at|date:"M d, Y" }}
+            </span>
+        </div>
 
-                            <div class="course-item__content">
+        <!-- Course / Certificate Title -->
+        <h5 class="mb-12 text-13">
+            {{ certificate.course.name_of_course|title }}
+        </h5>
 
-                                <!-- Category -->
-                                <div class="mt-3">
-                                    <span class="px-12 py-6 text-success-600 fw-medium text-16 bg-success-50 border-success-100 border rounded-10 mb-16 d-inline-block">
-                                        {{ course.course_type|title }}
-                                    </span>
+        <!-- Actions -->
+        <div class="d-flex flex-column gap-2">
+            <a style="background:black;color:#000;border-radius:30px" href="{% url 'view_certificate' certificate.course.id %}" 
+               class="btn btn-sm w-100">
+                <i class="ph ph-eye"></i> View Certificate
+            </a>
+          
+        </div>
 
-                                    <!-- Lessons -->
-                                    <div class="d-flex align-items-center gap-8 mb-16">
-                                        <span class="text-neutral-700 text-2xl d-flex">
-                                            <i class="ph-bold ph-video-camera"></i>
-                                        </span>
-                                        <span class="text-neutral-700 text-16 fw-medium">
-                                            {{ course.total_lessons }} Lessons
-                                        </span>
-                                            <div class="flex-align gap-8 flex-wrap">
-                                                <span class="text-neutral-700 text-2xl d-flex"><i class="ph ph-user-circle"></i>    </span>
-                                                <span class="text-neutral-700 text-16 fw-medium"> {{ course.students_count }} Student</span>
-                                            </div>
-                                    </div>
+        <!-- Issued to -->
+        <div style="color:#AE971D;" class="mt-5  text-center  fs-13">
+            Issued to: {{ certificate.user.username|title }}
+        </div>
 
-                                    <!-- Title -->
-                                    <h4 class="mb-16">
-                                        <a href="{% url 'course_detail' course.id %}" 
-                                           class="link text-line-2 fw-semibold text-neutral-800">
-                                            {{ course.name_of_course|title }}
-                                        </a>
-                                    </h4>
+    </div>
+</div>
 
-                                    <!-- Rating -->
-                                    <div class="d-flex align-items-center gap-6">
-                                        <ul class="d-flex align-items-center gap-6 mb-0">
-                                            {% for i in "12345"|make_list %}
-                                                {% if i|add:"0" <= course.average_rating %}
-                                                    <li class="text-16 text-warning-400">
-                                                        <i class="ph-fill ph-star"></i>
-                                                    </li>
-                                                {% else %}
-                                                    <li class="text-16 text-warning-400">
-                                                        <i class="ph ph-star"></i>
-                                                    </li>
-                                                {% endif %}
-                                            {% endfor %}
-                                        </ul>
+{% empty %}
+<!-- Empty State: No Certificates -->
+<div class="col-12">
+    <div class="card bg-white d-flex flex-column align-items-center justify-content-center text-center p-5 rounded-16 border">
+        
+        <!-- Award Icon -->
+        <div class="mb-4" style="width: 80px; height: 80px; background-color: #FEF9E6; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top:50px;">
+            <i class="ph-fill ph-medal" style="font-size: 40px; color: #AE971D;"></i>
+        </div>
 
-                                        <span class="fw-normal text-14 text-neutral-400">
-                                            {{ course.average_rating }}/5
-                                        </span>
-                                    </div>
-                                     <div class="d-flex align-items-center gap-8">
-                        
-                        <span class="fw-normal text-14 text-neutral-400">Created by: {{ course.created_by.username|title }}</span>
+        <!-- Heading -->
+        <h4 style="margin-top:20px;" class="text-neutral-800 fw-bold mb-3">No Certificates Yet</h4>
+
+        <!-- Description -->
+        <p class="text-neutral-600 mb-4 px-4" style="max-width: 500px; margin-top:20px;">
+            You haven't earned any certificates yet. Complete your enrolled courses to receive your certificates of completion and showcase your achievements.
+        </p>
+
+        <!-- Browse Courses Button -->
+         <a style="background-color:black; color:white; border-radius:25px; margin-top:20px;" href="{% url 'courses' %}" class="btn">Browse Courses</a>
+
+        <!-- Divider -->
+        <hr style="margin-top:50px;" class="w-75 ">
+
+        <!-- What You'll Get Section -->
+        <h5  style="margin-top:20px;" class="text-neutral-800 fw-semibold mb-4">What You'll Get</h5>
+
+        <div style="margin-bottom:30px;" class="row w-100 justify-content-center">
+            
+            <!-- Official Certificate -->
+            <div class="col-md-4 col-sm-12 mb-4">
+                <div class="d-flex flex-column align-items-center text-center px-3">
+                    <div class="mb-3" style="width: 48px; height: 48px; background-color: #FEF9E6; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="ph-fill ph-medal" style="font-size: 24px; color: #AE971D;"></i>
                     </div>
+                    <h6 class="fw-semibold text-neutral-800 mb-2">Official Certificate</h6>
+                    <p class="text-neutral-600 text-14 mb-0">
+                        Recognized certificate upon course completion
+                    </p>
+                </div>
+            </div>
 
-                                </div>
-
-                            </div>
-                        </div>
-
+            <!-- Download PDF -->
+            <div class="col-md-4 col-sm-12 mb-4">
+                <div class="d-flex flex-column align-items-center text-center px-3">
+                    <div class="mb-3" style="width: 48px; height: 48px; background-color: #FEF9E6; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="ph-fill ph-download-simple" style="font-size: 24px; color: #AE971D;"></i>
                     </div>
+                    <h6 class="fw-semibold text-neutral-800 mb-2">Download PDF</h6>
+                    <p class="text-neutral-600 text-14 mb-0">
+                        Download and print your certificates
+                    </p>
+                </div>
+            </div>
 
-                    {% empty %}
-                    <div class="container-fluid border border-dotted bg-white shadow d-flex justify-content-center col-12 w-100 text-center py-40">
-                        <div class="row">
-                            <img src="{% static 'student_d_assets/images/admin_courses_unavailable.png' %}"
-                                alt="No Courses Available" class="img-fluid mb-24"
-                                style="max-width:200px; display:block; margin:auto;">
-                            <h4 class="text-neutral-700 fw-semibold">No courses available</h4>
-                        </div>
+            <!-- Share Anywhere -->
+            <div class="col-md-4 col-sm-12 mb-4">
+                <div class="d-flex flex-column align-items-center text-center px-3">
+                    <div class="mb-3" style="width: 48px; height: 48px; background-color: #FEF9E6; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+                        <i class="ph-fill ph-share-network" style="font-size: 24px; color: #AE971D;"></i>
                     </div>
-                    {% endfor %}
+                    <h6 class="fw-semibold text-neutral-800 mb-2">Share Anywhere</h6>
+                    <p class="text-neutral-600 text-14 mb-0">
+                        Share on LinkedIn, social media & more
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% with total=certificates|length %}
+    {% if total == 1 %}
+        {# Placeholder 1 #}
+        <div style="margin-top:30px;" class="col-xl-4 col-md-6 col-sm-6 mb-4">
+            <div class="certificate-card text-center bg-white border border-1 rounded-16 p-16 h-100 d-flex flex-column justify-content-center align-items-center">
+                <i class="ph-bold ph-medal text-gray-400 mb-16" style="font-size: 48px;"></i>
+                <h5 class="fw-semibold text-neutral-700 mb-2">Earn More Certificates</h5>
+                <p class="text-neutral-500 mb-3">Complete more courses to showcase your achievements.</p>
+                <a style="background-color:black; color:white; border-radius:25px;" href="{% url 'courses' %}" class="btn px-24 py-12">Explore Courses</a>
+            </div>
+        </div>
+
+        {# Placeholder 2 #}
+        <div style="margin-top:30px;" class="col-xl-4 col-md-6 col-sm-6 mb-4">
+            <div class="certificate-card text-center bg-white border border-1 rounded-16 p-16 h-100 d-flex flex-column justify-content-center align-items-center">
+                <i class="ph-bold ph-trophy text-gray-400 mb-16" style="font-size: 48px;"></i>
+                <h5 class="fw-semibold text-neutral-700 mb-2">Showcase Your Skills</h5>
+                <p class="text-neutral-500 mb-3">Earn certificates to display your learning accomplishments.</p>
+                <a style="background-color:black; color:white; border-radius:25px;" href="{% url 'courses' %}" class="btn px-24 py-12">View Courses</a>
+            </div>
+        </div>
+    {% endif %}
+
+    {% if total == 2 %}
+        {# Placeholder 1 #}
+        <div style="margin-top:30px;" class="col-xl-4 col-md-6 col-sm-6 mb-4">
+            <div class="certificate-card text-center bg-white border border-1 rounded-16 p-16 h-100 d-flex flex-column justify-content-center align-items-center">
+                <i class="ph-bold ph-award text-gray-400 mb-16" style="font-size: 48px;"></i>
+                <h5 class="fw-semibold text-neutral-700 mb-2">Get More Certificates</h5>
+                <p class="text-neutral-500 mb-3">Complete additional courses to unlock new certificates.</p>
+                <a style="background-color:black; color:white; border-radius:25px;" href="{% url 'courses' %}" class="btn px-24 py-12">Explore Courses</a>
+            </div>
+        </div>
+    {% endif %}
+{% endwith %}
 
                 </div>
 
             </div>
         </div>
 
+
+        
+                
+
+        </div>
+        
+<!-- =================  SECTION ================= -->
+<div class="container mb-32">
+
+   <div 
+    class="rounded-20 px-32 py-32 text-center"
+    style="
+        background: black;
+        color:#fff;
+    "
+      >
+
+
+        <!-- Title -->
+        <h4 style="color:white;" class="fw-bold mb-12">
+            Start Your Learning Journey
+        </h4>
+
+        <!-- Description -->
+        <p class="text-14  mb-20" style="max-width:680px;margin:auto;color:white;">
+     Complete courses to earn certificates and build your filmmaking credentials. Each certificate validates your expertise and dedication to the craft.
+        </p>
+
+
+       
+
+    </div>
+
+</div>
+<!-- ================= END COMPLETE PROFILE SECTION ================= -->
+
+
     </div>
 </section>
-<!-- ================================== Explore Course Two Section End =========================== -->
 
-
-        </div>            
-    </div>
-</section>
-<!-- =========== student dashbord section end ============== -->
-
-
+<!-- =========== student dashboard section end ============== -->
 
 
 
 <!-- ==================== student Footer Start Here ==================== -->
 <footer style="background-color:black;" class="footer position-relative z-1">
-    <img src="assets/images/shapes/shape2.png" alt="" class="shape five animation-scalation">
-    <img src="assets/images/shapes/shape6.png" alt="" class="shape one animation-scalation">
     <div class="container-fluid text-end">
         <!-- bottom Footer -->
         <div class="bottom-footer border-top border-dashed border-neutral-600 border-0 py-32">
             <div class="">
                 <div class="bottom-footer__inner flex-wrap">
-                    <p class="text-white text-16 fw-normal"> © 2025  
+                    <p class="text-white text-12 fw-bold"> © 2025  
                             <span class="text-white">The Winlows Academy.</span>
                         All rights reserved.
                     </p>
@@ -688,7 +859,8 @@
     <script src="{% static 'student_d_assets/js/main.js' %}"></script>
 
 
-    
+
+  
 
 
 </body>

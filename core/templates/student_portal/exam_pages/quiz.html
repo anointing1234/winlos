@@ -78,12 +78,48 @@
       <style>
     
         
+  
         
-      
-           .link_active{
-             background-color: var(--main-600) !important;
-             color: white !important
-        }
+          .Active {
+    background-color: black !important;
+}
+
+    .btn-hover-white {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.btn-hover-white::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2); /* White overlay */
+    transition: left 0.3s ease;
+}
+
+.btn-hover-white:hover::after {
+    left: 0;
+}
+
+
+.container--xl {
+  max-height: 80px;
+}
+
+.bg-dark-pure {
+    background-color: white !important; /* pure black */
+    color:black; /* text white */
+    transition: background-color 0.3s ease;
+}
+
+.bg-dark-pure:hover {
+    background-color: black !important; /* hover slightly lighter */
+}
+
 
                 textarea:focus {
     outline: none !important;
@@ -248,42 +284,82 @@
     padding: 0;
 }
 
+
+/* CLEAN WHITE OPTION BOX WITH CHECKMARK */
 .option-box {
-    border: 2px solid #2b333b;
+    border: 2px solid #e0e0e0;
     padding: 14px 18px;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    transition: all 0.25s ease;
-    background: #1a1f24;
+    margin-bottom: 16px;
+    background-color: white;
+    transition: all 0.3s ease;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .option-box:hover {
-    border-color: #0dcaf0;
+    border-color: #a48a01;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
-.option-box input[type="radio"] {
-    display: none;
-}
-
-/* Option text */
-.option-box label {
+.option-box .option-label {
+    display: flex;
+    align-items: center;
+    gap: 14px;
     width: 100%;
-    color: #d7d7d7;
     margin: 0;
+    color: #333;
+    font-size: 14px;
+    font-weight: 500;
     cursor: pointer;
+}
+
+.option-box .checkmark {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+.option-box .checkmark i {
+    font-size: 16px;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.2s ease;
 }
 
 /* WHEN SELECTED */
 .option-box.selected {
-    border-color: #00c48c;
-    background: #142420;
+    border-color: #a48a01;
+    background-color: #fffdf0;
+    box-shadow: 0 4px 12px rgba(164, 138, 1, 0.15);
 }
 
-.option-box.selected label {
-    color: #00c48c;
+.option-box.selected .checkmark {
+    background-color: #a48a01;
+    border-color: #a48a01;
+}
+
+.option-box.selected .checkmark i {
+    opacity: 1;
+}
+
+.option-box.selected .option-text {
+    color: #333;
     font-weight: 600;
+}
+
+/* Hide default radio button */
+.d-none {
+    display: none !important;
 }
 
 .exam-nav-btn {
@@ -304,7 +380,7 @@
 }
 
 .exam-next {
-    background: #00c48c;
+    background: #000000ff;
     color: #fff;
 }
 .exam-next:hover {
@@ -312,7 +388,7 @@
 }
 
 .exam-submit {
-    background: #0057ff;
+    background: #a7700bff;
     color: #fff;
 }
 .exam-submit:hover {
@@ -430,7 +506,7 @@
 <body>
     
 
-      <!-- Preloader Start -->
+     <!-- Preloader Start -->
         <div id="preloader" class="preloader">
             <div class="animation-preloader">
                 <div class="txt-loading">
@@ -464,6 +540,7 @@
             </div>
         </div>
 
+    
 
 <!--==================== Overlay Start ====================-->
 <div class="overlay"></div>
@@ -485,26 +562,27 @@
 <div class="mobile-menu scroll-sm d-lg-none d-block">
     <button type="button" class="close-button"><i class="ph ph-x"></i> </button>
     <div class="mobile-menu__inner">
-        <a href="index.html" class="mobile-menu__logo">
+        <a href="{% url 'home' %}" class="mobile-menu__logo">
             <img style="max-width:90px;" src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Logo">
         </a>
         <div class="mobile-menu__menu">
             
 <ul class="nav-menu flex-align nav-menu--mobile">
     <li class="nav-menu__item  activePage">
-        <a href="{% url 'home' %}" class="nav-menu__link text-dark">Home</a> 
+        <a href="{% url 'home' %}" class="nav-menu__link text-dark">HOME</a> 
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">About Us</a>
+        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">ABOUT US</a>
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'program' %}" class="nav-menu__link text-dark">Programs</a>
+        <a href="{% url 'program' %}" class="nav-menu__link text-dark">PROGRAMS</a>
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">Admission</a>
+        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">ADMISSION</a>
     </li> 
 </ul>
 
+       
             
         </div>
     </div>
@@ -512,75 +590,82 @@
 <!-- ==================== Mobile Menu End Here ==================== -->
 
 
-
 <!-- ==================== Header Start Here ==================== -->
-<header class="header bg-dark text-white
-">
+<header style="background-color:black;" class="header text-white">
     <div class="container container--xl">
         <nav class="header-inner flex-between gap-12">
 
-            <div class="header-content-wrapper flex-align flex-grow-1">
-                <!-- Logo Start -->
-                <a href="index.html" class="link">
+            <!-- Logo -->
+            <div class="header-logo-wrapper flex-align">
+                <a href="{% url 'home' %}" class="link">
                     <img style="max-width:90px;" src="{% static 'assets/images/logo/winlos_logo_white.png' %}" alt="Logo">
                 </a>
-                <!-- Logo End  -->
-    
-             
-    
-                <!-- Menu Start  -->
-<div class="header-menu d-lg-block d-none">
-                    
-<ul class="nav-menu flex-align ">
-    <li class="nav-menu__item  activePage">
-        <a href="{% url 'home' %}" class="nav-menu__link text-white">Home</a> 
-    </li>
-    <li class="nav-menu__item ">
-        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">About Us</a>
-    </li>
-    <li class="nav-menu__item ">
-        <a href="{% url 'program' %}" class="nav-menu__link text-white">Programs</a>
-    </li>
-    <li class="nav-menu__item ">
-        <a href="{% url 'admission' %}" class="nav-menu__link text-white">Admission</a>
-    </li> 
-</ul>
-                </div>
-                <!-- Menu End  -->
             </div>
 
-            <!-- Header Right start -->
+            <!-- Menu (centered) -->
+            <div class="header-menu d-lg-block d-none flex-grow-1">
+                <ul class="nav-menu flex-align justify-content-center">
+                    <li class="nav-menu__item activePage">
+                        <a href="{% url 'home' %}" class="nav-menu__link text-white">HOME</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">ABOUT US</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'program' %}" class="nav-menu__link text-white">PROGRAMS</a>
+                    </li>
+                    <li class="nav-menu__item">
+                        <a href="{% url 'admission' %}" class="nav-menu__link text-white">ADMISSION</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Header Right -->
             <div class="header-right flex-align">
-                
                 <div class="dropdown">
-                    <button class="dropdown-toggle w-48 h-48" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            {% if request.user.profile_pic and request.user.profile_pic.name %}
-                            <img src="{{ request.user.profile_pic.url }}" alt="Profile" class="w-54 h-54 rounded-circle">
-                            {% else %}
-                             <img src="{% static 'student_d_assets/images/profile_pic.png' %}" alt="">
-                            {% endif %}
-                       
-                    </button>
+                     <button 
+    style="background-color:#a48a01; border-radius:50%; padding:0; overflow:hidden;"
+    class="dropdown-toggle w-48 h-48 d-flex align-items-center justify-content-center"
+    type="button" 
+    data-bs-toggle="dropdown" 
+    aria-expanded="false"
+>
+    {% if request.user.profile_pic and request.user.profile_pic.name %}
+        <img 
+            src="{{ request.user.profile_pic.url }}" 
+            alt="Profile" 
+            class="rounded-circle"
+            style="width:100%; height:100%; object-fit:cover;"
+        >
+    {% else %}
+        <img 
+            src="{% static 'student_d_assets/images/profile_pic.png' %}" 
+            alt="Profile" 
+            class="rounded-circle"
+            style="width:100%; height:100%; object-fit:cover;"
+        >
+    {% endif %}
+</button>
                     <ul class="dropdown-menu rounded-12">
-                       <li>
+                        <li>
                             <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'student_profile' %}">
-                            <span><i class="ph ph-user-circle"></i></span>
-                            <span>My Profile</span>
+                                <span><i class="ph ph-user-circle"></i></span>
+                                <span>My Profile</span>
                             </a>
                         </li>
                         <li>
                             <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'logout' %}">
-                            <span><i class="ph ph-power"></i></span>
-                            <span>Log Out</span>
+                                <span><i class="ph ph-power"></i></span>
+                                <span>Log Out</span>
                             </a>
                         </li>
                     </ul>
                 </div>
                 <button type="button" class="toggle-mobileMenu d-lg-none text-white flex-center">
-                    <i class="ph ph-list"></i> 
+                    <i class="ph ph-list"></i>
                 </button>
             </div>
-            <!-- Header Right End  -->
+
         </nav>
     </div>
 </header>
@@ -588,156 +673,131 @@
 
 
 
-<!-- ============== student dashbord banner section start =============== -->
-<section class="breadcrumb pt-80 pb-187 bg-neutral-900 position-relative z-1 overflow-hidden mb-0 z-n1">
+<!-- =========== student dashboard section start ============== -->
 
-    
-    <div class="container container--lg">
-        <div class="d-flex align-items-center gap-16 justify-content-between flex-wrap">
-            <div class="breadcrumb__wrapper">
-              <h1 class="breadcrumb__title display-4 fw-semibold text-white mb-20">
-                Learning Portal
-            </h1>
+<section style="margin-top:100px;" class="bg-white pb-80 w-100 h-100">
+    <div  class="container-fluid ">
 
-                <ul class="breadcrumb__list d-flex align-items-center gap-4 flex-wrap">
-                    <li class="breadcrumb__item">
-                        <a href="index.html" class="breadcrumb__link text-white hover-text-warning-800 fw-medium">Home</a>
-                    </li>
-               
-                    <li class="breadcrumb__item @@arrowTwoShowHide">
-                        <i class="text-white d-flex ph-bold ph-caret-right"></i>
-                    </li>
-                    <li class="breadcrumb__item"> 
-                        <span class="text-main-two-600">Dashboard</span> 
-                    </li>
-                </ul>
-            </div>
-         
-        </div>
-    </div>
-</section>
-<!-- ============== student dashbord banner section end =============== -->
-
-<!-- =========== student dashbord section start ============== -->
-
-<section class="bg-main-25 pb-80 w-100 h-100">
-    <div class="container container--lg">
         <div class="d-flex gap-24 mt--120 z-2 position-relative">
             <div class="student-overlay-sidebar"></div>
-   <!-- ========Dashboard Sidebar start======== -->
-<div class="student-dashboard-sidebar shadow px-20 py-24 max-w-288-px bg-white rounded-10 w-100 position-relative">
 
-    <div class="text-center">
+            <!-- ======== Dashboard Sidebar START ======== -->
+            <div class="student-dashboard-sidebar  border px-20 py-24 max-w-288-px bg-white rounded-20 w-100 position-relative">
 
-        {% if request.user.profile_pic and request.user.profile_pic.name %}
-            <img src="{{ request.user.profile_pic.url }}"
-                 alt="Profile"
-                 class="rounded-circle d-block mx-auto mt-2"
-                 style="width:85px; height:85px; object-fit:cover;">
-        {% else %}
-            <img src="{% static 'student_d_assets/images/profile_pic.png' %}"
-                 alt="Profile"
-                 class="rounded-circle d-block mx-auto mt-2"
-                 style="width:85px; height:85px; object-fit:cover;">
-        {% endif %}
+                <div style="background-color:#000000; padding:20px; border-radius:20px;" class="text-center">
 
-        <h5 style="margin-top:40px;"  class="mb-2 text-neutral-200 mt-3">
-            Welcome, {{ request.user.username }}
-        </h5>
+               {% if request.user.profile_pic and request.user.profile_pic.name %}
+          <img
+            src="{{ request.user.profile_pic.url }}"
+            alt="Profile"
+            class="rounded-circle d-block mx-auto mt-2"
+            style="
+                width:70px;
+            height:70px;
+            object-fit:cover;
+            background-color:#a48a01;
+            padding:3px;
+            ">
+            {% else %}
+                <img
+                    src="{% static 'student_d_assets/images/profile_pic.png' %}"
+                    alt="Profile"
+                    class="rounded-circle d-block mx-auto mt-2"
+                    style="
+                        width:70px;
+                        height:70px;
+                        object-fit:cover;
+                        background-color:#a48a01;
+                        padding:3px;
+                    ">
+            {% endif %}
 
-        <span class="text-neutral-500 text-14 fw-normal">
-            {{ request.user.email }}
-        </span>
-    </div>
+                <h6 style="margin-top:15px;" class="mb-1  text-white fw-normal" style="margin-top:30px;">
+                    Welcome, {{ request.user.username }}
+                </h6>
 
-    <span class="w-100 bg-neutral-40 mb-24 mt-24 h-1 d-block"></span>
+                <span style="margin-top:10px;" class="d-block text-white-50 text-9">
+                    {{ request.user.email }}
+                </span>
 
-    <div class="overflow-x-auto">
-        <div class="student-dashbord-scrollbar min-w-max"> 
-            <ul>
+                                </div>
 
-                <!-- Dashboard -->
-                <li class="mb-8">
-                    <a href="{% url 'dashboard' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i  class="ph-bold ph-house"></i>
-                        </span>
-                        Dashboard
-                    </a>
-                </li>
+            
 
-                <!-- Profile -->
-                <li class="mb-8">
-                    <a href="{% url 'student_profile' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph-bold ph-user-circle"></i>
-                        </span>
-                        My Profile
-                    </a>
-                </li>
+                <div style="margin-top:30px;">
+                    <div class=" min-w-max">
+                        <ul>
 
-                <!-- Enrolled Courses -->
-                <li class="mb-8">
-                    <a href="{% url 'courses' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 link_active px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i style="color:white;" class="ph-bold ph-graduation-cap"></i>
-                        </span>
-                        Courses
-                    </a>
-                </li>
+                            <!-- Dashboard -->
+                            <li class="mb-8">
+                                <a href="{% url 'dashboard' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          bg-dark-pure  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-house"></i>
+                                    </span>
+                                    Dashboard
+                                </a>
+                            </li>
 
-                <!-- Certificate Request -->
-                <li class="mb-8">
-                    <a href="{% url 'certification' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph-bold ph-certificate"></i>
-                        </span>
-                        Certificates
-                    </a>
-                </li>
+                            <!-- Profile -->
+                            <li class="mb-8">
+                                <a href="{% url 'student_profile' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                           bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-user-circle"></i>
+                                    </span>
+                                    My Profile
+                                </a>
+                            </li>
 
-                <!-- Logout -->
-                <li class="mb-8">
-                    <a href="{% url 'logout' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph ph-sign-out"></i>
-                        </span>
-                        Logout
-                    </a>
-                </li>
+                            <!-- Courses -->
+                            <li class="mb-8">
+                                <a href="{% url 'courses' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          Active  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i style="color:white;" class="ph-bold ph-graduation-cap"></i>
+                                    </span>
+                                    Courses
+                                </a>
+                            </li>
 
-            </ul>
-        </div>
-    </div>
+                            <!-- Certificates -->
+                            <li class="mb-8">
+                                <a href="{% url 'certification' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-certificate"></i>
+                                    </span>
+                                    Certificates
+                                </a>
+                            </li>
+                          <hr style="border-top: 1px solid rgba(0, 0, 0, 0.3); margin-top: 15px;">
+                            <!-- Logout -->
+                            <li class="mb-8">
+                                <a href="{% url 'logout' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-danger 
+                                          bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-danger item-hover__text transition-03">
+                                        <i class="ph ph-sign-out"></i>
+                                    </span>
+                                    Logout
+                                </a>
+                            </li>
 
-    <div class="position-absolute inset-block-end-0 inset-inline-start-0 pb-16 px-16 w-100">
-        <a href="#" class="text-14 fw-medium text-neutral-500 d-flex align-items-center gap-8  
-                          hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap bg-white">
+                        </ul>
+                    </div>
+                </div>
 
-            <span class="text-16 text-main-600 item-hover__text transition-03">
-                <img src="{% static 'student_d_assets/images/certificate.png' %}"
-                     alt="Certificate"
-                     class="d-block mx-auto"
-                     style=" object-fit:contain;">
-            </span>
+                
 
-        </a>
-    </div>
+            </div>
+            <!-- ======== Dashboard Sidebar END ======== -->
 
-</div>
-<!-- ========Dashboard Sidebar end======== -->
-<!-- ================================== Take Exam Section Start =========================== -->
-<section class="explore-course position-relative z-1 w-100">
+
     <div class="container">
 
         <!-- TOP BAR -->
@@ -749,22 +809,54 @@
             </div>
         </div>
 
-        <!-- ---------- EXAM DISPLAY SECTION ---------- -->
+
         <div class="flex-grow-1 w-100" style="margin-top:25px;">
 
             <!-- EXAM TOP TITLE -->
-            <div class="px-40 py-32 bg-white shadow rounded-10 mb-24 d-flex justify-content-between align-items-center flex-wrap">
+            {% comment %} <div class="px-40 py-32 bg-white shadow rounded-10 mb-24 d-flex justify-content-between align-items-center flex-wrap">
                 <div>
                     <h3 class="text-20 fw-semibold text-neutral-800 mb-4">{{ exam.course.name_of_course }}</h3>
                 </div>
                 <a href="{% url 'dashboard' %}" class="theme-btn">← Back to Dashboard</a>
-            </div>
+            </div> {% endcomment %}
+
+
+                             <!-- HEADER -->
+                <div style="background:#000;padding:24px;border-radius:20px" class="mb-40">
+                    <a href="{% url 'dashboard' %}" class="theme-btn">← Back to Dashboard</a>
+                    <h4 class="text-white text-15 fw-semibold mb-10">{{ exam.course.name_of_course }}</h4>
+                    <div class="d-flex align-items-center gap-2">
+                    <a href="{% url 'home' %}" class="text-white fw-bold">Home</a>
+                    <i class="ph-bold ph-caret-right text-white"></i>
+                    <span class="fw-bold" style="color:#ae971d">Quiz</span>
+                    </div>
+                </div>
+
+
+                <div class="d-flex align-items-center gap-16 justify-content-between">
+                     <button type="button" 
+        class="toggle-student-dashbord-button d-xl-none d-block"
+        style="
+            background-color: #fff; 
+            color: #000; 
+            padding: 12px; 
+            border-radius: 50%; 
+            font-size: 24px; 
+            width: 48px; 
+            height: 48px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        ">
+    <i class="ph-bold ph-list"></i>
+                    </div>
 
             <!-- MAIN EXAM AREA -->
-            <div class="text-white shadow bg-white rounded-10 p-24">
+            <div style="margin-top:10px;" class="text-white border  bg-white rounded-10 p-24">
             
 
-                 <p style="margin-bottom:20px; font-size:large;" class="text-neutral-600 text-17">{{ exam.title }}</p>
+                 <p style="margin-bottom:20px; font-size:large; color:black;" class="fw-bold text-17 ">{{ exam.title }}</p>
      <form method="POST" 
                     action="{% url 'submit_exam' exam.course.id exam.id %}" 
                     id="examForm"
@@ -781,16 +873,20 @@
                             </p>
 
                             {% for option in question.options.all %}
-                               <div style="margin-bottom:20px;" class="option-box">
-                                    <input type="radio" 
-                                        name="answers_{{ question.id }}" 
-                                        value="{{ option.id }}" 
-                                        id="option_{{ option.id }}">
+                            <div class="option-box" onclick="selectOption(this)">
+    <input type="radio" 
+           name="answers_{{ question.id }}" 
+           value="{{ option.id }}" 
+           id="option_{{ option.id }}"
+           class="d-none">
 
-                                    <label for="option_{{ option.id }}">
-                                        {{ option.option_text|title }}
-                                    </label>
-                                </div>
+    <label for="option_{{ option.id }}" class="option-label">
+        <span class="checkmark">
+            <i class="ph-bold ph-check"></i>
+        </span>
+        <span class="option-text">{{ option.option_text|title }}</span>
+    </label>
+</div>
 
                             {% endfor %}
                         </div>
@@ -824,9 +920,85 @@
                 </form>
             </div>
 
+
+
+
+            <!-- ================= EXAM INSTRUCTIONS SECTION (Compact) ================= -->
+<div class="container mt-32 mb-24">
+    <div 
+        class="rounded-16 px-24 py-20 text-white"
+        style="
+            background: black;
+            border: 1px solid #333;
+        "
+    >
+        <!-- Icon + Title -->
+        <div class="text-center mb-16">
+            <i class="ph-bold ph-info text-32" style="color: #a48a01;"></i>
+            <h5 class="fw-bold mt-8 mb-0" style="font-size: 16px; color:white;">
+                How to Answer the Questions
+            </h5>
+        </div>
+
+        <!-- Compact Instructions List -->
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <ul class="list-unstyled text-14" style="line-height: 1.6; margin-bottom: 0;">
+                    <li class="d-flex align-items-start gap-10 mb-10">
+                        <span class="flex-shrink-0 mt-2">
+                            <i class="ph-bold ph-check-circle text-16" style="color: #a48a01;"></i>
+                        </span>
+                        <span>Read each question carefully before selecting an answer.</span>
+                    </li>
+                    <li class="d-flex align-items-start gap-10 mb-10">
+                        <span class="flex-shrink-0 mt-2">
+                            <i class="ph-bold ph-check-circle text-16" style="color: #a48a01;"></i>
+                        </span>
+                        <span><strong>Click an option</strong> — a gold checkmark will confirm your choice.</span>
+                    </li>
+                    <li class="d-flex align-items-start gap-10 mb-10">
+                        <span class="flex-shrink-0 mt-2">
+                            <i class="ph-bold ph-check-circle text-16" style="color: #a48a01;"></i>
+                        </span>
+                        <span>You can change your answer anytime before submitting.</span>
+                    </li>
+                    <li class="d-flex align-items-start gap-10 mb-10">
+                        <span class="flex-shrink-0 mt-2">
+                            <i class="ph-bold ph-check-circle text-16" style="color: #a48a01;"></i>
+                        </span>
+                        <span>Use <strong>Next</strong> / <strong>Previous</strong> to navigate.</span>
+                    </li>
+                    <li class="d-flex align-items-start gap-10 mb-10">
+                        <span class="flex-shrink-0 mt-2">
+                            <i class="ph-bold ph-check-circle text-16" style="color: #a48a01;"></i>
+                        </span>
+                        <span>All questions must be answered before submitting.</span>
+                    </li>
+                    <li class="d-flex align-items-start gap-10">
+                        <span class="flex-shrink-0 mt-2">
+                            <i class="ph-bold ph-check-circle text-16" style="color: #a48a01;"></i>
+                        </span>
+                        <span>Click <strong>Submit Exam</strong> when finished.</span>
+                    </li>
+                </ul>
+
+                <!-- Small Final Note -->
+                <p class="mt-16 mb-0 text-13 opacity-70 text-center">
+                    <i class="ph-bold ph-clock-countdown me-4" style="color: #a48a01;"></i>
+                    No timer — take your time.
+                </p>
+            </div>
         </div>
     </div>
-</section>
+</div>
+<!-- ================= END COMPACT INSTRUCTIONS SECTION ================= -->
+        </div>
+
+        
+    </div>
+
+
+    
 
 
         </div>            
@@ -842,14 +1014,12 @@
 
 <!-- ==================== student Footer Start Here ==================== -->
 <footer style="background-color:black;" class="footer position-relative z-1">
-    <img src="assets/images/shapes/shape2.png" alt="" class="shape five animation-scalation">
-    <img src="assets/images/shapes/shape6.png" alt="" class="shape one animation-scalation">
     <div class="container-fluid text-end">
         <!-- bottom Footer -->
         <div class="bottom-footer border-top border-dashed border-neutral-600 border-0 py-32">
             <div class="">
                 <div class="bottom-footer__inner flex-wrap">
-                    <p class="text-white text-16 fw-normal"> © 2025  
+                    <p class="text-white text-12 fw-bold"> © 2025  
                             <span class="text-white">The Winlows Academy.</span>
                         All rights reserved.
                     </p>
@@ -1075,7 +1245,7 @@ showStep(currentStep);
 /* Popup container */
 .my-swal-popup {
     border-radius: 16px !important;
-    padding: 2rem !important;
+    padding: 1rem !important;
     background: #ffffff !important;
     box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
 }

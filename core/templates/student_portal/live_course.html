@@ -79,10 +79,48 @@
 
     <style>
         
-           .link_active{
-             background-color: var(--main-600) !important;
-             color: white !important
-        }
+    
+
+          .Active {
+    background-color: black !important;
+}
+
+    .btn-hover-white {
+    position: relative;
+    overflow: hidden;
+    transition: color 0.3s ease;
+}
+
+.btn-hover-white::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.2); /* White overlay */
+    transition: left 0.3s ease;
+}
+
+.btn-hover-white:hover::after {
+    left: 0;
+}
+
+
+.container--xl {
+  max-height: 80px;
+}
+
+.bg-dark-pure {
+    background-color: white !important; /* pure black */
+    color:black; /* text white */
+    transition: background-color 0.3s ease;
+}
+
+.bg-dark-pure:hover {
+    background-color: black !important; /* hover slightly lighter */
+}
+
 
                 textarea:focus {
     outline: none !important;
@@ -305,14 +343,65 @@
 }
 
 
+
+
+/* 01.3 Buttons */
+.theme-btn {
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+  vertical-align: middle;
+  display: inline-block;
+  border: none;
+  text-transform: capitalize;
+  text-align: center;
+  border-radius: 30px;
+  background: black;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1;
+  padding: 14px 14px;
+  letter-spacing: -0.18px;
+}
+
+.theme-btn::before {
+  content: "";
+  position: absolute;
+  height: 100%;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  background-color: rgb(218, 170, 15);
+  z-index: -1;
+  transition: all 0.4s ease-out;
+  border-radius: inherit;
+}
+.theme-btn:hover {
+  color: var(--header);
+  box-shadow: none;
+}
+.theme-btn:hover::before {
+  width: 100%;
+}
+.theme-btn:hover i {
+  background-color: var(--theme);
+  color: var(--white);
+}
+@media (max-width: 575px) {
+  .theme-btn {
+    font-size: 14px;
+  }
+}
+
     </style>
 
 
 </head> 
 <body>
     
-
-      <!-- Preloader Start -->
+ <!-- Preloader Start -->
         <div id="preloader" class="preloader">
             <div class="animation-preloader">
                 <div class="txt-loading">
@@ -346,6 +435,7 @@
             </div>
         </div>
 
+    
 
 <!--==================== Overlay Start ====================-->
 <div class="overlay"></div>
@@ -374,19 +464,20 @@
             
 <ul class="nav-menu flex-align nav-menu--mobile">
     <li class="nav-menu__item  activePage">
-        <a href="{% url 'home' %}" class="nav-menu__link text-dark">Home</a> 
+        <a href="{% url 'home' %}" class="nav-menu__link text-dark">HOME</a> 
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">About Us</a>
+        <a href="{% url 'about_us' %}" class="nav-menu__link text-dark">ABOUT US</a>
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'program' %}" class="nav-menu__link text-dark">Programs</a>
+        <a href="{% url 'program' %}" class="nav-menu__link text-dark">PROGRAMS</a>
     </li>
     <li class="nav-menu__item ">
-        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">Admission</a>
+        <a href="{% url 'admission' %}" class="nav-menu__link text-dark">ADMISSION</a>
     </li> 
 </ul>
 
+       
             
         </div>
     </div>
@@ -410,16 +501,16 @@
             <div class="header-menu d-lg-block d-none flex-grow-1">
                 <ul class="nav-menu flex-align justify-content-center">
                     <li class="nav-menu__item activePage">
-                        <a href="{% url 'home' %}" class="nav-menu__link text-white">Home</a>
+                        <a href="{% url 'home' %}" class="nav-menu__link text-white">HOME</a>
                     </li>
                     <li class="nav-menu__item">
-                        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">About Us</a>
+                        <a href="{% url 'about_us' %}" class="nav-menu__link text-white">ABOUT US</a>
                     </li>
                     <li class="nav-menu__item">
-                        <a href="{% url 'program' %}" class="nav-menu__link text-white">Programs</a>
+                        <a href="{% url 'program' %}" class="nav-menu__link text-white">PROGRAMS</a>
                     </li>
                     <li class="nav-menu__item">
-                        <a href="{% url 'admission' %}" class="nav-menu__link text-white">Admission</a>
+                        <a href="{% url 'admission' %}" class="nav-menu__link text-white">ADMISSION</a>
                     </li>
                 </ul>
             </div>
@@ -427,13 +518,29 @@
             <!-- Header Right -->
             <div class="header-right flex-align">
                 <div class="dropdown">
-                    <button class="dropdown-toggle w-48 h-48" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        {% if request.user.profile_pic and request.user.profile_pic.name %}
-                        <img src="{{ request.user.profile_pic.url }}" alt="Profile" class="w-54 h-54 rounded-circle">
-                        {% else %}
-                        <img src="{% static 'student_d_assets/images/profile_pic.png' %}" alt="">
-                        {% endif %}
-                    </button>
+                     <button 
+    style="background-color:#a48a01; border-radius:50%; padding:0; overflow:hidden;"
+    class="dropdown-toggle w-48 h-48 d-flex align-items-center justify-content-center"
+    type="button" 
+    data-bs-toggle="dropdown" 
+    aria-expanded="false"
+>
+    {% if request.user.profile_pic and request.user.profile_pic.name %}
+        <img 
+            src="{{ request.user.profile_pic.url }}" 
+            alt="Profile" 
+            class="rounded-circle"
+            style="width:100%; height:100%; object-fit:cover;"
+        >
+    {% else %}
+        <img 
+            src="{% static 'student_d_assets/images/profile_pic.png' %}" 
+            alt="Profile" 
+            class="rounded-circle"
+            style="width:100%; height:100%; object-fit:cover;"
+        >
+    {% endif %}
+</button>
                     <ul class="dropdown-menu rounded-12">
                         <li>
                             <a class="dropdown-item d-flex align-items-center gap-12 hover-text-main-600 transition-03" href="{% url 'student_profile' %}">
@@ -460,178 +567,172 @@
 <!-- ==================== Header End Here ==================== -->
 
 
-<!-- ============== student dashbord banner section start =============== -->
-<section class="breadcrumb pt-80 pb-187 bg-neutral-900 position-relative z-1 overflow-hidden mb-0 z-n1">
 
-    
-    <div class="container container--lg">
-        <div class="d-flex align-items-center gap-16 justify-content-between flex-wrap">
-            <div class="breadcrumb__wrapper">
-              <h1 class="breadcrumb__title display-4 fw-semibold text-white mb-20">
-                Learning Portal
-            </h1>
+<!-- =========== student dashboard section start ============== -->
 
-                <ul class="breadcrumb__list d-flex align-items-center gap-4 flex-wrap">
-                    <li class="breadcrumb__item">
-                        <a href="{% url 'home' %}" class="breadcrumb__link text-white hover-text-warning-800 fw-medium">Home</a>
-                    </li>
-               
-                    <li class="breadcrumb__item @@arrowTwoShowHide">
-                        <i class="text-white d-flex ph-bold ph-caret-right"></i>
-                    </li>
-                    <li class="breadcrumb__item"> 
-                        <span class="text-main-two-600">Dashboard</span> 
-                    </li>
-                </ul>
-            </div>
-         
-        </div>
-    </div>
-</section>
-<!-- ============== student dashbord banner section end =============== -->
+<section style="margin-top:100px;" class="bg-white pb-80 w-100 h-100">
+    <div  class="container-fluid ">
 
-<!-- =========== student dashbord section start ============== -->
-
-<section class="bg-main-25 pb-80 w-100 h-100">
-    <div class="container container--lg">
         <div class="d-flex gap-24 mt--120 z-2 position-relative">
             <div class="student-overlay-sidebar"></div>
-   <!-- ========Dashboard Sidebar start======== -->
-<div class="student-dashboard-sidebar shadow px-20 py-24 max-w-288-px bg-white rounded-10 w-100 position-relative">
 
-    <div class="text-center">
+            <!-- ======== Dashboard Sidebar START ======== -->
+            <div class="student-dashboard-sidebar  border px-20 py-24 max-w-288-px bg-white rounded-20 w-100 position-relative">
 
-        {% if request.user.profile_pic and request.user.profile_pic.name %}
-            <img src="{{ request.user.profile_pic.url }}"
-                 alt="Profile"
-                 class="rounded-circle d-block mx-auto mt-2"
-                 style="width:85px; height:85px; object-fit:cover;">
-        {% else %}
-            <img src="{% static 'student_d_assets/images/profile_pic.png' %}"
-                 alt="Profile"
-                 class="rounded-circle d-block mx-auto mt-2"
-                 style="width:85px; height:85px; object-fit:cover;">
-        {% endif %}
+                <div style="background-color:#000000; padding:20px; border-radius:20px;" class="text-center">
 
-        <h5 style="margin-top:40px;"  class="mb-2 text-neutral-200 mt-3">
-            Welcome, {{ request.user.username }}
-        </h5>
+               {% if request.user.profile_pic and request.user.profile_pic.name %}
+          <img
+            src="{{ request.user.profile_pic.url }}"
+            alt="Profile"
+            class="rounded-circle d-block mx-auto mt-2"
+            style="
+                width:70px;
+            height:70px;
+            object-fit:cover;
+            background-color:#a48a01;
+            padding:3px;
+            ">
+            {% else %}
+                <img
+                    src="{% static 'student_d_assets/images/profile_pic.png' %}"
+                    alt="Profile"
+                    class="rounded-circle d-block mx-auto mt-2"
+                    style="
+                        width:70px;
+                        height:70px;
+                        object-fit:cover;
+                        background-color:#a48a01;
+                        padding:3px;
+                    ">
+            {% endif %}
 
-        <span class="text-neutral-500 text-14 fw-normal">
-            {{ request.user.email }}
-        </span>
-    </div>
+                <h6 style="margin-top:15px;" class="mb-1  text-white fw-normal" style="margin-top:30px;">
+                    Welcome, {{ request.user.username }}
+                </h6>
 
-    <span class="w-100 bg-neutral-40 mb-24 mt-24 h-1 d-block"></span>
+                <span style="margin-top:10px;" class="d-block text-white-50 text-9">
+                    {{ request.user.email }}
+                </span>
 
-    <div class="overflow-x-auto">
-        <div class="student-dashbord-scrollbar min-w-max"> 
-            <ul>
+                                </div>
 
-                <!-- Dashboard -->
-                <li class="mb-8">
-                    <a href="{% url 'dashboard' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i  class="ph-bold ph-house"></i>
-                        </span>
-                        Dashboard
-                    </a>
-                </li>
+            
 
-                <!-- Profile -->
-                <li class="mb-8">
-                    <a href="{% url 'student_profile' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph-bold ph-user-circle"></i>
-                        </span>
-                        My Profile
-                    </a>
-                </li>
+                <div style="margin-top:30px;">
+                    <div class=" min-w-max">
+                        <ul>
 
-                <!-- Enrolled Courses -->
-                <li class="mb-8">
-                    <a href="{% url 'courses' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 link_active px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i style="color:white;" class="ph-bold ph-graduation-cap"></i>
-                        </span>
-                        Courses
-                    </a>
-                </li>
+                            <!-- Dashboard -->
+                            <li class="mb-8">
+                                <a href="{% url 'dashboard' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          bg-dark-pure  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-house"></i>
+                                    </span>
+                                    Dashboard
+                                </a>
+                            </li>
 
-                <!-- Certificate Request -->
-                <li class="mb-8">
-                    <a href="{% url 'certification' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph-bold ph-certificate"></i>
-                        </span>
-                        Certificates
-                    </a>
-                </li>
+                            <!-- Profile -->
+                            <li class="mb-8">
+                                <a href="{% url 'student_profile' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                           bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-user-circle"></i>
+                                    </span>
+                                    My Profile
+                                </a>
+                            </li>
 
-                <!-- Logout -->
-                <li class="mb-8">
-                    <a href="{% url 'logout' %}"
-                       class="fw-medium d-flex align-items-center text-14 gap-8 text-neutral-500 
-                              hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
-                        <span class="text-16 text-main-600 item-hover__text transition-03">
-                            <i class="ph ph-sign-out"></i>
-                        </span>
-                        Logout
-                    </a>
-                </li>
+                            <!-- Courses -->
+                            <li class="mb-8">
+                                <a href="{% url 'courses' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          Active  px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i style="color:white;" class="ph-bold ph-graduation-cap"></i>
+                                    </span>
+                                    Courses
+                                </a>
+                            </li>
 
-            </ul>
-        </div>
-    </div>
+                            <!-- Certificates -->
+                            <li class="mb-8">
+                                <a href="{% url 'certification' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-neutral-500 
+                                          bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-black item-hover__text transition-03">
+                                        <i class="ph-bold ph-certificate"></i>
+                                    </span>
+                                    Certificates
+                                </a>
+                            </li>
+                          <hr style="border-top: 1px solid rgba(0, 0, 0, 0.3); margin-top: 15px;">
+                            <!-- Logout -->
+                            <li class="mb-8">
+                                <a href="{% url 'logout' %}"
+                                   class="fw-bold d-flex align-items-center text-14 gap-8 text-danger 
+                                          bg-dark-pure px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap">
+                                    <span class="text-16 text-danger item-hover__text transition-03">
+                                        <i class="ph ph-sign-out"></i>
+                                    </span>
+                                    Logout
+                                </a>
+                            </li>
 
-    <div class="position-absolute inset-block-end-0 inset-inline-start-0 pb-16 px-16 w-100">
-        <a href="#" class="text-14 fw-medium text-neutral-500 d-flex align-items-center gap-8  
-                          hover-bg-main-600 px-24 py-10 hover-text-white rounded-12 item-hover flex-wrap bg-white">
+                        </ul>
+                    </div>
+                </div>
 
-            <span class="text-16 text-main-600 item-hover__text transition-03">
-                <img src="{% static 'student_d_assets/images/certificate.png' %}"
-                     alt="Certificate"
-                     class="d-block mx-auto"
-                     style=" object-fit:contain;">
-            </span>
+                
 
-        </a>
-    </div>
+            </div>
+            <!-- ======== Dashboard Sidebar END ======== -->
 
-</div>
-<!-- ========Dashboard Sidebar end======== -->
-<!-- ================================== Explore Course Two Section Start =========================== -->
-<section class="explore-course position-relative z-1 w-100">
+
+
     <div class="container">
 
-        <!-- TOP BAR -->
-        <div class="d-flex align-items-center gap-8 justify-content-between flex-wrap">
-            <div class="d-flex align-items-center gap-16 flex-wrap">
-                <button type="button" class="toggle-student-dashbord-button text-white text-24 d-xl-none d-block">
-                    <i class="ph-bold ph-list"></i>
-                </button>
-            </div>
-        </div>
+      
 
         <!-- MAIN SECTION -->
         <div style="margin-top:25px;" class="w-100">
             {% if all_lessons %}
-                <!-- LESSON TITLE -->
-                <div class="px-40 py-32 bg-white rounded-10 shadow mb-24 d-flex justify-content-between align-items-center flex-wrap">
-                    <div>
-                        <h3 class="text-20 fw-semibold text-neutral-800 mb-4">{{ course.name_of_course }}</h3>
-                        <p class="text-neutral-600 text-14">{{ lesson.title|title }}</p>
-                    </div>
+
+                            <!-- HEADER -->
+                <div style="background:#000;padding:24px;border-radius:20px" class="mb-40">
                     <a href="{% url 'dashboard' %}" class="theme-btn">← Back to Dashboard</a>
+                    <h4 class="text-white text-15 fw-semibold mb-10">{{ lesson.title|title }}</h4>
+                    <div class="d-flex align-items-center gap-2">
+                    <a href="{% url 'home' %}" class="text-white fw-bold">Home</a>
+                    <i class="ph-bold ph-caret-right text-white"></i>
+                    <span class="fw-bold" style="color:#ae971d">Course</span>
+                    </div>
                 </div>
+
+
+                <div class="d-flex align-items-center gap-16 justify-content-between">
+                     <button type="button" 
+        class="toggle-student-dashbord-button d-xl-none d-block"
+        style="
+            background-color: #fff; 
+            color: #000; 
+            padding: 12px; 
+            border-radius: 50%; 
+            font-size: 24px; 
+            width: 48px; 
+            height: 48px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+        ">
+    <i class="ph-bold ph-list"></i>
+                    </div>
+
 
                 <!-- TWO COLUMN LAYOUT -->
                 <div class="row g-4">
@@ -639,9 +740,9 @@
                     <!-- LEFT COLUMN: VIDEO -->
                     <div class="col-12 col-md-12 col-lg-8">
 
-                        <div class="text-dark rounded-5 p-24 bg-white shadow">
+                        <div class="text-dark  p-24 ">
                             <!-- VIDEO PLAYER -->
-                            <video id="lesson-video" class="w-100"
+                            <video id="lesson-video" class="w-100 rounded-10"
                                    controls
                                    controlsList="nodownload"
                                    preload="metadata"
@@ -653,19 +754,114 @@
                             </video>
                         </div>
 
-                        <div class="rounded-5 p-24 mt-5 bg-white shadow">
-                            <h5><i class="ph ph-info text-primary"></i> Course Description</h5>
-                            <p style="margin-top:20px;" class="text-dark fw-bold text-13 lead mb-4">
-                                {{ lesson.description|linebreaksbr }}
-                            </p>
-                        </div>
+     <!-- META -->
+      <div class="card border-1  rounded-16  p-10 mb-20">
+
+       
+<div class="container d-flex align-items-center gap-5 mb-3  mb-10 flex-wrap">
+
+  <!-- Lessons -->
+  <div class="d-flex align-items-center me-4">
+    <i class="ph-bold ph-video-camera text-neutral-700 me-2"></i>
+    <span class="text-neutral-700 text-16 fw-medium">
+      {{ course.total_lessons }} Lessons
+    </span>
+  </div>
+
+  <!-- Students -->
+  <div class="d-flex align-items-center me-4">
+    <i class="ph ph-user-circle text-neutral-700 me-2"></i>
+    <span class="text-neutral-700 text-16 fw-medium">
+      {{ course.students_count }} Student{{ course.students_count|pluralize }}
+    </span>
+  </div>
+
+  <!-- Rating -->
+  <div class="d-flex align-items-center">
+    {% if course.average_rating|default:0 > 0 %}
+      <i class="ph-fill ph-star text-warning me-1"></i>
+      <span class="text-muted fw-medium">
+        {{ course.average_rating }}/5
+      </span>
+    {% else %}
+      <i class="ph ph-star text-warning me-1"></i>
+      <span class="text-muted fw-medium">0/5</span>
+    {% endif %}
+  </div>
+
+</div>
+
+<hr>
+
+<span
+  class="d-inline-flex align-items-center align-self-start w-auto
+         px-12 py-5 bg-light fw-medium text-13 border rounded-12 mb-16"
+  style="color:#AE971D; line-height:1; white-space:nowrap;"
+>
+  {{ course.course_type|title }}
+</span>
+
+ 
+
+
+
+        <div class="d-flex align-items-center gap-2 mb-10"> 
+                             
+         <span class="fw-normal text-14 text-neutral-400">Created by: {{ course.created_by.username|title }}</span>
+              
+
+        </div>
+
+
+
+
+        
+      </div>
+                
+      
+      
+                  
+
+                        
+                        
+                    <!-- COURSE DESCRIPTION -->
+                    <div class="card border-1  rounded-16 p-24 mb-24">
+                        <h5 class="fw-bold mb-12 text-16">                <span style="width:8px;height:8px;background:#AE971D;border-radius:50%;" class="me-8"></span> Course Description</h5>
+                        <p class="text-muted text-14 mb-0">
+                        {{ lesson.description|linebreaksbr }}
+                        </p>
+                    </div>
+
+
+                      <!-- WHAT YOU WILL LEARN -->
+      <div class="card border-1  rounded-16 p-24">
+        <h5 class="fw-bold mb-16"> <span style="width:8px;height:8px;background:#AE971D;border-radius:50%;" class="me-8"></span> What You'll Learn</h5>
+        <ul class="list-unstyled row g-3 mb-0">
+          <li class="text-14" >
+            <i class="ph-bold ph-check-circle text-success  mt-1"></i>
+            Develop a comprehensive understanding of film business principles
+          </li>
+          <li class="text-14">
+            <i class="ph-bold ph-check-circle text-success mt-1"></i>
+            Create sustainable income streams from your creative work
+          </li>
+          <li class="text-14" >
+            <i class="ph-bold ph-check-circle text-success mt-1"></i>
+            Master marketing and distribution strategies
+          </li>
+          <li class="text-14">
+            <i class="ph-bold ph-check-circle text-success mt-1"></i>
+            Build a professional network in the film industry
+          </li>
+        </ul>
+      </div>
+                   
 
                     </div>
 
                     <!-- RIGHT COLUMN: MODULES -->
                     <div class="col-12 col-md-12 col-lg-4">
-
-                        <div class="bg-white rounded-10 shadow p-24">
+                          <div style="margin-bottom: 30px;" class="card border-1  rounded-16 p-24">
 
                             <h5 class="text-18 fw-semibold text-neutral-800 mb-20">Module Progress</h5>
 
@@ -680,28 +876,63 @@
                                 </div>
                             </div>
 
-                            <hr>
+                           </div>  
 
-                            <h6 class="text-16 fw-semibold text-neutral-800 mt-24 mb-16">Modules</h6>
+                        <div class="card border-1  rounded-16 p-24">
 
-                            <div class="lesson-list" style="max-height: 480px; overflow-y: auto;">
-                                {% for l in all_lessons %}
-                                    <a href="{% url 'course_live' course.id %}?lesson={{ l.id }}"
-                                       class="d-flex align-items-start gap-12 p-12 rounded-10 border mb-12
-                                       {% if l.id == lesson.id %} bg-main-50 border-main-600 {% else %} bg-neutral-50 {% endif %}">
-                                        <div class="w-36 h-36 rounded-8 flex-center
-                                            {% if l.id == lesson.id %} bg-main-600 text-white {% else %} bg-neutral-300 {% endif %}">
-                                            {{ forloop.counter }}
-                                        </div>
-                                        <div>
-                                            <p class="fw-semibold text-14 text-neutral-800 mb-4">{{ l.title }}</p>
-                                            <span class="text-12 text-neutral-500">{{ l.duration_minutes }} mins</span>
-                                        </div>
-                                    </a>
-                                {% endfor %}
-                            </div>
+                            <h6 class="text-16 fw-semibold text-neutral-800 mb-16">Modules</h6>
+<div class="lesson-list" style="max-height: 480px; overflow-y: auto;">
+    {% for l in all_lessons %}
+        <a href="{% url 'course_live' course.id %}?lesson={{ l.id }}"
+           class="d-flex align-items-start gap-12 p-12 rounded-10 border mb-12
+           {% if l.id == lesson.id %} bg-dark text-white {% else %} bg-light text-dark {% endif %}">
+
+            <!-- Lesson Number / Icon -->
+            <div class="w-36 h-36 rounded-8 flex-center 
+                {% if l.id == lesson.id %}  text-white {% else %}  text-dark {% endif %}">
+                {% if l.id == lesson.id %}
+                    <i style="color:white;" class="ph-bold ph-video-camera  me-2"></i>
+                {% else %}
+                     <i style="color:black;" class="ph-bold ph-lock-open "></i>
+                {% endif %}
+            </div>
+
+            <!-- Lesson Title & Duration -->
+            <div>
+                <p class="fw-semibold mb-2 text-12 {% if l.id == lesson.id %} text-white {% else %} text-dark {% endif %}">
+                    {{ l.title }}
+                </p>
+                <span class="text-12 {% if l.id == lesson.id %} text-white {% else %} text-dark {% endif %}">
+              <i class="ph-bold ph-clock me-2 {% if l.id == lesson.id %} text-white {% else %} text-dark {% endif %}"></i> 
+{{ l.duration_minutes }} mins
+ </span>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+
+
+
+
 
                         </div>
+
+                       
+                               <!-- CTA -->
+        <div style="margin-top:20px; background-color:black; color:white;" class="card border-1  rounded-16 p-10 ">
+      <div style="margin-bottom:20px;" class="d-flex justify-content-center text-center">
+  <span class="fw-semibold">
+    Explore More Courses?<br>
+    <span class="text-white">Continue learning and expand your skills.</span>
+
+       <a  style="margin-top:20px;" href="{% url 'courses' %}" class="btn btn-warning w-100 fw-semibold rounded-10"
+               style="color:#fff;border-radius:30px">
+              Expolore
+            </a>
+  </span>
+</div>
+
+
 
                     </div>
 
@@ -716,7 +947,7 @@
                             <i class="ph ph-video-camera-slash" style="font-size:48px;"></i>
                         </div>
                         <h6 class="text-16 fw-semibold text-neutral-800 mb-8">
-                            No Tutorials Available
+                            No Lessons Available
                         </h6>
                         <p class="text-14 text-neutral-500 mb-0">
                             Lessons for this course will appear here once they are added.
@@ -727,9 +958,6 @@
 
         </div>
 
-    </div>
-</section>
-<!-- ================================== Explore Course Two Section End =========================== -->
 
 
 
@@ -740,9 +968,9 @@
 
 {% if completed_lessons == total_lessons %}
 <div id="course-options-footer"
-     class="position-fixed bottom-0 start-0 w-100 bg-dark text-white 
+     class="position-fixed bottom-0 start-0 w-100  text-white 
             d-flex justify-content-center align-items-center py-2 shadow-lg"
-     style="z-index:1050;">
+     style="z-index:1050; background-color:black;">
    <div class="d-flex justify-content-center align-items-center flex-wrap gap-3 mt-3">
 
     <!-- Exam button handling -->
@@ -753,9 +981,9 @@
             {% url 'take_exam' course.id exam.id as exam_url %}
         {% endif %}
 
-        <a id="take-exam-btn" href="{{ exam_url }}" class="exam-action-btn btn-success">
-            <i class="ph-bold ph-notepad"></i>
-            <span>
+        <a id="take-exam-btn" style="background-color:white;" href="{{ exam_url }}" class="exam-action-btn btn-sm ">
+            <i style="color:black;" class="ph-bold ph-notepad"></i>
+            <span style="color:black;">
                 {% if exam_action == 'continue' %}Continue Exam
                 {% elif exam_action == 'review' %}View Review
                 {% elif exam_action == 'results' %}Results
@@ -768,9 +996,9 @@
     {% endif %}
 
     <!-- ALWAYS show "View Certificate" button -->
-    <a id="view-certificate" 
+    <a id="view-certificate" style="background-color:#9C8401;"
        href="{% url 'view_certificate' course.id %}"
-       class="exam-action-btn btn-primary">
+       class="exam-action-btn btn-sm ">
         <i class="ph-bold ph-certificate"></i>
         <span>View Certificate</span>
     </a>
@@ -792,14 +1020,12 @@
 
 <!-- ==================== student Footer Start Here ==================== -->
 <footer style="background-color:black;" class="footer position-relative z-1">
-    <img src="assets/images/shapes/shape2.png" alt="" class="shape five animation-scalation">
-    <img src="assets/images/shapes/shape6.png" alt="" class="shape one animation-scalation">
     <div class="container-fluid text-end">
         <!-- bottom Footer -->
         <div class="bottom-footer border-top border-dashed border-neutral-600 border-0 py-32">
             <div class="">
                 <div class="bottom-footer__inner flex-wrap">
-                    <p class="text-white text-16 fw-normal"> © 2025  
+                    <p class="text-white text-12 fw-bold"> © 2025  
                             <span class="text-white">The Winlows Academy.</span>
                         All rights reserved.
                     </p>
@@ -852,122 +1078,132 @@
     <script src="{% static 'student_d_assets/js/main.js' %}"></script>
 
 
-    <!-- SweetAlert2 & Confetti -->
+    <!-- Spinner Overlay -->
+<div id="spinner-overlay" style="display:none;">
+    <div class="spinner"></div>
+</div>
+
+<style>
+#spinner-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100000;
+}
+
+.spinner {
+    border: 6px solid #f3f3f3;
+    border-top: 6px solid #3498db;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* SweetAlert Custom Styles */
+.my-swal-popup { border-radius: 16px !important; padding: 2rem !important; background: #ffffff !important; box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important; }
+.my-swal-title { font-size: 22px !important; font-weight: 700 !important; color: #222 !important; margin-bottom: 1rem !important; }
+.my-swal-btn { background-color: #000 !important; color: #fff !important; border-radius: 8px !important; padding: 10px 20px !important; font-weight: 600 !important; font-size: 14px !important; }
+.my-swal-cancel-btn { background-color: #ccc !important; color: #333 !important; border-radius: 8px !important; padding: 10px 20px !important; font-weight: 500 !important; }
+</style>
+
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
 
 <script>
 (function () {
-    console.log("[LessonScript] Initialization starting...");
-
     const video = document.getElementById('lesson-video');
     if (!video) return;
 
     const lessonId = video.dataset.lessonId;
-    const nextUrl = video.dataset.nextUrl || null;
 
-    // CSRF helper
     function getCookie(name) {
         let cookieValue = null;
         if (document.cookie) {
-            const cookies = document.cookie.split(';');
-            for (let c of cookies) {
+            document.cookie.split(';').forEach(c => {
                 c = c.trim();
                 if (c.startsWith(name + '=')) {
                     cookieValue = decodeURIComponent(c.substring(name.length + 1));
-                    break;
                 }
-            }
+            });
         }
         return cookieValue;
     }
     const csrftoken = getCookie('csrftoken');
 
     let completionSent = false;
-    let courseCompletedShown = false;
 
-    // CUSTOM LOADER
-    function showLoader() {
-        Swal.fire({
-            title: '',
-            allowOutsideClick: false,
-            showConfirmButton: false,
-            background: 'transparent',
-            backdrop: 'rgba(0,0,0,0.25)',
-            didOpen: () => {
-                const container = Swal.getHtmlContainer();
-                if (container) container.innerHTML = `<div class="custom-loader"></div>`;
-            }
-        });
+    function showSpinner() {
+        document.getElementById('spinner-overlay').style.display = 'flex';
+    }
+    function hideSpinner() {
+        document.getElementById('spinner-overlay').style.display = 'none';
     }
 
-    function hideLoader() {
-        Swal.close();
+    // Wrapper to show SweetAlert after spinner
+    async function showSwal(options) {
+        showSpinner();
+        await new Promise(r => setTimeout(r, 300)); // small delay for spinner to show
+        hideSpinner();
+        return Swal.fire(options);
     }
 
-    // CUSTOM ERROR
-    function showError(message) {
-        Swal.fire({
-            title: 'Error',
-            text: message,
-            icon: 'error',
-            customClass: {
-                popup: 'my-swal-popup',
-                title: 'my-swal-title',
-                confirmButton: 'my-swal-btn'
-            }
-        });
-    }
-
-    // CONFETTI + COMPLETION ALERT
-    function showConfetti(afterCloseCallback) {
+    function showConfetti(callback) {
         if (typeof confetti === "function") {
             confetti({ particleCount: 150, spread: 70, origin: { y: 0.6 } });
         }
-
-        Swal.fire({
+        showSwal({
             title: "🎉 Congratulations! 🎉",
             text: "You have completed the course!",
             icon: "success",
             confirmButtonText: "Great!",
+            allowOutsideClick: false,
             customClass: {
                 popup: 'my-swal-popup',
                 title: 'my-swal-title',
                 confirmButton: 'my-swal-btn'
             }
-        }).then(() => {
-            if (typeof afterCloseCallback === "function") afterCloseCallback();
-        });
+        }).then(() => callback && callback());
     }
 
-    // ASK TO PLAY NEXT LESSON
     function askToPlayNext(url) {
-        Swal.fire({
+        showSwal({
             title: "Lesson Completed!",
             text: "Do you want to play the next lesson?",
             icon: "success",
             showCancelButton: true,
             confirmButtonText: "Next Lesson",
             cancelButtonText: "Replay",
+            allowOutsideClick: false,
             customClass: {
                 popup: 'my-swal-popup',
                 title: 'my-swal-title',
                 confirmButton: 'my-swal-btn',
                 cancelButton: 'my-swal-cancel-btn'
             }
-        }).then((r) => {
-            if (r.isConfirmed) window.location.href = url;
-            else window.location.reload();
+        }).then(result => {
+            if (result.isConfirmed && url) {
+                window.location.href = url;
+            } else {
+                window.location.reload();
+            }
         });
     }
 
-    // MARK LESSON COMPLETE
-    async function markCompleted(watchedSeconds = null) {
+    async function sendCompletion(watchedSeconds = null) {
         if (completionSent) return;
         completionSent = true;
-
-        const payload = { lesson_id: lessonId };
-        if (Number.isInteger(watchedSeconds)) payload.watched_seconds = watchedSeconds;
 
         try {
             const resp = await fetch("{% url 'mark_lesson_complete' %}", {
@@ -977,129 +1213,69 @@
                     "Content-Type": "application/json",
                     "X-CSRFToken": csrftoken
                 },
-                body: JSON.stringify(payload)
+                body: JSON.stringify({ lesson_id: lessonId, watched_seconds: watchedSeconds })
             });
-
             const data = await resp.json();
             console.log("[LessonScript] markCompleted response:", data);
 
-            if (!data.success) return;
-
-            // Update progress bar
             const bar = document.getElementById('course-progress-bar');
-            if (bar) bar.style.width = data.progress_percent + "%";
+            if (bar && data.progress_percent !== undefined) {
+                bar.style.width = data.progress_percent + "%";
+            }
 
-            // FULL COURSE COMPLETED
-            if (data.course_completed && !courseCompletedShown) {
-                courseCompletedShown = true;
-                showConfetti(() => {
-                    window.location.reload();
+            if (data.course_completed) {
+                showConfetti(() => window.location.reload());
+            } else if (data.next_lesson_url) {
+                askToPlayNext(data.next_lesson_url);
+            } else {
+                showSwal({
+                    title: "Lesson Completed!",
+                    text: "You have finished this lesson.",
+                    icon: "success",
+                    confirmButtonText: "OK",
+                    allowOutsideClick: false,
+                    customClass: {
+                        popup: 'my-swal-popup',
+                        title: 'my-swal-title',
+                        confirmButton: 'my-swal-btn'
+                    }
                 });
             }
 
-            // Next lesson
-            else if (!data.course_completed && data.next_lesson_url) {
-                askToPlayNext(data.next_lesson_url);
-            }
-
         } catch (err) {
-            console.error("[LessonScript] markCompleted error:", err);
-            showError("Something went wrong. Please try again.");
+            console.error(err);
+            showSwal({
+                title: "Error",
+                text: "Something went wrong. Please try again.",
+                icon: "error",
+                customClass: {
+                    popup: 'my-swal-popup',
+                    title: 'my-swal-title',
+                    confirmButton: 'my-swal-btn'
+                }
+            });
         }
     }
 
-    // MARK ONLY WHEN VIDEO ENDS
     video.addEventListener("ended", () => {
-        markCompleted(Math.floor(video.duration));
+        showSwal({
+            title: "Completed!",
+            text: "Checking progress...",
+            icon: "info",
+            showConfirmButton: false,
+            allowOutsideClick: false,
+            timer: 1500,
+            customClass: {
+                popup: 'my-swal-popup',
+                title: 'my-swal-title',
+            }
+        });
+        sendCompletion(Math.floor(video.duration));
     });
 
 })();
 </script>
 
-<style>
-/* Popup container */
-.my-swal-popup {
-    border-radius: 16px !important;
-    padding: 2rem !important;
-    background: #ffffff !important;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.15) !important;
-}
-
-/* Title */
-.my-swal-title {
-    font-size: 22px !important;
-    font-weight: 700 !important;
-    color: #222 !important;
-    margin-bottom: 1rem !important;
-}
-
-/* Buttons */
-.my-swal-btn {
-    background-color: #000 !important;
-    color: #fff !important;
-    border-radius: 8px !important;
-    padding: 10px 20px !important;
-    font-weight: 600 !important;
-    font-size: 14px !important;
-}
-.my-swal-cancel-btn {
-    background-color: #ccc !important;
-    color: #333 !important;
-    border-radius: 8px !important;
-    padding: 10px 20px !important;
-    font-weight: 500 !important;
-}
-
-/* Input fields */
-.my-swal-input, .my-swal-input-field {
-    font-size: 14px !important;
-    padding: 8px 12px !important;
-    border-radius: 8px !important;
-    border: 1px solid #ddd !important;
-    width: 100% !important;
-    box-sizing: border-box;
-    margin-bottom: 10px !important;
-}
-
-/* Eye icon for password */
-.my-eye-icon {
-    position: absolute;
-    top: 50%;
-    right: 12px;
-    transform: translateY(-50%);
-    cursor: pointer;
-    color: #555;
-    font-size: 16px;
-}
-
-/* Loader spinner */
-.custom-loader {
-    border: 4px solid #f3f3f3;
-    border-top: 4px solid #000;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    animation: spin 1s linear infinite;
-    margin: 40px auto;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-/* Validation message */
-.swal2-validation-message {
-    font-size: 13px !important;
-    color: #ff3b30 !important;
-    margin-top: 4px !important;
-    text-align: center !important;
-}
-</style>
-
-
-
-{% comment %} {% url 'exam_page' lesson.id %} {% endcomment %}
 
 </body>
 </html>
