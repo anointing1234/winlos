@@ -297,6 +297,7 @@
         </header>
 
 
+        
         <section style="margin-bottom: -100px;" class="year-timeline-section">
     <div class="container-fluid">
         <div class="timeline-wrapper">
@@ -320,10 +321,10 @@
 
                     <div class="nav-buttons">
                         <button id="btnUp" class="nav-btn">
-                            <img class="nav-btn" src="{% static 'assets/img/up_button.png' %}" alt="">
+                            <img class="nav-btn-icon" src="{% static 'assets/img/up_button.png' %}" alt="">
                         </button>
                         <button id="btnDown" class="nav-btn">
-                            <img class="nav-btn" src="{% static 'assets/img/down_button.png' %}" alt="">
+                            <img class="nav-btn-icon" src="{% static 'assets/img/down_button.png' %}" alt="">
                         </button>
                     </div>
                 </div>
@@ -374,22 +375,10 @@
 .nav-buttons {
     margin-top: 25px;
     display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-@media (max-width: 992px) {
-    .nav-buttons {
-        flex-direction: row;
-        gap: 20px;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .nav-btn {
-        width: 50px;
-        height: 50px;
-    }
+    flex-direction: row;
+    gap: 20px;
+    justify-content: flex-start;
+    align-items: center;
 }
 
 .nav-btn {
@@ -398,12 +387,24 @@
     border-radius: 50%;
     border: none;
     font-size: 22px;
-    background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, rgba(0, 0, 0, 0.20) 100%), rgba(255, 255, 255, 0.20);
+    background: rgba(0, 0, 0, 0.15);
     cursor: pointer;
     transition: background .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
 }
+
 .nav-btn:hover {
-    background: #d0d0d0;
+    background: rgba(0, 0, 0, 0.25);
+}
+
+.nav-btn-icon {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    opacity: 1;
 }
 
 /* ---------------- GENERAL ------------------- */
@@ -430,19 +431,6 @@
     width: 2px;
     background: #ccc;
     opacity: 0.5;
-}
-
-/* Dark indicator in the middle */
-.timeline-wrapper::after {
-    content: "";
-    position: absolute;
-    left: calc(45% - 1px);
-    width: 4px;
-    height: 120px;
-    background: #000;
-    border-radius: 4px;
-    top: 50%;
-    transform: translateY(-50%);
 }
 
 /* ---------------- ITEMS ------------------- */
@@ -482,7 +470,7 @@
 
 /* IMAGE CONTAINER - FIXED HEIGHT TO PREVENT LAYOUT SHIFT */
 .img-container {
-    height: 150px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -490,8 +478,9 @@
 }
 
 .content-img {
-    width: 100%;
-    max-width: 150px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.1);
 }
@@ -516,8 +505,7 @@
         padding: 0 20px;
     }
 
-    .timeline-wrapper::before,
-    .timeline-wrapper::after {
+    .timeline-wrapper::before {
         display: none;
     }
 
@@ -559,11 +547,18 @@
     }
 
     .content-img {
-        max-width: 100px;
+        width: 100px;
+        height: 100px;
     }
 
     .nav-buttons {
         margin-top: 20px;
+        justify-content: center;
+    }
+
+    .nav-btn {
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -595,7 +590,8 @@
     }
 
     .content-img {
-        max-width: 80px;
+        width: 80px;
+        height: 80px;
     }
 
     .nav-btn {
