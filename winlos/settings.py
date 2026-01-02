@@ -28,7 +28,7 @@ DEBUG = False
 
 
 
-# ALLOWED_HOSTS: only hostnames (no http/https)
+## ALLOWED_HOSTS: only hostnames (no http/https)
 ALLOWED_HOSTS = [
     "winlos-production.up.railway.app",
     "www.winlos-production.up.railway.app",
