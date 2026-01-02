@@ -183,9 +183,7 @@
             <i class="fa-regular fa-arrow-up"></i>
         </button>
 
-        <!-- GT MouseCursor Start -->
-        <div class="mouseCursor cursor-outer"></div>
-        <div class="mouseCursor cursor-inner"></div>
+      
 
         <!-- Offcanvas Area Start -->
         <div class="fix-area">
@@ -314,7 +312,9 @@
 
                 <!-- RIGHT CONTENT -->
                 <div id="contentBlock" class="timeline-right fade">
-                    <img id="contentImg" class="content-img img-fluid" alt="">
+                    <div class="img-container">
+                        <img id="contentImg" class="content-img img-fluid" alt="">
+                    </div>
                     <h2 id="contentTitle"></h2>
                     <p id="contentText" class="mt-3 content_write_up"></p>
 
@@ -357,6 +357,19 @@
     }
 }
 
+.fade-out {
+    animation: fadeOut .5s ease forwards;
+}
+
+@keyframes fadeOut {
+    from {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+    }
+}
+
 /* ---------------- BUTTONS ------------------- */
 .nav-buttons {
     margin-top: 25px;
@@ -374,8 +387,8 @@
     }
 
     .nav-btn {
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
     }
 }
 
@@ -397,7 +410,7 @@
 .year-timeline-section {
     padding: 100px 0;
     background: #fff;
-    min-height: 650px;   /* ⭐ ADDED FOR FIXED HEIGHT */
+    min-height: 650px;
 }
 
 .timeline-wrapper {
@@ -407,6 +420,7 @@
     position: relative;
 }
 
+/* Light gray vertical line */
 .timeline-wrapper::before {
     content: '';
     position: absolute;
@@ -418,15 +432,17 @@
     opacity: 0.5;
 }
 
+/* Dark indicator in the middle */
 .timeline-wrapper::after {
     content: "";
     position: absolute;
-    left: 45%;
+    left: calc(45% - 1px);
     width: 4px;
-    height: 100px;
+    height: 120px;
     background: #000;
     border-radius: 4px;
-    top: var(--scroll-position);
+    top: 50%;
+    transform: translateY(-50%);
 }
 
 /* ---------------- ITEMS ------------------- */
@@ -456,49 +472,140 @@
 
 .timeline-right {
     flex: 0 0 45%;
-    min-height: 420px;  /* ⭐ ADDED: FIXED CONTENT HEIGHT */
+    min-height: 420px;
 }
 
 /* Allow text to scroll if too long */
 #contentBlock {
-    overflow-y: auto;  /* ⭐ ADDED */
+    overflow-y: auto;
 }
 
-/* IMAGE */
+/* IMAGE CONTAINER - FIXED HEIGHT TO PREVENT LAYOUT SHIFT */
+.img-container {
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+}
+
 .content-img {
     width: 100%;
     max-width: 150px;
     border-radius: 20px;
-    margin-bottom: 20px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+}
+
+.content-img[src=""],
+.content-img:not([src]) {
+    display: none !important;
 }
 
 /* ---------------- RESPONSIVE ------------------- */
 @media (max-width: 1200px) {
-    .timeline-left h1 { font-size: 150px; }
+    .timeline-left h1 { font-size: 130px; }
 }
 
 @media (max-width: 992px) {
+    .year-timeline-section {
+        padding: 60px 0;
+        min-height: auto;
+    }
+
+    .timeline-wrapper {
+        padding: 0 20px;
+    }
+
     .timeline-wrapper::before,
     .timeline-wrapper::after {
         display: none;
     }
+
     .timeline-item {
         flex-direction: column;
         text-align: center;
-        margin-bottom: 150px;
+        margin-bottom: 80px;
+        gap: 30px;
     }
-    .timeline-left h1 { font-size: 90px; }
+
+    .timeline-left,
+    .timeline-right {
+        flex: 1 1 100%;
+    }
+
+    .timeline-left h1 { 
+        font-size: 60px;
+        line-height: 1;
+    }
+
+    .timeline-right {
+        min-height: auto;
+    }
+
+    #contentTitle {
+        font-size: 22px;
+        margin-top: 10px;
+    }
+
+    #contentText {
+        font-size: 14px;
+        line-height: 1.6;
+    }
+
+    .img-container {
+        height: 100px;
+        margin-bottom: 15px;
+        justify-content: center;
+    }
 
     .content-img {
         max-width: 100px;
     }
+
+    .nav-buttons {
+        margin-top: 20px;
+    }
 }
 
 @media (max-width: 576px) {
-    .timeline-left h1 { font-size: 60px; }
-    .content-img { max-width: 100%; }
-    .timeline-wrapper { padding: 0 20px; }
+    .year-timeline-section {
+        padding: 40px 0;
+    }
+
+    .timeline-wrapper {
+        padding: 0 15px;
+    }
+
+    .timeline-left h1 { 
+        font-size: 45px;
+    }
+
+    #contentTitle {
+        font-size: 20px;
+    }
+
+    #contentText {
+        font-size: 13px;
+        line-height: 1.5;
+    }
+
+    .img-container {
+        height: 80px;
+        margin-bottom: 10px;
+    }
+
+    .content-img {
+        max-width: 80px;
+    }
+
+    .nav-btn {
+        width: 45px;
+        height: 45px;
+    }
+
+    .nav-buttons {
+        gap: 15px;
+    }
 }
 </style>
 
@@ -537,7 +644,7 @@ const timelineData = [
         years: [2020, 2023, 2024],
         img: "{% static 'assets/img/2023_about.png' %}",
         title: "Prophet Suddenly 1",
-        text: "Premiering on YouTube on May 28, 2023, Prophet Suddenly explored themes of prophecy, calling, and the complex journey of ministry. The film resonated deeply with viewers for its authenticity and spiritual relevance, becoming a major milestone that expanded The Winlos’ reach in faith-based filmmaking."
+        text: "Premiering on YouTube on May 28, 2023, Prophet Suddenly explored themes of prophecy, calling, and the complex journey of ministry. The film resonated deeply with viewers for its authenticity and spiritual relevance, becoming a major milestone that expanded The Winlos' reach in faith-based filmmaking."
     },
 
     {
@@ -558,7 +665,7 @@ const timelineData = [
         years: [2024, 2025, 2026],
         img: "{% static 'assets/img/2025_about.png' %}",
         title: "A Love Like Raymond",
-        text: "A Love Like Raymond follows a young woman who becomes deeply attached to a charming and seemingly sincere man, only to uncover hidden intentions behind his actions. The film dives into themes of trust, discernment, and emotional vulnerability, raising important questions about love, faith, and God’s guidance in relationships."
+        text: "A Love Like Raymond follows a young woman who becomes deeply attached to a charming and seemingly sincere man, only to uncover hidden intentions behind his actions. The film dives into themes of trust, discernment, and emotional vulnerability, raising important questions about love, faith, and God's guidance in relationships."
     },
 
     {
@@ -578,15 +685,15 @@ const timelineData = [
     {
         years: [2024, 2025, 2026],
         img: "{% static 'assets/img/2025_4_about.png' %}",
-        title: "Secrets of Our Pastor’s Bed",
-        text: "Secrets of Our Pastor’s Bed is a gripping drama that uncovers hidden struggles, moral tension, and personal failures behind the façade of ministry. The film explores the consequences of secrecy and temptation, prompting viewers to reflect on accountability, integrity, and the deeper responsibilities carried by spiritual leaders."
+        title: "Secrets of Our Pastor's Bed",
+        text: "Secrets of Our Pastor's Bed is a gripping drama that uncovers hidden struggles, moral tension, and personal failures behind the façade of ministry. The film explores the consequences of secrecy and temptation, prompting viewers to reflect on accountability, integrity, and the deeper responsibilities carried by spiritual leaders."
     },
 
     {
         years: [2024, 2025, 2026],
         img: "{% static 'assets/img/2025_5_about.png' %}",
         title: "Spirituals 1",
-        text: "Spirituals 1 is an inspiring Winlos film that portrays the power of faith, divine encounters, and the everyday challenges of following God’s voice. Through emotionally rich characters and relatable experiences, it encourages viewers to persevere, trust God’s leading, and embrace spiritual growth in their walk of faith."
+        text: "Spirituals 1 is an inspiring Winlos film that portrays the power of faith, divine encounters, and the everyday challenges of following God's voice. Through emotionally rich characters and relatable experiences, it encourages viewers to persevere, trust God's leading, and embrace spiritual growth in their walk of faith."
     },
 
     {
@@ -600,7 +707,7 @@ const timelineData = [
         years: [2024, 2025, 2026],
         img: "{% static 'assets/img/2025_7_about.png' %}",
         title: "Spirituals 2",
-        text: "Spirituals 2 continues the inspiring journey introduced in its predecessor, exploring deeper spiritual challenges, divine guidance, and the resilience required to overcome life’s obstacles. The film encourages a renewed commitment to faith, obedience, and the transformative power of God’s presence."
+        text: "Spirituals 2 continues the inspiring journey introduced in its predecessor, exploring deeper spiritual challenges, divine guidance, and the resilience required to overcome life's obstacles. The film encourages a renewed commitment to faith, obedience, and the transformative power of God's presence."
     },
 
     {
@@ -615,6 +722,7 @@ const timelineData = [
 
 
 let currentIndex = 0;
+let isTransitioning = false;
 
 const prevYear = document.getElementById("prevYear");
 const activeYear = document.getElementById("activeYear");
@@ -634,48 +742,75 @@ function setYearsForItem(item) {
     nextYear.textContent = yrs[2] || "";
 }
 
-function runFadeAnimation() {
-    yearBlock.classList.remove("fade");
-    contentBlock.classList.remove("fade");
-    void yearBlock.offsetWidth;
-    void contentBlock.offsetWidth;
-    yearBlock.classList.add("fade");
-    contentBlock.classList.add("fade");
-}
-
-function updateTimeline() {
+function updateContent() {
     const item = timelineData[currentIndex];
 
     setYearsForItem(item);
-    contentImg.src = item.img || "";
-    contentImg.style.display = item.img ? "block" : "none";
+    
+    if (item.img) {
+        contentImg.src = item.img;
+        contentImg.style.display = "block";
+    } else {
+        contentImg.src = "";
+        contentImg.style.display = "none";
+    }
 
     contentTitle.textContent = item.title;
     contentText.textContent = item.text;
+}
 
-    {% comment %} const slider = document.querySelector(".timeline-wrapper");
-    slider.style.setProperty("--scroll-position", currentIndex * 220 + "px"); {% endcomment %}
+function fadeOutThenFadeIn() {
+    if (isTransitioning) return;
+    isTransitioning = true;
 
-    runFadeAnimation();
+    // Remove fade class and add fade-out
+    yearBlock.classList.remove("fade");
+    contentBlock.classList.remove("fade");
+    yearBlock.classList.add("fade-out");
+    contentBlock.classList.add("fade-out");
+
+    // Wait for fade-out to complete (500ms)
+    setTimeout(() => {
+        // Update content while invisible
+        updateContent();
+
+        // Remove fade-out and add fade-in
+        yearBlock.classList.remove("fade-out");
+        contentBlock.classList.remove("fade-out");
+        
+        // Force reflow
+        void yearBlock.offsetWidth;
+        void contentBlock.offsetWidth;
+        
+        yearBlock.classList.add("fade");
+        contentBlock.classList.add("fade");
+
+        // Re-enable transitions after fade-in completes
+        setTimeout(() => {
+            isTransitioning = false;
+        }, 500);
+    }, 500);
 }
 
 document.getElementById("btnDown").addEventListener("click", () => {
-    if (currentIndex < timelineData.length - 1) {
+    if (currentIndex < timelineData.length - 1 && !isTransitioning) {
         currentIndex++;
-        updateTimeline();
+        fadeOutThenFadeIn();
     }
 });
 
 document.getElementById("btnUp").addEventListener("click", () => {
-    if (currentIndex > 0) {
+    if (currentIndex > 0 && !isTransitioning) {
         currentIndex--;
-        updateTimeline();
+        fadeOutThenFadeIn();
     }
 });
 
-updateTimeline();
+// Initial display
+updateContent();
+yearBlock.classList.add("fade");
+contentBlock.classList.add("fade");
 </script>
-
 
 
  <!-- Newsletter Section - Exactly Like Your Design -->
