@@ -297,7 +297,6 @@
         </header>
 
 
-        
         <section style="margin-bottom: -100px;" class="year-timeline-section">
     <div class="container-fluid">
         <div class="timeline-wrapper">
@@ -321,10 +320,14 @@
 
                     <div class="nav-buttons">
                         <button id="btnUp" class="nav-btn">
-                            <img class="nav-btn-icon" src="{% static 'assets/img/up_button.png' %}" alt="">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </button>
                         <button id="btnDown" class="nav-btn">
-                            <img class="nav-btn-icon" src="{% static 'assets/img/down_button.png' %}" alt="">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 5V19M12 19L19 12M12 19L5 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                            </svg>
                         </button>
                     </div>
                 </div>
@@ -382,29 +385,37 @@
 }
 
 .nav-btn {
-    width: 43px;
-    height: 43px;
+    width: 45px;
+    height: 45px;
     border-radius: 50%;
     border: none;
-    font-size: 22px;
-    background: rgba(0, 0, 0, 0.15);
+    background: #9E9E9E;
     cursor: pointer;
-    transition: background .2s;
+    transition: all .3s ease;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0;
+    color: #fff;
 }
 
-.nav-btn:hover {
-    background: rgba(0, 0, 0, 0.25);
+.nav-btn:hover:not(:disabled) {
+    background: #757575;
+    transform: scale(1.05);
 }
 
-.nav-btn-icon {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    opacity: 1;
+.nav-btn:active:not(:disabled) {
+    transform: scale(0.95);
+}
+
+.nav-btn:disabled {
+    background: #E0E0E0;
+    color: #BDBDBD;
+    cursor: not-allowed;
+}
+
+.nav-btn svg {
+    pointer-events: none;
 }
 
 /* ---------------- GENERAL ------------------- */
@@ -463,14 +474,9 @@
     min-height: 420px;
 }
 
-/* Allow text to scroll if too long */
-#contentBlock {
-    overflow-y: auto;
-}
-
 /* IMAGE CONTAINER - FIXED HEIGHT TO PREVENT LAYOUT SHIFT */
 .img-container {
-    height: 280px;
+    height: 250px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -478,8 +484,8 @@
 }
 
 .content-img {
-    width: 280px;
-    height: 280px;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.1);
@@ -493,15 +499,6 @@
 /* ---------------- RESPONSIVE ------------------- */
 @media (max-width: 1200px) {
     .timeline-left h1 { font-size: 130px; }
-    
-    .img-container {
-        height: 220px;
-    }
-    
-    .content-img {
-        width: 220px;
-        height: 220px;
-    }
 }
 
 @media (max-width: 992px) {
@@ -566,8 +563,8 @@
     }
 
     .nav-btn {
-        width: 50px;
-        height: 50px;
+        width: 40px;
+        height: 40px;
     }
 }
 
@@ -615,21 +612,6 @@
 </style>
 
 <script>
-/*
-  Updated JavaScript:
-  - DOES NOT change your HTML/CSS structure.
-  - Supports per-item specification of an array `years: [...]` with any length (1,2,3...).
-  - If `years` exists it will be used to fill prev/active/next slots (array positions 0/1/2).
-  - If `years` is absent, fallback to original behavior using adjacent timelineData items.
-  - Content (img/title/text) comes from the timelineData item itself (the active center year for that item).
-*/
-
-/* ---------------- TIMELINE DATA ----------------------
-   You can either keep single `year` (original style) OR
-   provide `years: [prev, active, next]` for that item.
-   Examples below show mixed usage.
-*/
-
 const timelineData = [
     {
         years: [2012, 2013, 2020],
@@ -723,9 +705,6 @@ const timelineData = [
     }
 ];
 
-
-
-
 let currentIndex = 0;
 let isTransitioning = false;
 
@@ -740,11 +719,30 @@ const contentText = document.getElementById("contentText");
 const yearBlock = document.getElementById("yearBlock");
 const contentBlock = document.getElementById("contentBlock");
 
+const btnUp = document.getElementById("btnUp");
+const btnDown = document.getElementById("btnDown");
+
 function setYearsForItem(item) {
     const yrs = item.years;
     prevYear.textContent = yrs[0] || "";
     activeYear.textContent = yrs[1] || yrs[0] || "";
     nextYear.textContent = yrs[2] || "";
+}
+
+function updateButtonStates() {
+    // Update UP button
+    if (currentIndex === 0) {
+        btnUp.disabled = true;
+    } else {
+        btnUp.disabled = false;
+    }
+
+    // Update DOWN button
+    if (currentIndex === timelineData.length - 1) {
+        btnDown.disabled = true;
+    } else {
+        btnDown.disabled = false;
+    }
 }
 
 function updateContent() {
@@ -762,60 +760,56 @@ function updateContent() {
 
     contentTitle.textContent = item.title;
     contentText.textContent = item.text;
+
+    updateButtonStates();
 }
 
 function fadeOutThenFadeIn() {
     if (isTransitioning) return;
     isTransitioning = true;
 
-    // Remove fade class and add fade-out
     yearBlock.classList.remove("fade");
     contentBlock.classList.remove("fade");
     yearBlock.classList.add("fade-out");
     contentBlock.classList.add("fade-out");
 
-    // Wait for fade-out to complete (500ms)
     setTimeout(() => {
-        // Update content while invisible
         updateContent();
 
-        // Remove fade-out and add fade-in
         yearBlock.classList.remove("fade-out");
         contentBlock.classList.remove("fade-out");
         
-        // Force reflow
         void yearBlock.offsetWidth;
         void contentBlock.offsetWidth;
         
         yearBlock.classList.add("fade");
         contentBlock.classList.add("fade");
 
-        // Re-enable transitions after fade-in completes
         setTimeout(() => {
             isTransitioning = false;
         }, 500);
     }, 500);
 }
 
-document.getElementById("btnDown").addEventListener("click", () => {
+btnDown.addEventListener("click", () => {
     if (currentIndex < timelineData.length - 1 && !isTransitioning) {
         currentIndex++;
         fadeOutThenFadeIn();
     }
 });
 
-document.getElementById("btnUp").addEventListener("click", () => {
+btnUp.addEventListener("click", () => {
     if (currentIndex > 0 && !isTransitioning) {
         currentIndex--;
         fadeOutThenFadeIn();
     }
 });
 
-// Initial display
 updateContent();
 yearBlock.classList.add("fade");
 contentBlock.classList.add("fade");
 </script>
+
 
  <!-- Newsletter Section - Exactly Like Your Design -->
 <section class="newsletter-section">
