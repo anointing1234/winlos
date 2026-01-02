@@ -28,23 +28,22 @@ DEBUG = False
 
 
 
-
-# ALLOWED_HOSTS: only the hostnames, no http/https
+# ALLOWED_HOSTS: only hostnames (no http/https)
 ALLOWED_HOSTS = [
-    host.strip()
-    for host in os.getenv("ALLOWED_HOSTS", "winlos-production.up.railway.app").split(",")
-    if host.strip()
+    "winlos-production.up.railway.app",
+    "www.winlos-production.up.railway.app",
+    "localhost",
+    "127.0.0.1",
 ]
 
-# CSRF_TRUSTED_ORIGINS: must include full scheme (https is required in production)
+
+# CSRF_TRUSTED_ORIGINS: full scheme required
 CSRF_TRUSTED_ORIGINS = [
-    origin.strip()
-    for origin in os.getenv(
-        "CSRF_TRUSTED_ORIGINS",
-        "https://winlos-production.up.railway.app,https://www.winlos-production.up.railway.app"
-    ).split(",")
-    if origin.strip()
+    "https://winlos-production.up.railway.app",
+    "https://www.winlos-production.up.railway.app",
 ]
+
+
 
 
 LOGIN_URL = 'login'
