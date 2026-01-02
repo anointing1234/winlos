@@ -470,7 +470,7 @@
 
 /* IMAGE CONTAINER - FIXED HEIGHT TO PREVENT LAYOUT SHIFT */
 .img-container {
-    height: 200px;
+    height: 280px;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -478,8 +478,8 @@
 }
 
 .content-img {
-    width: 200px;
-    height: 200px;
+    width: 280px;
+    height: 280px;
     object-fit: cover;
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0,0,0,0.1);
@@ -493,6 +493,15 @@
 /* ---------------- RESPONSIVE ------------------- */
 @media (max-width: 1200px) {
     .timeline-left h1 { font-size: 130px; }
+    
+    .img-container {
+        height: 220px;
+    }
+    
+    .content-img {
+        width: 220px;
+        height: 220px;
+    }
 }
 
 @media (max-width: 992px) {
@@ -807,7 +816,6 @@ updateContent();
 yearBlock.classList.add("fade");
 contentBlock.classList.add("fade");
 </script>
-
 
  <!-- Newsletter Section - Exactly Like Your Design -->
 <section class="newsletter-section">
