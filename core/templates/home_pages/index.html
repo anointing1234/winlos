@@ -823,7 +823,13 @@
             <!-- Card 1 -->
             <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay=".2s">
                 <div class="program-card">
-                    <img src="{% static 'assets/img/Screenwriting_for Film_&_Digital_Media.jpg' %}" alt="Scriptwriting">
+                    <img src="{% static 'assets/img/Screenwriting_for_Film_&_Digital_Media.webp' %}"
+                         alt="Screenwriting for Film & Digital Media"
+                         loading="lazy"
+                         decoding="async"
+                         width="400"
+                         height="220">
+
                     <div class="program-content">
                         <div class="program-meta">
                             <span>12 WEEKS</span>
@@ -841,7 +847,13 @@
             <!-- Card 2 -->
             <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay=".3s">
                 <div class="program-card">
-                    <img src="{% static 'assets/img/Cinematography_Visual_Storytelling_for_Film.jpg' %}" alt="Cinematography">
+                    <img src="{% static 'assets/img/Cinematography.webp' %}"
+                         alt="Cinematography & Filming"
+                         loading="lazy"
+                         decoding="async"
+                         width="400"
+                         height="220">
+
                     <div class="program-content">
                         <div class="program-meta">
                             <span>16 WEEKS</span>
@@ -858,7 +870,13 @@
             <!-- Card 3 -->
             <div class="col-lg-4 col-md-6 mb-4 wow fadeInUp" data-wow-delay=".4s">
                 <div class="program-card">
-                    <img src="{% static 'assets/img/Editing_&_Post-Production.jpg' %}" alt="Editing">
+                    <img src="{% static 'assets/img/Editing_&_Post-Production.webp' %}"
+                         alt="Editing & Post-Production"
+                         loading="lazy"
+                         decoding="async"
+                         width="400"
+                         height="220">
+
                     <div class="program-content">
                         <div class="program-meta">
                             <span>14 WEEKS</span>
@@ -880,8 +898,6 @@
 
     </div>
 </section>
-
-
 
 <style>
 .twa-programs-section {
@@ -920,9 +936,12 @@
 }
 
 .program-card img {
+    display: block;
     width: 100%;
     height: 220px;
     object-fit: cover;
+    /* optional, helps avoid layout shift on slow networks */
+    aspect-ratio: 16 / 9;
 }
 
 .program-card:hover {
