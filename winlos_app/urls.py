@@ -12,6 +12,33 @@ urlpatterns = [
     path('about_us/', views.about_us, name="about_us"),
     path('admission/', views.admission, name="admission"),
     path('program/', views.program, name='program'),
+    path('facilitators/', views.facilitators, name='facilitators'),
+    path('contact/',views.contact,name='contact'),
+
+
+    # team pages
+    path('team1/',views.team1,name='team1'),
+    path('team2/',views.team2,name='team2'),
+    path('team3/', views.team3,name='team3'),
+    path('team4/', views.team4,name='team4'),
+    path('team5/', views.team5,name='team5'),
+    path('team6/', views.team6,name='team6'),
+    path('team7/',views.team7,name='team7'),
+    path('team8/',views.team8,name='team8'),
+
+
+
+
+    path('Storytelling/',views.Storytelling,name='Storytelling'),
+    path('Screenwriting/',views.Screenwriting,name='Screenwriting'),
+    path('Cinematography/',views.Cinematography,name='Cinematography'),
+    path('Advanced_Acting/',views.Advanced_Acting,name='Advanced_Acting'),
+    path('Film_Editing/',views.Film_Editing,name='Film_Editing'),
+    path('Film_Directing/',views.Film_Directing,name='Film_Directing'),
+    path('Sound_Design/', views.Sound_Design,name='Sound_Design'),
+    path('Lighting_Design/', views.Lighting_Design,name='Lighting_Design'),
+    path('Advanced_Film/', views.Advanced_Film, name='Advanced_Film'),
+    path('Short_Firm/', views.Short_Firm, name='Short_Firm'),
 
     # Student authentication — public
     path('apply/', views.register, name='apply'),

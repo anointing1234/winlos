@@ -67,6 +67,71 @@ def program(request):
     return render(request,'home_pages/program.html')
 
 
+def facilitators(request):
+    return render(request,'home_pages/facilitators.html')
+
+def contact(request):
+    return render(request,'home_pages/contact.html')
+
+
+
+# team pages
+def team1(request):
+    return render(request,'home_pages/teams/Rev_Ohis_Ojeikere.html')
+
+def team2(request):
+    return render(request,'home_pages/teams/Grace_Okonkwo.html')
+
+def team3(request):
+    return render(request,'home_pages/teams/David_Mensah.html')
+
+def team4(request):
+    return render(request,'home_pages/teams/Sarah_Thompson.html')
+
+def team5(request):
+    return render(request,'home_pages/teams/Michael_Okafor.html')
+
+def team6(request):
+    return render(request,'home_pages/teams/Chioma_Nwankwo.html')
+
+def team7(request):
+    return render(request,'home_pages/teams/Joseph_Andoh.html')
+
+def team8(request):
+    return render(request,'home_pages/teams/Rebecca_Asante.html')
+
+
+
+def Storytelling(request):
+    return render(request,'home_pages/courses/Storytelling.html')
+
+def Screenwriting(request):
+    return render(request,'home_pages/courses/Screenwriting.html')
+
+def Cinematography(request):
+    return render(request,'home_pages/courses/Cinematography.html')
+
+def Advanced_Acting(request):
+    return render(request,'home_pages/courses/Advanced_Acting.html')
+
+def Film_Editing(request):
+    return render(request,'home_pages/courses/Film_Editing.html')
+
+def Film_Directing(request):
+    return render(request,'home_pages/courses/Film_Directing.html')
+
+def Sound_Design(request):
+    return render(request,'home_pages/courses/Sound_Design.html')
+
+def Lighting_Design(request):
+    return render(request,'home_pages/courses/Lighting_Design.html')
+
+def Advanced_Film(request):
+    return render(request,'home_pages/courses/Advanced_film.html')
+
+def Short_Firm(request):
+    return render(request,'home_pages/courses/Short_Firm.html')
+
 # stundent _ authentication pages
 def register(request):
     return render(request,'auth/signup.html')

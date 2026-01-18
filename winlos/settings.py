@@ -122,28 +122,42 @@ WSGI_APPLICATION = 'winlos.wsgi.application'
 # --------------------------------------------------
 
 # Database
-if DEBUG:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.sqlite3",
-            "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
-        }
-    }
-else:
-    DATABASES = {
-        "default": {
-            "ENGINE": "django.db.backends.postgresql",
-            "NAME": os.getenv("DB_NAME"),
-            "USER": os.getenv("DB_USER"),
-            "PASSWORD": os.getenv("DB_PASSWORD"),
-            "HOST": os.getenv("DB_HOST"),
-            "PORT": os.getenv("DB_PORT", "5432"),
-            "CONN_MAX_AGE": 900,
-            "OPTIONS": {
-            "sslmode": "require",  # important for Railway
-        },
-        }
-    }
+# if DEBUG:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         }
+#     }
+# else:
+# DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.postgresql",
+#             "NAME": os.getenv("DB_NAME"),
+#             "USER": os.getenv("DB_USER"),
+#             "PASSWORD": os.getenv("DB_PASSWORD"),
+#             "HOST": os.getenv("DB_HOST"),
+#             "PORT": os.getenv("DB_PORT", "5432"),
+#             "CONN_MAX_AGE": 900,
+#             "OPTIONS": {
+#             "sslmode": "require",  # important for Railway
+#         },
+#         }
+#     }
+
+
+
+
+import dj_database_url
+
+
+DATABASES = {
+    "default": dj_database_url.config(
+        default=os.getenv("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True,
+    )
+}
 
 
 
@@ -187,19 +201,19 @@ USE_TZ = True
 
 # Use R2 only when NOT in Debug mode (Production)
 # Static & media
-if not DEBUG:
-    AWS_ACCESS_KEY_ID = os.getenv("CLOUDFLARE_R2_ACCESS_KEY")
-    AWS_SECRET_ACCESS_KEY = os.getenv("CLOUDFLARE_R2_SECRET_KEY")
-    AWS_STORAGE_BUCKET_NAME = os.getenv("CLOUDFLARE_R2_BUCKET_NAME")
-    AWS_S3_ENDPOINT_URL = os.getenv("CLOUDFLARE_R2_ENDPOINT_URL")
-    AWS_S3_CUSTOM_DOMAIN = os.getenv("CLOUDFLARE_R2_PUBLIC_URL_DOMAIN")
+# if not DEBUG:
+AWS_ACCESS_KEY_ID = os.getenv("CLOUDFLARE_R2_ACCESS_KEY")
+AWS_SECRET_ACCESS_KEY = os.getenv("CLOUDFLARE_R2_SECRET_KEY")
+AWS_STORAGE_BUCKET_NAME = os.getenv("CLOUDFLARE_R2_BUCKET_NAME")
+AWS_S3_ENDPOINT_URL = os.getenv("CLOUDFLARE_R2_ENDPOINT_URL")
+AWS_S3_CUSTOM_DOMAIN = os.getenv("CLOUDFLARE_R2_PUBLIC_URL_DOMAIN")
 
-    AWS_S3_REGION_NAME = "auto"
-    AWS_S3_SIGNATURE_VERSION = "s3v4"
-    AWS_DEFAULT_ACL = None
-    AWS_QUERYSTRING_AUTH = False
+AWS_S3_REGION_NAME = "auto"
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_DEFAULT_ACL = None
+AWS_QUERYSTRING_AUTH = False
 
-    STORAGES = {
+STORAGES = {
         "default": {
             "BACKEND": "storages.backends.s3.S3Storage",
             "OPTIONS": {"location": "media"},
@@ -209,11 +223,11 @@ if not DEBUG:
             "OPTIONS": {"location": "static"},
         },
     }
-else:
-    STATIC_URL = "static/"
-    STATIC_ROOT = BASE_DIR / "staticfiles"
-    MEDIA_URL = "media/"
-    MEDIA_ROOT = BASE_DIR / "media"
+# else:
+#     STATIC_URL = "static/"
+#     STATIC_ROOT = BASE_DIR / "staticfiles"
+#     MEDIA_URL = "media/"
+#     MEDIA_ROOT = BASE_DIR / "media"
 
 STATICFILES_DIRS = [BASE_DIR / "core" / "static"]
 

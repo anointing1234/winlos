@@ -1,0 +1,829 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========== Basic Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== SEO & Page Identity ========== -->
+    <title>The Winlos Academy | Nigeria’s Premier Christian Film School</title>
+    <meta name="description" content="The Winlos Academy is Nigeria’s premier Christian film school, commissioning cultural influencers who create powerful, faith-driven stories with technical mastery and spiritual integrity. Discover the story you were born to tell.">
+    <meta name="author" content="The Winlos Academy">
+    <meta name="keywords" content="christian film school nigeria, winlos academy, faith-based filmmaking, christian cinematography training, bible-based film school, nigerian christian film academy, filmmaking with purpose, spiritual storytelling, rev otis ojukwu film school">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== Open Graph / Facebook ========== -->
+    <meta property="og:title" content="The Winlos Academy | Nigeria’s Premier Christian Film School">
+    <meta property="og:description" content="We don’t just train filmmakers — we commission cultural influencers. Join Nigeria’s leading Christian film school and create stories that illuminate, inspire, and transform culture for Christ.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.thewinlosacademy.com">
+    <meta property="og:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg' %}">
+    <meta property="og:image:alt" content="The Winlos Academy - Christian Film School in Nigeria">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="The Winlos Academy">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Winlos Academy | Christian Film School Nigeria">
+    <meta name="twitter:description" content="At TWA, we help you discover the story you were born to tell. Join Nigeria’s premier Christian film school.">
+    <meta name="twitter:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg' %}">
+    <meta name="twitter:site" content="@winlosacademy">
+    <meta name="twitter:creator" content="@winlosacademy">
+
+    <!-- ========== Favicon & Touch Icons ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://www.thewinlosacademy.com">
+
+    <!-- ========== Preconnect for Speed ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- ========== Stylesheets (Keep Your Existing Ones) ========== -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- ========== Structured Data - Organization + EducationalOrganization ========== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["EducationalOrganization", "Organization"],
+      "name": "The Winlos Academy",
+      "alternateName": ["TWA", "Winlos Academy", "The Winlos Christian Film School"],
+      "url": "https://www.thewinlosacademy.com",
+      "logo": "https://www.thewinlosacademy.com/assets/img/logo/winlos_logo.png",
+      "image": "https://www.thewinlosacademy.com/assets/img/og-image.jpg}",
+      "description": "The Winlos Academy is Nigeria’s premier Christian film school, established to empower a new generation of filmmakers. We believe that the most powerful stories are those told with both technical mastery and spiritual integrity. We are not just training filmmakers; we are commissioning cultural influencers.",
+      "slogan": "Discover the story you were born to tell.",
+      "founder": {
+        "@type": "Person",
+        "name": "Rev. Otis Ojukwu"
+      },
+      "foundingDate": "2015",
+      "foundingLocation": "Lagos, Nigeria",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Winlos Studio, Miller Road",
+        "addressLocality": "Lagos",
+        "addressRegion": "Lagos State",
+        "postalCode": "",
+        "addressCountry": "NG"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+234-XXX-XXX-XXXX",
+        "contactType": "Admissions & General Inquiry",
+        "email": "info@thewinlosacademy.com",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://facebook.com/thewinlosacademy",
+        "https://instagram.com/thewinlosacademy",
+        "https://youtube.com/@thewinlosacademy",
+        "https://twitter.com/winlosacademy"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Film & Creative Programs",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Professional Filmmaking Diploma"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Screenwriting & Story Development"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+
+  
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+
+
+</head>
+
+
+    <body>
+
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="txt-loading">
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="W" class="letters-loading">
+                        W
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                 
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- GT Back To Top Start -->
+        <button id="back-top" class="back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+      
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="{% url 'home' %}">
+                                        <img style="width: 90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                                    </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                    <i class="fas fa-times"></i>
+                                    </button>
+                            </div>
+                        </div>
+                 
+                        <div class="mobile-menu fix mt-3"></div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+
+       <!-- Header Section Start -->
+<header id="header-sticky" class="header-1">
+    <!-- Top Utility Bar -->
+    <div class="header-top">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-end align-items-center py-2">
+                <div class="header-top-links">
+                    <a href="#" class="header-top-link">For Students</a>
+                    <a href="#" class="header-top-link">For Staff</a>
+                    <a href="{% url 'contact' %}" class="header-top-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="header-main-wrapper">
+        <div class="container-fluid">
+            <div class="mega-menu-wrapper">
+                <div class="header-main">
+                    <div class="logo">
+                        <a href="{% url 'home' %}" class="header-logo">
+                            <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                        </a>
+                    </div>
+                    
+                    <div class="header-right-items">
+                        <div class="mean__menu-wrapper">
+                            <div class="main-menu">
+                                <nav id="mobile-menu">
+                                    <ul>
+                                        <li > 
+                                            <a href="{% url 'home' %}">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'about_us' %}">About Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'program' %}">Programs</a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="{% url 'facilitators' %}">Facilitators</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'admission' %}">Admissions</a>
+                                        </li>
+                                        
+                                        {% if user.is_authenticated %}
+                                        <li class="d-block d-lg-none">
+                                            <a href="{% url 'dashboard' %}">Continue Learning</a>
+                                        </li>
+                                        {% else %}
+                                        <li class="d-block d-lg-none">
+                                            <a href="{% url 'apply' %}">Apply Now</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        
+                        <div class="header-right d-flex justify-content-end align-items-center">
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'dashboard' %}" class="theme-btn">
+                                Continue
+                            </a>
+                            {% else %}
+                            <a href="{% url 'apply' %}" class="theme-btn">
+                                Apply Now
+                            </a>
+                            {% endif %}
+                            
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+/* Top Utility Bar Styles */
+.header-top {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+}
+
+.header-top-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.header-top-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.header-top-link:hover {
+    color: #969900;
+    text-decoration: underline;
+}
+
+.search-toggle {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    font-weight: 500;
+}
+
+.search-toggle:hover {
+    color: #969900;
+}
+
+/* Main Header Styles */
+.header-main-wrapper {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.main-menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.main-menu ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.main-menu ul li.active a,
+.main-menu ul li a:hover {
+     color: #969900;
+}
+
+/* Mobile Styles */
+@media (max-width: 1199px) {
+    .header-top-links {
+        flex-wrap: wrap;
+        gap: 15px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 991px) {
+    .header-top {
+        display: none;
+    }
+}
+
+.breadcrumb-bar {
+    font-size: 13px;
+    color: #888;
+}
+
+.breadcrumb-bar a {
+    color: #111;
+    text-decoration: none;
+}
+
+.breadcrumb-bar span {
+    margin: 0 6px;
+}
+
+</style>
+
+
+    <div class="breadcrumb-bar bg-light p-3">
+            <a href="#">Facilitators</a> <span>/</span> <span>Rev. Ohis Ojeikere</span>
+        </div>
+
+
+
+<style>
+    .facilitator-image img {
+        width: 100%;
+        height: 100%;
+        max-height: 420px;
+        object-fit: cover;
+    }
+
+    .facilitator-name {
+        font-size: 3rem;
+        font-weight: 800;
+        color: #0b1c33;
+    }
+
+    .facilitator-role {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #000000;
+        margin-bottom: 0.25rem;
+    }
+
+    .facilitator-specialty {
+        font-size: 0.95rem;
+        color: #000000;
+        margin-bottom: 2.5rem;
+    }
+
+    .biography-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #0b1c33;
+        margin-bottom: 1.5rem;
+    }
+
+    .biography-text p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        color: #4a4a4a;
+        margin-bottom: 1.2rem;
+        max-width: 820px;
+    }
+
+    @media (max-width: 768px) {
+        .facilitator-name {
+            font-size: 2.2rem;
+        }
+    }
+</style>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row align-items-start g-5">
+
+            <!-- Image -->
+            <div class="col-lg-4">
+                <div class="facilitator-image wow fadeInLeft" data-wow-delay="0.2s">
+                    <img src="{% static 'assets/img/Rev._Ohis_Bio_picture.png' %}"
+                         alt="Rev. Ohis Ojeikere"
+                         class="img-fluid">
+                </div>
+            </div>
+
+            <!-- Content -->
+            <div class="col-lg-8">
+
+                <!-- Header Info -->
+                <div class="wow fadeInRight" data-wow-delay="0.3s">
+                    <h2 class="facilitator-name mb-2">Rev. Ohis Ojeikere</h2>
+                    <p class="facilitator-role">Lead Facilitator – Directing</p>
+                    <p class="facilitator-specialty">Film Direction & Visual Storytelling</p>
+                </div>
+
+                <!-- Biography -->
+                <div class="wow fadeInUp" data-wow-delay="0.4s">
+                    <h3 class="biography-title">Biography</h3>
+
+                    <div class="biography-text">
+                        <p>
+                            Rev. Ohis Ojeikere is more than the founder of Winlos Academy. He is a creative
+                            director driven by a deep conviction of faith, story, and cultural transformation.
+                            For over a decade, he has served as a dynamic lead pastor, film director, and writer.
+                            His philosophy is simple yet profound:
+                            <strong>“We are not just called to be consumers of culture, but creators of it.”</strong>
+                        </p>
+
+                        <p>
+                            With over 10 years of experience in the film industry, Rev. has worked on numerous
+                            productions and collaborated with industry leaders. His expertise in film direction
+                            and visual storytelling has made him a sought-after professional in the field.
+                        </p>
+
+                        <p>
+                            At Winlos Academy, Rev. brings a wealth of practical knowledge and a passion for
+                            mentoring the next generation of filmmakers. His teaching style blends hands-on
+                            experience with industry insight, ensuring students receive training that is both
+                            relevant and transformative.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+<style>
+    .courses-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #0b1c33;
+        margin-bottom: 2rem;
+    }
+
+    .course-item {
+        border: 1px solid #e6e8ec;
+        padding: 1.25rem 1.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: #0b1c33;
+        background-color: #ffffff;
+        margin-bottom: 1rem;
+        transition: all 0.3s ease;
+    }
+
+    .course-item:hover {
+        border-color: #ffc107;
+        background-color: #fffdf5;
+    }
+</style>
+
+<section class="py-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+
+                <h3 class="courses-title wow fadeInUp" data-wow-delay="0.1s">
+                    Courses Taught
+                </h3>
+
+                <div class="wow fadeInUp" data-wow-delay="0.2s">
+                    <div class="course-item">
+                        Film Directing & Visual Leadership
+                    </div>
+
+                    <div class="course-item">
+                        Storytelling for Film & Visual Media
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+<style>
+    .contact-section {
+        padding: 4rem 0;
+        border-top: 1px solid #e6e8ec;
+    }
+
+    .contact-title {
+        font-size: 2rem;
+        font-weight: 800;
+        color: #0b1c33;
+        margin-bottom: 2rem;
+    }
+
+    .contact-block {
+        margin-bottom: 2rem;
+    }
+
+    .contact-name {
+        font-size: 1rem;
+        font-weight: 700;
+        color: #0b1c33;
+        margin-bottom: 0.25rem;
+    }
+
+    .contact-role {
+        font-size: 0.85rem;
+        color: #000000;
+        margin-bottom: 0.25rem;
+    }
+
+    .contact-email {
+        font-size: 0.9rem;
+        color: #000000;
+        text-decoration: none;
+    }
+
+    .contact-email:hover {
+        text-decoration: underline;
+    }
+
+    .back-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: #0b1c33;
+        text-decoration: none;
+        margin-top: 2.5rem;
+    }
+
+    .back-link:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<section class="contact-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+
+                <h3 class="contact-title">Contact</h3>
+
+                <div class="contact-block">
+                    <div class="contact-name">Rev. Ohis Ojeikere</div>
+                    <a href="mailto:rev.ohis.ojeikere@winlosacademy.org" class="contact-email">
+                        rev.ohis.ojeikere@winlosacademy.org
+                    </a>
+                </div>
+
+                <div class="contact-block">
+                    <div class="contact-name">Admissions Office</div>
+                    <div class="contact-role">
+                        General Inquiries and Course Information
+                    </div>
+                    <a href="mailto:admissions@winlosacademy.org" class="contact-email">
+                        admissions@winlosacademy.org
+                    </a>
+                </div>
+
+                <a href="{% url 'facilitators' %}" class="back-link">
+                    ← Back to Facilitators
+                </a>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+        
+
+    
+<footer class="twa-footer">
+    <div class="container">
+        <div class="row gy-4 align-items-start">
+
+            <!-- Brand / Intro -->
+            <div class="col-lg-3">
+                <div class="footer-brand mb-3">
+                    <img src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Winlos Academy" style="height:40px;">
+                </div>
+                <p class="footer-desc">
+                    Empowering the next generation of filmmakers<br>
+                    to tell stories that matter.
+                </p>
+            </div>
+
+            <!-- Programs -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">PROGRAMS</h6>
+                <ul class="footer-links">
+                    <li><a href="{% url 'Screenwriting' %}">Screenwriting</a></li>
+                    <li><a href="{% url 'Cinematography' %}">Cinematography</a></li>
+                    <li><a href="{% url 'Film_Editing' %}">Editing</a></li>
+                    <li><a href="{% url 'program' %}"><strong>All Programs</strong></a></li>
+                </ul>
+            </div>
+
+            <!-- Academy -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">ACADEMY</h6>
+                <ul class="footer-links">
+                    <li><a href="{% url 'about_us' %}">About Us</a></li>
+                    <li><a href="{% url 'admission' %}">Admission</a></li>
+                    <li><a href="{% url 'facilitators' %}">Faculty</a></li>
+                    <li><a href="#">Alumni</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">CONNECT</h6>
+                <ul class="footer-links">
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="#">News & Events</a></li>
+                    <li><a href="#">The Winlos Studio</a></li>
+                    <li><a href="#">Miller Road, Nigeria</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <!-- Bottom Bar -->
+        <div class="row align-items-center bg-white footer-bottom">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-0">© 2026 The Winlos Film Academy. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+.twa-footer {
+    padding: 80px 0 30px;
+    background: #ffffff;
+    color: #111;
+    border-top: 1px solid #eee;
+}
+
+.footer-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+}
+
+.footer-title {
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #555;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #111;
+}
+
+.footer-divider {
+    margin: 60px 0 25px;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+.footer-bottom p,
+.footer-bottom a {
+    font-size: 13px;
+    color: #777;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.footer-bottom a:first-child {
+    margin-left: 0;
+}
+
+.footer-bottom a:hover {
+    color: #111;
+}
+</style>
+
+      
+
+<!--<< All JS Plugins >>-->
+<script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+<!--<< Viewport Js >>-->
+<script src="{% static 'assets/js/viewport.jquery.js' %}"></script>
+<!--<< Bootstrap Js >>-->
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+<!--<< Waypoints Js >>-->
+<script src="{% static 'assets/js/jquery.waypoints.js' %}"></script>
+<!--<< Counterup Js >>-->
+<script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+<!--<< Swiper Slider Js >>-->
+<script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+<!--<< MeanMenu Js >>-->
+<script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+<!--<< Parallaxie Js >>-->
+<script src="{% static 'assets/js/parallaxie.js' %}"></script>
+<!--<< Magnific Popup Js >>-->
+<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+<!--<< Wow Animation Js >>-->
+<script src="{% static 'assets/js/wow.min.js' %}"></script>
+<!--<< Circle Progress Js >>-->
+<script src="{% static 'assets/js/circle-progress.js' %}"></script>
+<!--<< Main.js >>-->
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+
+
+    </body>
+</html>

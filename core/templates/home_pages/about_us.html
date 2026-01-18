@@ -214,122 +214,241 @@
 
 
         
+        
+       <!-- Header Section Start -->
+<header id="header-sticky" class="header-1">
+    <!-- Top Utility Bar -->
+    <div class="header-top">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-end align-items-center py-2">
+                <div class="header-top-links">
+                    <a href="#" class="header-top-link">For Students</a>
+                    <a href="#" class="header-top-link">For Staff</a>
+                    <a href="{% url 'contact' %}" class="header-top-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        <!-- Header Section Start -->
-        <header id="header-sticky" class="header-1">
-         
-            <div class="container-fluid">
-                <div class="mega-menu-wrapper">
-                    <div class="header-main">
-                        <div class="logo">
-                                <a href="{% url 'home' %}" class="header-logo">
-                                    <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
-                                </a>
-                                 <a href="{% url 'home' %}" class="header-logo2">
-                                    <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
-                                </a>
-                        </div>
-                        <div class="header-right-items">
-                             <div class="mean__menu-wrapper">
+    <!-- Main Navigation Bar -->
+    <div class="header-main-wrapper">
+        <div class="container-fluid">
+            <div class="mega-menu-wrapper">
+                <div class="header-main">
+                    <div class="logo">
+                        <a href="{% url 'home' %}" class="header-logo">
+                            <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                        </a>
+                    </div>
+                    
+                    <div class="header-right-items">
+                        <div class="mean__menu-wrapper">
                             <div class="main-menu">
                                 <nav id="mobile-menu">
-                                     <ul>
+                                    <ul>
+                                        <li> 
+                                            <a href="{% url 'home' %}">Home</a>
+                                        </li>
                                         <li class="active">
-                                            <a   href="{% url 'home' %}" class="border-none">
-                                            HOME
-                                            </a>
+                                            <a href="{% url 'about_us' %}">About Us</a>
                                         </li>
                                         <li>
-                                            <a style="color:#F5E812;" href="{% url 'about_us' %}">
-                                                ABOUT US
-                                             
-                                            </a>
-                                        </li>
-                                         <li>
-                                            <a href="{% url 'program' %}">PROGRAMS</a>
+                                            <a href="{% url 'program' %}">Programs</a>
                                         </li>
                                         <li>
-                                            <a href="{% url 'admission' %}">
-                                                ADMISSION
-                                                
-                                            </a>
-                                           
+                                            <a href="{% url 'facilitators' %}">Facilitators</a>
                                         </li>
-                                                                     {% if user.is_authenticated %}
-
-                                              <li class="d-block d-lg-none">
-                                            <a href="{% url 'dashboard' %}">      CONTINUE LEARNING</a>
+                                        <li>
+                                            <a href="{% url 'admission' %}">Admissions</a>
+                                        </li>
+                                        
+                                        {% if user.is_authenticated %}
+                                        <li class="d-block d-lg-none">
+                                            <a href="{% url 'dashboard' %}">Continue Learning</a>
                                         </li>
                                         {% else %}
-                                          <li class="d-block d-lg-none">
+                                        <li class="d-block d-lg-none">
                                             <a href="{% url 'apply' %}">Apply Now</a>
                                         </li>
                                         {% endif %}
-                                       
-                                       
                                     </ul>
                                 </nav>
                             </div>
                         </div>
+                        
                         <div class="header-right d-flex justify-content-end align-items-center">
-                      
-                                 
-                         
-                     {% if user.is_authenticated %}
-                               <a href="{% url 'dashboard' %}" class="theme-btn">
-                              CONTINUE LEARNING
-                          </a>
-                      {% else %}
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'dashboard' %}" class="theme-btn">
+                                Continue
+                            </a>
+                            {% else %}
                             <a href="{% url 'apply' %}" class="theme-btn">
-                              APPLY NOW
-                          </a>
-                      {% endif %}
+                                Apply Now
+                            </a>
+                            {% endif %}
+                            
                             <div class="header__hamburger d-xl-none my-auto">
                                 <div class="sidebar__toggle">
                                     <i class="fas fa-bars"></i>
                                 </div>
                             </div>
                         </div>
-                        </div> 
-                    </div>
+                    </div> 
                 </div>
             </div>
-        </header>
+        </div>
+    </div>
+</header>
+
+<style>
+/* Top Utility Bar Styles */
+.header-top {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+}
+
+.header-top-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.header-top-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.header-top-link:hover {
+    color: #969900;
+    text-decoration: underline;
+}
+
+.search-toggle {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    font-weight: 500;
+}
+
+.search-toggle:hover {
+    color: #969900;
+}
+
+/* Main Header Styles */
+.header-main-wrapper {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.main-menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.main-menu ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.main-menu ul li.active a,
+.main-menu ul li a:hover {
+     color: #969900;
+}
+
+/* Mobile Styles */
+@media (max-width: 1199px) {
+    .header-top-links {
+        flex-wrap: wrap;
+        gap: 15px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 991px) {
+    .header-top {
+        display: none;
+    }
+}
+</style>
+
+  <!-- Breadcrumb -->
+        <div class="breadcrumb-bar bg-light p-3">
+            <a href="#">Home</a> <span>/</span> <span>About Us</span>
+        </div>
 
 
-        <section style="margin-bottom: -100px;" class="year-timeline-section">
+
+        <!-- About Hero Section -->
+<section class="twa-about-hero wow fadeIn" data-wow-duration="1.2s">
     <div class="container-fluid">
-        <div class="timeline-wrapper">
 
-            <div id="timeline-display" class="timeline-item">
+        <div class="row align-items-center mt-5">
 
-                <!-- LEFT YEARS -->
-                <div id="yearBlock" class="timeline-left fade">
-                    <h1 id="prevYear" class="year-faded"></h1>
-                    <h1 id="activeYear" class="year-active"></h1>
-                    <h1 id="nextYear" class="year-faded"></h1>
+            <!-- Left Content -->
+            <div class="col-lg-6">
+
+                <h6 class="about-hero-subtitle wow fadeInUp" data-wow-delay=".2s">
+                    ABOUT WINLOS FILM ACADEMY
+                </h6>
+
+                <h1 class="about-hero-title wow fadeInUp" data-wow-delay=".3s">
+                    Faith and creativity in<br>
+                    motion
+                </h1>
+
+                <p class="about-hero-text wow fadeInUp" data-wow-delay=".4s">
+                    We've created a faith-based film academy committed to
+                    <strong>equipping creatives, empowering storytellers, and shining God's light through film.</strong>
+                </p>
+
+                <p class="about-hero-text wow fadeInUp" data-wow-delay=".5s">
+                    Our community transforms lives through powerful visual storytelling, bringing together
+                    emerging filmmakers with industry professionals to create authentic, impactful content
+                    that glorifies God.
+                </p>
+
+            </div>
+
+            <!-- Right Image -->
+            <div class="col-lg-6 position-relative wow fadeInRight" data-wow-delay=".4s">
+
+                <div class="about-hero-image">
+                    <img 
+                        src="https://images.unsplash.com/photo-1492691527719-9d1e07e534b4?w=1600&q=80" 
+                        alt="Filmmaker"
+                        class="wow zoomIn"
+                        data-wow-delay=".6s"
+                    >
                 </div>
 
-                <!-- RIGHT CONTENT -->
-                <div id="contentBlock" class="timeline-right fade">
-                    <div class="img-container">
-                        <img id="contentImg" class="content-img img-fluid" alt="">
-                    </div>
-                    <h2 id="contentTitle"></h2>
-                    <p id="contentText" class="mt-3 content_write_up"></p>
-
-                    <div class="nav-buttons">
-                        <button id="btnUp" class="nav-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 19V5M12 5L5 12M12 5L19 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                        <button id="btnDown" class="nav-btn">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M12 5V19M12 19L19 12M12 19L5 12" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                            </svg>
-                        </button>
-                    </div>
+                <!-- Quote Box -->
+                <div class="about-hero-quote wow fadeInUp" data-wow-delay=".7s">
+                    <p>
+                        “We are not just called to be consumers of culture, but creators of it.”
+                    </p>
+                    <span>— Rev. Ohis Ojeikere, Founder</span>
                 </div>
 
             </div>
@@ -341,604 +460,1176 @@
 
 
 <style>
-     #contentTitle{
-        font-size: 25px;
-    }
-    #contentText{
-        font-size: 16px;
-    }
-
-/* ---------------- FADE ANIMATION ------------------- */
-.fade {
-    opacity: 0;
-    animation: fadeIn .5s ease forwards;
+.twa-about-hero {
+    padding: 80px 0 120px;
+    background: #ffffff;
 }
 
-@keyframes fadeIn {
-    to {
-        opacity: 1;
-        transform: scale(1);
-    }
+.breadcrumb-bar {
+    font-size: 13px;
+    color: #888;
 }
 
-.fade-out {
-    animation: fadeOut .5s ease forwards;
+.breadcrumb-bar a {
+    color: #111;
+    text-decoration: none;
 }
 
-@keyframes fadeOut {
-    from {
-        opacity: 1;
-    }
-    to {
-        opacity: 0;
-    }
+.breadcrumb-bar span {
+    margin: 0 6px;
 }
 
-/* ---------------- BUTTONS ------------------- */
-.nav-buttons {
-    margin-top: 25px;
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    justify-content: flex-start;
-    align-items: center;
+.about-hero-subtitle {
+    color: #F5E812;
+    font-size: 12px;
+    letter-spacing: 2px;
+    font-weight: 600;
+    margin-bottom: 15px;
 }
 
-.nav-btn {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-    border: none;
-    background: #9E9E9E;
-    cursor: pointer;
-    transition: all .3s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
-    color: #fff;
+.about-hero-title {
+    font-size: 48px;
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 25px;
+    color: #0f172a;
 }
 
-.nav-btn:hover:not(:disabled) {
-    background: #757575;
-    transform: scale(1.05);
-}
-
-.nav-btn:active:not(:disabled) {
-    transform: scale(0.95);
-}
-
-.nav-btn:disabled {
-    background: #E0E0E0;
-    color: #BDBDBD;
-    cursor: not-allowed;
-}
-
-.nav-btn svg {
-    pointer-events: none;
-}
-
-/* ---------------- GENERAL ------------------- */
-.year-timeline-section {
-    padding: 100px 0;
-    background: #fff;
-    min-height: 650px;
-}
-
-.timeline-wrapper {
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 40px;
-    position: relative;
-}
-
-/* Light gray vertical line */
-.timeline-wrapper::before {
-    content: '';
-    position: absolute;
-    left: 45%;
-    top: 0;
-    bottom: 0;
-    width: 2px;
-    background: #ccc;
-    opacity: 0.5;
-}
-
-/* ---------------- ITEMS ------------------- */
-.timeline-item {
-    display: flex;
-    gap: 80px;
-    align-items: center;
-    margin-bottom: 250px;
-}
-
-.timeline-left {
-    flex: 0 0 45%;
-    text-align: center;
-}
-
-.timeline-left h1 {
-    font-size: 150px;
-    font-weight: 900;
-    line-height: 0.8;
-    margin: 0;
-    position: relative;
-    z-index: 1;
-}
-
-.year-faded { color: #e8e8e8; z-index: 0; }
-.year-active { color: #000; z-index: 2; }
-
-.timeline-right {
-    flex: 0 0 45%;
-    min-height: 420px;
-}
-
-/* IMAGE CONTAINER - FIXED HEIGHT TO PREVENT LAYOUT SHIFT */
-.img-container {
-    height: 250px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
+.about-hero-text {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #555;
     margin-bottom: 20px;
+    max-width: 520px;
 }
 
-.content-img {
-    width: 250px;
-    height: 250px;
-    object-fit: cover;
-    border-radius: 20px;
-    box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+.about-hero-image img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-.content-img[src=""],
-.content-img:not([src]) {
-    display: none !important;
+.about-hero-quote {
+    position: absolute;
+    bottom: -40px;
+    left: -40px;
+    background: #F5E812;
+    padding: 30px 28px;
+    max-width: 300px;
 }
 
-/* ---------------- RESPONSIVE ------------------- */
-@media (max-width: 1200px) {
-    .timeline-left h1 { font-size: 130px; }
+.about-hero-quote p {
+    font-size: 14px;
+    font-weight: 600;
+    color: #111;
+    margin-bottom: 10px;
 }
 
-@media (max-width: 992px) {
-    .year-timeline-section {
-        padding: 60px 0;
-        min-height: auto;
+.about-hero-quote span {
+    font-size: 12px;
+    color: #333;
+}
+
+/* Responsive */
+@media (max-width: 991px) {
+    .about-hero-title {
+        font-size: 36px;
     }
 
-    .timeline-wrapper {
-        padding: 0 20px;
-    }
-
-    .timeline-wrapper::before {
-        display: none;
-    }
-
-    .timeline-item {
-        flex-direction: column;
-        text-align: center;
-        margin-bottom: 80px;
-        gap: 30px;
-    }
-
-    .timeline-left,
-    .timeline-right {
-        flex: 1 1 100%;
-    }
-
-    .timeline-left h1 { 
-        font-size: 60px;
-        line-height: 1;
-    }
-
-    .timeline-right {
-        min-height: auto;
-    }
-
-    #contentTitle {
-        font-size: 22px;
-        margin-top: 10px;
-    }
-
-    #contentText {
-        font-size: 14px;
-        line-height: 1.6;
-    }
-
-    .img-container {
-        height: 100px;
-        margin-bottom: 15px;
-        justify-content: center;
-    }
-
-    .content-img {
-        width: 100px;
-        height: 100px;
-    }
-
-    .nav-buttons {
+    .about-hero-quote {
+        position: static;
         margin-top: 20px;
-        justify-content: center;
-    }
-
-    .nav-btn {
-        width: 40px;
-        height: 40px;
     }
 }
 
-@media (max-width: 576px) {
-    .year-timeline-section {
-        padding: 40px 0;
-    }
 
-    .timeline-wrapper {
-        padding: 0 15px;
-    }
 
-    .timeline-left h1 { 
-        font-size: 45px;
-    }
 
-    #contentTitle {
-        font-size: 20px;
-    }
-
-    #contentText {
-        font-size: 13px;
-        line-height: 1.5;
-    }
-
-    .img-container {
-        height: 80px;
-        margin-bottom: 10px;
-    }
-
-    .content-img {
-        width: 80px;
-        height: 80px;
-    }
-
-    .nav-btn {
-        width: 45px;
-        height: 45px;
-    }
-
-    .nav-buttons {
-        gap: 15px;
-    }
-}
+ .experience-section {
+            background-color: #f8f9fa;
+            padding: 80px 0;
+        }
+        
+        .experience-section h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #212529;
+            margin-bottom: 2rem;
+            line-height: 1.3;
+        }
+        
+        .experience-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #495057;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .experience-section h1 {
+                font-size: 3rem;
+            }
+            
+            .experience-section p {
+                font-size: 1.1rem;
+            }
+        }
 </style>
 
-<script>
-const timelineData = [
-    {
-        years: [2012, 2013, 2020],
-        img: "",
-        title: "Our Story",
-        text: "The Winlos began in October 2013 with the launch of their YouTube channel, producing creative skits and dramatized stories that explored real-life relationships and the beauty and challenges of marriage. These early projects shaped a unique storytelling style that blended humor, faith, and relatable human experiences, laying the foundation for their future film work."
-    },
-
-    {
-        years: [2013, 2020, 2023],
-        img: "{% static 'assets/img/2020_about.png' %}",
-        title: "Twelve Forty-Five",
-        text: "Released in 2020, Twelve Forty-Five marked a major shift from short-form sketches to full cinematic storytelling. The film showcased their growing strength in faith-based narratives and demonstrated their commitment to producing impactful stories that inspire reflection, purpose, and spiritual depth in audiences around the world."
-    },
-
-    {
-        years: [2020, 2023, 2024],
-        img: "{% static 'assets/img/2023_about.png' %}",
-        title: "Prophet Suddenly 1",
-        text: "Premiering on YouTube on May 28, 2023, Prophet Suddenly explored themes of prophecy, calling, and the complex journey of ministry. The film resonated deeply with viewers for its authenticity and spiritual relevance, becoming a major milestone that expanded The Winlos' reach in faith-based filmmaking."
-    },
-
-    {
-        years: [2023, 2024, 2025],
-        img: "{% static 'assets/img/2024_about.png' %}",
-        title: "Prophet Suddenly 2",
-        text: "Released in 2024, Prophet Suddenly 2 continued the powerful narrative, offering even deeper insight into spiritual calling, divine assignment, and the challenges faced in ministry. Its message connected strongly with global audiences, further establishing The Winlos as leading voices in faith-centered storytelling."
-    },
-
-    {
-        years: [2023, 2024, 2025],
-        img: "{% static 'assets/img/2024_2_about.png' %}",
-        title: "Holy Scam",
-        text: "Holy Scam is an intense and thought-provoking film that exposes the dangers of manipulation, greed, and deception within ministry. Following a charismatic preacher who misuses spiritual influence, the story highlights the consequences of moral compromise and calls viewers to reflect on integrity, accountability, and the true essence of faith."
-    },
-
-    {
-        years: [2024, 2025, 2026],
-        img: "{% static 'assets/img/2025_about.png' %}",
-        title: "A Love Like Raymond",
-        text: "A Love Like Raymond follows a young woman who becomes deeply attached to a charming and seemingly sincere man, only to uncover hidden intentions behind his actions. The film dives into themes of trust, discernment, and emotional vulnerability, raising important questions about love, faith, and God's guidance in relationships."
-    },
-
-    {
-        years: [2024, 2025, 2026],
-        img: "{% static 'assets/img/2025_2_about.png' %}",
-        title: "Prophet Suddenly 3",
-        text: "Prophet Suddenly 3: The Music Minister explores the delicate balance between genuine spiritual calling and the pressures of fame-driven ministry. Centered on a gifted music minister, the film challenges viewers to examine the state of modern worship, emphasizing the importance of purity, consecration, and authentic devotion to God."
-    },
-
-    {
-        years: [2024, 2025, 2026],
-        img: "{% static 'assets/img/2025_3_about.png' %}",
-        title: "Will You Be My Wife?",
-        text: "Will You Be My Wife is a heartfelt Winlos drama that examines love, commitment, and the lifelong decision of choosing a partner. Through sincere, faith-driven storytelling, the film highlights the importance of godly relationships and the courage required to build a future rooted in trust, purpose, and spiritual values."
-    },
-
-    {
-        years: [2024, 2025, 2026],
-        img: "{% static 'assets/img/2025_4_about.png' %}",
-        title: "Secrets of Our Pastor's Bed",
-        text: "Secrets of Our Pastor's Bed is a gripping drama that uncovers hidden struggles, moral tension, and personal failures behind the façade of ministry. The film explores the consequences of secrecy and temptation, prompting viewers to reflect on accountability, integrity, and the deeper responsibilities carried by spiritual leaders."
-    },
-
-    {
-        years: [2024, 2025, 2026],
-        img: "{% static 'assets/img/2025_5_about.png' %}",
-        title: "Spirituals 1",
-        text: "Spirituals 1 is an inspiring Winlos film that portrays the power of faith, divine encounters, and the everyday challenges of following God's voice. Through emotionally rich characters and relatable experiences, it encourages viewers to persevere, trust God's leading, and embrace spiritual growth in their walk of faith."
-    },
-
-    {
-        years: [2024, 2025, 2026],
-        img: "{% static 'assets/img/2025_6_about.png' %}",
-        title: "Married to Her Father",
-        text: "Married to Her Father is a moving drama that delves into complicated family dynamics, unexpected responsibilities, and the emotional weight of decisions that shape relationships. The film presents a thoughtful look at how love, duty, and personal desires intersect in difficult and life-changing situations."
-    },
-
-    {
-        years: [2024, 2025, 2026],
-        img: "{% static 'assets/img/2025_7_about.png' %}",
-        title: "Spirituals 2",
-        text: "Spirituals 2 continues the inspiring journey introduced in its predecessor, exploring deeper spiritual challenges, divine guidance, and the resilience required to overcome life's obstacles. The film encourages a renewed commitment to faith, obedience, and the transformative power of God's presence."
-    },
-
-    {
-        years: [2024, 2025, 2026],
-        img: "{% static 'assets/img/2025_8_about.png' %}",
-        title: "Love in The Guest Room",
-        text: "Love in the Guest Room is a suspense-filled Winlos drama woven with secrets, emotional tension, and surprising revelations. The story explores love, trust, and the hidden layers within relationships, inviting viewers to reflect on vulnerability, honesty, and the unexpected truths that shape human connections."
-    }
-];
-
-let currentIndex = 0;
-let isTransitioning = false;
-
-const prevYear = document.getElementById("prevYear");
-const activeYear = document.getElementById("activeYear");
-const nextYear = document.getElementById("nextYear");
-
-const contentImg = document.getElementById("contentImg");
-const contentTitle = document.getElementById("contentTitle");
-const contentText = document.getElementById("contentText");
-
-const yearBlock = document.getElementById("yearBlock");
-const contentBlock = document.getElementById("contentBlock");
-
-const btnUp = document.getElementById("btnUp");
-const btnDown = document.getElementById("btnDown");
-
-function setYearsForItem(item) {
-    const yrs = item.years;
-    prevYear.textContent = yrs[0] || "";
-    activeYear.textContent = yrs[1] || yrs[0] || "";
-    nextYear.textContent = yrs[2] || "";
-}
-
-function updateButtonStates() {
-    // Update UP button
-    if (currentIndex === 0) {
-        btnUp.disabled = true;
-    } else {
-        btnUp.disabled = false;
-    }
-
-    // Update DOWN button
-    if (currentIndex === timelineData.length - 1) {
-        btnDown.disabled = true;
-    } else {
-        btnDown.disabled = false;
-    }
-}
-
-function updateContent() {
-    const item = timelineData[currentIndex];
-
-    setYearsForItem(item);
-    
-    if (item.img) {
-        contentImg.src = item.img;
-        contentImg.style.display = "block";
-    } else {
-        contentImg.src = "";
-        contentImg.style.display = "none";
-    }
-
-    contentTitle.textContent = item.title;
-    contentText.textContent = item.text;
-
-    updateButtonStates();
-}
-
-function fadeOutThenFadeIn() {
-    if (isTransitioning) return;
-    isTransitioning = true;
-
-    yearBlock.classList.remove("fade");
-    contentBlock.classList.remove("fade");
-    yearBlock.classList.add("fade-out");
-    contentBlock.classList.add("fade-out");
-
-    setTimeout(() => {
-        updateContent();
-
-        yearBlock.classList.remove("fade-out");
-        contentBlock.classList.remove("fade-out");
-        
-        void yearBlock.offsetWidth;
-        void contentBlock.offsetWidth;
-        
-        yearBlock.classList.add("fade");
-        contentBlock.classList.add("fade");
-
-        setTimeout(() => {
-            isTransitioning = false;
-        }, 500);
-    }, 500);
-}
-
-btnDown.addEventListener("click", () => {
-    if (currentIndex < timelineData.length - 1 && !isTransitioning) {
-        currentIndex++;
-        fadeOutThenFadeIn();
-    }
-});
-
-btnUp.addEventListener("click", () => {
-    if (currentIndex > 0 && !isTransitioning) {
-        currentIndex--;
-        fadeOutThenFadeIn();
-    }
-});
-
-updateContent();
-yearBlock.classList.add("fade");
-contentBlock.classList.add("fade");
-</script>
 
 
- <!-- Newsletter Section - Exactly Like Your Design -->
-<section class="newsletter-section">
-  <div class="container">
-    <div class="row align-items-center g-5">
-      
-      <!-- Left: Text + Form -->
-      <div class="col-lg-6">
-        <div class="newsletter-content">
-          <h2 class="wow fadeInUp" data-wow-duration="1s">
-            Stay Updated with Our<br>
-            <span style="color: #ffffff;">Newsletter</span>
-          </h2>
-          <p class="wow fadeInUp" data-wow-delay="0.3s">
-            Join our newsletter for the latest courses, events, and exclusive updates from our school.
-          </p>
 
-          <!-- Newsletter Form -->
-          <form class="newsletter-form wow fadeInUp" data-wow-delay="0.5s">
-            <div class="d-flex flex-column flex-sm-row gap-3">
-              <input type="email" class="form-control flex-grow-1" placeholder="Enter your email" required>
-              <button type="submit" class="btn btn-sm btn-signup text-nowrap"><span class="fw-bold">Sign up</span></button>
+<!-- Experience Section -->
+<section class="experience-section wow fadeIn" data-wow-duration="1.2s">
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10 text-center">
+
+                <h1 class="wow fadeInUp" data-wow-delay=".2s">
+                    Experience is at the heart of everything we do
+                </h1>
+                
+                <p class="wow fadeInUp" data-wow-delay=".35s">
+                    Founded with a vision to transform the film industry through faith, Winlos Film Academy is renowned for our experiential learning model, high-impact training, deep industry partnerships, and kingdom-focused approach.
+                </p>
+                
+                <p class="wow fadeInUp" data-wow-delay=".5s">
+                    From day one, we've pursued innovative ways of teaching filmmaking that place a premium on hands-on experience and authentic engagement with the craft. Today, our signature approach empowers not only students, but facilitators, alumni, and partners to create transformative stories that pursue impact.
+                </p>
+
             </div>
-            <div class="terms-text">
-             <input type="checkbox"> By clicking Sign Up, you agree to our <a href="#" style="color:#fafafa; text-decoration:underline;">Terms and Conditions</a>.
-            </div>
-          </form>
         </div>
-      </div>
-
-      <!-- Right: Image -->
-      <div class="col-lg-6 text-center text-lg-end">
-        <div class="newsletter-image wow fadeInRight" data-wow-delay="0.7s">
-          <img src="{% static 'assets/img/stay_updated.png' %}" 
-               alt="Filmmaker with camera" 
-               class="img-fluid">
-        </div>
-      </div>
-
     </div>
-  </div>
+</section>
+
+
+
+    <style> 
+
+
+           .our-story-section {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+        
+        .our-story-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        
+        .yellow-accent {
+            width: 60px;
+            height: 4px;
+            background-color: #ffc107;
+            margin-top: 1rem;
+            margin-bottom: 3rem;
+        }
+        
+        .our-story-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #495057;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (min-width: 768px) {
+            .our-story-section h2 {
+                font-size: 3rem;
+            }
+            
+            .our-story-section p {
+                font-size: 1.05rem;
+            }
+        }
+
+
+
+    </style>
+<!-- Our Story Section -->
+<section class="our-story-section wow fadeIn" data-wow-duration="1.2s">
+    <div class="container-fluid">
+        <div class="row align-items-start">
+            
+            <!-- Left Column -->
+            <div class="col-lg-4 col-md-5 wow fadeInLeft" data-wow-delay=".2s">
+                <h2>Our Story</h2>
+                <div class="yellow-accent wow fadeIn" data-wow-delay=".35s"></div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="col-lg-8 col-md-7">
+
+                <p class="wow fadeInUp" data-wow-delay=".3s">
+                    Winlos Film Academy was born from a simple but profound conviction: 
+                    <strong>the church needs better storytellers</strong>. Rev. Ohis Ojeikere, 
+                    a lead pastor, film director, and writer, recognized a gap between the quality 
+                    of secular film content and faith-based productions.
+                </p>
+                
+                <p class="wow fadeInUp" data-wow-delay=".45s">
+                    Rather than critiquing from the sidelines, he decided to do something about it. 
+                    He founded Winlos Film Academy to train a new generation of creatives who could 
+                    compete at the highest levels of the industry while remaining anchored in biblical truth.
+                </p>
+                
+                <p class="wow fadeInUp" data-wow-delay=".6s">
+                    Today, Winlos is more than a film school. It's a movement a community of artists, 
+                    directors, writers, cinematographers, and producers who believe that 
+                    <strong>stories have the power to change hearts, shift culture, and glorify God</strong>.
+                </p>
+                
+                <p class="wow fadeInUp" data-wow-delay=".75s">
+                    We don't just teach technical skills. We cultivate character, vision, and excellence. 
+                    We believe that the best films come from the best storytellers people who know their craft, 
+                    understand their calling, and are committed to using their gifts for God's glory.
+                </p>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+ 
+<style>
+
+
+
+     .core-values-section {
+            background-color: #1a2332;
+            padding: 80px 0;
+            color: #ffffff;
+        }
+        
+        .core-values-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .core-values-section .subtitle {
+            font-size: 1rem;
+            color: #e0e0e0;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .value-card {
+            background-color: #252d3d;
+            border: 1px solid #3a4456;
+            border-radius: 8px;
+            padding: 2rem;
+            height: 100%;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .value-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            background-color: #ffc107;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        .icon-box i {
+            font-size: 1.5rem;
+            color: #1a2332;
+        }
+        
+        .value-card h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+        
+        .value-card p {
+            font-size: 0.80rem;
+            line-height: 1.7;
+            color: #c5c9d0;
+            margin-bottom: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .core-values-section h2 {
+                font-size: 3rem;
+            }
+        }
+    </style>
+
+
+
+    
+    
+    
+<!-- Vision Section -->
+<section class="our-story-section wow fadeIn" data-wow-duration="1.2s">
+    <div class="container-fluid">
+        <div class="row align-items-start">
+            
+            <!-- Left Column -->
+            <div class="col-lg-4 col-md-5 wow fadeInLeft" data-wow-delay=".2s">
+                <h2>Vision</h2>
+                <div class="yellow-accent wow fadeIn" data-wow-delay=".35s"></div>
+            </div>
+            
+            <!-- Right Column -->
+            <div class="col-lg-8 col-md-7">
+                <p class="wow fadeInUp" data-wow-delay=".4s">
+                    To raise a generation of skilled filmmakers who use storytelling and visual media 
+                    to glorify God, transform lives, and advance the Kingdom through film.
+                </p>
+            </div>
+
+        </div>
+    </div>
 </section>
 
 
 
 
 
-
- 
-  <footer class="winlows-footer">
-
-    <!-- Huge Background Text -->
-    <div class="winlows-text">Winlos</div>
-
-    <div class="container position-relative">
-      <div class="row">
-
-        <!-- Left: Logo + Address + Contact -->
-        <div class="col-lg-4 mb-5">
-          <div class="footer-logo mb-4">
-            <img src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Winlows Academy">
-          </div>
-          <div class="footer-address mb-3">
-            <strong>Address:</strong><br>
-            The Winlos Studio, Miller Road
-          </div>
-          <div class="footer-contact">
-            <strong>Contact:</strong><br>
-            +234 xxx xxxx xxx<br>
-            info@thewinlosacademy.com
-          </div>
-          <div class="social-icons mt-4">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-linkedin-in"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-          </div>
-        </div>
-
-        <!-- Middle: Links Column 1 -->
-        <div class="col-lg-4 col-md-6 footer-links">
-          <h5>About Us</h5>
-          <ul>
-            <li><a href="{% url 'program' %}">Our Programs</a></li>
-            <li><a href="{% url 'apply' %}">Student Portal</a></li>
-            <li><a href="#">Contact Us</a></li>
-            <li><a href="#">FAQs</a></li>
-          </ul>
-
-         
-        </div>
-
-        <!-- Right: Links Column 2 -->
-        <div class="col-lg-4 col-md-6 footer-links">
-          <h5>Blog Posts</h5>
-          <ul>
-            <li><a href="#">Events Calendar</a></li>
-            <li><a href="#">Success Stories</a></li>
-            <li><a href="#">Industry News</a></li>
-            <li><a href="#">Student Spotlight</a></li>
-          </ul>
-        </div>
-
-      </div>
-         <div class="footer-name wow img-custom-anim-left mb-0 mt-5">
-                <img class="img-fluid" src="{% static 'assets/img/Winlows_footer.png' %}" alt="">
+<!-- Mission Section -->
+<section class="our-story-section wow fadeIn" data-wow-duration="1.2s">
+    <div class="container-fluid">
+        <div class="row align-items-start">
+            
+            <!-- Left Column -->
+            <div class="col-lg-4 col-md-5 wow fadeInLeft" data-wow-delay=".2s">
+                <h2>Mission</h2>
+                <div class="yellow-accent wow fadeIn" data-wow-delay=".35s"></div>
             </div>
-    </div>
+            
+            <!-- Right Column -->
+            <div class="col-lg-8 col-md-7">
+                <p class="wow fadeInUp" data-wow-delay=".4s">
+                    To equip purpose-driven creatives with practical filmmaking skills, strong storytelling 
+                    foundations, and spiritual values, empowering them to create films that communicate truth, 
+                    inspire faith, and make lasting impact across cultures and generations.
+                </p>
+            </div>
 
-
-
-    <!-- Bottom Copyright Bar -->
-    <div class="footer-bottom">
-      <div class="container">
-        <div class="row align-items-center">
-          <div class="col-lg-6 text-center text-lg-start">
-            <p class="mb-0" style="color:#ffffff;">
-              © 2025 The Winlos Academy. All rights reserved.
-            </p>
-          </div>
-          <div class="col-lg-6 text-center text-white text-lg-end">
-            <a class="text-white" href="#">Privacy Policy</a>
-            <a class="text-white" href="#">Terms of Service</a>
-            <a class="text-white" href="#">Cookies Settings</a>
-          </div>
         </div>
-      </div>
     </div>
-  </footer>
+</section>
+
+
+
+
+
+<!-- Core Values Section -->
+<section class="core-values-section wow fadeIn" data-wow-duration="1.2s">
+    <div class="container-fluid">
+
+        <!-- Section Heading -->
+        <h2 class="wow fadeInUp" data-wow-delay=".2s">Our Core Values</h2>
+        <p class="subtitle wow fadeInUp" data-wow-delay=".3s">
+            These principles guide everything we do from how we teach to how we create
+        </p>
+        
+        <!-- Values Grid -->
+        <div class="row g-4 mt-4">
+
+            <!-- Value 1 -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                <div class="value-card">
+                    <div class="icon-box">
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    <h3>Faith Centered</h3>
+                    <p>
+                        Every lesson, project, and conversation is rooted in biblical truth and Kingdom values.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Value 2 -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".5s">
+                <div class="value-card">
+                    <div class="icon-box">
+                        <i class="fas fa-award"></i>
+                    </div>
+                    <h3>Excellence</h3>
+                    <p>
+                        We believe God deserves our best work technically excellent, artistically compelling,
+                        and professionally executed.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Value 3 -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                <div class="value-card">
+                    <div class="icon-box">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3>Community</h3>
+                    <p>
+                        Filmmaking is collaborative. We foster a culture of mutual support, mentorship,
+                        and creative partnership.
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Value 4 -->
+            <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".7s">
+                <div class="value-card">
+                    <div class="icon-box">
+                        <i class="fas fa-bullseye"></i>
+                    </div>
+                    <h3>Impact</h3>
+                    <p>
+                        We create stories that move audiences, challenge perspectives,
+                        and ultimately point people to Jesus.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+    <style>
+     
+        
+        .different-section {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+        
+        .different-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .different-section .subtitle {
+            font-size: 1rem;
+            color: #495057;
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 3rem;
+        }
+        
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #ffc107;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            margin-right: 1.5rem;
+        }
+        
+        .feature-icon i {
+            font-size: 1.8rem;
+            color: #1a2332;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 0.75rem;
+        }
+        
+        .feature-content p {
+            font-size: 0.95rem;
+            line-height: 1.7;
+            color: #495057;
+            margin-bottom: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .different-section h2 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .feature-item {
+                margin-bottom: 2.5rem;
+            }
+        }
+    </style>
+
+
+
+    <!-- What Makes Us Different Section -->
+<section class="different-section wow fadeIn" data-wow-duration="1.2s">
+    <div class="container-fluid">
+
+        <!-- Section Heading -->
+        <h2 class="wow fadeInUp" data-wow-delay=".2s">
+            What Makes Us Different
+        </h2>
+        <p class="subtitle wow fadeInUp" data-wow-delay=".3s">
+            Winlos Film Academy offers more than just film training we offer transformation
+        </p>
+        
+        <div class="row mt-5">
+
+            <!-- Left Column -->
+            <div class="col-lg-6">
+
+                <!-- Feature 1 -->
+                <div class="feature-item wow fadeInLeft" data-wow-delay=".4s">
+                    <div class="feature-icon">
+                        <i class="fas fa-film"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Industry-Standard Training</h3>
+                        <p>
+                            Learn from active professionals using the same equipment, software,
+                            and techniques employed in major film productions worldwide.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="feature-item wow fadeInLeft" data-wow-delay=".5s">
+                    <div class="feature-icon">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Mentorship & Community</h3>
+                        <p>
+                            Build lasting relationships with facilitators and peers who share your
+                            passion for storytelling and faith.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+            
+            <!-- Right Column -->
+            <div class="col-lg-6">
+
+                <!-- Feature 3 -->
+                <div class="feature-item wow fadeInRight" data-wow-delay=".6s">
+                    <div class="feature-icon">
+                        <i class="fas fa-book-open"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Hands-On Learning</h3>
+                        <p>
+                            Our curriculum prioritizes practical experience. You'll be on set,
+                            behind the camera, and in the edit suite from day one.
+                        </p>
+                    </div>
+                </div>
+                
+                <!-- Feature 4 -->
+                <div class="feature-item wow fadeInRight" data-wow-delay=".7s">
+                    <div class="feature-icon">
+                        <i class="fas fa-lightbulb"></i>
+                    </div>
+                    <div class="feature-content">
+                        <h3>Faith Integration</h3>
+                        <p>
+                            Explore how biblical principles inform storytelling, character development,
+                            and ethical filmmaking practices.
+                        </p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <style>
+
+            .stats-section {
+            background-color: #f8f9fa;
+            padding: 60px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+            padding: 20px;
+        }
+        
+        .stat-number {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 0.5rem;
+            line-height: 1;
+        }
+        
+        .stat-label {
+            font-size: 0.95rem;
+            color: #495057;
+            font-weight: 400;
+        }
+        
+        @media (max-width: 767px) {
+            .stat-number {
+                font-size: 3rem;
+            }
+            
+            .stat-item {
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+
+<!-- Stats Section -->
+<section class="stats-section wow fadeIn" data-wow-duration="1.2s">
+    <div class="container-fluid">
+        <div class="row text-center">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item wow fadeInUp" data-wow-delay=".2s">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">Comprehensive Courses</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item wow fadeInUp" data-wow-delay=".3s">
+                    <div class="stat-number">8</div>
+                    <div class="stat-label">Industry Facilitators</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item wow fadeInUp" data-wow-delay=".4s">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Hands-On Training</div>
+                </div>
+            </div>
+            
+            <div class="col-lg-3 col-md-6">
+                <div class="stat-item wow fadeInUp" data-wow-delay=".5s">
+                    <div class="stat-number">$200</div>
+                    <div class="stat-label">Per Course Investment</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+        <style>
+   
+        
+        .vision-section {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+        
+        .vision-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 1rem;
+        }
+        
+        .yellow-accent {
+            width: 60px;
+            height: 4px;
+            background-color: #ffc107;
+            margin-bottom: 2rem;
+        }
+        
+        .vision-section p {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #495057;
+            margin-bottom: 1.5rem;
+        }
+        
+        .vision-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+        
+        .vision-image-container {
+            height: 100%;
+            min-height: 400px;
+        }
+        
+        @media (min-width: 768px) {
+            .vision-section h2 {
+                font-size: 3rem;
+            }
+            
+            .vision-section p {
+                font-size: 1.05rem;
+            }
+        }
+        
+        @media (max-width: 991px) {
+            .vision-image-container {
+                margin-top: 2rem;
+                min-height: 300px;
+            }
+        }
+    </style>
+
+
+
+
+    <!-- Vision Section -->
+<section class="vision-section wow fadeIn" data-wow-duration="1.2s">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+
+            <!-- Text Content -->
+            <div class="col-lg-6 wow fadeInLeft" data-wow-delay=".2s">
+                <h2>Our Vision for the Future</h2>
+                <div class="yellow-accent"></div>
+                
+                <p>
+                    We envision a world where faith-based films compete at the highest level winning awards, 
+                    dominating box offices, and shifting cultural narratives. We see graduates of Winlos Film 
+                    Academy leading production companies, directing blockbuster films, and creating content 
+                    that impacts millions.
+                </p>
+                
+                <p>
+                    But more than professional success, we dream of a movement where <strong>Christian creatives 
+                    refuse to settle for mediocrity</strong>. Where excellence and faith go hand in hand. Where 
+                    the stories we tell don't just entertain they transform.
+                </p>
+                
+                <p>
+                    This is the legacy we're building at Winlos Film Academy. And we invite you to be part of it.
+                </p>
+            </div>
+            
+            <!-- Image -->
+            <div class="col-lg-6 wow fadeInRight" data-wow-delay=".3s">
+                <div class="vision-image-container">
+                    <img src="{% static 'assets/img/vision_about.jpg' %}" 
+                         alt="Film clapperboard on set" 
+                         class="vision-image">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+   <style>
+     
+        
+        .discover-section {
+            background-color: #ffffff;
+            padding: 80px 0;
+        }
+        
+        .discover-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #1a2332;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .discover-section .subtitle {
+            font-size: 1rem;
+            color: #495057;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        }
+        
+        .video-thumbnail {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #8b95a5 0%, #6d7a8f 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+        
+        .video-thumbnail:hover {
+            transform: scale(1.02);
+        }
+        
+        .video-thumbnail:hover .play-button {
+            transform: scale(1.1);
+        }
+        
+        .play-button {
+            width: 80px;
+            height: 80px;
+            background-color: #ffc107;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .play-button i {
+            font-size: 2rem;
+            color: #1a2332;
+            margin-left: 5px;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: none;
+        }
+        
+        .video-container.playing iframe {
+            display: block;
+        }
+        
+        .video-container.playing .video-thumbnail {
+            display: none;
+        }
+        
+        @media (min-width: 768px) {
+            .discover-section h2 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .play-button {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .play-button i {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    
+
+
+  <section class="discover-section">
+        <div class="container">
+            <h2>Discover Winlos Film Academy</h2>
+            <p class="subtitle">Watch this short introduction to learn more about our mission, values, and approach to film education.</p>
+            
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- 
+                        TO CHANGE VIDEO: Replace the YouTube video ID below
+                        Current video ID: dQw4w9WgXcQ
+                        Change it in the data-video-id attribute
+                    -->
+                    <div class="video-container" id="videoContainer" data-video-id="dQw4w9WgXcQ">
+                        <div class="video-thumbnail" onclick="playVideo()">
+                            <div class="play-button">
+                                <i class="fas fa-play"></i>
+                            </div>
+                        </div>
+                        <iframe 
+                            id="videoIframe"
+                            title="Winlos Film Academy Introduction"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+        <style>
+     
+        
+        .cta-section {
+            background: linear-gradient(135deg, #1a2332 0%, #2d3748 50%, #1a2332 100%);
+            padding: 80px 0;
+            color: #ffffff;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            color: #e0e0e0;
+            margin-bottom: 2.5rem;
+            line-height: 1.6;
+        }
+        
+        .btn-explore {
+            background-color: #ffc107;
+            color: #1a2332;
+            font-weight: 600;
+            padding: 12px 32px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            margin-right: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-explore:hover {
+            background-color: #ffb300;
+            color: #1a2332;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(255, 193, 7, 0.4);
+        }
+        
+        .btn-back {
+            background-color: transparent;
+            color: #ffffff;
+            font-weight: 600;
+            padding: 12px 32px;
+            border: 2px solid #ffffff;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-back:hover {
+            background-color: #ffffff;
+            color: #1a2332;
+            transform: translateY(-2px);
+        }
+        
+        @media (min-width: 768px) {
+            .cta-section h2 {
+                font-size: 3rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .btn-explore,
+            .btn-back {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 1rem;
+            }
+            
+            .btn-explore {
+                justify-content: center;
+            }
+        }
+    </style>
+
+
+    <section class="cta-section">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
+                    <h2>Ready to Begin Your Journey?</h2>
+                    <p>
+                        Join the next generation of faith based filmmakers. Explore our programs and take the 
+                        first step toward transforming your creative calling into a professional craft.
+                    </p>
+                    
+                    <div class="cta-buttons">
+                        <a href="{% url 'program' %}" class="btn btn-explore">
+                            Explore Programs
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="{% url 'home' %}" class="btn btn-back">
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+    
+<footer class="twa-footer">
+    <div class="container">
+        <div class="row gy-4 align-items-start">
+
+            <!-- Brand / Intro -->
+            <div class="col-lg-3">
+                <div class="footer-brand mb-3">
+                    <img src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Winlos Academy" style="height:40px;">
+                </div>
+                <p class="footer-desc">
+                    Empowering the next generation of filmmakers<br>
+                    to tell stories that matter.
+                </p>
+            </div>
+
+            <!-- Programs -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">PROGRAMS</h6>
+                <ul class="footer-links">
+                    <li><a href="{% url 'Screenwriting' %}">Screenwriting</a></li>
+                    <li><a href="{% url 'Cinematography' %}">Cinematography</a></li>
+                    <li><a href="{% url 'Film_Editing' %}">Editing</a></li>
+                    <li><a href="{% url 'program' %}"><strong>All Programs</strong></a></li>
+                </ul>
+            </div>
+
+            <!-- Academy -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">ACADEMY</h6>
+                <ul class="footer-links">
+                    <li><a href="{% url 'about_us' %}">About Us</a></li>
+                    <li><a href="{% url 'admission' %}">Admission</a></li>
+                    <li><a href="{% url 'facilitators' %}">Faculty</a></li>
+                    <li><a href="#">Alumni</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">CONNECT</h6>
+                <ul class="footer-links">
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
+                    <li><a href="#">News & Events</a></li>
+                    <li><a href="#">The Winlos Studio</a></li>
+                    <li><a href="#">Miller Road, Nigeria</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <!-- Bottom Bar -->
+        <div class="row align-items-center bg-white footer-bottom">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-0">© 2026 The Winlos Film Academy. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+.twa-footer {
+    padding: 80px 0 30px;
+    background: #ffffff;
+    color: #111;
+    border-top: 1px solid #eee;
+}
+
+.footer-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+}
+
+.footer-title {
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #555;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #111;
+}
+
+.footer-divider {
+    margin: 60px 0 25px;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+.footer-bottom p,
+.footer-bottom a {
+    font-size: 13px;
+    color: #777;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.footer-bottom a:first-child {
+    margin-left: 0;
+}
+
+.footer-bottom a:hover {
+    color: #111;
+}
+</style>
+
+      
+
+
+
+
+
 
         <!--<< All JS Plugins >>-->
         <script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
@@ -968,6 +1659,21 @@ contentBlock.classList.add("fade");
         <script src="{% static 'assets/js/main.js' %}"></script>
 
 
+
+        </script>
+    <script>
+        function playVideo() {
+            const container = document.getElementById('videoContainer');
+            const iframe = document.getElementById('videoIframe');
+            const videoId = container.getAttribute('data-video-id');
+            
+            // Set the iframe source with autoplay enabled
+            iframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+            
+            // Add the playing class to show video and hide thumbnail
+            container.classList.add('playing');
+        }
+    </script>
 
 
     </body>

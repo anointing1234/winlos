@@ -1,0 +1,1511 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========== Basic Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== SEO & Page Identity ========== -->
+    <title>The Winlos Academy | Nigeria’s Premier Christian Film School</title>
+    <meta name="description" content="The Winlos Academy is Nigeria’s premier Christian film school, commissioning cultural influencers who create powerful, faith-driven stories with technical mastery and spiritual integrity. Discover the story you were born to tell.">
+    <meta name="author" content="The Winlos Academy">
+    <meta name="keywords" content="christian film school nigeria, winlos academy, faith-based filmmaking, christian cinematography training, bible-based film school, nigerian christian film academy, filmmaking with purpose, spiritual storytelling, rev otis ojukwu film school">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== Open Graph / Facebook ========== -->
+    <meta property="og:title" content="The Winlos Academy | Nigeria’s Premier Christian Film School">
+    <meta property="og:description" content="We don’t just train filmmakers — we commission cultural influencers. Join Nigeria’s leading Christian film school and create stories that illuminate, inspire, and transform culture for Christ.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.thewinlosacademy.com">
+    <meta property="og:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg' %}">
+    <meta property="og:image:alt" content="The Winlos Academy - Christian Film School in Nigeria">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="The Winlos Academy">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Winlos Academy | Christian Film School Nigeria">
+    <meta name="twitter:description" content="At TWA, we help you discover the story you were born to tell. Join Nigeria’s premier Christian film school.">
+    <meta name="twitter:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg' %}">
+    <meta name="twitter:site" content="@winlosacademy">
+    <meta name="twitter:creator" content="@winlosacademy">
+
+    <!-- ========== Favicon & Touch Icons ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://www.thewinlosacademy.com">
+
+    <!-- ========== Preconnect for Speed ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- ========== Stylesheets (Keep Your Existing Ones) ========== -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <!-- ========== Structured Data - Organization + EducationalOrganization ========== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["EducationalOrganization", "Organization"],
+      "name": "The Winlos Academy",
+      "alternateName": ["TWA", "Winlos Academy", "The Winlos Christian Film School"],
+      "url": "https://www.thewinlosacademy.com",
+      "logo": "https://www.thewinlosacademy.com/assets/img/logo/winlos_logo.png",
+      "image": "https://www.thewinlosacademy.com/assets/img/og-image.jpg}",
+      "description": "The Winlos Academy is Nigeria’s premier Christian film school, established to empower a new generation of filmmakers. We believe that the most powerful stories are those told with both technical mastery and spiritual integrity. We are not just training filmmakers; we are commissioning cultural influencers.",
+      "slogan": "Discover the story you were born to tell.",
+      "founder": {
+        "@type": "Person",
+        "name": "Rev. Otis Ojukwu"
+      },
+      "foundingDate": "2015",
+      "foundingLocation": "Lagos, Nigeria",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Winlos Studio, Miller Road",
+        "addressLocality": "Lagos",
+        "addressRegion": "Lagos State",
+        "postalCode": "",
+        "addressCountry": "NG"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+234-XXX-XXX-XXXX",
+        "contactType": "Admissions & General Inquiry",
+        "email": "info@thewinlosacademy.com",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://facebook.com/thewinlosacademy",
+        "https://instagram.com/thewinlosacademy",
+        "https://youtube.com/@thewinlosacademy",
+        "https://twitter.com/winlosacademy"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Film & Creative Programs",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Professional Filmmaking Diploma"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Screenwriting & Story Development"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+
+
+
+
+     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+  
+
+        /* BREADCRUMB */
+        .breadcrumb-bar {
+            background: #f3f4f6;
+            padding: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .breadcrumb-bar a {
+            color: #111827;
+            text-decoration: none;
+        }
+
+        .breadcrumb-bar span {
+            color: #6b7280;
+            margin: 0 0.5rem;
+        }
+
+        /* HERO SECTION */
+        .hero-section {
+            padding: 2rem 1rem;
+            background: #fff;
+        }
+
+        .hero-container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .hero-section h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-image {
+            position: relative;
+            height: 300px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 1.5rem;
+            background-color: #1a1a2e;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.3) 100%);
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .hero-text h3 {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin: 0;
+            color: white;
+            font-weight: 700;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: normal;
+            max-width: 100%;
+        }
+        
+        .hero-text {
+            max-width: 100%;
+        }
+
+        /* INFO CARDS GRID */
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+        }
+
+        .info-card {
+            background-color: #ffffff;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1rem;
+        }
+
+        .info-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6c757d;
+            font-size: 0.8rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .info-icon svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .info-value {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #000;
+            margin-left: 1.3rem;
+        }
+
+
+
+
+        
+        /* PROGRAM SECTION */
+        .program-section {
+            min-height: 100vh;
+            background: #ffffff;
+        }
+
+        .program-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* LEFT SCROLLING COLUMN */
+        .program-scroll {
+            padding: 2rem 1rem;
+            overflow-y: visible;
+        }
+
+        .program-scroll h3 {
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        .program-scroll p {
+            color: #6c757d;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        /* LIST WITH ICONS */
+        .learn-list {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 0.75rem;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .learn-item {
+            display: flex;
+            gap: 0.5rem;
+            font-size: 0.9rem;
+            color: #333;
+        }
+
+        .learn-item svg {
+            width: 16px;
+            height: 16px;
+            stroke: #FFC107;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        /* CURRICULUM */
+        .curriculum {
+            margin-top: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .curriculum-item {
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            margin-bottom: 0.75rem;
+            overflow: hidden;
+        }
+
+        .curriculum-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1rem;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .curriculum-header:hover {
+            background-color: #f9fafb;
+        }
+
+        .curriculum-title {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .curriculum-icon {
+            width: 20px;
+            height: 20px;
+            color: #6c757d;
+            transition: transform 0.3s ease;
+        }
+
+        .curriculum-item.active .curriculum-icon {
+            transform: rotate(180deg);
+        }
+
+        .curriculum-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1rem;
+        }
+
+        .curriculum-item.active .curriculum-content {
+            max-height: 300px;
+            padding: 0 1rem 1rem 1rem;
+        }
+
+        .curriculum-content p {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin: 0.5rem 0;
+            line-height: 1.5;
+        }
+
+        /* RIGHT SIDEBAR */
+        .program-sidebar {
+            padding: 2rem 1rem;
+            background: #f9fafb;
+        }
+
+        .price-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 1.5rem;
+            background: white;
+        }
+
+        .price {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #111827;
+        }
+
+        .price small {
+            display: block;
+            font-size: 0.75rem;
+            color: #6c757d;
+            font-weight: 400;
+            margin-top: 0.25rem;
+        }
+
+        .btn-enroll {
+            width: 100%;
+            background: #111827;
+            color: #fff;
+            border: none;
+            padding: 0.75rem;
+            margin-top: 1rem;
+            border-radius: 4px;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .btn-outline {
+            width: 100%;
+            background: transparent;
+            color: #111827;
+            border: 1px solid #e5e7eb;
+            padding: 0.75rem;
+            margin-top: 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .quick-info {
+            font-size: 0.85rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .quick-info div {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: #333;
+        }
+
+        .quick-info div span:first-child {
+            color: #6c757d;
+        }
+
+        /* QUESTIONS SECTION */
+        .course-questions {
+            background: #ffffff;
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .course-questions h2 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+        }
+
+        .course-questions p {
+            max-width: 520px;
+            margin: 0 auto 1.5rem;
+            font-size: 0.9rem;
+            color: #6c757d;
+            line-height: 1.5;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+
+        .btn-admissions {
+            background-color: #FFC107;
+            color: #000;
+            border: none;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-secondary-outline {
+            background: transparent;
+            color: #111827;
+            border: 1px solid #e5e7eb;
+            padding: 0.75rem 1.25rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+      
+        /* DESKTOP LAYOUT */
+        @media (min-width: 992px) {
+            .program-container {
+                flex-direction: row;
+                gap: 2rem;
+            }
+
+            .program-scroll {
+                flex: 1;
+                max-height: 100vh;
+                overflow-y: auto;
+                padding: 3rem 2rem;
+                position: sticky;
+                top: 0;
+            }
+
+            .program-sidebar {
+                width: 380px;
+                position: sticky;
+                top: 0;
+                height: fit-content;
+                padding: 3rem 2rem;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+            .btn-group {
+                flex-direction: row;
+                max-width: 100%;
+                justify-content: center;
+            }
+        }
+
+
+
+
+
+        /* TABLET - 768px and up */
+        @media (min-width: 768px) {
+            .hero-text h3 {
+                font-size: 1.8rem;
+            }
+            
+            .breadcrumb-bar {
+                padding: 1rem 2rem;
+            }
+
+            .hero-section {
+                padding: 3rem 2rem;
+            }
+
+            .hero-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .hero-image {
+                height: 350px;
+            }
+
+            .hero-text h3 {
+                font-size: 2.5rem;
+            }
+
+            .info-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .program-scroll {
+                padding: 3rem 2rem;
+            }
+
+            .program-sidebar {
+                padding: 3rem 2rem;
+            }
+
+            .learn-list {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem 2rem;
+            }
+
+            .course-questions {
+                padding: 4rem 2rem;
+            }
+
+            .course-questions h2 {
+                font-size: 1.75rem;
+            }
+
+            .btn-group {
+                flex-direction: row;
+                max-width: none;
+                justify-content: center;
+            }
+
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+                max-width: 800px;
+            }
+        }
+
+        /* DESKTOP - 992px and up */
+        @media (min-width: 992px) {
+            .hero-image {
+                height: 400px;
+            }
+
+            .hero-text h3 {
+                font-size: 3.5rem;
+            }
+
+            .program-container {
+                flex-direction: row;
+            }
+
+            .program-scroll {
+                flex: 1;
+                max-height: 100vh;
+                overflow-y: auto;
+                padding: 3rem 4rem;
+            }
+
+            .program-scroll::-webkit-scrollbar {
+                width: 0;
+                height: 0;
+            }
+
+            .program-scroll {
+                scrollbar-width: none;
+                -ms-overflow-style: none;
+            }
+
+            .program-sidebar {
+                width: 380px;
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                background: white;
+            }
+
+        }
+
+        /* LARGE DESKTOP - 1200px and up */
+        @media (min-width: 1200px) {
+            .hero-section {
+                padding: 3rem;
+            }
+
+            .program-scroll {
+                padding: 3rem 5rem;
+            }
+        }
+    </style>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+
+
+
+</head>
+
+
+    <body>
+
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="txt-loading">
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="W" class="letters-loading">
+                        W
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                 
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- GT Back To Top Start -->
+        <button id="back-top" class="back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+      
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="{% url 'home' %}">
+                                        <img style="width: 90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                                    </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                    <i class="fas fa-times"></i>
+                                    </button>
+                            </div>
+                        </div>
+                 
+                        <div class="mobile-menu fix mt-3"></div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+
+       <!-- Header Section Start -->
+<header id="header-sticky" class="header-1">
+    <!-- Top Utility Bar -->
+    <div class="header-top">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-end align-items-center py-2">
+                <div class="header-top-links">
+                    <a href="#" class="header-top-link">For Students</a>
+                    <a href="#" class="header-top-link">For Staff</a>
+                    <a href="{% url 'contact' %}" class="header-top-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="header-main-wrapper">
+        <div class="container-fluid">
+            <div class="mega-menu-wrapper">
+                <div class="header-main">
+                    <div class="logo">
+                        <a href="{% url 'home' %}" class="header-logo">
+                            <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                        </a>
+                    </div>
+                    
+                    <div class="header-right-items">
+                        <div class="mean__menu-wrapper">
+                            <div class="main-menu">
+                                <nav id="mobile-menu">
+                                    <ul>
+                                        <li > 
+                                            <a href="{% url 'home' %}">Home</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'about_us' %}">About Us</a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="{% url 'program' %}">Programs</a>
+                                        </li>
+                                        <li >
+                                            <a href="{% url 'facilitators' %}">Facilitators</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'admission' %}">Admissions</a>
+                                        </li>
+                                        
+                                        {% if user.is_authenticated %}
+                                        <li class="d-block d-lg-none">
+                                            <a href="{% url 'dashboard' %}">Continue Learning</a>
+                                        </li>
+                                        {% else %}
+                                        <li class="d-block d-lg-none">
+                                            <a href="{% url 'apply' %}">Apply Now</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        
+                        <div class="header-right d-flex justify-content-end align-items-center">
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'dashboard' %}" class="theme-btn">
+                                Continue
+                            </a>
+                            {% else %}
+                            <a href="{% url 'apply' %}" class="theme-btn">
+                                Apply Now
+                            </a>
+                            {% endif %}
+                            
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+/* Top Utility Bar Styles */
+.header-top {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+}
+
+.header-top-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.header-top-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.header-top-link:hover {
+    color: #969900;
+    text-decoration: underline;
+}
+
+.search-toggle {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    font-weight: 500;
+}
+
+.search-toggle:hover {
+    color: #969900;
+}
+
+/* Main Header Styles */
+.header-main-wrapper {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.main-menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.main-menu ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.main-menu ul li.active a,
+.main-menu ul li a:hover {
+     color: #969900;
+}
+
+/* Mobile Styles */
+@media (max-width: 1199px) {
+    .header-top-links {
+        flex-wrap: wrap;
+        gap: 15px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 991px) {
+    .header-top {
+        display: none;
+    }
+}
+
+.breadcrumb-bar {
+    font-size: 13px;
+    color: #888;
+}
+
+.breadcrumb-bar a {
+    color: #111;
+    text-decoration: none;
+}
+
+.breadcrumb-bar span {
+    margin: 0 6px;
+}
+
+</style>
+
+
+
+
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb-bar">
+        <a href="#">Home</a> <span>/</span> 
+        <a href="#">Studies</a> <span>/</span> 
+        <a href="#">Film Programs</a> <span>/</span> 
+        <span>Storytelling for Film & Visual Media</span>
+    </div>
+
+    <!-- HERO SECTION -->
+    <div class="hero-section">
+        <div class="hero-container">
+            <h2>Storytelling for Film & Visual Media</h2>
+
+            <div class="hero-image" style="background-image: url('{% static 'assets/img/Storytelling_for_Film_&_Visual_Media.jpg' %}');">
+                <div class="hero-overlay">
+                      <div class="hero-text">
+                        <h3>Stories.<br>Structure.<br>Soul.</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="info-grid">
+                <div class="info-card">
+                    <div class="info-label">
+                        <div class="info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2">
+                                <circle cx="12" cy="12" r="9"></circle>
+                                <path d="M12 7v5l3 2"></path>
+                            </svg>
+                        </div>
+                        Duration
+                    </div>
+                    <div class="info-value">6 Weeks</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">
+                        <div class="info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2">
+                                <rect x="3" y="4" width="18" height="18" rx="2"></rect>
+                                <path d="M16 2v4M8 2v4M3 10h18"></path>
+                            </svg>
+                        </div>
+                        Schedule
+                    </div>
+                    <div class="info-value">Twice Weekly</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">
+                        <div class="info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2">
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M3 21v-2a4 4 0 0 1 4-4h4"></path>
+                                <path d="M17 11a4 4 0 1 0 0-8"></path>
+                                <path d="M21 21v-2a4 4 0 0 0-3-3.87"></path>
+                            </svg>
+                        </div>
+                        Class Size
+                    </div>
+                    <div class="info-value">25 Students</div>
+                </div>
+
+                <div class="info-card">
+                    <div class="info-label">
+                        <div class="info-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                 viewBox="0 0 24 24" fill="none" stroke="#FFC107" stroke-width="2">
+                                <path d="M12 3L2 9l10 6 10-6-10-6z"></path>
+                                <path d="M2 9v6c0 1.5 4.5 3 10 3s10-1.5 10-3V9"></path>
+                            </svg>
+                        </div>
+                        Level
+                    </div>
+                    <div class="info-value">Foundation</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROGRAM SECTION -->
+    <div class="program-section" id="program-section">
+        <div class="program-container">
+
+            <!-- LEFT SCROLLING CONTENT -->
+            <div class="program-scroll" id="program-scroll">
+
+                <h3>Why this program?</h3>
+                <p>
+                   Every great film begins with a great story. This course teaches you how stories work emotionally, structurally, and culturally. You'll learn to translate raw ideas into compelling visual narratives that resonate with audiences and communicate truth. Whether you're writing, directing, or producing, storytelling is your foundation.
+                </p>
+
+                <h3>What you will learn</h3>
+                <div class="learn-list">
+                    <div class="learn-item">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 7v5l3 2"></path>
+                        </svg>
+                        The three-act structure and narrative arcs
+                    </div>
+
+                    <div class="learn-item">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 7v5l3 2"></path>
+                        </svg>
+                       Character development and motivation
+                    </div>
+
+                    <div class="learn-item">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 7v5l3 2"></path>
+                        </svg>
+                        Theme, message, and emotional resonance
+                    </div>
+
+                    <div class="learn-item">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 7v5l3 2"></path>
+                        </svg>
+                       Visual storytelling techniques
+                    </div>
+
+
+                      <div class="learn-item">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 7v5l3 2"></path>
+                        </svg>
+                        Story analysis and deconstruction
+                    </div>
+
+                    <div class="learn-item">
+                        <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
+                            <circle cx="12" cy="12" r="9"></circle>
+                            <path d="M12 7v5l3 2"></path>
+                        </svg>
+                      Adapting stories for different media formats
+                    </div>
+
+                </div>
+
+                <h3>What can I do with it later?</h3>
+                <p>
+              This course prepares you for roles as a screenwriter, story consultant, creative director, or content producer. You'll be equipped to develop original stories and adapt existing narratives for film, television, and digital platforms.
+                </p>
+
+                <h3>Curriculum</h3>
+                <div class="curriculum">
+                    <div class="curriculum-item">
+                        <div class="curriculum-header" onclick="toggleModule(this)">
+                            <div class="curriculum-title">Module 1: The Foundations</div>
+                            <svg class="curriculum-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                        <div class="curriculum-content">
+                            <p>What makes a story compelling?</p>
+                            <p>The hero's journey and story archetypes</p>
+                            <p>Three-act structure explained</p>
+                        </div>
+                    </div>
+                    <div class="curriculum-item">
+                        <div class="curriculum-header" onclick="toggleModule(this)">
+                            <div class="curriculum-title">Module 2: Character & Conflict</div>
+                            <svg class="curriculum-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                        <div class="curriculum-content">
+                            <p>Creating memorable characters</p>
+                            <p>Internal vs external conflict</p>
+                            <p>Character arcs and transformation</p>
+                        </div>
+                    </div>
+                    <div class="curriculum-item">
+                        <div class="curriculum-header" onclick="toggleModule(this)">
+                            <div class="curriculum-title">Module 3: Visual Storytelling</div>
+                            <svg class="curriculum-icon" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </div>
+                        <div class="curriculum-content">
+                            <p>Show, don't tell</p>
+                            <p>Using visuals to convey emotion</p>
+                            <p>Symbolism and metaphor in film</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <style>
+
+                .price {
+    font-size: 30px;
+    font-weight: 500;
+}
+
+.price-naira {
+    margin-top: 6px;
+    font-size: 15px;     /* BIG */
+    font-weight: 800;    /* BOLD */
+    color: #0a7d3b;      /* Professional green */
+    line-height: 1.2;
+}
+
+
+            </style>
+
+            <!-- RIGHT SIDEBAR -->
+<div class="program-sidebar">
+    <div class="price-card">
+        <small>Course Fee</small>
+
+       <div class="price">
+    $<span class="fw-bolder" id="usd-price">200</span>
+</div>
+
+<div class="price-naira" id="naira-price"></div>
+
+
+      
+
+        <button class="btn-enroll">Enroll Now →</button>
+        <button class="btn-outline">Download Syllabus</button>
+
+        <div class="quick-info">
+            <div><span>Start Date</span><span>Rolling Admission</span></div>
+            <div><span>Language</span><span>English</span></div>
+            <div><span>Format</span><span>In-person</span></div>
+            <div><span>Certificate</span><span>Yes</span></div>
+        </div>
+    </div>
+</div>
+
+<script>
+async function convertUsdToNaira() {
+    const usdAmount = parseFloat(document.getElementById("usd-price").innerText);
+    const nairaEl = document.getElementById("naira-price");
+
+    try {
+        const response = await fetch("https://open.er-api.com/v6/latest/USD");
+        const data = await response.json();
+
+        if (data.result !== "success") {
+            throw new Error("API error");
+        }
+
+        const rate = data.rates.NGN;
+        const nairaAmount = (usdAmount * rate).toFixed(0);
+
+        nairaEl.innerHTML = `₦${Number(nairaAmount).toLocaleString()}`;
+    } catch (error) {
+        nairaEl.innerHTML = "NGN price unavailable";
+        console.error("Currency conversion failed:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", convertUsdToNaira);
+</script>
+
+
+
+        </div>
+    </div>
+
+    
+    <!-- QUESTIONS SECTION -->
+    <div class="course-questions">
+        <h2>Have Questions About This Course?</h2>
+        <p>
+           Our admissions team is here to help. Get in touch to learn more about the course content, schedule, and enrollment process.
+        </p>
+        <div class="btn-group">
+            <a href="#" class="btn-admissions">Contact Admissions</a>
+            <a href="{% url 'program' %}" class="btn-secondary-outline">Back to All Courses</a>
+        </div>
+    </div>
+
+    
+
+
+<!-- RELATED COURSES -->
+<div class="container-fluid bg-white py-5">
+   
+        <h2 class="fw-bold fs-1 mb-2">You Might Also Like</h2>
+        <p class="text-muted mb-4">Explore other courses that complement your learning journey</p>
+
+        <div class="row g-4">
+            <!-- Card 1 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border rounded">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <small class="text-muted text-uppercase fw-semibold">Course 02</small>
+                            <span class="badge bg-light text-dark">FOUNDATION</span>
+                        </div>
+                        <h4 class="card-title fw-bold fs-5 mb-2">Screenwriting for Film & Digital Media</h4>
+                        <p class="card-text text-muted mb-3">Turn story ideas into professional scripts</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <small class="text-muted">⏱ 8 Weeks</small>
+                            <a href="#" class="text-dark text-decoration-none fw-semibold">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border rounded">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <small class="text-muted text-uppercase fw-semibold">Course 03</small>
+                            <span class="badge bg-light text-dark">ADVANCED</span>
+                        </div>
+                        <h4 class="card-title fw-bold fs-5 mb-2">Cinematography: Visual Storytelling for Film</h4>
+                        <p class="card-text text-muted mb-3">Tell stories visually through camera and lighting</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <small class="text-muted">⏱ 10 Weeks</small>
+                            <a href="#" class="text-dark text-decoration-none fw-semibold">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 border rounded">
+                    <div class="card-body d-flex flex-column">
+                        <div class="d-flex justify-content-between align-items-center mb-3">
+                            <small class="text-muted text-uppercase fw-semibold">Course 04</small>
+                            <span class="badge bg-light text-dark">ADVANCED</span>
+                        </div>
+                        <h4 class="card-title fw-bold fs-5 mb-2">Advanced Acting for Film & Camera</h4>
+                        <p class="card-text text-muted mb-3">Master the art of acting for the camera</p>
+                        <div class="d-flex justify-content-between align-items-center mt-auto">
+                            <small class="text-muted">⏱ 8 Weeks</small>
+                            <a href="#" class="text-dark text-decoration-none fw-semibold">Learn More →</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   
+</div>
+
+
+
+   <script>
+        function toggleModule(header) {
+            const item = header.parentElement;
+            const wasActive = item.classList.contains('active');
+            
+            // Close all other items
+            document.querySelectorAll('.curriculum-item').forEach(function(currItem) {
+                currItem.classList.remove('active');
+            });
+            
+            // Toggle current item
+            if (!wasActive) {
+                item.classList.add('active');
+            }
+        }
+
+        (function () {
+            // Only apply scroll lock on desktop
+            if (window.innerWidth < 992) return;
+
+            const section = document.getElementById('program-section');
+            const scrollArea = document.getElementById('program-scroll');
+
+            window.addEventListener('wheel', function (e) {
+                const rect = section.getBoundingClientRect();
+                const atTop = scrollArea.scrollTop <= 0;
+                const atBottom = scrollArea.scrollTop + scrollArea.clientHeight >= scrollArea.scrollHeight - 2;
+
+                if (rect.top <= 0 && rect.bottom >= window.innerHeight) {
+                    if (e.deltaY > 0) {
+                        if (!atBottom) {
+                            e.preventDefault();
+                            scrollArea.scrollTop += e.deltaY;
+                        }
+                    }
+                    
+                    if (e.deltaY < 0) {
+                        if (!atTop) {
+                            e.preventDefault();
+                            scrollArea.scrollTop += e.deltaY;
+                        }
+                    }
+                }
+                else if (rect.top > 0 && rect.top < 100 && e.deltaY > 0) {
+                    if (!atBottom) {
+                        e.preventDefault();
+                        window.scrollTo({
+                            top: section.offsetTop,
+                            behavior: 'auto'
+                        });
+                        scrollArea.scrollTop += e.deltaY;
+                    }
+                }
+            }, { passive: false });
+
+            // Re-check on resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth < 992) {
+                    scrollArea.style.maxHeight = 'none';
+                    scrollArea.style.overflowY = 'visible';
+                }
+            });
+        })();
+    </script>
+    
+<footer class="twa-footer">
+    <div class="container-fluid">
+        <div class="row gy-4 align-items-start">
+
+            <!-- Brand / Intro -->
+            <div class="col-lg-3">
+                <div class="footer-brand mb-3">
+                    <img src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Winlos Academy" style="height:40px;">
+                </div>
+                <p class="footer-desc">
+                    Empowering the next generation of filmmakers<br>
+                    to tell stories that matter.
+                </p>
+            </div>
+
+            <!-- Programs -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">PROGRAMS</h6>
+                <ul class="footer-links">
+                    <li><a href="#">Scriptwriting</a></li>
+                    <li><a href="#">Cinematography</a></li>
+                    <li><a href="#">Editing</a></li>
+                    <li><a href="#"><strong>All Programs</strong></a></li>
+                </ul>
+            </div>
+
+            <!-- Academy -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">ACADEMY</h6>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Admission</a></li>
+                    <li><a href="#">Faculty</a></li>
+                    <li><a href="#">Alumni</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">CONNECT</h6>
+                <ul class="footer-links">
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">News & Events</a></li>
+                    <li><a href="#">The Winlos Studio</a></li>
+                    <li><a href="#">Miller Road, Nigeria</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <!-- Bottom Bar -->
+        <div class="row align-items-center bg-white footer-bottom">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-0">© 2026 The Winlos Film Academy. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+.twa-footer {
+    padding: 80px 0 30px;
+    background: #ffffff;
+    color: #111;
+    border-top: 1px solid #eee;
+}
+
+.footer-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+}
+
+.footer-title {
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #555;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #111;
+}
+
+.footer-divider {
+    margin: 60px 0 25px;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+.footer-bottom p,
+.footer-bottom a {
+    font-size: 13px;
+    color: #777;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.footer-bottom a:first-child {
+    margin-left: 0;
+}
+
+.footer-bottom a:hover {
+    color: #111;
+}
+</style>
+
+
+
+   
+      
+
+<!--<< All JS Plugins >>-->
+<script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+<!--<< Viewport Js >>-->
+<script src="{% static 'assets/js/viewport.jquery.js' %}"></script>
+<!--<< Bootstrap Js >>-->
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+
+<script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+<!--<< Waypoints Js >>-->
+<script src="{% static 'assets/js/jquery.waypoints.js' %}"></script>
+<!--<< Counterup Js >>-->
+<script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+<!--<< Swiper Slider Js >>-->
+<script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+<!--<< MeanMenu Js >>-->
+<script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+<!--<< Parallaxie Js >>-->
+<script src="{% static 'assets/js/parallaxie.js' %}"></script>
+<!--<< Magnific Popup Js >>-->
+<script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+<!--<< Wow Animation Js >>-->
+<script src="{% static 'assets/js/wow.min.js' %}"></script>
+<!--<< Circle Progress Js >>-->
+<script src="{% static 'assets/js/circle-progress.js' %}"></script>
+<!--<< Main.js >>-->
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+
+  
+
+
+    </body>
+</html>
+
+
+

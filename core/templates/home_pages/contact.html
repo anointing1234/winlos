@@ -1,0 +1,1396 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- ========== Basic Meta Tags ========== -->
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- ========== SEO & Page Identity ========== -->
+    <title>The Winlos Academy | Nigeria’s Premier Christian Film School</title>
+    <meta name="description" content="The Winlos Academy is Nigeria’s premier Christian film school, commissioning cultural influencers who create powerful, faith-driven stories with technical mastery and spiritual integrity. Discover the story you were born to tell.">
+    <meta name="author" content="The Winlos Academy">
+    <meta name="keywords" content="christian film school nigeria, winlos academy, faith-based filmmaking, christian cinematography training, bible-based film school, nigerian christian film academy, filmmaking with purpose, spiritual storytelling, rev otis ojukwu film school">
+    <meta name="robots" content="index, follow">
+
+    <!-- ========== Open Graph / Facebook ========== -->
+    <meta property="og:title" content="The Winlos Academy | Nigeria’s Premier Christian Film School">
+    <meta property="og:description" content="We don’t just train filmmakers — we commission cultural influencers. Join Nigeria’s leading Christian film school and create stories that illuminate, inspire, and transform culture for Christ.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.thewinlosacademy.com">
+    <meta property="og:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg">
+    <meta property="og:image:alt" content="The Winlos Academy - Christian Film School in Nigeria">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:site_name" content="The Winlos Academy">
+    <meta property="og:locale" content="en_US">
+
+    <!-- ========== Twitter Card ========== -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="The Winlos Academy | Christian Film School Nigeria">
+    <meta name="twitter:description" content="At TWA, we help you discover the story you were born to tell. Join Nigeria’s premier Christian film school.">
+    <meta name="twitter:image" content="https://www.thewinlosacademy.com/assets/img/og-image.jpg">
+    <meta name="twitter:site" content="@winlosacademy">
+    <meta name="twitter:creator" content="@winlosacademy">
+
+    <!-- ========== Favicon & Touch Icons ========== -->
+    <link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
+    <link rel="apple-touch-icon" sizes="180x180" href="{% static 'assets/img/apple-touch-icon.png' %}">
+
+    <!-- ========== Canonical URL ========== -->
+    <link rel="canonical" href="https://www.thewinlosacademy.com">
+
+    <!-- ========== Preconnect for Speed ========== -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- ========== Stylesheets (Keep Your Existing Ones) ========== -->
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/magnific-popup.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/meanmenu.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/swiper-bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/nice-select.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+    <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+  integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+/>
+
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+  crossorigin=""
+/>
+
+    <!-- ========== Structured Data - Organization + EducationalOrganization ========== -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["EducationalOrganization", "Organization"],
+      "name": "The Winlos Academy",
+      "alternateName": ["TWA", "Winlos Academy", "The Winlos Christian Film School"],
+      "url": "https://www.thewinlosacademy.com",
+      "logo": "https://www.thewinlosacademy.com/assets/img/logo/winlos_logo.png' %}",
+      "image": "https://www.thewinlosacademy.com/assets/img/og-image.jpg",
+      "description": "The Winlos Academy is Nigeria’s premier Christian film school, established to empower a new generation of filmmakers. We believe that the most powerful stories are those told with both technical mastery and spiritual integrity. We are not just training filmmakers; we are commissioning cultural influencers.",
+      "slogan": "Discover the story you were born to tell.",
+      "founder": {
+        "@type": "Person",
+        "name": "Rev. Otis Ojukwu"
+      },
+      "foundingDate": "2015",
+      "foundingLocation": "Lagos, Nigeria",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "The Winlos Studio, Miller Road",
+        "addressLocality": "Lagos",
+        "addressRegion": "Lagos State",
+        "postalCode": "",
+        "addressCountry": "NG"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+234-XXX-XXX-XXXX",
+        "contactType": "Admissions & General Inquiry",
+        "email": "info@thewinlosacademy.com",
+        "availableLanguage": ["English"]
+      },
+      "sameAs": [
+        "https://facebook.com/thewinlosacademy",
+        "https://instagram.com/thewinlosacademy",
+        "https://youtube.com/@thewinlosacademy",
+        "https://twitter.com/winlosacademy"
+      ],
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Film & Creative Programs",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Professional Filmmaking Diploma"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "EducationalOccupationalProgram",
+              "name": "Screenwriting & Story Development"
+            }
+          }
+        ]
+      }
+    }
+    </script>
+
+
+      <style>
+            @media (min-width:790px) {
+        .header-1 .header-right-items {
+          gap: 300px;
+        }
+
+    }
+
+
+    
+.breadcrumb-bar {
+    font-size: 13px;
+    color: #888;
+}
+
+.breadcrumb-bar a {
+    color: #111;
+    text-decoration: none;
+}
+
+.breadcrumb-bar span {
+    margin: 0 6px;
+}
+
+    </style>
+
+
+    <!-- WOW.js Animation Init -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script>
+        new WOW().init();
+    </script>
+</head>
+
+
+    <body>
+
+        <!-- Preloader Start -->
+        <div id="preloader" class="preloader">
+            <div class="animation-preloader">
+                <div class="txt-loading">
+                    <span data-text-preloader="T" class="letters-loading">
+                        T
+                    </span>
+                    <span data-text-preloader="W" class="letters-loading">
+                        W
+                    </span>
+                    <span data-text-preloader="A" class="letters-loading">
+                        A
+                    </span>
+                 
+                </div>
+            </div>
+            <div class="loader">
+                <div class="row">
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-left">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                    <div class="col-3 loader-section section-right">
+                        <div class="bg"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- GT Back To Top Start -->
+        <button id="back-top" class="back-to-top show">
+            <i class="fa-regular fa-arrow-up"></i>
+        </button>
+
+      
+
+        <!-- Offcanvas Area Start -->
+        <div class="fix-area">
+            <div class="offcanvas__info">
+                <div class="offcanvas__wrapper">
+                    <div class="offcanvas__content">
+                        <div class="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
+                            <div class="offcanvas__logo">
+                                <a href="{% url 'home' %}">
+                                        <img style="width: 90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                                    </a>
+                            </div>
+                            <div class="offcanvas__close">
+                                <button>
+                                    <i class="fas fa-times"></i>
+                                    </button>
+                            </div>
+                        </div>
+                 
+                        <div class="mobile-menu fix mt-3"></div>
+                        
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="offcanvas__overlay"></div>
+
+
+        
+        
+       <!-- Header Section Start -->
+<header id="header-sticky" class="header-1">
+    <!-- Top Utility Bar -->
+    <div class="header-top">
+        <div class="container-fluid">
+            <div class="d-flex justify-content-end align-items-center py-2">
+                <div class="header-top-links">
+                    <a href="#" class="header-top-link">For Students</a>
+                    <a href="#" class="header-top-link">For Staff</a>
+                    <a href="{% url 'contact' %}" class="header-top-link">Contact</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Navigation Bar -->
+    <div class="header-main-wrapper">
+        <div class="container-fluid">
+            <div class="mega-menu-wrapper">
+                <div class="header-main">
+                    <div class="logo">
+                        <a href="{% url 'home' %}" class="header-logo">
+                            <img style="max-width:90px;" src="{% static 'assets/img/preloader.png' %}" alt="logo-img">
+                        </a>
+                    </div>
+                    
+                    <div class="header-right-items">
+                        <div class="mean__menu-wrapper">
+                            <div class="main-menu">
+                                <nav id="mobile-menu">
+                                    <ul>
+                                        <li> 
+                                            <a href="{% url 'home' %}">Home</a>
+                                        </li>
+                                        <li class="active">
+                                            <a href="{% url 'about_us' %}">About Us</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'program' %}">Programs</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'facilitators' %}">Facilitators</a>
+                                        </li>
+                                        <li>
+                                            <a href="{% url 'admission' %}">Admissions</a>
+                                        </li>
+                                        
+                                        {% if user.is_authenticated %}
+                                        <li class="d-block d-lg-none">
+                                            <a href="{% url 'dashboard' %}">Continue Learning</a>
+                                        </li>
+                                        {% else %}
+                                        <li class="d-block d-lg-none">
+                                            <a href="{% url 'apply' %}">Apply Now</a>
+                                        </li>
+                                        {% endif %}
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+                        
+                        <div class="header-right d-flex justify-content-end align-items-center">
+                            {% if user.is_authenticated %}
+                            <a href="{% url 'dashboard' %}" class="theme-btn">
+                                Continue
+                            </a>
+                            {% else %}
+                            <a href="{% url 'apply' %}" class="theme-btn">
+                                Apply Now
+                            </a>
+                            {% endif %}
+                            
+                            <div class="header__hamburger d-xl-none my-auto">
+                                <div class="sidebar__toggle">
+                                    <i class="fas fa-bars"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+<style>
+/* Top Utility Bar Styles */
+.header-top {
+    background-color: #ffffff;
+    border-bottom: 1px solid #e5e5e5;
+    font-size: 14px;
+}
+
+.header-top-links {
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+.header-top-link {
+    color: #000000;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.header-top-link:hover {
+    color: #969900;
+    text-decoration: underline;
+}
+
+.search-toggle {
+    background: none;
+    border: none;
+    color: #333;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 0;
+    font-weight: 500;
+}
+
+.search-toggle:hover {
+    color: #969900;
+}
+
+/* Main Header Styles */
+.header-main-wrapper {
+    background-color: #ffffff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 0;
+}
+
+.main-menu ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 30px;
+}
+
+.main-menu ul li a {
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    transition: color 0.3s ease;
+}
+
+.main-menu ul li.active a,
+.main-menu ul li a:hover {
+     color: #969900;
+}
+
+/* Mobile Styles */
+@media (max-width: 1199px) {
+    .header-top-links {
+        flex-wrap: wrap;
+        gap: 15px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 991px) {
+    .header-top {
+        display: none;
+    }
+}
+</style>
+
+  <!-- Breadcrumb -->
+        <div class="breadcrumb-bar bg-light p-3">
+            <a href="#">Home</a> <span>/</span> <span>Contact</span>
+        </div>
+
+
+        <style>
+            
+        
+
+       *{
+        scrollbar-width: none;
+       }
+
+/* Contact hero */
+.contact-hero {
+  position: relative;
+  min-height: 380px;
+  display: flex;
+  align-items: center;
+  padding: 60px 5%;
+  background: url({% static 'assets/img/Contact_Page.png' %}) center/cover no-repeat;
+  color: #fff;
+  overflow: hidden;
+}
+
+/* Dark overlay over the image */
+.contact-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 10, 29, 0.80); /* adjust darkness as needed */
+  z-index: 1;
+}
+
+/* Content */
+.contact-hero__content {
+  position: relative;
+  z-index: 2;
+  max-width: 600px;
+}
+
+/* Small top label */
+.contact-hero__eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 12px;
+  color: #f9d15b; /* highlight color, adjust as desired */
+  margin-bottom: 12px;
+}
+
+/* Main title */
+.contact-hero__title {
+  font-size: 60px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* Description text */
+.contact-hero__text {
+  font-size: 18px;
+  line-height: 1.5;
+  max-width: 520px;
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .contact-hero {
+    min-height: 280px;
+    padding: 40px 20px;
+  }
+
+  .contact-hero__title {
+    font-size: 38px;
+  }
+
+  .contact-hero__text {
+    font-size: 16px;
+  }
+}
+        
+        
+        </style>
+
+        <!-- Contact Hero Section -->
+<section class="contact-hero">
+  <div class="contact-hero__overlay"></div>
+
+  <div class="contact-hero__content">
+    <p class="contact-hero__eyebrow">Visit and connect</p>
+    <h1 class="contact-hero__title text-white">Contact</h1>
+    <p class="contact-hero__text">
+      Have a question? Want to schedule a visit? Here's how to get in touch with us.
+    </p>
+  </div>
+</section>
+
+
+
+<style>
+    
+
+    /* CONTACT CARDS SECTION */
+
+.contact-cards {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 5%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 32px;
+}
+
+.contact-card {
+  background: #fff7e5;         /* light cream */
+  padding: 20px 16px;
+  color: #111827;              /* dark text */
+}
+
+.contact-card h3 {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 28px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.contact-icon {
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.contact-label {
+  display: block;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #6b7280;
+  margin-bottom: 2px;
+}
+
+.contact-row a {
+  font-size: 15px;
+  color: #111827;
+  text-decoration: none;
+}
+
+.contact-row a:hover {
+  text-decoration: underline;
+}
+
+.btn-email {
+  display: inline-block;
+  margin-top: 18px;
+  padding: 12px 32px;
+  background: #d7132a;         /* red button */
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn-email:hover {
+  background: #130709;
+}
+
+/* Stack cards nicely on small screens */
+@media (max-width: 768px) {
+  .contact-card {
+    padding: 28px 22px;
+  }
+}
+
+
+</style>
+
+<!-- CONTACT CARDS SECTION -->
+<section class="contact-cards">
+
+  <!-- Card 1 -->
+  <article class="contact-card">
+    <h3>Office of Admissions</h3>
+
+    <div class="contact-row">
+      <span class="contact-icon">📞</span>
+      <div>
+        <span class="contact-label">Phone</span>
+        <a href="tel:+2348034567890">+234 (0) 803 456 7890</a>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <span class="contact-icon">✉️</span>
+      <div>
+        <span class="contact-label">Email</span>
+        <a href="mailto:admissions@winlosacademy.com">
+          admissions@winlosacademy.com
+        </a>
+      </div>
+    </div>
+
+    <a href="mailto:admissions@winlosacademy.com" class="btn-email">Email Us</a>
+  </article>
+
+  <!-- Card 2 -->
+  <article class="contact-card">
+    <h3>General Inquiries</h3>
+
+    <div class="contact-row">
+      <span class="contact-icon">📞</span>
+      <div>
+        <span class="contact-label">Phone</span>
+        <a href="tel:+2348035551234">+234 (0) 803 555 1234</a>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <span class="contact-icon">✉️</span>
+      <div>
+        <span class="contact-label">Email</span>
+        <a href="mailto:info@winlosacademy.com">
+          info@winlosacademy.com
+        </a>
+      </div>
+    </div>
+
+    <a href="mailto:info@winlosacademy.com" class="btn-email">Email Us</a>
+  </article>
+
+  <!-- Card 3 -->
+  <article class="contact-card">
+    <h3>Student Support</h3>
+
+    <div class="contact-row">
+      <span class="contact-icon">📞</span>
+      <div>
+        <span class="contact-label">Phone</span>
+        <a href="tel:+2348035555678">+234 (0) 803 555 5678</a>
+      </div>
+    </div>
+
+    <div class="contact-row">
+      <span class="contact-icon">✉️</span>
+      <div>
+        <span class="contact-label">Email</span>
+        <a href="mailto:support@winlosacademy.com">
+          support@winlosacademy.com
+        </a>
+      </div>
+    </div>
+
+    <a href="mailto:support@winlosacademy.com" class="btn-email">Email Us</a>
+  </article>
+
+</section>
+
+
+
+
+
+<style>
+    
+
+
+    /* VISIT ACADEMY SECTION */
+
+.visit-academy {
+  background: #f9fafb;             /* light gray background */
+  padding: 70px 5% 80px;
+}
+
+.visit-academy__inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: 48px;
+  align-items: center;
+}
+
+/* Image */
+.visit-academy__image {
+  flex: 0 0 45%;
+}
+
+.visit-academy__image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+}
+
+/* Content */
+.visit-academy__content {
+  flex: 1;
+  color: #111827;
+}
+
+.visit-academy__content h2 {
+  font-size: 36px;
+  line-height: 1.2;
+  margin-bottom: 18px;
+  font-weight: 700;
+}
+
+.visit-academy__intro {
+  font-size: 16px;
+  line-height: 1.6;
+  margin-bottom: 26px;
+  max-width: 520px;
+}
+
+/* Info blocks */
+.visit-academy__info {
+  margin-bottom: 28px;
+}
+
+.visit-academy__info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.visit-academy__icon-box {
+  width: 48px;
+  height: 48px;
+  background: #ffd41c;              /* yellow square */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visit-academy__icon-box span {
+  font-size: 22px;
+}
+
+.visit-academy__info-item h4 {
+  font-size: 16px;
+  margin-bottom: 4px;
+  font-weight: 700;
+}
+
+.visit-academy__info-item p {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+/* Button */
+.visit-academy__btn {
+  display: inline-block;
+  padding: 14px 34px;
+  background: #ffd41c;
+  color: #111827;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.visit-academy__btn:hover {
+  background: #e5bf18;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .visit-academy__inner {
+    flex-direction: column;
+  }
+
+  .visit-academy__image {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+
+  .visit-academy__content h2 {
+    font-size: 30px;
+  }
+}
+
+
+</style>
+
+
+
+
+
+<!-- VISIT ACADEMY SECTION -->
+<section class="visit-academy">
+  <div class="visit-academy__inner">
+
+    <!-- Left: Image -->
+    <div class="visit-academy__image">
+      <img src="{% static 'assets/img/Vist_the_Winlows.png' %}" alt="Students walking on campus in graduation gowns">
+    </div>
+
+    <!-- Right: Content -->
+    <div class="visit-academy__content">
+      <h2>Visit Winlos Film Academy in Lagos</h2>
+
+      <p class="visit-academy__intro">
+        Join us to experience our campus, classrooms, and production facilities.
+        Meet our facilitators, current students, and discover what makes Winlos
+        Academy the premier destination for faith-based filmmaking education in Nigeria.
+      </p>
+
+      <div class="visit-academy__info">
+
+        <!-- Location -->
+        <div class="visit-academy__info-item">
+          <div class="visit-academy__icon-box">
+            <i class="fa-solid fa-location-dot"></i>
+          </div>
+          <div>
+            <h4>Our Location</h4>
+            <p>
+              123 Creative Boulevard, Lekki Phase 1<br>
+              Lagos, Nigeria
+            </p>
+          </div>
+        </div>
+
+        <!-- Hours -->
+        <div class="visit-academy__info-item">
+          <div class="visit-academy__icon-box">
+            <i class="fa-solid fa-clock"></i>
+          </div>
+          <div>
+            <h4>Campus Hours</h4>
+            <p>
+              Monday – Friday: 9:00 AM – 6:00 PM<br>
+              Saturday: 10:00 AM – 4:00 PM<br>
+              Sunday: Closed
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <a href="#" class="visit-academy__btn">Schedule a Visit →</a>
+    </div>
+  </div>
+</section>
+
+
+
+<style>
+    
+
+
+/* SEND MESSAGE SECTION */
+
+.message-section {
+  padding: 60px 5% 80px;
+  background: #ffffff;
+}
+
+.message-section__container {
+  max-width: 850px;
+  margin: 0 auto;
+  text-align: center;
+  color: #111827;
+}
+
+.message-section h2 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.message-section__subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 32px;
+}
+
+/* Form */
+.message-form {
+  text-align: left;
+}
+
+.message-form__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.message-form__group {
+  margin-bottom: 16px;
+}
+
+.message-form__group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.required {
+  color: #dc2626;
+}
+
+.message-form input,
+.message-form select,
+.message-form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  font-size: 14px;
+  font-family: inherit;
+  border-radius: 0;
+  background: #ffffff;
+}
+
+.message-form textarea {
+  resize: vertical;
+}
+
+.message-form input:focus,
+.message-form select:focus,
+.message-form textarea:focus {
+  outline: none;
+  border-color: #111827;
+}
+
+/* Buttons */
+.message-form__actions {
+  margin-top: 20px;
+  display: flex;
+  gap: 16px;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: #ffd41c;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  color: #111827;
+  text-decoration: none;
+}
+
+.btn-primary i {
+  font-size: 14px;
+}
+
+.btn-primary:hover {
+  background: #e5bf18;
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 28px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #111827;
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: #f3f4f6;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+  .message-form__row {
+    grid-template-columns: 1fr;
+  }
+
+  .message-form__actions {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+
+</style>
+
+
+
+
+
+
+<!-- SEND MESSAGE SECTION -->
+<section class="message-section">
+  <div class="message-section__container">
+    <h2>Send Us a Message</h2>
+    <p class="message-section__subtitle">
+      Fill out the form below and we'll get back to you within 24 hours
+    </p>
+
+    <form class="message-form" action="#" method="post">
+      <!-- Row 1 -->
+      <div class="message-form__row">
+        <div class="message-form__group">
+          <label for="fullName">
+            Full Name <span class="required">*</span>
+          </label>
+          <input
+            type="text"
+            id="fullName"
+            name="fullName"
+            placeholder="Enter your full name"
+            required
+          >
+        </div>
+
+        <div class="message-form__group">
+          <label for="email">
+            Email Address <span class="required">*</span>
+          </label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="your.email@example.com"
+            required
+          >
+        </div>
+      </div>
+
+      <!-- Row 2 -->
+      <div class="message-form__row">
+        <div class="message-form__group">
+          <label for="phone">Phone Number</label>
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="+234 (0) 800 000 0000"
+          >
+        </div>
+
+        <div class="message-form__group">
+          <label for="subject">
+            Subject <span class="required">*</span>
+          </label>
+          <select id="subject" name="subject" required>
+            <option value="">Select a subject</option>
+            <option>Admissions</option>
+            <option>General Inquiry</option>
+            <option>Student Support</option>
+            <option>Partnerships</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Message -->
+      <div class="message-form__group">
+        <label for="message">
+          Message <span class="required">*</span>
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows="6"
+          placeholder="Tell us how we can help you..."
+          required
+        ></textarea>
+      </div>
+
+      <!-- Buttons -->
+      <div class="message-form__actions">
+        <button type="submit" class="btn-primary">
+          Send Message
+          <i class="fa-solid fa-paper-plane"></i>
+        </button>
+
+        <a href="index.html" class="btn-secondary">
+          Back to Home
+        </a>
+      </div>
+    </form>
+  </div>
+</section>
+
+
+
+<style> 
+    
+    /* MAP SECTION */
+
+.map-section {
+  padding: 60px 5% 80px;
+  background: #f9fafb;
+}
+
+.map-section__container {
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
+  color: #111827;
+}
+
+.map-section h2 {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.map-section__subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 26px;
+}
+
+/* Map box */
+.map-section__map {
+  width: 100%;
+  height: 420px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+/* Make sure Leaflet map fills container */
+#campusMap .leaflet-container {
+  width: 100%;
+  height: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .map-section {
+    padding: 40px 16px 60px;
+  }
+}
+
+</style>
+
+
+
+
+
+
+<!-- FIND US ON THE MAP -->
+<section class="map-section">
+  <div class="map-section__container">
+    <h2>Find Us on the Map</h2>
+    <p class="map-section__subtitle">
+      Located in the heart of Lagos creative district
+    </p>
+
+    <!-- Interactive map -->
+    <div id="campusMap" class="map-section__map"></div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+
+        
+
+<footer class="twa-footer">
+    <div class="container">
+        <div class="row gy-4 align-items-start">
+
+            <!-- Brand / Intro -->
+            <div class="col-lg-3">
+                <div class="footer-brand mb-3">
+                    <img src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Winlos Academy" style="height:40px;">
+                </div>
+                <p class="footer-desc">
+                    Empowering the next generation of filmmakers<br>
+                    to tell stories that matter.
+                </p>
+            </div>
+
+            <!-- Programs -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">PROGRAMS</h6>
+                <ul class="footer-links">
+                    <li><a href="#">Scriptwriting</a></li>
+                    <li><a href="#">Cinematography</a></li>
+                    <li><a href="#">Editing</a></li>
+                    <li><a href="#"><strong>All Programs</strong></a></li>
+                </ul>
+            </div>
+
+            <!-- Academy -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">ACADEMY</h6>
+                <ul class="footer-links">
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Admission</a></li>
+                    <li><a href="#">Faculty</a></li>
+                    <li><a href="#">Alumni</a></li>
+                </ul>
+            </div>
+
+            <!-- Connect -->
+            <div class="col-lg-3 col-md-4">
+                <h6 class="footer-title">CONNECT</h6>
+                <ul class="footer-links">
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">News & Events</a></li>
+                    <li><a href="#">The Winlos Studio</a></li>
+                    <li><a href="#">Miller Road, Nigeria</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <hr class="footer-divider">
+
+        <!-- Bottom Bar -->
+        <div class="row align-items-center bg-white footer-bottom">
+            <div class="col-md-6 text-center text-md-start">
+                <p class="mb-0">© 2026 The Winlos Film Academy. All rights reserved.</p>
+            </div>
+            <div class="col-md-6 text-center text-md-end">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<style>
+.twa-footer {
+    padding: 80px 0 30px;
+    background: #ffffff;
+    color: #111;
+    border-top: 1px solid #eee;
+}
+
+.footer-desc {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #555;
+}
+
+.footer-title {
+    font-size: 12px;
+    letter-spacing: 1px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    color: #111;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    text-decoration: none;
+    font-size: 14px;
+    color: #555;
+    transition: color 0.2s ease;
+}
+
+.footer-links a:hover {
+    color: #111;
+}
+
+.footer-divider {
+    margin: 60px 0 25px;
+    border: none;
+    border-top: 1px solid #eee;
+}
+
+.footer-bottom p,
+.footer-bottom a {
+    font-size: 13px;
+    color: #777;
+    text-decoration: none;
+    margin-left: 15px;
+}
+
+.footer-bottom a:first-child {
+    margin-left: 0;
+}
+
+.footer-bottom a:hover {
+    color: #111;
+}
+</style>
+
+      
+
+
+
+
+
+
+        <!--<< All JS Plugins >>-->
+        <script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+        <!--<< Viewport Js >>-->
+        <script src="{% static 'assets/js/viewport.jquery.js' %}"></script>
+        <!--<< Bootstrap Js >>-->
+        <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+        <!--<< Nice Select Js >>-->
+        <script src="{% static 'assets/js/jquery.nice-select.min.js' %}"></script>
+        <!--<< Waypoints Js >>-->
+        <script src="{% static 'assets/js/jquery.waypoints.js' %}"></script>
+        <!--<< Counterup Js >>-->
+        <script src="{% static 'assets/js/jquery.counterup.min.js' %}"></script>
+        <!--<< Swiper Slider Js >>-->
+        <script src="{% static 'assets/js/swiper-bundle.min.js' %}"></script>
+        <!--<< MeanMenu Js >>-->
+        <script src="{% static 'assets/js/jquery.meanmenu.min.js' %}"></script>
+        <!--<< Parallaxie Js >>-->
+        <script src="{% static 'assets/js/parallaxie.js' %}"></script>
+        <!--<< Magnific Popup Js >>-->
+        <script src="{% static 'assets/js/jquery.magnific-popup.min.js' %}"></script>
+        <!--<< Wow Animation Js >>-->
+        <script src="{% static 'assets/js/wow.min.js' %}"></script>
+        <!--<< Circle Progress Js >>-->
+        <script src="{% static 'assets/js/circle-progress.js' %}"></script>
+        <!--<< Main.js >>-->
+        <script src="{% static 'assets/js/main.js' %}"></script>
+
+
+
+        <script
+  src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+  crossorigin=""
+></script>
+
+        <script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // Approximate coordinates for Lekki Phase 1, Lagos
+    const academyLat = 6.4402;
+    const academyLng = 3.4631;
+
+    const map = L.map("campusMap").setView([academyLat, academyLng], 15);
+
+    // Modern OpenStreetMap tiles
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
+      attribution: "&copy; OpenStreetMap contributors",
+    }).addTo(map);
+
+    // Marker at the academy
+    const marker = L.marker([academyLat, academyLng]).addTo(map);
+    marker.bindPopup(
+      "<strong>Winlos Film Academy</strong><br>123 Creative Boulevard, Lekki Phase 1<br>Lagos, Nigeria"
+    );
+  });
+</script>
+
+
+    </body>
+</html>
