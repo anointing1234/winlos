@@ -238,10 +238,10 @@ if 'AWS_S3_CUSTOM_DOMAIN' in locals():
     MEDIA_URL = f"https://{AWS_S3_CUSTOM_DOMAIN}/media/"
 
 
-if not DEBUG:
-    # Additional headers
-    SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
-    SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
+# if not DEBUG:
+#     # Additional headers
+#     SECURE_REFERRER_POLICY = "strict-origin-when-cross-origin"
+#     SECURE_CROSS_ORIGIN_OPENER_POLICY = "same-origin"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
@@ -276,17 +276,17 @@ ANYMAIL = {"RESEND_API_KEY": os.getenv("RESEND_API_KEY")}
 # --------------------------------------------------
 # SECURITY (PRODUCTION ONLY)
 # --------------------------------------------------
-if not DEBUG:
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-    SECURE_SSL_REDIRECT = True
-    SESSION_COOKIE_SECURE = True
-    CSRF_COOKIE_SECURE = True
-    SECURE_BROWSER_XSS_FILTER = True
-    SECURE_CONTENT_TYPE_NOSNIFF = True
-    X_FRAME_OPTIONS = 'DENY'
-    SECURE_HSTS_SECONDS = 31536000  # 1 year
-    SECURE_HSTS_INCLUDE_SUBDOMAINS = True
-    SECURE_HSTS_PRELOAD = True
+# if not DEBUG:
+#     SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+#     SECURE_SSL_REDIRECT = True
+#     SESSION_COOKIE_SECURE = True
+#     CSRF_COOKIE_SECURE = True
+#     SECURE_BROWSER_XSS_FILTER = True
+#     SECURE_CONTENT_TYPE_NOSNIFF = True
+#     X_FRAME_OPTIONS = 'DENY'
+#     SECURE_HSTS_SECONDS = 31536000  # 1 year
+#     SECURE_HSTS_INCLUDE_SUBDOMAINS = True
+#     SECURE_HSTS_PRELOAD = True
 
 
 PAYSTACK_PUBLIC_KEY = os.getenv("PAYSTACK_PUBLIC_KEY")
