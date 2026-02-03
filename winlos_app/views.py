@@ -307,7 +307,7 @@ def ajax_signup(request):
         return JsonResponse({
             "status": "success",
             "message": "Account created successfully!",
-            "redirect_url": "/dashboard/"
+            "redirect_url": "/program/"
         })
 
     except Exception as e:
@@ -370,7 +370,7 @@ def ajax_signin(request):
         return JsonResponse({
             "status": "success",
             "message": "Login successful!",
-            "redirect_url": "/dashboard/"
+            "redirect_url": "/program/"
         })
 
     except Exception as e:
