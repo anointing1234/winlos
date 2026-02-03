@@ -127,7 +127,7 @@ def Lighting_Design(request):
     return render(request,'home_pages/courses/Lighting_Design.html')
 
 def Advanced_Film(request):
-    return render(request,'home_pages/courses/Advanced_film.html')
+    return render(request,'home_pages/courses/Advanced_Film.html')
 
 def Short_Firm(request):
     return render(request,'home_pages/courses/Short_Firm.html')
