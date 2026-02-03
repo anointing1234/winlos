@@ -23,12 +23,8 @@ DEBUG = False
 
 # ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "localhost,127.0.0.1").split(",")
 # CSRF_TRUSTED_ORIGINS = os.getenv("CSRF_TRUSTED_ORIGINS", "http://localhost,http://127.0.0.1").split(",")
-# DEBUG_PROPAGATE_EXCEPTIONS = False
 
 
-
-
-## ALLOWED_HOSTS: only hostnames (no http/https)
 ALLOWED_HOSTS = [
     "winlos-production.up.railway.app",
     "www.winlos-production.up.railway.app",
