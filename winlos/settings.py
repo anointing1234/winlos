@@ -33,7 +33,7 @@ ALLOWED_HOSTS = [
 ]
 
 
-# CSRF_TRUSTED_ORIGINS: full scheme required
+
 CSRF_TRUSTED_ORIGINS = [
     "https://winlos-production.up.railway.app",
     "https://www.winlos-production.up.railway.app",
