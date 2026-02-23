@@ -119,6 +119,21 @@
       }
     }
     </script>
+
+
+       <style>
+        
+
+    @media (min-width: 1280px) {
+    .logo-img {
+        max-width: 200px !important;
+    }
+}
+    
+
+    </style>
+
+
 </head>
 
 
@@ -244,11 +259,9 @@
                                             <a href="{% url 'admission' %}">Admissions</a>
                                         </li>
                                         
-                                    {% if user.is_authenticated %}
-                                        <li class="d-block d-lg-none">
-                                            <div class="user-avatar">
-                                                {{ user.get_full_name|default:user.username|slice:":1"|upper }}
-                                            </div>
+                                        {% if user.is_authenticated %}
+                                          <li class="d-block d-lg-none">
+                                            <a href="{% url 'logout' %}">Logout</a>
                                         </li>
                                     {% else %}
                                         <li class="d-block d-lg-none">

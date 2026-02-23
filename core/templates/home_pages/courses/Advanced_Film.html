@@ -119,7 +119,17 @@
     }
     </script>
 
+   <style>
+        
 
+    @media (min-width: 1280px) {
+    .logo-img {
+        max-width: 200px !important;
+    }
+}
+    
+
+    </style>
 
 
 
@@ -768,15 +778,19 @@
                                             <a href="{% url 'admission' %}">Admissions</a>
                                         </li>
                                         
+                                            
+                                             
                                         {% if user.is_authenticated %}
                                         <li class="d-block d-lg-none">
-                                            <a href="{% url 'dashboard' %}">Continue Learning</a>
+                                            <div class="user-avatar">
+                                                {{ user.get_full_name|default:user.username|slice:":1"|upper }}
+                                            </div>
                                         </li>
-                                        {% else %}
+                                    {% else %}
                                         <li class="d-block d-lg-none">
                                             <a href="{% url 'apply' %}">Apply Now</a>
                                         </li>
-                                        {% endif %}
+                                    {% endif %}
                                     </ul>
                                 </nav>
                             </div>
