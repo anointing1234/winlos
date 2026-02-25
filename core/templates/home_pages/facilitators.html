@@ -141,41 +141,6 @@
 
     <body>
 
-        {% comment %} <!-- Preloader Start -->
-        <div id="preloader" class="preloader">
-            <div class="animation-preloader">
-                <div class="txt-loading">
-                    <span data-text-preloader="T" class="letters-loading">
-                        T
-                    </span>
-                    <span data-text-preloader="W" class="letters-loading">
-                        W
-                    </span>
-                    <span data-text-preloader="A" class="letters-loading">
-                        A
-                    </span>
-                 
-                </div>
-            </div>
-            <div class="loader">
-                <div class="row">
-                    <div class="col-3 loader-section section-left">
-                        <div class="bg"></div>
-                    </div>
-                    <div class="col-3 loader-section section-left">
-                        <div class="bg"></div>
-                    </div>
-                    <div class="col-3 loader-section section-right">
-                        <div class="bg"></div>
-                    </div>
-                    <div class="col-3 loader-section section-right">
-                        <div class="bg"></div>
-                    </div>
-                </div>
-            </div>
-        </div> {% endcomment %}
-
-
         <!-- GT Back To Top Start -->
         <button id="back-top" class="back-to-top show">
             <i class="fa-regular fa-arrow-up"></i>
@@ -914,6 +879,36 @@
         </div>
       </div>
 
+       <!-- Faculty Card 8 -->
+      <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="faculty-image">
+            <img src="{% static 'assets/img/Martha_Efoghe.jpg' %}" alt="Martha Efoghe">
+          </div>
+          <div class="card-body">
+            <h6 class="fw-bold mb-1">Martha Efoghe</h6>
+            <small class="text-muted d-block mb-2">Advanced Acting for Film & Camera</small>
+            <a href="{% url 'team8' %}" class="text-decoration-none fw-semibold">Read Bio →</a>
+          </div>
+        </div>
+      </div>
+
+
+          <!-- Faculty Card 6 -->
+      <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
+        <div class="card h-100 border-0 shadow-sm">
+          <div class="faculty-image">
+            <img src="{% static 'assets/img/Dwindik.JPEG' %}" alt="Dwindik">
+          </div>
+          <div class="card-body">
+            <h6 class="fw-bold mb-1">Dwindik</h6>
+            <small class="text-muted d-block mb-2">Film Editing & Post-Production Storytelling</small>
+            <a href="{% url 'team6' %}" class="text-decoration-none fw-semibold">Read Bio →</a>
+          </div>
+        </div>
+      </div>
+
+
         <!-- Faculty Card 4 -->
       <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.5s">
         <div class="card h-100 border-0 shadow-sm">
@@ -928,35 +923,8 @@
         </div>
       </div>
 
-        <!-- Faculty Card 5 -->
-      <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="faculty-image">
-            <img src="{% static 'assets/img/Raymond_Osas_Akpojobaro.PNG' %}" alt="Raymond Osas Akpojobaro">
-          </div>
-          <div class="card-body">
-            <h6 class="fw-bold mb-1">Raymond Osas Akpojobaro</h6>
-            <small class="text-muted d-block mb-2">Screenwriting for Film & Digital Media</small>
-            <a href="{% url 'team5' %}" class="text-decoration-none fw-semibold">Read Bio →</a>
-          </div>
-        </div>
-      </div>
 
-
-         <!-- Faculty Card 6 -->
-      <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.7s">
-        <div class="card h-100 border-0 shadow-sm">
-          <div class="faculty-image">
-            <img src="{% static 'assets/img/Dwindik.JPEG' %}" alt="Dwindik">
-          </div>
-          <div class="card-body">
-            <h6 class="fw-bold mb-1">Dwindik</h6>
-            <small class="text-muted d-block mb-2">Film Editing & Post-Production Storytelling</small>
-            <a href="{% url 'team6' %}" class="text-decoration-none fw-semibold">Read Bio →</a>
-          </div>
-        </div>
-      </div>
-
+      
             <!-- Faculty Card 7 -->
       <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.8s">
         <div class="card h-100 border-0 shadow-sm">
@@ -973,28 +941,23 @@
       </div>
 
 
-     
-
-    
-
-    
-   
-
-
-
-      <!-- Faculty Card 8 -->
-      <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.9s">
+        <!-- Faculty Card 5 -->
+      <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
         <div class="card h-100 border-0 shadow-sm">
           <div class="faculty-image">
-            <img src="{% static 'assets/img/Martha_Efoghe.jpg' %}" alt="Martha Efoghe">
+            <img src="{% static 'assets/img/Raymond_Osas_Akpojobaro.PNG' %}" alt="Raymond Osas Akpojobaro">
           </div>
           <div class="card-body">
-            <h6 class="fw-bold mb-1">Martha Efoghe</h6>
-            <small class="text-muted d-block mb-2">Advanced Acting for Film & Camera</small>
-            <a href="{% url 'team8' %}" class="text-decoration-none fw-semibold">Read Bio →</a>
+            <h6 class="fw-bold mb-1">Raymond Osas Akpojobaro</h6>
+            <small class="text-muted d-block mb-2">Screenwriting for Film & Digital Media</small>
+            <a href="{% url 'team5' %}" class="text-decoration-none fw-semibold">Read Bio →</a>
           </div>
         </div>
       </div>
+
+
+     
+     
 
     </div>
   </div>
@@ -1217,7 +1180,7 @@
         }
     </style>
 
-
+{% comment %} 
 <div class="support-staff-section">
         <div class="container-fluid">
           <div class="section-header row align-items-center">
@@ -1297,7 +1260,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> {% endcomment %}
 
 
 
