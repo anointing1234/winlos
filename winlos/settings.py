@@ -26,8 +26,8 @@ DEBUG = False
 
 
 ALLOWED_HOSTS = [
-    "winlos-production.up.railway.app",
-    "www.winlos-production.up.railway.app",
+    "thewinlosacademy.com",
+    "www.thewinlosacademy.com",
     "localhost",
     "127.0.0.1",
 ]
@@ -35,8 +35,8 @@ ALLOWED_HOSTS = [
 
 
 CSRF_TRUSTED_ORIGINS = [
-    "https://winlos-production.up.railway.app",
-    "https://www.winlos-production.up.railway.app",
+    "https://thewinlosacademy.com",
+    "https://www.thewinlosacademy.com",
 ]
 
 

@@ -1058,7 +1058,7 @@
                         <h5 class="mb-1 fw-bold">Applications Open</h5>
                         <p class="text-muted mb-0 small">Start your application and begin preparing your materials</p>
                     </div>
-                    <div class="text-end ms-3 fw-semibold">January 15, 2026</div>
+                    <div class="text-end ms-3 fw-semibold">2026</div>
                 </div>
             </div>
 
@@ -1076,7 +1076,7 @@
                         <h5 class="mb-1 fw-bold">Early Decision Deadline</h5>
                         <p class="text-muted mb-0 small">Priority consideration and early acceptance notifications</p>
                     </div>
-                    <div class="text-end ms-3 fw-semibold">March 1, 2026</div>
+                    <div class="text-end ms-3 fw-semibold">2026</div>
                 </div>
             </div>
 
@@ -1094,7 +1094,7 @@
                         <h5 class="mb-1 fw-bold">Regular Decision Deadline</h5>
                         <p class="text-muted mb-0 small">Final deadline for all application materials and fees</p>
                     </div>
-                    <div class="text-end ms-3 fw-semibold">April 15, 2026</div>
+                    <div class="text-end ms-3 fw-semibold">2026</div>
                 </div>
             </div>
 
@@ -1112,7 +1112,7 @@
                         <h5 class="mb-1 fw-bold">Acceptance Notifications</h5>
                         <p class="text-muted mb-0 small">Admissions decisions sent via email and student portal</p>
                     </div>
-                    <div class="text-end ms-3 fw-semibold">May 1, 2026</div>
+                    <div class="text-end ms-3 fw-semibold">2026</div>
                 </div>
             </div>
 
@@ -1130,7 +1130,7 @@
                         <h5 class="mb-1 fw-bold">Enrollment Confirmation</h5>
                         <p class="text-muted mb-0 small">Confirm your spot and complete enrollment paperwork</p>
                     </div>
-                    <div class="text-end ms-3 fw-semibold">May 15, 2026</div>
+                    <div class="text-end ms-3 fw-semibold">2026</div>
                 </div>
             </div>
 
@@ -1148,7 +1148,7 @@
                         <h5 class="mb-1 fw-bold">Classes Begin</h5>
                         <p class="text-muted mb-0 small">First day of instruction for the new cohort</p>
                     </div>
-                    <div class="text-end ms-3 fw-semibold">June 1, 2026</div>
+                    <div class="text-end ms-3 fw-semibold">2026</div>
                 </div>
             </div>
 
@@ -1228,18 +1228,18 @@
                         </h2>
                         <div id="collapse3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted">
-                      Each course is priced at $200 (or ₦200,000). You can enroll in individual courses or bundle multiple courses for a comprehensive education. Payment plans are available to make your investment more manageable.
+                      Each course is priced at  $<span id="usd-price" >100</span> (or <span id="naira-price"></span>). You can enroll in individual courses or bundle multiple courses for a comprehensive education. Payment plans are available to make your investment more manageable.
                             </div>
                         </div>
                     </div>
 
                     <!-- Question 4 -->
                     <div class="accordion-item border-0 shadow-sm mb-2">
-                        <h2 class="accordion-header">
+                        {% comment %} <h2 class="accordion-header">
                             <button class="accordion-button collapsed fw-semibold" type="button" data-bs-toggle="collapse" data-bs-target="#collapse4" aria-expanded="false" aria-controls="collapse4">
                                 Are there scholarships or financial aid available?
                             </button>
-                        </h2>
+                        </h2> {% endcomment %}
                         <div id="collapse4" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
                             <div class="accordion-body text-muted">
                           Yes! We offer merit-based scholarships and need-based financial aid to qualified students. Scholarship applications are reviewed alongside admissions applications. Contact our admissions office for more details.
@@ -1620,6 +1620,31 @@
 
   
 
+<script>
+async function convertUsdToNaira() {
+    const usdAmount = parseFloat(document.getElementById("usd-price").innerText);
+    const nairaEl = document.getElementById("naira-price");
+
+    try {
+        const response = await fetch("https://open.er-api.com/v6/latest/USD");
+        const data = await response.json();
+
+        if (data.result !== "success") {
+            throw new Error("API error");
+        }
+
+        const rate = data.rates.NGN;
+        const nairaAmount = (usdAmount * rate).toFixed(0);
+
+        nairaEl.innerHTML = `₦${Number(nairaAmount).toLocaleString()}`;
+    } catch (error) {
+        nairaEl.innerHTML = "NGN price unavailable";
+        console.error("Currency conversion failed:", error);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", convertUsdToNaira);
+</script>
 
     </body>
 </html>

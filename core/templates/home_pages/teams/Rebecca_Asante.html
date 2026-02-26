@@ -559,7 +559,7 @@ Martha is happily married and remains deeply passionate about raising a new gene
         background-color: #fffdf5;
     }
 </style>
-
+{% comment %} 
 <section class="py-5">
     <div class="container">
         <div class="row">
@@ -581,7 +581,7 @@ Martha is happily married and remains deeply passionate about raising a new gene
             </div>
         </div>
     </div>
-</section>
+</section> {% endcomment %}
 
 
 
@@ -651,9 +651,9 @@ Martha is happily married and remains deeply passionate about raising a new gene
 
                 <div class="contact-block">
                     <div class="contact-name">Martha Efoghe</div>
-                    <a href="mailto:martha.efoghe@winlosacademy.org" class="contact-email">
+                    {% comment %} <a href="mailto:martha.efoghe@winlosacademy.org" class="contact-email">
                         martha.efoghe@winlosacademy.org
-                    </a>
+                    </a> {% endcomment %}
                 </div>
 
                 <div class="contact-block">
@@ -661,9 +661,9 @@ Martha is happily married and remains deeply passionate about raising a new gene
                     <div class="contact-role">
                        General Inquiries and Course Information
                     </div>
-                    <a href="mailto:admissions@winlosacademy.org" class="contact-email">
+                    {% comment %} <a href="mailto:admissions@winlosacademy.org" class="contact-email">
                         admissions@winlosacademy.org
-                    </a>
+                    </a> {% endcomment %}
                 </div>
 
                 <a href="{% url 'facilitators' %}" class="back-link">

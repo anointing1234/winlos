@@ -1176,7 +1176,7 @@
       
 
         <button class="btn-enroll">Enroll Now →</button>
-        <button class="btn-outline">Download Syllabus</button>
+        {% comment %} <button class="btn-outline">Download Syllabus</button> {% endcomment %}
 
         <div class="quick-info">
             <div><span>Start Date</span><span>Rolling Admission</span></div>
@@ -1241,19 +1241,20 @@ document.addEventListener("DOMContentLoaded", convertUsdToNaira);
         <p class="text-muted mb-4">Explore other courses that complement your learning journey</p>
 
         <div class="row g-4">
-            <!-- Card 1 -->
+          
+               <!-- Card 1 -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 border rounded">
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <small class="text-muted text-uppercase fw-semibold">Course 02</small>
+                            <small class="text-muted text-uppercase fw-semibold">Course 05</small>
                             <span class="badge bg-light text-dark">FOUNDATION</span>
                         </div>
-                        <h4 class="card-title fw-bold fs-5 mb-2">Screenwriting for Film & Digital Media</h4>
-                        <p class="card-text text-muted mb-3">Turn story ideas into professional scripts</p>
+                        <h4 class="card-title fw-bold fs-5 mb-2">Film Editing & Post Production Storytelling</h4>
+                        <p class="card-text text-muted mb-3">Shape and refine stories in post-production</p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
                             <small class="text-muted">⏱ 8 Weeks</small>
-                            <a href="{% url 'Screenwriting' %}" class="text-dark text-decoration-none fw-semibold">Learn More →</a>
+                            <a href="{% url 'Film_Editing' %}" class="text-dark text-decoration-none fw-semibold">Learn More →</a>
                         </div>
                     </div>
                 </div>
@@ -1264,32 +1265,32 @@ document.addEventListener("DOMContentLoaded", convertUsdToNaira);
                 <div class="card h-100 border rounded">
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <small class="text-muted text-uppercase fw-semibold">Course 03</small>
+                            <small class="text-muted text-uppercase fw-semibold">Course 06</small>
                             <span class="badge bg-light text-dark">ADVANCED</span>
                         </div>
-                        <h4 class="card-title fw-bold fs-5 mb-2">Film Editing & Post-Production Storytelling</h4>
-                        <p class="card-text text-muted mb-3">Cut Rhythm Flow.</p>
+                        <h4 class="card-title fw-bold fs-5 mb-2">Film Directing & Visual Leadership</h4>
+                        <p class="card-text text-muted mb-3">Lead and bring stories to life on screen</p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
-                            <small class="text-muted">⏱ 10 Weeks</small>
-                            <a href="{% url 'Film_Editing' %}" class="text-dark text-decoration-none fw-semibold">Learn More →</a>
+                            <small class="text-muted">⏱ 8 Weeks</small>
+                            <a href="{% url 'Film_Directing' %}" class="text-dark text-decoration-none fw-semibold">Learn More →</a>
                         </div>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Card 3 -->
             <div class="col-12 col-md-6 col-lg-4">
                 <div class="card h-100 border rounded">
                     <div class="card-body d-flex flex-column">
                         <div class="d-flex justify-content-between align-items-center mb-3">
-                            <small class="text-muted text-uppercase fw-semibold">Course 04</small>
+                            <small class="text-muted text-uppercase fw-semibold">Course 07</small>
                             <span class="badge bg-light text-dark">ADVANCED</span>
                         </div>
-                        <h4 class="card-title fw-bold fs-5 mb-2">Advanced Acting for Film & Camera</h4>
-                        <p class="card-text text-muted mb-3">Master the art of acting for the camera</p>
+                        <h4 class="card-title fw-bold fs-5 mb-2">Sound Design & Audio Production for Film</h4>
+                        <p class="card-text text-muted mb-3">Harness the power of sound in storytelling</p>
                         <div class="d-flex justify-content-between align-items-center mt-auto">
                             <small class="text-muted">⏱ 8 Weeks</small>
-                            <a href="{% url 'Advanced_Acting' %}" class="text-dark text-decoration-none fw-semibold">Learn More →</a>
+                            <a href="{% url 'Sound_Design' %}" class="text-dark text-decoration-none fw-semibold">Learn More →</a>
                         </div>
                     </div>
                 </div>

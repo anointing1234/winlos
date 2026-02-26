@@ -556,7 +556,7 @@ She is also a published author with many scholarly works featured in reputable n
         background-color: #fffdf5;
     }
 </style>
-
+{% comment %} 
 <section class="py-5">
     <div class="container">
         <div class="row">
@@ -577,7 +577,7 @@ She is also a published author with many scholarly works featured in reputable n
             </div>
         </div>
     </div>
-</section>
+</section> {% endcomment %}
 
 
 
@@ -647,9 +647,9 @@ She is also a published author with many scholarly works featured in reputable n
 
                 <div class="contact-block">
                     <div class="contact-name">Dr. Laurel Olu-Egbor</div>
-                    <a href="mailto:laurel.olu-egbor@winlosacademy.org" class="contact-email">
+                    {% comment %} <a href="mailto:laurel.olu-egbor@winlosacademy.org" class="contact-email">
                         laurel.olu-egbor@winlosacademy.org
-                    </a>
+                    </a> {% endcomment %}
                 </div>
 
                 <div class="contact-block">
@@ -657,9 +657,9 @@ She is also a published author with many scholarly works featured in reputable n
                     <div class="contact-role">
                        General Inquiries and Course Information
                     </div>
-                    <a href="mailto:admissions@winlosacademy.org" class="contact-email">
+                    {% comment %} <a href="mailto:admissions@winlosacademy.org" class="contact-email">
                         admissions@winlosacademy.org
-                    </a>
+                    </a> {% endcomment %}
                 </div>
 
                 <a href="{% url 'facilitators' %}" class="back-link">
