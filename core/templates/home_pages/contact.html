@@ -671,7 +671,7 @@
       <span class="contact-icon">📞</span>
       <div>
         <span class="contact-label">Phone</span>
-        <a href="tel:+2348034567890">+234 (0) 803 456 7890</a>
+        {% comment %} <a href="tel:+2348034567890">+234 (0) 803 456 7890</a> {% endcomment %}
       </div>
     </div>
 
@@ -679,13 +679,13 @@
       <span class="contact-icon">✉️</span>
       <div>
         <span class="contact-label">Email</span>
-        <a href="mailto:admissions@winlosacademy.com">
+        {% comment %} <a href="mailto:admissions@winlosacademy.com">
           admissions@winlosacademy.com
-        </a>
+        </a> {% endcomment %}
       </div>
     </div>
 
-    <a href="mailto:admissions@winlosacademy.com" class="btn-email">Email Us</a>
+    <a href="mailto:" class="btn-email">Email Us</a>
   </article>
 
   <!-- Card 2 -->
@@ -696,7 +696,7 @@
       <span class="contact-icon">📞</span>
       <div>
         <span class="contact-label">Phone</span>
-        <a href="tel:+2348035551234">+234 (0) 803 555 1234</a>
+        {% comment %} <a href="tel:+2348035551234">+234 (0) 803 555 1234</a> {% endcomment %}
       </div>
     </div>
 
@@ -704,9 +704,9 @@
       <span class="contact-icon">✉️</span>
       <div>
         <span class="contact-label">Email</span>
-        <a href="mailto:info@winlosacademy.com">
+        {% comment %} <a href="mailto:info@winlosacademy.com">
           info@winlosacademy.com
-        </a>
+        </a> {% endcomment %}
       </div>
     </div>
 
@@ -721,7 +721,7 @@
       <span class="contact-icon">📞</span>
       <div>
         <span class="contact-label">Phone</span>
-        <a href="tel:+2348035555678">+234 (0) 803 555 5678</a>
+        {% comment %} <a href="tel:+2348035555678">+234 (0) 803 555 5678</a> {% endcomment %}
       </div>
     </div>
 
@@ -729,13 +729,13 @@
       <span class="contact-icon">✉️</span>
       <div>
         <span class="contact-label">Email</span>
-        <a href="mailto:support@winlosacademy.com">
+        {% comment %} <a href="mailto:support@winlosacademy.com">
           support@winlosacademy.com
-        </a>
+        </a> {% endcomment %}
       </div>
     </div>
 
-    <a href="mailto:support@winlosacademy.com" class="btn-email">Email Us</a>
+    <a href="mailto:" class="btn-email">Email Us</a>
   </article>
 
 </section>
@@ -1250,8 +1250,9 @@
 
 
 
-        
 
+
+    
 <footer class="twa-footer">
     <div class="container">
         <div class="row gy-4 align-items-start">
@@ -1271,10 +1272,10 @@
             <div class="col-lg-3 col-md-4">
                 <h6 class="footer-title">PROGRAMS</h6>
                 <ul class="footer-links">
-                    <li><a href="#">Scriptwriting</a></li>
-                    <li><a href="#">Cinematography</a></li>
-                    <li><a href="#">Editing</a></li>
-                    <li><a href="#"><strong>All Programs</strong></a></li>
+                    <li><a href="{% url 'Screenwriting' %}">Screenwriting</a></li>
+                    <li><a href="{% url 'Cinematography' %}">Cinematography</a></li>
+                    <li><a href="{% url 'Film_Editing' %}">Editing</a></li>
+                    <li><a href="{% url 'program' %}"><strong>All Programs</strong></a></li>
                 </ul>
             </div>
 
@@ -1282,10 +1283,9 @@
             <div class="col-lg-3 col-md-4">
                 <h6 class="footer-title">ACADEMY</h6>
                 <ul class="footer-links">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Admission</a></li>
-                    <li><a href="#">Faculty</a></li>
-                    <li><a href="#">Alumni</a></li>
+                    <li><a href="{% url 'about_us' %}">About Us</a></li>
+                    <li><a href="{% url 'admission' %}">Admission</a></li>
+                    <li><a href="{% url 'facilitators' %}">Faculty</a></li>
                 </ul>
             </div>
 
@@ -1293,8 +1293,7 @@
             <div class="col-lg-3 col-md-4">
                 <h6 class="footer-title">CONNECT</h6>
                 <ul class="footer-links">
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">News & Events</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
                     <li><a href="#">The Winlos Studio</a></li>
                     <li><a href="#">Miller Road, Nigeria</a></li>
                 </ul>
@@ -1315,6 +1314,8 @@
         </div>
     </div>
 </footer>
+
+
 
 <style>
 .twa-footer {

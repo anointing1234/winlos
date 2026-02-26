@@ -1366,8 +1366,10 @@ document.addEventListener("DOMContentLoaded", convertUsdToNaira);
         })();
     </script>
     
+    
+    
 <footer class="twa-footer">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row gy-4 align-items-start">
 
             <!-- Brand / Intro -->
@@ -1385,10 +1387,10 @@ document.addEventListener("DOMContentLoaded", convertUsdToNaira);
             <div class="col-lg-3 col-md-4">
                 <h6 class="footer-title">PROGRAMS</h6>
                 <ul class="footer-links">
-                    <li><a href="#">Scriptwriting</a></li>
-                    <li><a href="#">Cinematography</a></li>
-                    <li><a href="#">Editing</a></li>
-                    <li><a href="#"><strong>All Programs</strong></a></li>
+                    <li><a href="{% url 'Screenwriting' %}">Screenwriting</a></li>
+                    <li><a href="{% url 'Cinematography' %}">Cinematography</a></li>
+                    <li><a href="{% url 'Film_Editing' %}">Editing</a></li>
+                    <li><a href="{% url 'program' %}"><strong>All Programs</strong></a></li>
                 </ul>
             </div>
 
@@ -1396,10 +1398,9 @@ document.addEventListener("DOMContentLoaded", convertUsdToNaira);
             <div class="col-lg-3 col-md-4">
                 <h6 class="footer-title">ACADEMY</h6>
                 <ul class="footer-links">
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Admission</a></li>
-                    <li><a href="#">Faculty</a></li>
-                    <li><a href="#">Alumni</a></li>
+                    <li><a href="{% url 'about_us' %}">About Us</a></li>
+                    <li><a href="{% url 'admission' %}">Admission</a></li>
+                    <li><a href="{% url 'facilitators' %}">Faculty</a></li>
                 </ul>
             </div>
 
@@ -1407,8 +1408,7 @@ document.addEventListener("DOMContentLoaded", convertUsdToNaira);
             <div class="col-lg-3 col-md-4">
                 <h6 class="footer-title">CONNECT</h6>
                 <ul class="footer-links">
-                    <li><a href="#">Contact</a></li>
-                    <li><a href="#">News & Events</a></li>
+                    <li><a href="{% url 'contact' %}">Contact</a></li>
                     <li><a href="#">The Winlos Studio</a></li>
                     <li><a href="#">Miller Road, Nigeria</a></li>
                 </ul>
