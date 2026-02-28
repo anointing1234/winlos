@@ -45,8 +45,16 @@ from django.conf import settings as Set
 from django.db.models import Sum
 from django.db.models.functions import ExtractMonth
 from django.utils.timezone import now
+import io
+from datetime import datetime
 
-
+import openpyxl
+from openpyxl.styles import Font, PatternFill, Alignment, Border, Side
+from openpyxl.drawing.image import Image as XLImage
+from PIL import Image as PILImage
+from pathlib import Path
+from django.core.mail import EmailMessage
+from django.conf import settings
 
 User = get_user_model()
 
@@ -328,10 +336,220 @@ def ajax_signup(request):
 
 
 
-# register offline
-def register_offline(request):
-    pass
 
+def _build_excel(first_name, last_name, dob, email, phone,
+                 location, course, start_date, proof_file):
+    """Build and return the registration Excel file as BytesIO."""
+
+    BLACK  = '00000000'
+    WHITE  = 'FFFFFFFF'
+    LIGHT  = 'FFF7F7F7'
+    YELLOW = 'FFFFFDF0'
+    GOLD   = 'FFF9C10B'
+
+    thin   = Side(style='thin', color='FFCCCCCC')
+    border = Border(left=thin, right=thin, top=thin, bottom=thin)
+
+    wb = openpyxl.Workbook()
+    ws = wb.active
+    ws.title = 'Registration'
+
+    # ── Title ─────────────────────────────────────────────────────────
+    ws.merge_cells('A1:B1')
+    t           = ws['A1']
+    t.value     = 'THE WINLOS ACADEMY — OFFLINE REGISTRATION'
+    t.font      = Font(name='Arial', bold=True, size=13, color=WHITE)
+    t.fill      = PatternFill('solid', start_color=BLACK)
+    t.alignment = Alignment(horizontal='center', vertical='center')
+    ws.row_dimensions[1].height = 34
+
+    # ── Subtitle ──────────────────────────────────────────────────────
+    ws.merge_cells('A2:B2')
+    s           = ws['A2']
+    s.value     = f"Received: {datetime.now().strftime('%d %B %Y, %I:%M %p')}"
+    s.font      = Font(name='Arial', italic=True, size=9, color='FF888888')
+    s.fill      = PatternFill('solid', start_color=YELLOW)
+    s.alignment = Alignment(horizontal='center', vertical='center')
+    ws.row_dimensions[2].height = 18
+
+    # ── Data rows ─────────────────────────────────────────────────────
+    rows = [
+        ('First Name',      first_name),
+        ('Last Name',       last_name),
+        ('Full Name',       f"{first_name} {last_name}"),
+        ('Date of Birth',   dob),
+        ('Email Address',   email),
+        ('Phone Number',    phone),
+        ('Location',        location or '—'),
+        ('Course Applied',  course),
+        ('Preferred Start', start_date),
+        ('Submitted At',    datetime.now().strftime('%Y-%m-%d %H:%M:%S')),
+        ('Status',          'Pending Review'),
+    ]
+
+    highlight = {'Course Applied', 'Status', 'Submitted At'}
+
+    for row_idx, (label, value) in enumerate(rows, start=3):
+        is_h = label in highlight
+
+        lc           = ws.cell(row=row_idx, column=1, value=label)
+        lc.font      = Font(name='Arial', bold=True, size=10, color=WHITE)
+        lc.fill      = PatternFill('solid', start_color=BLACK)
+        lc.alignment = Alignment(vertical='center', horizontal='left', indent=1)
+        lc.border    = border
+
+        vc           = ws.cell(row=row_idx, column=2, value=value)
+        vc.font      = Font(name='Arial', size=10, bold=is_h)
+        vc.fill      = PatternFill('solid', start_color=YELLOW if is_h else LIGHT)
+        vc.alignment = Alignment(vertical='center', horizontal='left',
+                                 indent=1, wrap_text=True)
+        vc.border    = border
+        ws.row_dimensions[row_idx].height = 22
+
+    # ── Payment Proof ─────────────────────────────────────────────────
+    proof_row = len(rows) + 4   # leave one blank gap
+
+    lc           = ws.cell(row=proof_row, column=1, value='Payment Proof')
+    lc.font      = Font(name='Arial', bold=True, size=10, color=WHITE)
+    lc.fill      = PatternFill('solid', start_color=BLACK)
+    lc.alignment = Alignment(vertical='top', horizontal='left', indent=1)
+    lc.border    = border
+
+    if proof_file:
+        ext = Path(proof_file.name).suffix.lower()
+
+        if ext in ('.jpg', '.jpeg', '.png', '.gif', '.bmp', '.webp'):
+            raw_bytes      = proof_file.read()
+            pil_img        = PILImage.open(io.BytesIO(raw_bytes))
+            orig_w, orig_h = pil_img.size
+
+            # Scale to max 400×300
+            max_w, max_h = 400, 300
+            scale  = min(max_w / orig_w, max_h / orig_h, 1.0)
+            new_w  = int(orig_w * scale)
+            new_h  = int(orig_h * scale)
+
+            xl_img        = XLImage(io.BytesIO(raw_bytes))
+            xl_img.width  = new_w
+            xl_img.height = new_h
+            ws.add_image(xl_img, f'B{proof_row}')
+            ws.row_dimensions[proof_row].height = new_h * 0.75
+
+            # Filename note below image
+            nc           = ws.cell(row=proof_row + 1, column=2,
+                                   value=f"File: {proof_file.name}")
+            nc.font      = Font(name='Arial', italic=True, size=8, color='FF888888')
+            nc.alignment = Alignment(horizontal='left', indent=1)
+
+        elif ext == '.pdf':
+            vc           = ws.cell(row=proof_row, column=2,
+                                   value=f"PDF: {proof_file.name}  — see email attachment")
+            vc.font      = Font(name='Arial', size=10, italic=True, color='FF555555')
+            vc.fill      = PatternFill('solid', start_color=YELLOW)
+            vc.alignment = Alignment(vertical='center', horizontal='left',
+                                     indent=1, wrap_text=True)
+            vc.border    = border
+            ws.row_dimensions[proof_row].height = 30
+    else:
+        vc           = ws.cell(row=proof_row, column=2, value='No proof uploaded')
+        vc.font      = Font(name='Arial', size=10, color='FFcc0000')
+        vc.fill      = PatternFill('solid', start_color=LIGHT)
+        vc.alignment = Alignment(vertical='center', horizontal='left', indent=1)
+        vc.border    = border
+        ws.row_dimensions[proof_row].height = 22
+
+    # Column widths
+    ws.column_dimensions['A'].width = 22
+    ws.column_dimensions['B'].width = 55
+
+    # Save to buffer
+    buffer = io.BytesIO()
+    wb.save(buffer)
+    buffer.seek(0)
+    return buffer
+
+
+def register_offline(request):
+    if request.method == 'GET':
+        return render(request, 'offline_registration.html')
+
+    if request.method == 'POST':
+
+        # ── Pull form fields ──────────────────────────────────────────
+        first_name = request.POST.get('first_name', '').strip()
+        last_name  = request.POST.get('last_name', '').strip()
+        dob        = request.POST.get('dob', '').strip()
+        email      = request.POST.get('email', '').strip()
+        phone      = request.POST.get('phone', '').strip()
+        location   = request.POST.get('location', '').strip()
+        course     = request.POST.get('course', '').strip()
+        start_date = request.POST.get('start_date', '').strip()
+        proof_file = request.FILES.get('payment_proof')
+
+        # ── Validation ────────────────────────────────────────────────
+        if not all([first_name, last_name, dob, email, phone, course, start_date]):
+            return JsonResponse({
+                'status': 'error',
+                'message': 'Please fill in all required fields.'
+            })
+
+        # ── Build Excel ───────────────────────────────────────────────
+        excel_buffer = _build_excel(
+            first_name, last_name, dob, email, phone,
+            location, course, start_date, proof_file
+        )
+
+        safe_name    = f"{last_name}_{first_name}".replace(' ', '_')
+        excel_fname  = f"TWA_{safe_name}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.xlsx"
+
+        # ── Send email to admin ───────────────────────────────────────
+        admin_email =  "info@thewinlosacademy.com"
+
+        email_body = (
+            f"New registration from {first_name} {last_name} for {course}. "
+            f"All details and payment proof are in the attached Excel file."
+        )
+
+        try:
+            mail = EmailMessage(
+                subject=f"[TWA Registration] {first_name} {last_name} — {course}",
+                body=email_body,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to=[admin_email],
+            )
+
+            # Attach the Excel file
+            mail.attach(
+                excel_fname,
+                excel_buffer.read(),
+                'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+            )
+
+            # Also attach original proof file if it's a PDF (since PDFs can't embed in Excel)
+            if proof_file:
+                ext = Path(proof_file.name).suffix.lower()
+                if ext == '.pdf':
+                    proof_file.seek(0)
+                    mail.attach(
+                        proof_file.name,
+                        proof_file.read(),
+                        'application/pdf'
+                    )
+
+            mail.send()
+
+            return JsonResponse({
+                'status': 'success',
+                'message': 'Application submitted successfully!'
+            })
+
+        except Exception as e:
+            return JsonResponse({
+                'status': 'error',
+                'message': f'Submission failed: {str(e)}'
+            }, status=500)
+
+    return HttpResponse(status=405)
 
 
 

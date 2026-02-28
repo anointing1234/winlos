@@ -13,6 +13,8 @@
 <link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
 <link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+<!-- ========== Favicon ========== -->
+<link rel="shortcut icon" href="{% static 'assets/img/favicon.ico' %}" type="image/x-icon">
 
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -632,7 +634,7 @@ input::placeholder { color: #bbb; font-size: 12px; }
 <div class="success-overlay" id="successOverlay">
   <div class="check">✓</div>
   <h2>Application Submitted!</h2>
-  <p>Thank you for applying to The Winlos Academy. A confirmation email will be sent to you shortly. Our admissions team will contact you within 2–3 business days.</p>
+  <p>Thank you for applying to The Winlos Academy. Your registration details and payment proof have been sent to our admissions team. You will be contacted within 2–3 business days.</p>
   <button class="back-btn" onclick="document.getElementById('successOverlay').classList.remove('show')">Back to Form</button>
 </div>
 
@@ -1061,23 +1063,20 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
         return;
     }
 
-    const btn = this.querySelector('.submit-btn');
+    const btn  = this.querySelector('.submit-btn');
     const orig = btn.innerHTML;
-    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Submitting...';
-    btn.disabled = true;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Sending...';
+    btn.disabled  = true;
 
     fetch("{% url 'register_offline' %}", {
-        method: "POST",
+        method: 'POST',
         body: new FormData(this),
-        headers: {
-            "X-CSRFToken": "{{ csrf_token }}",
-            "X-Requested-With": "XMLHttpRequest"
-        }
+        headers: { 'X-CSRFToken': '{{ csrf_token }}' }
     })
     .then(r => r.json())
     .then(data => {
         btn.innerHTML = orig;
-        btn.disabled = false;
+        btn.disabled  = false;
         if (data.status === 'success') {
             document.getElementById('successOverlay').classList.add('show');
         } else {
@@ -1086,7 +1085,7 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
     })
     .catch(() => {
         btn.innerHTML = orig;
-        btn.disabled = false;
+        btn.disabled  = false;
         showToast('Network error. Please try again.', 'danger');
     });
 });

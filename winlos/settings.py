@@ -262,10 +262,10 @@ AUTHENTICATION_BACKENDS = [
 # --------------------------------------------------
 # EMAIL (RESEND)
 # --------------------------------------------------
-DEFAULT_FROM_EMAIL = "info@winlosacademy.com"
+DEFAULT_FROM_EMAIL = "admissions@thewinlosacademy.com"  
 EMAIL_BACKEND = "anymail.backends.resend.EmailBackend"
 ANYMAIL = {"RESEND_API_KEY": os.getenv("RESEND_API_KEY")}
-
+print(os.getenv("RESEND_API_KEY")) 
 
 
 
