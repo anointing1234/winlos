@@ -267,7 +267,7 @@
                                             </li>
                                         {% else %}
                                             <li class="d-block d-lg-none">
-                                                <a href="{% url 'apply' %}">Apply Now</a>
+                                                <a href="{% url 'register_offline ' %}">Apply Now</a>
                                             </li>
                                         {% endif %}
                                     </ul>
@@ -281,7 +281,7 @@
                                 {{ user.get_full_name|default:user.username|slice:":1"|upper }}
                             </div>
                         {% else %}
-                            <a href="{% url 'apply' %}" class="theme-btn">
+                            <a href="{% url 'register_offline ' %}" class="theme-btn">
                                 Apply Now
                             </a>
                         {% endif %}
@@ -1206,7 +1206,7 @@
         </p>
 
         <div class="cta-buttons">
-            <a href="{% url 'apply' %}" class="cta-btn primary">Apply Now →</a>
+            <a href="{% url 'register_offline ' %}" class="cta-btn primary">Apply Now →</a>
             <a href="{% url 'contact' %}" class="cta-btn secondary">Schedule a Visit</a>
         </div>
     </div>

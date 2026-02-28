@@ -75,6 +75,13 @@ def contact(request):
 
 
 
+# offine course registeration
+
+def offline_reg(request):
+    return render(request,'auth/offline_registeration.html')
+
+
+
 # team pages
 def team1(request):
     return render(request,'home_pages/teams/Rev_Ohis_Ojeikere.html')
@@ -316,6 +323,16 @@ def ajax_signup(request):
             "status": "error",
             "message": "Internal signup error."
         })
+
+
+
+
+
+# register offline
+def register_offline(request):
+    pass
+
+
 
 
 def ajax_signin(request):

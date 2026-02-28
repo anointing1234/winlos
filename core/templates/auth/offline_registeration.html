@@ -1,0 +1,1125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Winlos Academy | Course Registration</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/all.min.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/main.css' %}">
+<link rel="stylesheet" href="{% static 'assets/css/custom.css' %}">
+
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: #f5f5f5;
+    color: #111;
+}
+
+/* ======= HEADER ======= */
+.reg-header {
+    background: linear-gradient(to right, #000000ff, #000000);
+    padding: 22px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.4);
+}
+
+.reg-header .logo img { width: 90px; filter: brightness(0) invert(1); }
+
+.reg-header-right { text-align: right; }
+.reg-header-right h2 {
+    color: #fff;
+    font-size: 16px;
+    font-weight: 800;
+    margin: 0;
+    letter-spacing: 0.5px;
+}
+.reg-header-right p {
+    color: #F9C10B;
+    font-size: 9px;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+/* ======= HERO ======= */
+.reg-hero {
+    background: linear-gradient(to right, #000000ff, #000000);
+    position: relative;
+    overflow: hidden;
+    padding: 55px 40px 48px;
+    text-align: center;
+}
+
+.reg-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(
+        45deg, transparent, transparent 80px,
+        rgba(249,193,11,0.04) 80px, rgba(249,193,11,0.04) 81px
+    );
+}
+
+.reg-hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(to right, transparent, #F9C10B, transparent);
+}
+
+.reg-hero h1 {
+    font-size: clamp(26px, 4vw, 44px);
+    font-weight: 800;
+    color: #fff;
+    position: relative;
+    margin-bottom: 10px;
+    letter-spacing: -0.5px;
+}
+
+.reg-hero h1 span { color: #F9C10B; }
+
+.reg-hero p {
+    color: rgba(255,255,255,0.5);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    position: relative;
+    margin: 0;
+}
+
+/* ======= LAYOUT ======= */
+.reg-layout {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    display: grid;
+    grid-template-columns: 1fr 355px;
+    gap: 28px;
+    align-items: start;
+}
+
+/* ======= FORM CARD ======= */
+.form-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.section-block {
+    padding: 28px 32px;
+    border-bottom: 1px solid #eeeeee;
+}
+
+.section-block:last-child { border-bottom: none; }
+
+.section-label {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 800;
+    color: #F9C10B;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #eee;
+}
+
+/* ======= FIELDS ======= */
+.field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.field-row.single { grid-template-columns: 1fr; }
+.field-row.triple { grid-template-columns: 1fr 1fr 1fr; }
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+label.fl {
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #000;
+}
+
+label.fl .req { color: #F9C10B; margin-left: 2px; }
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+input[type="date"],
+select {
+    background-color: white;
+    border: 1px solid black;
+    padding: 10px 12px;
+    margin: 0;
+    width: 100%;
+    font-size: 13px;
+    font-family: 'Montserrat', sans-serif;
+    border-radius: 4px;
+    color: #111;
+    outline: none;
+    transition: border-color 0.2s;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input:focus, select:focus { border-color: #000000; box-shadow: 0 0 0 2px rgba(0,1,84,0.1); }
+input::placeholder { color: #bbb; font-size: 12px; }
+
+.select-wrapper { position: relative; }
+.select-wrapper::after {
+    content: '▾';
+    position: absolute;
+    right: 13px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #000;
+    font-size: 13px;
+}
+
+/* ======= COURSE CARDS ======= */
+.course-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.course-option { position: relative; }
+
+.course-option input[type="radio"] {
+    position: absolute;
+    opacity: 0;
+    width: 0; height: 0;
+}
+
+.course-option label {
+    display: block;
+    cursor: pointer;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 13px 14px;
+    background: #fafafa;
+    transition: all 0.15s;
+    font-size: 12px;
+    font-weight: 400;
+    color: #000;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.course-option label:hover {
+    border-color: #F9C10B;
+    background: #fffdf5;
+}
+
+.course-option input[type="radio"]:checked + label {
+    background: linear-gradient(135deg, #000000ff, #000000);
+    border-color: #000000;
+    color: #fff;
+}
+
+.course-option input[type="radio"]:checked + label .c-num  { color: #F9C10B; }
+.course-option input[type="radio"]:checked + label .c-price { color: rgba(255,255,255,0.5); }
+.course-option input[type="radio"]:checked + label .c-badge {
+    background: rgba(249,193,11,0.2);
+    color: #F9C10B;
+}
+
+.c-num {
+    display: block;
+    font-size: 9px;
+    letter-spacing: 2px;
+    font-weight: 800;
+    color: #F9C10B;
+    margin-bottom: 5px;
+}
+
+.c-title {
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.4;
+    margin-bottom: 9px;
+}
+
+.c-meta { display: flex; justify-content: space-between; align-items: center; }
+
+.c-price { font-size: 12px; font-weight: 800; color: #000; }
+
+.c-badge {
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    background: rgba(249,193,11,0.12);
+    color: #a07800;
+    padding: 3px 8px;
+    border-radius: 20px;
+    text-transform: uppercase;
+}
+
+/* ======= BUTTON (matches original) ======= */
+.button {
+    border-radius: 15px;
+    border: 1px solid #ffffffff;
+    background-color: #000000ff;
+    color: #FFFFFF;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 10px 30px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.submit-btn {
+    width: 100%;
+    border-radius: 15px;
+    border: 1px solid #fff;
+    background-color: #000000ff;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 14px 30px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Montserrat', sans-serif;
+    margin-top: 20px;
+}
+
+.submit-btn:hover {
+    background: #F9C10B;
+    color: #000;
+    border-color: #F9C10B;
+}
+
+/* ======= PAYMENT BOX ======= */
+.payment-note {
+    background: #fffdf0;
+    border: 1px solid rgba(249,193,11,0.35);
+    border-left: 4px solid #F9C10B;
+    padding: 13px 15px;
+    font-size: 12px;
+    line-height: 1.7;
+    color: #000;
+    border-radius: 0 6px 6px 0;
+    margin-bottom: 16px;
+}
+
+.bank-box {
+    background: linear-gradient(to right, #000000ff, #000000);
+    border-radius: 8px;
+    padding: 20px 22px;
+    margin-bottom: 16px;
+}
+
+.bank-box h4 {
+    font-size: 11px;
+    font-weight: 800;
+    color: #F9C10B;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.bank-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    font-size: 12px;
+}
+
+.bank-row:last-child { border-bottom: none; }
+.bank-row .key { color: rgba(255,255,255,0.45); font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; }
+.bank-row .val { font-weight: 700; color: #fff; font-size: 13px; }
+.bank-row .val.gold { color: #F9C10B; letter-spacing: 1px; }
+
+.upload-field {
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    transition: 0.2s;
+    background: #fafafa;
+}
+
+.upload-field:hover { border-color: #F9C10B; background: #fffdf5; }
+.upload-field input { display: none; }
+.upload-field .icon { font-size: 24px; margin-bottom: 7px; }
+.upload-field p { font-size: 12px; color: #000; margin: 0 0 4px; font-weight: 500; }
+.upload-field span { font-size: 10px; color: #000; }
+
+/* ======= CONSENT ======= */
+.consent-box {
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    margin-bottom: 12px;
+}
+
+.consent-box input[type="checkbox"] {
+    width: 15px;
+    min-width: 15px;
+    height: 15px;
+    margin-top: 3px;
+    accent-color: #000000;
+    cursor: pointer;
+}
+
+.consent-box p {
+    font-size: 11px;
+    color: #000;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ======= SIDEBAR ======= */
+.sidebar { display: flex; flex-direction: column; gap: 20px; }
+
+.fee-hero {
+    background: linear-gradient(to right, #000000ff, #000000);
+    border-radius: 10px;
+    padding: 28px 22px;
+    text-align: center;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.fee-hero .big {
+    font-size: 52px;
+    font-weight: 800;
+    color: #F9C10B;
+    line-height: 1;
+    display: block;
+}
+
+.fee-hero .lbl {
+    font-size: 9px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    display: block;
+    margin: 6px 0 10px;
+}
+
+.fee-hero .naira { font-size: 14px; color: rgba(255,255,255,0.7); font-weight: 500; }
+.fee-hero .naira strong { color: #F9C10B; }
+
+.side-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+}
+
+.side-card-header {
+    background: linear-gradient(to right, #000000ff, #000000);
+    padding: 13px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.side-card-header h3 {
+    font-size: 11px;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.side-card-header .dot {
+    width: 7px;
+    height: 7px;
+    background: #F9C10B;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.side-card-body { padding: 18px 20px; }
+
+.fee-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #f0f0f0;
+    font-size: 12px;
+}
+
+.fee-row:last-of-type { border-bottom: none; }
+.fee-row .lt { color: #000; }
+.fee-row .at { font-weight: 700; }
+.fee-row.total-row { border-top: 2px solid #000; border-bottom: none; padding-top: 14px; margin-top: 6px; }
+.fee-row.total-row .lt { font-weight: 800; font-size: 13px; color: #000; }
+.fee-row.total-row .at { font-size: 20px; font-weight: 800; color: #000; }
+
+.rate-note {
+    background: rgba(249,193,11,0.1);
+    border-left: 3px solid #F9C10B;
+    padding: 10px 12px;
+    font-size: 11px;
+    color: #7a6000;
+    margin-top: 14px;
+    border-radius: 0 4px 4px 0;
+    line-height: 1.6;
+}
+
+.notice-list { list-style: none; padding: 0; display: flex; flex-direction: column; gap: 10px; }
+.notice-list li { display: flex; gap: 10px; font-size: 11px; line-height: 1.6; color: #000; }
+.notice-list li::before {
+    content: '';
+    width: 6px;
+    min-width: 6px;
+    height: 6px;
+    background: #F9C10B;
+    border-radius: 50%;
+    margin-top: 6px;
+    flex-shrink: 0;
+}
+
+/* ======= TOAST (matches original) ======= */
+#toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    z-index: 99999;
+}
+
+.msg {
+    background: #fefefe;
+    font-weight: bold;
+    font-size: 12px;
+    padding: 12px 18px;
+    border-top: solid 3px #ccc;
+    border-radius: 6px;
+    box-shadow: 0 10px 10px -5px rgba(0,0,0,.08);
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Montserrat', sans-serif;
+    animation: toastIn 0.35s ease forwards;
+}
+
+.msg-success { border-color: #cef2b8; color: #80d651; }
+.msg-danger  { border-color: #ec8282; color: #c9302c; }
+
+@keyframes toastIn {
+    from { opacity: 0; transform: translateX(40px); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+
+/* ======= SUCCESS OVERLAY ======= */
+.success-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(to right, #000000ff, #000000);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 40px;
+}
+
+.success-overlay.show { display: flex; }
+
+.success-overlay .check {
+    width: 80px;
+    height: 80px;
+    border: 3px solid #F9C10B;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #F9C10B;
+    margin-bottom: 24px;
+    animation: popIn 0.4s cubic-bezier(0.175,0.885,0.32,1.275) both;
+}
+
+.success-overlay h2 {
+    font-size: 26px;
+    font-weight: 800;
+    color: #fff;
+    margin-bottom: 12px;
+}
+
+.success-overlay p { color: rgba(255,255,255,0.6); font-size: 13px; max-width: 420px; line-height: 1.8; }
+
+.success-overlay .back-btn {
+    margin-top: 28px;
+    border-radius: 15px;
+    border: 1px solid #fff;
+    background: transparent;
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 10px 32px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.success-overlay .back-btn:hover {
+    background: #F9C10B;
+    color: #000;
+    border-color: #F9C10B;
+}
+
+@keyframes popIn {
+    from { transform: scale(0); opacity: 0; }
+    to   { transform: scale(1); opacity: 1; }
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 900px) {
+    .reg-layout { grid-template-columns: 1fr; }
+    .sidebar { grid-row: 1; }
+    .course-grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .reg-header { padding: 16px 18px; }
+    .reg-hero { padding: 38px 20px 34px; }
+    .section-block { padding: 22px 16px; }
+    .field-row, .field-row.triple { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<div id="toast-container"></div>
+
+<!-- SUCCESS OVERLAY -->
+<div class="success-overlay" id="successOverlay">
+  <div class="check">✓</div>
+  <h2>Application Submitted!</h2>
+  <p>Thank you for applying to The Winlos Academy. A confirmation email will be sent to you shortly. Our admissions team will contact you within 2–3 business days.</p>
+  <button class="back-btn" onclick="document.getElementById('successOverlay').classList.remove('show')">Back to Form</button>
+</div>
+
+<!-- STICKY HEADER -->
+<div class="reg-header">
+  <div class="logo">
+    <a href="{% url 'home' %}">
+      <img src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="The Winlos Academy">
+    </a>
+  </div>
+  <div class="reg-header-right">
+    <h2>Course Registration</h2>
+    <p>Offline Enrollment · 2025/2026</p>
+  </div>
+</div>
+
+<!-- HERO BANNER -->
+<div class="reg-hero">
+  <h1>Offline <span>Enrollment</span> Application</h1>
+  <p>Nigeria's Premier Christian Film School</p>
+</div>
+
+<!-- MAIN LAYOUT -->
+<div class="reg-layout">
+
+  <!-- FORM COLUMN -->
+  <div>
+    <form id="regForm" novalidate>
+      {% csrf_token %}
+
+      <!-- 01 PERSONAL INFO -->
+      <div class="form-card">
+        <div class="section-block">
+          <div class="section-label">01 &nbsp; Personal Information</div>
+
+          <div class="field-row">
+            <div class="field">
+              <label class="fl">First Name <span class="req">*</span></label>
+              <input type="text" name="first_name" placeholder="First name" required>
+            </div>
+            <div class="field">
+              <label class="fl">Last Name <span class="req">*</span></label>
+              <input type="text" name="last_name" placeholder="Last name" required>
+            </div>
+          </div>
+
+          <div class="field-row triple">
+            <div class="field">
+              <label class="fl">Date of Birth <span class="req">*</span></label>
+              <input type="date" name="dob" required>
+            </div>
+            <div class="field">
+              <label class="fl">Email Address <span class="req">*</span></label>
+              <input type="email" name="email" placeholder="you@email.com" required>
+            </div>
+            <div class="field">
+              <label class="fl">Mobile Phone <span class="req">*</span></label>
+              <input type="tel" name="phone" placeholder="080-000-0000" required>
+            </div>
+          </div>
+
+          <div class="field-row single">
+            <div class="field">
+              <label class="fl">State / City of Residence</label>
+              <input type="text" name="location" placeholder="e.g. Lagos, Nigeria">
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 COURSE SELECTION -->
+        <div class="section-block">
+          <div class="section-label">02 &nbsp; Select Your Discipline</div>
+          <p style="font-size:11px;color:#000;margin-bottom:16px;">Choose the course you are applying for. All courses are $100 · 8 Weeks.</p>
+
+          <div class="course-grid" id="courseGrid">
+            <div class="course-option">
+              <input type="radio" name="course" id="c1" value="Storytelling for Film & Visual Media" required>
+              <label for="c1">
+                <span class="c-num">COURSE 01</span>
+                <span class="c-title">Storytelling for Film &amp; Visual Media</span>
+                <div class="c-meta"><span class="c-price">$100</span><span class="c-badge">8 Weeks</span></div>
+              </label>
+            </div>
+            <div class="course-option">
+              <input type="radio" name="course" id="c2" value="Screenwriting for Film & Digital Media">
+              <label for="c2">
+                <span class="c-num">COURSE 02</span>
+                <span class="c-title">Screenwriting for Film &amp; Digital Media</span>
+                <div class="c-meta"><span class="c-price">$100</span><span class="c-badge">8 Weeks</span></div>
+              </label>
+            </div>
+            <div class="course-option">
+              <input type="radio" name="course" id="c3" value="Cinematography: Visual Storytelling for Film">
+              <label for="c3">
+                <span class="c-num">COURSE 03</span>
+                <span class="c-title">Cinematography: Visual Storytelling for Film</span>
+                <div class="c-meta"><span class="c-price">$100</span><span class="c-badge">8 Weeks</span></div>
+              </label>
+            </div>
+            <div class="course-option">
+              <input type="radio" name="course" id="c4" value="Advanced Acting for Film & Camera">
+              <label for="c4">
+                <span class="c-num">COURSE 04</span>
+                <span class="c-title">Advanced Acting for Film &amp; Camera</span>
+                <div class="c-meta"><span class="c-price">$100</span><span class="c-badge">8 Weeks</span></div>
+              </label>
+            </div>
+            <div class="course-option">
+              <input type="radio" name="course" id="c5" value="Film Editing & Post Production Storytelling">
+              <label for="c5">
+                <span class="c-num">COURSE 05</span>
+                <span class="c-title">Film Editing &amp; Post Production Storytelling</span>
+                <div class="c-meta"><span class="c-price">$100</span><span class="c-badge">8 Weeks</span></div>
+              </label>
+            </div>
+            <div class="course-option">
+              <input type="radio" name="course" id="c6" value="Film Directing & Visual Leadership">
+              <label for="c6">
+                <span class="c-num">COURSE 06</span>
+                <span class="c-title">Film Directing &amp; Visual Leadership</span>
+                <div class="c-meta"><span class="c-price">$100</span><span class="c-badge">8 Weeks</span></div>
+              </label>
+            </div>
+            <div class="course-option">
+              <input type="radio" name="course" id="c7" value="Sound Design & Audio Production for Film">
+              <label for="c7">
+                <span class="c-num">COURSE 07</span>
+                <span class="c-title">Sound Design &amp; Audio Production for Film</span>
+                <div class="c-meta"><span class="c-price">$100</span><span class="c-badge">8 Weeks</span></div>
+              </label>
+            </div>
+            <div class="course-option">
+              <input type="radio" name="course" id="c8" value="Lighting Design & Cinematic Lighting">
+              <label for="c8">
+                <span class="c-num">COURSE 08</span>
+                <span class="c-title">Lighting Design &amp; Cinematic Lighting</span>
+                <div class="c-meta"><span class="c-price">$100</span><span class="c-badge">8 Weeks</span></div>
+              </label>
+            </div>
+            <div class="course-option">
+              <input type="radio" name="course" id="c9" value="Advanced Film Production & Producing">
+              <label for="c9">
+                <span class="c-num">COURSE 09</span>
+                <span class="c-title">Advanced Film Production &amp; Producing</span>
+                <div class="c-meta"><span class="c-price">$100</span><span class="c-badge">8 Weeks</span></div>
+              </label>
+            </div>
+            <div class="course-option">
+              <input type="radio" name="course" id="c10" value="Short Film Filmmaking & Skit Production">
+              <label for="c10">
+                <span class="c-num">COURSE 10</span>
+                <span class="c-title">Short Film Filmmaking &amp; Skit Production</span>
+                <div class="c-meta"><span class="c-price">$100</span><span class="c-badge">8 Weeks</span></div>
+              </label>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 START DATE -->
+        <div class="section-block">
+          <div class="section-label">03 &nbsp; Preferred Start Date</div>
+          <div class="field-row single">
+            <div class="field">
+              <label class="fl">Cohort Start Date <span class="req">*</span></label>
+              <div class="select-wrapper">
+                <select name="start_date" required>
+                  <option value="" disabled selected>Select an intake date</option>
+                  <option>January 2026 Cohort</option>
+                  <option>April 2026 Cohort</option>
+                  <option>July 2026 Cohort</option>
+                  <option>October 2026 Cohort</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 PAYMENT -->
+        <div class="section-block">
+          <div class="section-label">04 &nbsp; Payment Information</div>
+
+          <div class="payment-note">
+            <strong>Offline Payment:</strong> Make a bank transfer to the account below, then upload your teller or receipt to complete this application. The <strong>₦50,000 application fee is non-refundable</strong>.
+          </div>
+
+          <div class="bank-box">
+            <h4>Bank Transfer Details</h4>
+            <div class="bank-row">
+              <span class="key">Bank Name</span>
+              <span class="val">First Bank Nigeria</span>
+            </div>
+            <div class="bank-row">
+              <span class="key">Account Name</span>
+              <span class="val">The Winlos Academy</span>
+            </div>
+            <div class="bank-row">
+              <span class="key">Account Number</span>
+              <span class="val gold">0123456789</span>
+            </div>
+            <div class="bank-row">
+              <span class="key">Payment Reference</span>
+              <span class="val">Your Full Name + Course Name</span>
+            </div>
+          </div>
+
+          <div class="field">
+            <label class="fl">Upload Proof of Payment <span class="req">*</span></label>
+            <div class="upload-field" onclick="document.getElementById('payProof').click()">
+              <input type="file" id="payProof" name="payment_proof" accept="image/*,.pdf" onchange="handleFile(this)">
+              <div class="icon">📎</div>
+              <p id="uploadLabel">Click to upload teller or bank receipt</p>
+              <span>JPG, PNG or PDF &nbsp;·&nbsp; Max 5MB</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 CONSENT -->
+        <div class="section-block">
+          <div class="section-label">05 &nbsp; Authorization &amp; Consent</div>
+
+          <div class="consent-box">
+            <input type="checkbox" id="c_fee" required>
+            <p>I acknowledge that the <strong>₦50,000 application fee is non-refundable</strong> and that full course fees must be settled before my cohort start date.</p>
+          </div>
+
+          <div class="consent-box">
+            <input type="checkbox" id="c_contact" required>
+            <p>I give The Winlos Academy permission to contact me via email, SMS or telephone regarding my application and educational services. Msg. &amp; data rates may apply.</p>
+          </div>
+
+          <div class="consent-box">
+            <input type="checkbox" id="c_accuracy" required>
+            <p>By submitting, I confirm all provided information is accurate. I understand that proof of secondary school graduation and, if applicable, English Proficiency may be requested before enrollment is confirmed.</p>
+          </div>
+
+          <p style="font-size:11px;color:#000;line-height:1.7;margin:14px 0 0;border-top:1px solid #eee;padding-top:14px;">
+            Please ensure you provide a valid email address — all communication regarding your application will be sent via email.
+          </p>
+
+          <button type="submit" class="submit-btn">Submit Application</button>
+        </div>
+
+      </div>
+    </form>
+  </div>
+
+  <!-- SIDEBAR COLUMN -->
+  <div class="sidebar">
+
+    <div class="fee-hero">
+      <span class="big" id="usd-price">100</span>
+      <span class="lbl">Course Fee Per Programme</span>
+      <div class="naira">≈ <strong id="naira-price">Loading...</strong></div>
+    </div>
+
+    <div class="side-card">
+      <div class="side-card-header">
+        <div class="dot"></div>
+        <h3>Fee Breakdown</h3>
+      </div>
+      <div class="side-card-body">
+        <div class="fee-row">
+          <span class="lt">Course Tuition</span>
+          <span class="at">$100 <small style="font-weight:400;color:#000;font-size:10px;">/ <span id="naira-price-2">...</span></small></span>
+        </div>
+        <div class="fee-row">
+          <span class="lt">Application Fee</span>
+          <span class="at">₦50,000</span>
+        </div>
+        <div class="fee-row total-row">
+          <span class="lt">Total Course Fee</span>
+          <span class="at">$100</span>
+        </div>
+        <div class="rate-note">
+          Live exchange rate applied. Final naira amount confirmed at time of payment.
+        </div>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <div class="side-card-header">
+        <div class="dot"></div>
+        <h3>Please Note</h3>
+      </div>
+      <div class="side-card-body">
+        <ul class="notice-list">
+          <li>Provide a valid email — all application updates will be sent via email.</li>
+          <li>The ₦50,000 application fee is strictly non-refundable.</li>
+          <li>After submission, you will be asked for proof of secondary school completion.</li>
+          <li>English Proficiency may be assessed where applicable.</li>
+          <li>Enrollment is only confirmed after full payment is received and verified.</li>
+          <li>All programmes run for 8 weeks at The Winlos Studio, Miller Road, Lagos.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="side-card">
+      <div class="side-card-header">
+        <div class="dot"></div>
+        <h3>Need Help?</h3>
+      </div>
+      <div class="side-card-body">
+        <p style="font-size:12px;color:#000;line-height:1.8;margin-bottom:10px;">For questions about the application or any of our courses, reach the admissions team:</p>
+        <p style="font-size:12px;color:#000;font-weight:700;">📧 info@thewinlosacademy.com</p>
+        <p style="font-size:12px;color:#000;margin-top:8px;line-height:1.6;">📍 The Winlos Studio<br>Miller Road, Lagos, Nigeria</p>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER (unchanged from original) -->
+<footer class="twa-footer">
+  <div class="container">
+    <div class="row gy-4 align-items-start">
+      <div class="col-lg-3">
+        <div class="footer-brand mb-3">
+          <img src="{% static 'assets/img/logo/winlos_logo.png' %}" alt="Winlos Academy" style="height:40px;">
+        </div>
+        <p class="footer-desc">Empowering the next generation of filmmakers to tell stories that matter.</p>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <h6 class="footer-title">PROGRAMS</h6>
+        <ul class="footer-links">
+          <li><a href="{% url 'Screenwriting' %}">Screenwriting</a></li>
+          <li><a href="{% url 'Cinematography' %}">Cinematography</a></li>
+          <li><a href="{% url 'Film_Editing' %}">Editing</a></li>
+          <li><a href="{% url 'program' %}"><strong>All Programs</strong></a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <h6 class="footer-title">ACADEMY</h6>
+        <ul class="footer-links">
+          <li><a href="{% url 'about_us' %}">About Us</a></li>
+          <li><a href="{% url 'admission' %}">Admission</a></li>
+          <li><a href="{% url 'facilitators' %}">Faculty</a></li>
+          <li><a href="#">Alumni</a></li>
+        </ul>
+      </div>
+      <div class="col-lg-3 col-md-4">
+        <h6 class="footer-title">CONNECT</h6>
+        <ul class="footer-links">
+          <li><a href="{% url 'contact' %}">Contact</a></li>
+          <li><a href="#">News &amp; Events</a></li>
+          <li><a href="#">The Winlos Studio</a></li>
+          <li><a href="#">Miller Road, Nigeria</a></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <div class="row align-items-center bg-white footer-bottom">
+      <div class="col-md-6 text-center text-md-start">
+        <p class="mb-0">© 2026 The Winlos Film Academy. All rights reserved.</p>
+      </div>
+      <div class="col-md-6 text-center text-md-end">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<style>
+.twa-footer { padding: 80px 0 30px; background: #ffffff; color: #111; border-top: 1px solid #eee; }
+.footer-desc { font-size: 14px; line-height: 1.7; color: #000; }
+.footer-title { font-size: 12px; letter-spacing: 1px; font-weight: 700; margin-bottom: 15px; color: #111; }
+.footer-links { list-style: none; padding: 0; margin: 0; }
+.footer-links li { margin-bottom: 10px; }
+.footer-links a { text-decoration: none; font-size: 14px; color: #000; transition: color 0.2s ease; }
+.footer-links a:hover { color: #111; }
+.footer-divider { margin: 60px 0 25px; border: none; border-top: 1px solid #eee; }
+.footer-bottom p, .footer-bottom a { font-size: 13px; color: #000; text-decoration: none; margin-left: 15px; }
+.footer-bottom a:first-child { margin-left: 0; }
+.footer-bottom a:hover { color: #111; }
+</style>
+
+<!-- Scripts -->
+<script src="{% static 'assets/js/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/js/main.js' %}"></script>
+
+<script>
+function showToast(msg, type) {
+    const c = document.getElementById('toast-container');
+    const t = document.createElement('div');
+    t.className = `msg msg-${type}`;
+    t.innerText = msg;
+    c.appendChild(t);
+    setTimeout(() => t.remove(), 3500);
+}
+
+function handleFile(input) {
+    const lbl = document.getElementById('uploadLabel');
+    if (input.files && input.files[0]) {
+        lbl.textContent = '✓ ' + input.files[0].name;
+        lbl.style.color = '#333';
+        lbl.style.fontWeight = '700';
+    }
+}
+
+document.getElementById('regForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    let valid = true;
+
+    this.querySelectorAll('input[required]:not([type=radio]):not([type=checkbox]), select[required]').forEach(el => {
+        if (!el.value.trim()) { el.style.borderColor = '#F9C10B'; valid = false; }
+        else { el.style.borderColor = 'black'; }
+    });
+
+    ['c_fee','c_contact','c_accuracy'].forEach(id => {
+        const el = document.getElementById(id);
+        if (!el.checked) { el.style.outline = '2px solid #F9C10B'; valid = false; }
+        else { el.style.outline = ''; }
+    });
+
+    if (!document.querySelector('input[name="course"]:checked')) {
+        document.getElementById('courseGrid').style.outline = '2px solid #F9C10B';
+        valid = false;
+    } else {
+        document.getElementById('courseGrid').style.outline = '';
+    }
+
+    if (!valid) {
+        showToast('Please fill in all required fields.', 'danger');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+    }
+
+    const btn = this.querySelector('.submit-btn');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '<span class="spinner-border spinner-border-sm"></span> Submitting...';
+    btn.disabled = true;
+
+    fetch("{% url 'register_offline' %}", {
+        method: "POST",
+        body: new FormData(this),
+        headers: {
+            "X-CSRFToken": "{{ csrf_token }}",
+            "X-Requested-With": "XMLHttpRequest"
+        }
+    })
+    .then(r => r.json())
+    .then(data => {
+        btn.innerHTML = orig;
+        btn.disabled = false;
+        if (data.status === 'success') {
+            document.getElementById('successOverlay').classList.add('show');
+        } else {
+            showToast(data.message || 'Something went wrong.', 'danger');
+        }
+    })
+    .catch(() => {
+        btn.innerHTML = orig;
+        btn.disabled = false;
+        showToast('Network error. Please try again.', 'danger');
+    });
+});
+</script>
+
+
+<script>
+async function convertUsdToNaira() {
+    const usdAmount = parseFloat(document.getElementById('usd-price').innerText);
+    const nairaEl = document.getElementById('naira-price');
+    const nairaEl2 = document.getElementById('naira-price-2');
+
+    try {
+        const response = await fetch('https://open.er-api.com/v6/latest/USD');
+        const data = await response.json();
+
+        if (data.result !== 'success') throw new Error('API error');
+
+        const rate = data.rates.NGN;
+        const nairaAmount = (usdAmount * rate).toFixed(0);
+        const formatted = '₦' + Number(nairaAmount).toLocaleString();
+
+        nairaEl.innerHTML = formatted;
+        if (nairaEl2) nairaEl2.innerHTML = formatted;
+
+    } catch (error) {
+        nairaEl.innerHTML = 'NGN price unavailable';
+        if (nairaEl2) nairaEl2.innerHTML = '–';
+        console.error('Currency conversion failed:', error);
+    }
+}
+
+document.addEventListener('DOMContentLoaded', convertUsdToNaira);
+</script>
+</body>
+</html>

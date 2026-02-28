@@ -47,6 +47,9 @@ urlpatterns = [
     path('logout/', views.logout_view, name='logout'),
     path('Admin_logout/', views.Admin_logout, name='Admin_logout'),
     path('update-password/', views.update_password, name='update_password'),
+    path('course/registration/', views.offline_reg, name='offline_registration'),
+    path('register_offline/',views.register_offline,name='register_offline'),
+
 
     # Student portal views — student only
     path('dashboard/', student_required(views.student_dashboard), name='dashboard'),
