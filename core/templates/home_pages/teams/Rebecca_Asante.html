@@ -276,7 +276,7 @@
                                         </li>
                                         {% else %}
                                         <li class="d-block d-lg-none">
-                                            <a href="{% url 'register_offline' %}">Apply Now</a>
+                                            <a href="{% url 'offline_registration' %}">Apply Now</a>
                                         </li>
                                         {% endif %}
                                     </ul>
@@ -290,7 +290,7 @@
                                 {{ user.get_full_name|default:user.username|slice:":1"|upper }}
                             </div>
                         {% else %}
-                            <a href="{% url 'register_offline' %}" class="theme-btn">
+                            <a href="{% url 'offline_registration' %}" class="theme-btn">
                                 Apply Now
                             </a>
                         {% endif %}
