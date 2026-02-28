@@ -25,6 +25,8 @@ body {
     color: #111;
 }
 
+
+
 /* ======= HEADER ======= */
 .reg-header {
     background: linear-gradient(to right, #000000ff, #000000);
@@ -885,7 +887,7 @@ input::placeholder { color: #bbb; font-size: 12px; }
   <div class="sidebar">
 
     <div class="fee-hero">
-      <span class="big"> $<span class="big" id="usd-price">100</span></span>
+      <span class="big" id="usd-price" data-usd="100"></span>
       <span class="lbl">Course Fee Per Programme</span>
       <div class="naira">≈ <strong id="naira-price">Loading...</strong></div>
     </div>
@@ -1094,9 +1096,15 @@ document.getElementById('regForm').addEventListener('submit', function(e) {
 
 <script>
 async function convertUsdToNaira() {
-    const usdAmount = parseFloat(document.getElementById('usd-price').innerText);
+    const usdEl = document.getElementById('usd-price');
     const nairaEl = document.getElementById('naira-price');
     const nairaEl2 = document.getElementById('naira-price-2');
+
+    // ✅ Read USD safely
+    const usdAmount = parseFloat(usdEl.dataset.usd);
+
+    // ✅ Render USD with dollar sign
+    usdEl.innerText = `$${usdAmount}`;
 
     try {
         const response = await fetch('https://open.er-api.com/v6/latest/USD');
@@ -1105,15 +1113,15 @@ async function convertUsdToNaira() {
         if (data.result !== 'success') throw new Error('API error');
 
         const rate = data.rates.NGN;
-        const nairaAmount = (usdAmount * rate).toFixed(0);
-        const formatted = '₦' + Number(nairaAmount).toLocaleString();
+        const nairaAmount = Math.round(usdAmount * rate);
+        const formatted = '₦' + nairaAmount.toLocaleString();
 
-        nairaEl.innerHTML = formatted;
-        if (nairaEl2) nairaEl2.innerHTML = formatted;
+        nairaEl.innerText = formatted;
+        if (nairaEl2) nairaEl2.innerText = formatted;
 
     } catch (error) {
-        nairaEl.innerHTML = 'NGN price unavailable';
-        if (nairaEl2) nairaEl2.innerHTML = '–';
+        nairaEl.innerText = 'NGN price unavailable';
+        if (nairaEl2) nairaEl2.innerText = '–';
         console.error('Currency conversion failed:', error);
     }
 }
